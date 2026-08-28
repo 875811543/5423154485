@@ -21,6 +21,9 @@
   --font-heading: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --header-height: 72px;
+  /* Accent vert du logo, reserve aux elements de confiance : coches, badges */
+  --accent-green: #0F7A38;
+  --accent-green-bg: #EAF7EC;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -472,7 +475,6 @@ a { color: inherit; }
 /* --- Touches de vert (issu du logo), en accent ciblé sur les éléments de
    confiance/validation : coches, badges de certification/agrément.
    Le bleu reste la couleur dominante du site. --- */
-:root { --accent-green: #0F7A38; --accent-green-bg: #EAF7EC; }
 
 .service-card li::before,
 .card-list li::before,

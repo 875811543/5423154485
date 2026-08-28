@@ -186,7 +186,7 @@ h=$(md5sum assets/css/global.css | cut -c1-8)
 sed -i "s|global\.css?v=[a-f0-9]*|global.css?v=$h|g" *.html
 ```
 
-Hashes actuellement en place : `fonts.css?v=be314626`, `global.css?v=c7147194`,
+Hashes actuellement en place : `fonts.css?v=be314626`, `global.css?v=ae27c54e`,
 `footer.css?v=67e67818`, `form.css?v=46cf0f90`, `pages-nuisibles.css?v=c564fb2b`,
 `pages-zones.css?v=ff401060`, `main.js?v=51bcce48`.
 
