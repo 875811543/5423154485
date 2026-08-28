@@ -323,7 +323,8 @@ produit un faux positif.
 ### Comparer le rendu avant / après une modification CSS
 
 ```sh
-tools/compare-rendered-styles.sh          # compare a HEAD
+tools/compare-rendered-styles.sh                 # compare a HEAD, en 1280px
+tools/compare-rendered-styles.sh HEAD~3 390      # autre reference, autre largeur
 ```
 
 Chrome headless relève ~50 propriétés calculées et la boîte de chaque élément
@@ -332,6 +333,11 @@ de référence, et signale toute divergence. C'est ce contrôle qui a permis
 d'extraire 379 attributs `style=""` sans régression : il a attrapé une perte
 d'`object-fit` sur 20 images, une collision de nom de classe, et trois pertes de
 bataille de spécificité — aucune n'était visible sans mesure.
+
+**Rejouer a plusieurs largeurs.** Les media queries du site couvrent une
+trentaine de points de bascule : une regression peut n'exister qu'a une seule
+largeur. Au minimum 390, 768, 1024 et 1280. Le chantier CSS a ete valide aux
+quatre.
 
 **Ne pas comparer par capture d'écran.** Mesuré sur ce dépôt : 14 pages sur 28
 donnent deux images différentes sans aucune modification (lazy-loading, polices).
