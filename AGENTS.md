@@ -137,20 +137,29 @@ variables du `:root` de `global.css` (`--primary-blue`, `--muted`, `--border`,
 `--surface`, `--ink`, `--body-text`, `--font-heading`…), sinon la propriété est
 invalide sur les autres pages, sans erreur visible.
 
-#### Les `!important` de `global.css` — ne pas y toucher sans preuve
+#### Les `!important` de `global.css` — mesuré, ils restent nécessaires
 
-32 occurrences, **toutes encore porteuses** au dernier contrôle :
+31 occurrences. **L'hypothèse « vider l'inline les rendra inutiles » a été
+testée, et elle est fausse.**
+
+Une fois les 379 attributs `style=""` supprimés, retirer les 26 `!important` du
+bloc des boutons de conversion a été essayé : le rendu change sur **28 pages sur
+28**. Ils ne servaient pas seulement à passer devant l'inline. Neuf des dix
+sélecteurs du bloc (`.btn-phone`, `.sticky-call-btn`, `.btn-devis`,
+`.form-submit-btn`, `.ty-btn--primary`, `.err-btn--primary`…) sont redéfinis
+dans `form.css` ou dans une feuille de `assets/css/pages/` chargée après
+`global.css`. Ne pas retenter sans un plan qui traite ces redéfinitions.
+
+Répartition actuelle :
 
 - 4 relèvent de `prefers-reduced-motion` — légitimes ;
-- 2 concernent le menu mobile — non tranché ;
-- 26 existent pour passer devant les redéfinitions de `.btn-phone`,
-  `.sticky-call-btn`, `.btn-devis`, `.ty-btn--primary`… Vérifié : 8 de ces 10
-  sélecteurs sont **toujours** redéfinis, en inline ou dans un fichier chargé
-  après `global.css`. Seuls `.cta-call` et `.mobile-menu__cta` n'ont plus de
-  concurrent, mais ils appartiennent à une règle groupée couvrant les 10.
+- 1 masque le menu mobile au-dessus de 1024px — non tranché ;
+- 26 protègent le bloc des boutons verts — nécessaires, cf. ci-dessus.
 
-Les retirer suppose d'avoir d'abord vidé l'inline concurrent. En cas de doute,
-laisser et signaler.
+Un seul a pu être retiré : `color: #fff !important` sur `.mobile-menu__cta`,
+qui se battait contre une règle du **même fichier** (le bloc des boutons, plus
+bas, gagnait déjà). Retrait vérifié sans effet, en 1280px **et en 390px** — la
+largeur où ce menu est visible. Contrôler en desktop seul n'aurait rien prouvé.
 
 ### P3 — Cohérence SEO
 
