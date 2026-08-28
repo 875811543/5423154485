@@ -1,0 +1,124 @@
+# ============================================================
+#  Dezinsect Corse — Configuration Apache
+# ============================================================
+
+Options -Indexes
+DirectoryIndex index.html
+
+# ------------------------------------------------------------
+#  1. Réécriture d'URL
+# ------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Forcer HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # Supprimer le www (canonique = dezinsect-corse.fr sans www)
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+  # ----------------------------------------------------------
+  #  Redirections des anciennes URLs (migration builder -> site statique)
+  #  ⚠️ À COMPLÉTER avant la bascule du domaine.
+  #  Méthode : Search Console > Indexation > Pages > "Indexées", exporter
+  #  la liste, puis ajouter une ligne par URL qui n'existe plus à l'identique.
+  #  Format : RewriteRule ^ancienne-url/?$ /nouvelle-url [R=301,L]
+  # ----------------------------------------------------------
+
+  # Page supprimée du site
+  RewriteRule ^a-propos/?$ /services-anti-nuisibles [R=301,L]
+
+  # Anciennes pages de zones, fusionnées en 3 pages régionales
+  RewriteRule ^anti-nuisibles-costa-verde-plaine-orientale/?$ /anti-nuisibles-costa-verde [R=301,L]
+  RewriteRule ^anti-nuisibles-bastia(-grand-bastia)?/?$ /anti-nuisibles-costa-verde [R=301,L]
+  RewriteRule ^anti-nuisibles-balagne/?$ /anti-nuisible-corte [R=301,L]
+  RewriteRule ^anti-nuisibles-(centre-corse|corte)/?$ /anti-nuisible-corte [R=301,L]
+  RewriteRule ^anti-nuisibles-(grand-)?ajaccio/?$ /anti-nuisibles-grand-ajaccio-porto-vecchio [R=301,L]
+  RewriteRule ^anti-nuisibles-(porto-vecchio|bonifacio|extreme-sud|sud-corse)/?$ /anti-nuisibles-grand-ajaccio-porto-vecchio [R=301,L]
+
+  # Filet de sécurité : toute ancienne URL de zone non listée ci-dessus
+  # atterrit sur le hub plutôt qu'en 404.
+  # Les deux conditions sont indispensables : sans elles, cette règle
+  # capturerait aussi les pages de zones actuelles, qui existent bien.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME}.html !-f
+  RewriteRule ^anti-nuisibles?-.+$ /zones-dintervention [R=301,L]
+
+  # Rediriger /page.html -> /page (évite le contenu dupliqué)
+  RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # Rediriger /index -> /
+  RewriteRule ^index/?$ / [R=301,L]
+
+  # Servir /page.html quand on demande /page
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+</IfModule>
+
+# ------------------------------------------------------------
+#  2. Page d'erreur personnalisée
+# ------------------------------------------------------------
+ErrorDocument 404 /404.html
+
+# ------------------------------------------------------------
+#  3. Compression GZIP / Brotli
+# ------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/manifest+json
+  AddOutputFilterByType DEFLATE image/svg+xml application/xml
+</IfModule>
+
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/xml
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json
+  AddOutputFilterByType BROTLI_COMPRESS image/svg+xml
+</IfModule>
+
+# ------------------------------------------------------------
+#  4. Mise en cache navigateur
+# ------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg           "access plus 1 year"
+  ExpiresByType image/png            "access plus 1 year"
+  ExpiresByType image/webp           "access plus 1 year"
+  ExpiresByType image/svg+xml        "access plus 1 year"
+  ExpiresByType image/x-icon         "access plus 1 year"
+  ExpiresByType text/css             "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/manifest+json "access plus 1 week"
+  ExpiresByType text/html            "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(jpg|jpeg|png|webp|svg|ico|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # ----------------------------------------------------------
+  #  5. En-têtes de sécurité
+  # ----------------------------------------------------------
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ------------------------------------------------------------
+#  6. Types MIME
+# ------------------------------------------------------------
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+  AddType image/webp .webp
+  AddType font/woff2 .woff2
+  AddCharset UTF-8 .html .css .js .json .xml
+</IfModule>

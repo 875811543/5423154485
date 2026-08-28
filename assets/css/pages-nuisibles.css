@@ -1,0 +1,371 @@
+/* Dezinsect Corse — Gabarit commun des pages nuisibles (lexique et fiches par espece) */
+
+:root {
+      --primary: #0F172A;
+      --accent-blue: #1A4DFB;
+      --accent-blue-hover: #0F37BE;
+      --blue-bg: #EDF2FF;
+      --blue-border: #C7D9FF;
+      --blue-bg-soft: #F5F8FF;
+      --blue-border-soft: #DCE6FF;
+      --text-main: #334155;
+      --text-muted: #64748B;
+      --bg-light: #F8FAFC;
+      --card-border: #E2E8F0;
+      --font-heading: 'Poppins', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      padding-bottom: 84px;
+    }
+
+    h1, h2, h3, .termites-tag, .card-title, .method-badge {
+      font-family: var(--font-heading);
+    }
+
+    .termites-section {
+      padding: 36px 16px;
+      background: radial-gradient(100% 50% at 50% 0%, #F1F5F9 0%, #F8FAFC 100%);
+    }
+
+    .termites-container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .termites-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 28px auto;
+    }
+
+    .termites-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-blue-hover);
+      background: var(--blue-bg);
+      padding: 6px 12px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+      border: 1px solid var(--blue-border);
+    }
+
+    .termites-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.3;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .termites-subtitle {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .section-heading {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin: 36px 0 18px 0;
+    }
+
+    /* Grilles de cartes */
+    .cards-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .termites-card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 22px 18px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 4px 15px -2px rgba(15, 23, 42, 0.03);
+    }
+
+    .termites-card.alert {
+      border: 2px solid var(--accent-blue);
+    }
+
+    .icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .icon-box.strong { background: var(--accent-blue); color: #FFFFFF; }
+    .icon-box.soft { background: var(--blue-bg); color: var(--accent-blue-hover); }
+
+    .icon-box svg { width: 22px; height: 22px; }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .risk-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .risk-list li {
+      font-size: 0.86rem;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      line-height: 1.55;
+    }
+
+    .risk-list li strong {
+      color: var(--primary);
+    }
+
+    /* Méthodes d'intervention */
+    .methods-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .method-card {
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .method-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .method-badge {
+      background: var(--blue-bg);
+      color: var(--accent-blue-hover);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .method-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .method-thumb {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .method-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--accent-blue, #1A4DFB);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.86rem;
+    }
+
+    /* FAQ Grid */
+    .faq-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .faq-card {
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .faq-card h3 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .faq-card p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Bloc Rayon / Périmètre */
+    .zone-box {
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 22px 18px;
+      margin-top: 22px;
+    }
+
+    .zone-box p a {
+      color: var(--accent-blue);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .zone-box p a:hover {
+      text-decoration: underline;
+    }
+
+    .zone-block-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-blue-hover);
+      margin: 16px 0 8px 0;
+    }
+
+    .zone-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .zone-chip {
+      background: var(--blue-bg-soft);
+      color: var(--primary);
+      border: 1px solid var(--blue-border-soft);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+    }
+
+    .zone-chip.primary-zone {
+      background: var(--blue-bg);
+      color: var(--accent-blue-hover);
+      border-color: var(--blue-border);
+    }
+
+    .zone-chip.link {
+      text-decoration: none;
+    }
+
+    .zone-chip.link:hover {
+      background: var(--accent-blue);
+      color: #FFF;
+    }
+
+    /* Boutons d'action */
+    .inline-call-wrapper {
+      margin-top: 32px;
+      text-align: center;
+    }
+
+    .phone-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 400px;
+      min-height: 44px;
+      background-color: var(--accent-blue);
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 20px;
+      border-radius: 14px;
+      text-decoration: none;
+      box-shadow: 0 8px 20px -4px rgba(26, 77, 251, 0.3);
+      transition: background-color 0.2s;
+    }
+
+    .phone-button:hover {
+      background-color: var(--accent-blue-hover);
+    }
+
+    /* Barre fixe Smartphone */
+    .sticky-mobile-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #FFFFFF;
+      border-top: 1px solid var(--card-border);
+      padding: 10px 16px;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+    }
+
+    .sticky-call-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 480px;
+      min-height: 48px;
+      background: var(--accent-blue);
+      color: #FFFFFF;
+      font-size: 0.95rem;
+      font-weight: 800;
+      padding: 13px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+    }
+
+    .sticky-call-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    /* TABLETTE : 640px+ */
+    @media (min-width: 640px) {
+      .termites-title { font-size: 1.9rem; }
+      .cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .methods-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    }
+
+    /* TABLETTE LARGE / DESKTOP : 768px+ */
+    @media (min-width: 768px) {
+      body { padding-bottom: 0; }
+      .sticky-mobile-bar { display: none; }
+      .termites-section { padding: 64px 24px; }
+      .termites-title { font-size: 2.4rem; }
+      .section-heading { font-size: 1.5rem; }
+      .cards-grid { grid-template-columns: repeat(3, 1fr); gap: 22px; }
+      .methods-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    }
+
+    /* DESKTOP LARGE : 1024px+ */
+    @media (min-width: 1024px) {
+      .termites-title { font-size: 2.7rem; }
+    }
