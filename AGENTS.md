@@ -83,19 +83,49 @@ C'est du contenu de page, volontaire et visuel : ne pas l'uniformiser.
 
 C'est pourquoi le contrôle §6 cible `<footer class="site-footer"` et non `<footer`.
 
-### P2 — CSS dispersé
+### P2 — CSS dispersé — ✅ pour l'essentiel
 
-- 15 pages portent un bloc `<style>` inline ; `index.html` en a **4**.
-- `footer.css` est absent de 12 pages qui affichent pourtant un footer
-  (`404`, `merci`, `cafards`, `capricorne-des-maisons`, `fourmis`,
-  `lexique-nuisibles`, `merule-champignons-bois`, `mouches`, `rat-brun-surmulot`,
-  `rat-noir`, `souris`, `traitement-odeurs`) — soit style dégradé, soit règles
-  dupliquées inline.
-- `global.css` contient des `!important` et un second `:root` en milieu de
-  fichier (`--accent-green`), signes de correctifs empilés.
+Fait :
 
-**Cible :** chaque règle vit dans un seul fichier ; l'inline ne subsiste que pour
-du vraiment spécifique à une page, et de façon documentée.
+- **`footer.css` porté à 28 pages.** Les 12 pages qui en manquaient ne
+  compensaient rien en inline, et `global.css` ne porte aucune mise en page de
+  footer : leur footer s'affichait **non stylé**. L'ajout du `<link>` répare ce
+  rendu dégradé — c'est le seul changement visuel volontaire du chantier.
+- **Second `:root` fusionné** dans le premier. Aucun conflit : les custom
+  properties se résolvent par cascade, pas par ordre d'apparition.
+- **254 règles sorties de l'inline** vers un fichier de portée, dont 15
+  mutualisées entre pages. Inline ramené de 630 à 361 règles.
+
+Reste en inline, **volontairement** : 361 règles sur 14 pages. Ce sont celles qui
+redéfinissent un sélecteur déjà présent dans un CSS partagé. Les extraire
+changerait leur position dans la cascade, donc le rendu — d'autant que **la
+position du `<style>` varie selon les pages** : après les `<link>` sur `index` et
+`404` (l'inline gagne les égalités), avant sur `deratisation` et
+`zones-dintervention` (l'externe gagne). Chaque bloc restant porte un commentaire
+qui le justifie.
+
+#### Critère d'extraction — à réappliquer tel quel si le chantier reprend
+
+Une règle ne sort de l'inline que si **toutes** ses classes sont absentes de tout
+CSS partagé **et** qu'elle n'est déclarée que sur une seule page (ou déclarée à
+l'identique sur plusieurs, auquel cas elle est mutualisée). Tout sélecteur
+commençant par un élément nu reste en place. Ce critère garantit l'absence de
+collision, donc un rendu inchangé sans vérification visuelle.
+
+#### Les `!important` de `global.css` — ne pas y toucher sans preuve
+
+32 occurrences, **toutes encore porteuses** au dernier contrôle :
+
+- 4 relèvent de `prefers-reduced-motion` — légitimes ;
+- 2 concernent le menu mobile — non tranché ;
+- 26 existent pour passer devant les redéfinitions de `.btn-phone`,
+  `.sticky-call-btn`, `.btn-devis`, `.ty-btn--primary`… Vérifié : 8 de ces 10
+  sélecteurs sont **toujours** redéfinis, en inline ou dans un fichier chargé
+  après `global.css`. Seuls `.cta-call` et `.mobile-menu__cta` n'ont plus de
+  concurrent, mais ils appartiennent à une règle groupée couvrant les 10.
+
+Les retirer suppose d'avoir d'abord vidé l'inline concurrent. En cas de doute,
+laisser et signaler.
 
 ### P3 — Cohérence SEO
 
@@ -157,10 +187,17 @@ Rôle des fichiers :
 |---|---|
 | `fonts.css` | `@font-face` uniquement (28 pages) |
 | `global.css` | reset, tokens, header, nav, cartes, CTA, animations (28 pages) |
-| `footer.css` | footer (16 pages — à porter à 28) |
+| `footer.css` | footer (28 pages) |
 | `form.css` | formulaires (`contact`, `index`) |
 | `pages-nuisibles.css` | fiches nuisibles (11 pages) |
-| `pages-zones.css` | pages de zones (3 pages) |
+| `pages-zones.css` | pages de zones (4 pages) |
+| `pages-services.css` | pages de services (6 pages) |
+| `pages-legales.css` | `mentions-legales`, `politique-confidentialite`, `merci`, `404` |
+| `page-accueil.css` | `index` uniquement |
+
+Les `<link>` se posent dans cet ordre : `fonts` → `global` → `footer` → fichier
+de portée de la page. Le fichier de portée charge en dernier, donc il l'emporte
+sur `global.css` à spécificité égale.
 
 Mobile-first, breakpoint desktop à `1024px` (aligné sur le `resize` de `main.js`).
 
@@ -186,9 +223,26 @@ h=$(md5sum assets/css/global.css | cut -c1-8)
 sed -i "s|global\.css?v=[a-f0-9]*|global.css?v=$h|g" *.html
 ```
 
-Hashes actuellement en place : `fonts.css?v=be314626`, `global.css?v=ae27c54e`,
-`footer.css?v=67e67818`, `form.css?v=46cf0f90`, `pages-nuisibles.css?v=c564fb2b`,
-`pages-zones.css?v=ff401060`, `main.js?v=51bcce48`.
+Ne pas tenir de liste de hashes en dur : elle se périme à la première édition.
+Propager sur tous les assets d'un coup, puis contrôler :
+
+```sh
+# propagation
+for c in assets/css/*.css assets/js/*.js; do
+  n=$(basename $c); h=$(md5sum $c | cut -c1-8)
+  sed -i "s|$n?v=[a-zA-Z0-9]*|$n?v=$h|g" *.html
+done
+
+# controle : le hash reference doit egaler le md5 reel du fichier
+for c in assets/css/*.css assets/js/*.js; do
+  n=$(basename $c); r=$(md5sum $c | cut -c1-8)
+  u=$(grep -oh "$n?v=[a-f0-9]*" *.html | sort -u | sed 's/.*v=//')
+  [ "$r" = "$u" ] || echo "ECART $n : fichier=$r pages='$u'"
+done
+```
+
+Une sortie vide au second bloc vaut validation. Une sortie non vide signale soit
+un hash non propagé, soit deux valeurs différentes coexistant selon les pages.
 
 Un CSS modifié sans hash mis à jour = correctif invisible pour les visiteurs
 existants. C'est l'erreur la plus facile à commettre sur ce projet.
