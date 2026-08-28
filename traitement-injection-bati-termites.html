@@ -140,16 +140,16 @@
 }
 </script>
 
-  <link rel="stylesheet" href="assets/css/pages/traitement-injection-bati-termites.css?v=9653b297">
 
   <!-- Polices auto-hébergées : aucun appel à Google, aucune IP transmise -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-latin-400-normal.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/poppins-latin-800-normal.woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/pages/traitement-injection-bati-termites.css?v=120e9ff6">
   <link rel="stylesheet" href="assets/css/fonts.css?v=be314626">
 
   <link rel="preload" as="image" href="images/interventions/technicien-injection-traitement-mur-termites.webp" type="image/webp">
   <link rel="stylesheet" href="assets/css/global.css?v=ae27c54e">
-  <link rel="stylesheet" href="assets/css/components.css?v=9f065167">
+  <link rel="stylesheet" href="assets/css/components.css?v=512351fd">
   <link rel="stylesheet" href="assets/css/footer.css?v=67e67818">
   <link rel="stylesheet" href="assets/css/pages-services.css?v=9a8392ef">
 </head>
@@ -263,9 +263,9 @@
     <p class="lead-text">
       Avant de parler traitement, il faut comprendre comment une colonie de termites progresse — silencieusement, sur plusieurs années, bien avant qu'un signe extérieur n'apparaisse.
     </p>
-    <div class="method-grid" style="grid-template-columns:1fr;">
-      <div class="method-box" style="border-left:3px solid var(--primary-blue);">
-        <p style="font-size:0.95rem; color:var(--text-muted); line-height:1.75; margin:0;">
+    <div class="method-grid method-grid--single">
+      <div class="method-box method-box--blue">
+        <p class="procedure-intro">
           Tout commence dans le sol, souvent à quelques mètres de la maison, dans une termitière souterraine invisible en surface. Le climat doux et humide de la Corse, surtout sur le littoral et en zone boisée, offre des conditions idéales à ces colonies pour se développer toute l'année.
           <br><br>
           Les termites ouvrières, aveugles et fuyant la lumière, ne se déplacent jamais à l'air libre : elles construisent des <strong>cordonnets de terre</strong>, de fins tunnels protecteurs, pour rejoindre une source de nourriture — le bois de la maison — sans jamais s'exposer. Elles atteignent d'abord les fondations ou une dalle en contact avec la terre, souvent par une simple fissure ou un joint de maçonnerie.
@@ -341,12 +341,12 @@
       <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> Ce traitement du bâti nécessite un équipement de protection individuelle complet (masque à cartouches filtrantes, combinaison chimique, gants, lunettes) et un dosage rigoureusement contrôlé du produit injecté. Il est réalisé exclusivement par un technicien Dezinsect Corse formé à cette méthode.
     </div>
 
-    <div class="note-box" style="background:#F8FAFC; border-color:#E2E8F0; color:#475569;">
+    <div class="note-box note-box--neutral">
       <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5"/><path d="M12 8h.01"/></svg> Précision importante : il s'agit d'un traitement anti-termites par biocide, réalisé par un applicateur certifié Certibiocide. Ce n'est pas une prestation de construction, de maçonnerie ou de renforcement structurel du bâtiment, et Dezinsect Corse n'intervient pas au titre d'une garantie décennale. Pour toute reprise structurelle nécessaire suite à des dégâts constatés, un professionnel du bâtiment (maçon, charpentier) reste à consulter.
     </div>
 
-    <h3 style="font-family:var(--font-heading); font-size:1.1rem; color:var(--text-main); margin:32px 0 4px;">Matériel & produit utilisés pour l'injection</h3>
-    <div class="product-grid" style="margin-top:16px;">
+    <h3 class="procedure-subtitle">Matériel & produit utilisés pour l'injection</h3>
+    <div class="product-grid product-grid--spaced">
       <div class="product-card">
         <span class="tag">Matériel</span>
         <h3>Injecteur mural à tête graisseur</h3>
@@ -360,9 +360,9 @@
     </div>
 
     <!-- PHOTO -->
-    <div class="photo-gallery" style="margin: 32px 0 8px;">
+    <div class="photo-gallery photo-gallery--tight">
       <figure>
-        <picture><source srcset="images/interventions/technicien-injection-traitement-mur-termites.webp" type="image/webp"><img src="images/interventions/technicien-injection-traitement-mur-termites.jpg" alt="Technicien Dezinsect Corse réalisant une injection anti-termites en quinconce sur un mur" width="100%" height="320" style="width:100%; max-height:380px; object-fit:cover; display:block;" fetchpriority="high" decoding="async"></picture>
+        <picture><source srcset="images/interventions/technicien-injection-traitement-mur-termites.webp" type="image/webp"><img src="images/interventions/technicien-injection-traitement-mur-termites.jpg" alt="Technicien Dezinsect Corse réalisant une injection anti-termites en quinconce sur un mur" width="100%" height="320" class="figure-img--380" fetchpriority="high" decoding="async"></picture>
         <figcaption>Injection en cours sur une façade — perçage et injection tous les 10 à 15 cm</figcaption>
       </figure>
     </div>
@@ -371,17 +371,17 @@
     <p class="lead-text">
       Ces deux méthodes ne sont pas interchangeables : elles traitent deux problèmes différents et se complètent. L'une sans l'autre laisse une partie du risque non couverte.
     </p>
-    <div class="method-grid" style="grid-template-columns:repeat(auto-fit, minmax(260px,1fr));">
-      <div class="method-box" style="border-left:3px solid var(--primary-blue);">
+    <div class="method-grid method-grid--wide">
+      <div class="method-box method-box--blue">
         <h3><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><rect x="3" y="4" width="18" height="5" rx="1"/><rect x="3" y="9" width="18" height="5" rx="1"/><rect x="3" y="14" width="18" height="5" rx="1"/><path d="M9 4v5M15 9v5M9 14v5"/></svg> L'injection traite le bâti existant</h3>
         <p>Elle agit là où l'infestation est déjà présente ou risque de remonter directement dans la maçonnerie : le produit biocide est diffusé dans l'épaisseur du mur (et du sol si nécessaire) pour limiter le passage des termites déjà à proximité de la structure. C'est un traitement anti-nuisibles, pas une prestation de construction ou de renforcement du bâti.</p>
       </div>
-      <div class="method-box" style="border-left:3px solid var(--accent-green);">
+      <div class="method-box method-box--green">
         <h3><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Les pièges surveillent les alentours</h3>
         <p>Posés dans le sol ou sur les points de passage autour du bâtiment, ils permettent de détecter une nouvelle colonie avant qu'elle n'atteigne la structure, et d'intercepter les termites déjà repérés avant qu'ils ne trouvent un autre point d'entrée.</p>
       </div>
     </div>
-    <div class="note-box" style="background:#EDF2FF; border-color:#C7D9FF; color:#0F37BE;">
+    <div class="note-box note-box--info">
       <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.1 14a5.5 5.5 0 1 0-6.2 0c.6.5 1.1 1.2 1.1 2h4c0-.8.5-1.5 1.1-2z"/></svg> Sans pièges, une injection reste une photo à un instant T : elle protège le bâti traité, mais ne dit rien de ce qui se passe autour dans les mois qui suivent. Sans injection, des pièges seuls ne traitent pas une infestation déjà installée dans la maçonnerie. C'est pourquoi nous posons systématiquement les deux lors d'un traitement complet du bâti.
     </div>
 
@@ -390,8 +390,8 @@
       En complément du traitement par injection, nous posons des stations professionnelles dédiées au traitement anti-termites. Elles se répartissent en deux familles : la <strong>détection</strong> (surveiller et confirmer une présence) et le <strong>curatif</strong> (intercepter et traiter une colonie déjà localisée).
     </p>
 
-    <h3 style="font-family:var(--font-heading); font-size:1.1rem; color:var(--text-main); margin:32px 0 4px;">Comment sont posés les pièges selon la configuration du terrain</h3>
-    <p class="lead-text" style="margin-top:8px;">La pose n'est pas la même partout : elle dépend de ce qui se trouve au sol autour et à l'intérieur du bâtiment.</p>
+    <h3 class="procedure-subtitle">Comment sont posés les pièges selon la configuration du terrain</h3>
+    <p class="lead-text lead-text--tight">La pose n'est pas la même partout : elle dépend de ce qui se trouve au sol autour et à l'intérieur du bâtiment.</p>
     <div class="method-grid">
       <div class="method-box">
         <div class="num"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M12 21V11"/><path d="M12 11C12 7 9 4 4 4c0 5 3 7 8 7z"/><path d="M12 14c0-3 2.5-5.5 7-5.5 0 4-2.5 5.5-7 5.5z"/></svg></div>
@@ -431,11 +431,11 @@
       </div>
     </div>
 
-    <p style="font-size:0.85rem; color:var(--text-muted); margin: -8px 0 40px;">
+    <p class="gallery-caption">
       Matériel professionnel utilisé par nos techniciens dans le cadre de nos interventions.
     </p>
 
-    <div class="photo-gallery" style="grid-template-columns:repeat(3, 1fr); margin: 32px 0 40px;">
+    <div class="photo-gallery photo-gallery--three">
       <figure>
         <picture><source srcset="images/interventions/station-murale-termites-montant-porte-corse.webp" type="image/webp"><img src="images/interventions/station-murale-termites-montant-porte-corse.jpg" alt="Galeries de termites visibles sur un montant de porte avant pose d'une station curative" width="100%" height="240" loading="lazy" class="media-figure__img--lg"></picture>
         <figcaption>Passage de termites repéré sur un montant de porte</figcaption>
@@ -451,26 +451,26 @@
     </div>
 
     <h2 class="section-heading">Questions fréquentes</h2>
-    <div style="display:grid; gap:12px; margin-bottom:56px;">
-      <details style="background:#fff; border:1px solid var(--border-color); border-radius:14px; padding:4px 20px;">
-        <summary style="padding:16px 0; font-weight:700; color:var(--text-main); cursor:pointer;">Pourquoi percer en quinconce plutôt qu'en simple ligne droite ?</summary>
-        <p style="margin:0 0 16px; color:var(--text-muted); font-size:0.92rem; line-height:1.6;">Le quinconce (lignes de perçage décalées plutôt qu'alignées) évite les zones intermédiaires non couvertes qui subsistent avec un perçage en ligne droite classique. Combiné à un espacement rigoureux de 10 à 15 cm, cela vise une couverture aussi continue que possible sur la surface traitée.</p>
+    <div class="faq-stack">
+      <details class="faq-panel">
+        <summary class="faq-panel__question">Pourquoi percer en quinconce plutôt qu'en simple ligne droite ?</summary>
+        <p class="faq-panel__text">Le quinconce (lignes de perçage décalées plutôt qu'alignées) évite les zones intermédiaires non couvertes qui subsistent avec un perçage en ligne droite classique. Combiné à un espacement rigoureux de 10 à 15 cm, cela vise une couverture aussi continue que possible sur la surface traitée.</p>
       </details>
-      <details style="background:#fff; border:1px solid var(--border-color); border-radius:14px; padding:4px 20px;">
-        <summary style="padding:16px 0; font-weight:700; color:var(--text-main); cursor:pointer;">Faut-il traiter le mur et le sol, ou le mur seul ?</summary>
-        <p style="margin:0 0 16px; color:var(--text-muted); font-size:0.92rem; line-height:1.6;">Cela dépend de la configuration constatée : si les termites remontent uniquement par les murs, un traitement mur seul suffit. Si une dalle ou un sol en contact avec la terre est concerné, nous traitons mur et sol en quinconce pour fermer toutes les voies de passage possibles.</p>
+      <details class="faq-panel">
+        <summary class="faq-panel__question">Faut-il traiter le mur et le sol, ou le mur seul ?</summary>
+        <p class="faq-panel__text">Cela dépend de la configuration constatée : si les termites remontent uniquement par les murs, un traitement mur seul suffit. Si une dalle ou un sol en contact avec la terre est concerné, nous traitons mur et sol en quinconce pour fermer toutes les voies de passage possibles.</p>
       </details>
-      <details style="background:#fff; border:1px solid var(--border-color); border-radius:14px; padding:4px 20px;">
-        <summary style="padding:16px 0; font-weight:700; color:var(--text-main); cursor:pointer;">À quoi sert une station de détection ?</summary>
-        <p style="margin:0 0 16px; color:var(--text-muted); font-size:0.92rem; line-height:1.6;">Une station de détection, posée dans le sol autour du bâtiment, permet de vérifier à intervalles réguliers la présence de termites souterrains avant même qu'ils n'atteignent la structure. Si des termites sont détectés, un traitement curatif est engagé rapidement.</p>
+      <details class="faq-panel">
+        <summary class="faq-panel__question">À quoi sert une station de détection ?</summary>
+        <p class="faq-panel__text">Une station de détection, posée dans le sol autour du bâtiment, permet de vérifier à intervalles réguliers la présence de termites souterrains avant même qu'ils n'atteignent la structure. Si des termites sont détectés, un traitement curatif est engagé rapidement.</p>
       </details>
-      <details style="background:#fff; border:1px solid var(--border-color); border-radius:14px; padding:4px 20px;">
-        <summary style="padding:16px 0; font-weight:700; color:var(--text-main); cursor:pointer;">Quelle est la différence entre un piège de détection et un piège curatif ?</summary>
-        <p style="margin:0 0 16px; color:var(--text-muted); font-size:0.92rem; line-height:1.6;">Le piège de détection sert à surveiller et confirmer la présence de termites. Le piège curatif (station murale) intervient une fois les termites clairement localisés : il permet de les intercepter directement sur leur trajet et de traiter la colonie à la source.</p>
+      <details class="faq-panel">
+        <summary class="faq-panel__question">Quelle est la différence entre un piège de détection et un piège curatif ?</summary>
+        <p class="faq-panel__text">Le piège de détection sert à surveiller et confirmer la présence de termites. Le piège curatif (station murale) intervient une fois les termites clairement localisés : il permet de les intercepter directement sur leur trajet et de traiter la colonie à la source.</p>
       </details>
-      <details style="background:#fff; border:1px solid var(--border-color); border-radius:14px; padding:4px 20px;">
-        <summary style="padding:16px 0; font-weight:700; color:var(--text-main); cursor:pointer;">Pourquoi ne pas se contenter d'une seule des deux méthodes ?</summary>
-        <p style="margin:0 0 16px; color:var(--text-muted); font-size:0.92rem; line-height:1.6;">L'injection traite le bâti déjà exposé, mais ne surveille pas ce qui se passe ensuite autour de la structure. Les pièges surveillent les alentours dans la durée, mais ne traitent pas une infestation déjà installée dans la maçonnerie. Utilisées seules, chacune des deux méthodes laisse une partie du risque non couverte : c'est pourquoi nous les associons systématiquement.</p>
+      <details class="faq-panel">
+        <summary class="faq-panel__question">Pourquoi ne pas se contenter d'une seule des deux méthodes ?</summary>
+        <p class="faq-panel__text">L'injection traite le bâti déjà exposé, mais ne surveille pas ce qui se passe ensuite autour de la structure. Les pièges surveillent les alentours dans la durée, mais ne traitent pas une infestation déjà installée dans la maçonnerie. Utilisées seules, chacune des deux méthodes laisse une partie du risque non couverte : c'est pourquoi nous les associons systématiquement.</p>
       </details>
     </div>
 
@@ -480,7 +480,7 @@
       <a href="tel:+33685753040"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> Appeler le 06 85 75 30 40</a>
     </div>
 
-    <p style="font-size:0.9rem;"><a href="traitement-anti-termites.html" style="color:var(--primary-blue); font-weight:600; text-decoration:none;">← Retour à la page Termites &amp; Insectes Xylophages</a></p>
+    <p class="note-text"><a href="traitement-anti-termites.html" class="link-inline">← Retour à la page Termites &amp; Insectes Xylophages</a></p>
 
   </div>
 
