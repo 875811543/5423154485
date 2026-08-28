@@ -38,7 +38,7 @@
 
   <link rel="preload" as="image" href="images/interventions/technicien-masque-protection-combinaison-charpente.webp" type="image/webp">
   <link rel="stylesheet" href="assets/css/global.css?v=ae27c54e">
-  <link rel="stylesheet" href="assets/css/components.css?v=512351fd">
+  <link rel="stylesheet" href="assets/css/components.css?v=9f0d276d">
 
   <!-- Schema.org : Organization -->
   <script type="application/ld+json">
@@ -417,8 +417,8 @@
 
   <link rel="stylesheet" href="assets/css/footer.css?v=67e67818">
   <link rel="stylesheet" href="assets/css/page-accueil.css?v=529c4328">
-  <link rel="stylesheet" href="assets/css/form.css?v=7dfa77d1">
-  <link rel="stylesheet" href="assets/css/pages/index.css?v=7c93a38a">
+  <link rel="stylesheet" href="assets/css/form.css?v=1c94fa4b">
+  <link rel="stylesheet" href="assets/css/pages/index.css?v=8e878e7e">
 
 </head>
 <body>
@@ -555,11 +555,11 @@
 </section>
 
 
-<section id="devis" style="padding: clamp(16px,3vw,32px) 20px clamp(48px,7vw,88px); background:#F8FAFC;">
-  <div style="max-width:600px;margin:0 auto;">
-    <div style="text-align:center;margin-bottom:32px;">
-      <h2 style="font-family:var(--font-heading);font-weight:800;font-size:clamp(1.5rem,3vw,2.1rem);color:var(--ink);margin:0 0 10px;">Demandez votre devis gratuit</h2>
-      <p style="color:var(--muted);font-size:1rem;margin:0;">Réponse sous 24h, sans engagement.</p>
+<section id="devis" class="devis-section">
+  <div class="devis-inner">
+    <div class="devis-header">
+      <h2 class="devis-title">Demandez votre devis gratuit</h2>
+      <p class="devis-subtitle">Réponse sous 24h, sans engagement.</p>
     </div>
 
 <div class="dezinsect-form-container">
@@ -575,7 +575,7 @@
     <input type="hidden" name="subject" value="Nouvelle demande de devis - Dezinsect Corse">
     <input type="hidden" name="from_name" value="Formulaire site Dezinsect Corse">
     <!-- Anti-spam invisible : laisser ce champ vide -->
-    <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" aria-hidden="true" autocomplete="off">
+    <input type="checkbox" name="botcheck" class="form-honeypot" tabindex="-1" aria-hidden="true" autocomplete="off">
 
     <div class="form-row">
       <div class="form-group">
@@ -616,10 +616,10 @@
       <textarea id="message" name="message" required placeholder="Précisez votre situation (urgence, vente immobilière, bâtiment concerné)..."></textarea>
     </div>
 
-    <div class="form-group" style="display:flex; align-items:flex-start; gap:10px;">
-      <input type="checkbox" id="consent" name="consent" required style="margin-top:4px; width:auto; flex-shrink:0;">
-      <label for="consent" style="font-weight:400; font-size:0.85rem; color:#64748B; line-height:1.5;">
-        J'accepte que mes données soient utilisées par Dezinsect Corse pour traiter ma demande, conformément à la <a href="politique-confidentialite.html" style="color:#1A4DFB; text-decoration:none; font-weight:600;">politique de confidentialité</a>. *
+    <div class="form-group form-group--consent">
+      <input type="checkbox" id="consent" name="consent" required>
+      <label for="consent">
+        J'accepte que mes données soient utilisées par Dezinsect Corse pour traiter ma demande, conformément à la <a href="politique-confidentialite.html">politique de confidentialité</a>. *
       </label>
     </div>
 
@@ -700,8 +700,8 @@
   </div>
 </section>
 
-<section style="padding: 8px 20px 56px; max-width: 1180px; margin: 0 auto;">
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+<section class="why-section">
+  <div class="why-grid">
     <figure class="media-figure media-figure--r16">
       <picture><source srcset="images/interventions/technicien-masque-protection-combinaison-charpente.webp" type="image/webp"><img src="images/interventions/technicien-masque-protection-combinaison-charpente.jpg" alt="Technicien Dezinsect Corse équipé pour un traitement en combles" width="400" height="220" class="media-figure__img--sm" fetchpriority="high" decoding="async"></picture>
     </figure>
@@ -736,7 +736,7 @@
     <div class="why-list">
 
       <!-- Carte 1 : renvoie vers la page zones d'intervention -->
-      <article class="why-card" style="position: relative;">
+      <article class="why-card">
         <div class="card-top">
           <div class="icon-box">
             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
@@ -748,7 +748,7 @@
       </article>
 
       <!-- Carte 2 : renvoie vers la page À propos / certifications -->
-      <article class="why-card featured" style="position: relative;">
+      <article class="why-card featured">
         <span class="certi-badge"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M20 6 9 17l-5-5"/></svg> Agrément Officiel</span>
         <div class="card-top">
           <div class="icon-box">
@@ -760,7 +760,7 @@
       </article>
 
       <!-- Carte 3 : lien vers avis clients a traiter separement -->
-      <article class="why-card" style="position: relative;">
+      <article class="why-card">
         <div class="card-top">
           <div class="icon-box">
             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -887,7 +887,7 @@
 <section class="zones-compact-wrapper" aria-label="Zones d'intervention en Corse">
 
   <div class="zones-top-bar">
-    <p style="margin:0;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-inline--tight"><path d="M12 21s-7-6.5-7-11.5A7 7 0 0119 9.5C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg>Siège basé en <a href="anti-nuisibles-costa-verde.html">Costa Verde</a> — Intervention prioritaire en Plaine Orientale et déplacement sur toute la Corse.</p>
+    <p><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-inline--tight"><path d="M12 21s-7-6.5-7-11.5A7 7 0 0119 9.5C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg>Siège basé en <a href="anti-nuisibles-costa-verde.html">Costa Verde</a> — Intervention prioritaire en Plaine Orientale et déplacement sur toute la Corse.</p>
   </div>
 
   <div class="zones-compact-grid">

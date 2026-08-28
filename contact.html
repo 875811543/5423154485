@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="assets/css/fonts.css?v=be314626">
 
   <link rel="stylesheet" href="assets/css/global.css?v=ae27c54e">
-  <link rel="stylesheet" href="assets/css/components.css?v=512351fd">
+  <link rel="stylesheet" href="assets/css/components.css?v=9f0d276d">
 
   <!-- Schema.org : BreadcrumbList -->
   <!-- Schema.org : ContactPage + rattachement a l'entite -->
@@ -87,7 +87,7 @@
 </script>
 
   <link rel="stylesheet" href="assets/css/footer.css?v=67e67818">
-  <link rel="stylesheet" href="assets/css/form.css?v=7dfa77d1">
+  <link rel="stylesheet" href="assets/css/form.css?v=1c94fa4b">
 </head>
 <body>
 <a href="#main-content" class="skip-link">Aller au contenu principal</a>
@@ -221,7 +221,7 @@
     <input type="hidden" name="subject" value="Nouvelle demande de devis - Dezinsect Corse">
     <input type="hidden" name="from_name" value="Formulaire site Dezinsect Corse">
     <!-- Anti-spam invisible : laisser ce champ vide -->
-    <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" aria-hidden="true" autocomplete="off">
+    <input type="checkbox" name="botcheck" class="form-honeypot" tabindex="-1" aria-hidden="true" autocomplete="off">
 
     <div class="form-row">
       <div class="form-group">
@@ -262,10 +262,10 @@
       <textarea id="message" name="message" required placeholder="Précisez votre situation (urgence, vente immobilière, bâtiment concerné)..."></textarea>
     </div>
 
-    <div class="form-group" style="display:flex; align-items:flex-start; gap:10px;">
-      <input type="checkbox" id="consent" name="consent" required style="margin-top:4px; width:auto; flex-shrink:0;">
-      <label for="consent" style="font-weight:400; font-size:0.85rem; color:#64748B; line-height:1.5;">
-        J'accepte que mes données soient utilisées par Dezinsect Corse pour traiter ma demande, conformément à la <a href="politique-confidentialite.html" style="color:#1A4DFB; text-decoration:none; font-weight:600;">politique de confidentialité</a>. *
+    <div class="form-group form-group--consent">
+      <input type="checkbox" id="consent" name="consent" required>
+      <label for="consent">
+        J'accepte que mes données soient utilisées par Dezinsect Corse pour traiter ma demande, conformément à la <a href="politique-confidentialite.html">politique de confidentialité</a>. *
       </label>
     </div>
 

@@ -150,3 +150,32 @@
   .contact-infos a { color: var(--primary-blue); text-decoration:none; font-weight:600; }
 
   .contact-infos a:hover { text-decoration:underline; }
+
+/* ==========================================================================
+   Bloc de consentement RGPD, commun au formulaire de l'accueil et a celui
+   de la page contact. Auparavant decrit en style="" dans les deux pages.
+   ========================================================================== */
+
+/* Champ piege anti-robot de Web3Forms : present dans le DOM, jamais affiche. */
+.form-honeypot { display: none; }
+
+.form-group--consent { display: flex; align-items: flex-start; gap: 10px; }
+
+.form-group--consent input[type="checkbox"] {
+  margin-top: 4px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.form-group--consent label {
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.form-group--consent a {
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 600;
+}

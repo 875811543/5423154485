@@ -188,3 +188,18 @@
       .action-cta-box { padding: 40px 32px; }
       .action-cta-box h2 { font-size: 1.6rem; }
     }
+
+/* ==========================================================================
+   Motifs auparavant decrits en style="" dans le HTML de cette page.
+   ========================================================================== */
+.section-title--spaced { margin-top: 48px; }
+.prose-lead { color: #475569; font-size: 0.95rem; max-width: 70ch; margin: 12px 0 20px; }
+.prose-note { color: #475569; font-size: 0.9rem; max-width: 70ch; margin-top: 16px; }
+.plain-list { display: grid; gap: 10px; padding: 0; list-style: none; max-width: 70ch; }
+.block-title {
+  font-family: var(--font-heading, 'Poppins', sans-serif);
+  font-size: 1.3rem;
+  color: #0F172A;
+  margin-bottom: 20px;
+}
+.hero-subtitle.hero-subtitle--compact { text-align: left; font-size: 0.88rem; margin: 0; }

@@ -205,3 +205,30 @@
       .hero-seo h1 { font-size: 2rem; }
       .faq-item summary { font-size: 1.08rem; }
     }
+
+/* ==========================================================================
+   Sommaire de la FAQ, auparavant decrit en style="" dans le HTML.
+   ========================================================================== */
+.faq-toc {
+  background: #FFFFFF;
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 32px;
+}
+.faq-toc__label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.faq-toc__list { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.faq-toc__link {
+  color: var(--accent-blue);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+}

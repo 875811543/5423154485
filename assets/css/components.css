@@ -107,3 +107,33 @@
 
 /* Lien colore d'un poids intermediaire, dans un paragraphe de contenu. */
 .link-inline { color: var(--primary-blue); font-weight: 600; text-decoration: none; }
+
+/* Grilles de cartes auto-ajustables, partagees par plusieurs pages. */
+.card-grid-240 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-top: 20px;
+}
+.card-grid-260 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+.card-grid-260--spaced { margin-top: 20px; }
+
+/* Figure limitee en largeur, dans une colonne de texte. */
+.media-figure--narrow { max-width: 620px; }
+.media-figure__img--360 { width: 100%; max-height: 360px; object-fit: cover; display: block; }
+
+/* Paragraphe secondaire, plus petit que le corps de texte. */
+.note-text { font-size: 0.9rem; }
+
+/* Figure collee a sa legende, la marge basse etant portee par la legende. */
+.media-figure.media-figure--tight { margin: 0 0 8px; border-radius: 16px; }
+
+/* Credit ou source sous une illustration. */
+.figure-credit { font-size: 0.75rem; color: var(--muted); margin: 0 0 40px; }
+
+/* Mention centree en fin de bloc. */
+.note-centered { text-align: center; margin-top: 16px; font-size: 0.86rem; color: var(--text-muted); }

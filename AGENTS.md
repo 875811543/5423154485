@@ -10,20 +10,27 @@ dégrader le SEO ni le rendu, qui sont déjà de bon niveau.
 
 Site vitrine **statique** d'une entreprise de lutte anti-nuisibles en Corse.
 Aucun build, aucune dépendance npm, aucun framework. Ce qui est dans le dépôt
-est exactement ce qui est servi par Apache.
+est exactement ce qui est servi.
 
 - **28 pages HTML** à la racine (1 accueil, 8 services, 4 zones, 10 nuisibles,
   contact, merci, 2 pages légales, lexique, FAQ, 404).
-- **6 feuilles CSS** dans `assets/css/`, `global.css` (~1030 l.) faisant socle.
+- **CSS** dans `assets/css/` : 7 feuilles partagées (`global.css` faisant socle,
+  puis `components.css`, `fonts.css`, `footer.css`, `form.css`, et les feuilles
+  `pages-*.css` par famille de pages), plus une feuille par page dans
+  `assets/css/pages/`. **Aucun `<style>` ni attribut `style=""` dans le HTML.**
 - **1 fichier JS**, `assets/js/main.js` (81 l., ES5, IIFE, sans dépendance).
 - **Polices auto-hébergées** en woff2 (Inter + Poppins) — aucun appel à Google.
 - **Images** en doublons `.jpg` + `.webp` servis via `<picture>`.
-- **`.htaccess`** : HTTPS forcé, dé-www, URLs sans `.html`, 301 de migration,
-  compression, cache, en-têtes de sécurité.
+- **Déploiement : GitHub Pages**, sur `https://875811543.github.io/5423154485/`,
+  donc **sous un sous-chemin**. Tous les chemins du site sont **relatifs**
+  (`assets/...`, `images/...`, `deratisation.html`) — voir règle 7.
+- **Pas de `.htaccess` dans le dépôt.** Les sections ci-dessous qui en parlent
+  décrivent une cible Apache qui n'existe pas ici : il n'y a aucune réécriture
+  d'URL, donc pas d'URL sans `.html`.
 
 **Contraintes non négociables :** pas de build step, pas de framework, pas de
 dépendance externe supplémentaire. Le site doit rester déployable par simple
-copie de fichiers sur un hébergement mutualisé Apache.
+copie de fichiers.
 
 ---
 
@@ -31,8 +38,9 @@ copie de fichiers sur un hébergement mutualisé Apache.
 
 1. **Ne jamais casser une URL.** Chaque page correspond à une URL indexée.
    Renommer ou supprimer un `.html` exige, dans le même changement :
-   une `RewriteRule ... [R=301,L]` dans `.htaccess`, la mise à jour de
-   `sitemap.xml`, et la correction de tous les liens internes.
+   la mise à jour de `sitemap.xml` et la correction de tous les liens internes.
+   Aucune réécriture d'URL n'est disponible : un fichier renommé est une URL
+   perdue, sans filet.
 2. **Ne jamais retirer de JSON-LD ni de balise meta SEO** (canonical, OG,
    Twitter, robots) au nom du nettoyage. En cas de doublon, garder le plus complet.
 3. **Ne pas toucher aux numéros de téléphone, adresses, mentions de
@@ -44,6 +52,12 @@ copie de fichiers sur un hébergement mutualisé Apache.
    **toutes** les pages qui référencent le fichier (voir §5).
 6. **Pas de refonte visuelle non demandée.** Le nettoyage est structurel ;
    le rendu final doit rester pixel-identique sauf demande contraire.
+7. **Ne jamais réintroduire de chemin absolu commençant par `/`.** Le site est
+   servi sous le sous-chemin `/5423154485/` : un `href="/assets/..."` ou un
+   `href="/deratisation"` renvoie un 404. C'est ce qui a fait servir le site
+   entier sans CSS, sans images et sans navigation.
+8. **Ne jamais remettre de style dans le HTML**, ni `<style>`, ni `style=""`.
+   Tout style nouveau va dans un fichier de `assets/css/`.
 
 ---
 
@@ -83,34 +97,45 @@ C'est du contenu de page, volontaire et visuel : ne pas l'uniformiser.
 
 C'est pourquoi le contrôle §6 cible `<footer class="site-footer"` et non `<footer`.
 
-### P2 — CSS dispersé — ✅ pour l'essentiel
+### P2 — CSS dispersé — ✅ TERMINÉ
 
-Fait :
+Il ne reste **aucun style dans le HTML** : zéro bloc `<style>`, zéro attribut
+`style=""` sur les 28 pages. Le chemin parcouru :
 
-- **`footer.css` porté à 28 pages.** Les 12 pages qui en manquaient ne
-  compensaient rien en inline, et `global.css` ne porte aucune mise en page de
-  footer : leur footer s'affichait **non stylé**. L'ajout du `<link>` répare ce
-  rendu dégradé — c'est le seul changement visuel volontaire du chantier.
-- **Second `:root` fusionné** dans le premier. Aucun conflit : les custom
-  properties se résolvent par cascade, pas par ordre d'apparition.
-- **254 règles sorties de l'inline** vers un fichier de portée, dont 15
-  mutualisées entre pages. Inline ramené de 630 à 361 règles.
+- `footer.css` porté aux 28 pages ; second `:root` fusionné dans le premier.
+- **1860 lignes** de `<style>` sorties vers `assets/css/pages/<slug>.css`,
+  une feuille par page.
+- **379 attributs `style=""`** supprimés. Les motifs partagés par plusieurs
+  pages sont dans `components.css` ; le reste est dans la feuille de sa page.
 
-Reste en inline, **volontairement** : 361 règles sur 14 pages. Ce sont celles qui
-redéfinissent un sélecteur déjà présent dans un CSS partagé. Les extraire
-changerait leur position dans la cascade, donc le rendu — d'autant que **la
-position du `<style>` varie selon les pages** : après les `<link>` sur `index` et
-`404` (l'inline gagne les égalités), avant sur `deratisation` et
-`zones-dintervention` (l'externe gagne). Chaque bloc restant porte un commentaire
-qui le justifie.
+#### Ce qui rend cette extraction risquée — à savoir avant d'y retoucher
 
-#### Critère d'extraction — à réappliquer tel quel si le chantier reprend
+Un attribut `style=""` a la **spécificité maximale** : il gagne contre tout
+sélecteur. Le passer en classe fait donc gagner n'importe quelle règle qui
+perdait avant, souvent de façon invisible. Trois pièges rencontrés :
 
-Une règle ne sort de l'inline que si **toutes** ses classes sont absentes de tout
-CSS partagé **et** qu'elle n'est déclarée que sur une seule page (ou déclarée à
-l'identique sur plusieurs, auquel cas elle est mutualisée). Tout sélecteur
-commençant par un élément nu reste en place. Ce critère garantit l'absence de
-collision, donc un rendu inchangé sans vérification visuelle.
+- **Spécificité.** `.procedure-intro` (0,1,0) perd contre `.method-box p`
+  (0,1,1), quel que soit l'ordre de chargement. Les modificateurs s'écrivent
+  donc `.bloc.bloc--variante`, et les règles de contenu sont portées par un
+  sélecteur descendant réel (`.form-group--consent label`), jamais par une
+  classe seule qui perdrait la bataille.
+- **Ordre de chargement.** Sur plusieurs pages, la feuille de la page est
+  chargée **avant** `global.css` — héritage de la position du `<style>` d'origine,
+  fidèlement conservée. Elle perd donc les égalités. Ne pas la déplacer : essayé
+  sur `traitement-injection-bati-termites`, ça casse le padding du fil d'Ariane.
+  Passer par la spécificité, qui est indépendante de l'ordre.
+- **Collisions de noms.** `.faq-card` existait déjà dans `global.css`.
+  Vérifier `grep -r ".<nom>" assets/css/` avant de créer une classe.
+
+#### Variables CSS : toutes ne sont pas globales
+
+`--accent-blue`, `--text-main`, `--text-muted`, `--border-color`, `--primary`
+ne sont **pas** définies dans le `:root` de `global.css` — seulement dans
+certaines feuilles de page. `--accent-blue` par exemple n'existe que sur 7 des
+28 pages. Une règle mutualisée dans `components.css` ne doit utiliser que les
+variables du `:root` de `global.css` (`--primary-blue`, `--muted`, `--border`,
+`--surface`, `--ink`, `--body-text`, `--font-heading`…), sinon la propriété est
+invalide sur les autres pages, sans erreur visible.
 
 #### Les `!important` de `global.css` — ne pas y toucher sans preuve
 
@@ -228,14 +253,14 @@ Propager sur tous les assets d'un coup, puis contrôler :
 
 ```sh
 # propagation
-for c in assets/css/*.css assets/js/*.js; do
-  n=$(basename $c); h=$(md5sum $c | cut -c1-8)
+for c in assets/css/*.css assets/css/pages/*.css assets/js/*.js; do
+  n=197610basename ); h=197610md5sum  | cut -c1-8)
   sed -i "s|$n?v=[a-zA-Z0-9]*|$n?v=$h|g" *.html
 done
 
 # controle : le hash reference doit egaler le md5 reel du fichier
-for c in assets/css/*.css assets/js/*.js; do
-  n=$(basename $c); r=$(md5sum $c | cut -c1-8)
+for c in assets/css/*.css assets/css/pages/*.css assets/js/*.js; do
+  n=197610basename ); r=197610md5sum  | cut -c1-8)
   u=$(grep -oh "$n?v=[a-f0-9]*" *.html | sort -u | sed 's/.*v=//')
   [ "$r" = "$u" ] || echo "ECART $n : fichier=$r pages='$u'"
 done
@@ -254,9 +279,98 @@ existants. C'est l'erreur la plus facile à commettre sur ce projet.
 À rejouer systématiquement — aucune n'exige d'outil externe :
 
 ```sh
-# liens internes cassés
-grep -oh 'href="/[a-z0-9-]*"' *.html | sed 's|href="/||;s|"||' | sort -u \
-  | while read p; do [ -z "$p" ] || [ -f "$p.html" ] || echo "LIEN MORT: /$p"; done
+# aucun chemin absolu (casserait tout sous le sous-chemin GitHub Pages)
+grep -oh '\(href\|src\|srcset\)="/[^"]*"' *.html
+
+# aucun style dans le HTML
+grep -l '<style\| style="' *.html
+
+# liens internes et assets : chaque cible referencee doit exister
+grep -oh '\(href\|src\)="[^"]*"' *.html \
+  | sed 's/^[a-z]*="//;s/"$//;s/?.*//;s/#.*//' \
+  | grep -v '^https\?:\|^mailto:\|^tel:\|^data:\|^$' | sort -u \
+  | while read f; do [ -e "$f" ] || echo "CIBLE MANQUANTE: $f"; done
+
+# aucune classe utilisee sans definition CSS
+grep -oh 'class="[^"]*"' *.html | sed 's/class="//;s/"//' | tr ' ' '\n' \
+  | sort -u | while read c; do
+      [ -z "$c" ] || grep -rqF ".$c" assets/css/ || echo "CLASSE NON DEFINIE: .$c"
+    done
+
+# Seule sortie attendue : .contact-footer, pose sur les blocs <footer> de
+# contenu de 4 pages. Sans CSS ni JS associe, c'est un simple repere semantique.
+
+# un seul h1 par page
+for f in *.html; do n=$(grep -c "<h1" $f); [ "$n" = 1 ] || echo "H1=$n $f"; done
+
+# canonical présent (sauf 404 et merci)
+for f in *.html; do grep -q 'rel="canonical"' $f || echo "SANS CANONICAL: $f"; done
+
+# divergence header / footer
+for f in *.html; do echo "$(sed -n '/<header class="site-header"/,/<\/header>/p' $f | md5sum | cut -c1-8) $f"; done | sort | uniq -c -w8
+for f in *.html; do echo "$(sed -n '/<footer class="site-footer"/,/<\/footer>/p' $f | md5sum | cut -c1-8) $f"; done | sort | uniq -c -w8
+
+# cohérence des hashes de cache-busting
+grep -oh 'assets/[a-z]*/[a-z-]*\.[a-z]*?v=[a-f0-9]*' *.html | sort | uniq -c
+```
+
+Le contrôle header/footer converge vers **une seule** ligne pour le header et
+**une seule** pour le footer depuis P1 : toute sortie à plusieurs lignes est une
+régression. Le motif du footer est bien `<footer class="site-footer"` — utiliser
+`<footer` tout court agrège les blocs de contenu des 5 pages listées en §3 et
+produit un faux positif.
+
+### Comparer le rendu avant / après une modification CSS
+
+```sh
+tools/compare-rendered-styles.sh          # compare a HEAD
+```
+
+Chrome headless relève ~50 propriétés calculées et la boîte de chaque élément
+sur les 28 pages (~9000 éléments), dans l'état courant et dans un worktree Git
+de référence, et signale toute divergence. C'est ce contrôle qui a permis
+d'extraire 379 attributs `style=""` sans régression : il a attrapé une perte
+d'`object-fit` sur 20 images, une collision de nom de classe, et trois pertes de
+bataille de spécificité — aucune n'était visible sans mesure.
+
+**Ne pas comparer par capture d'écran.** Mesuré sur ce dépôt : 14 pages sur 28
+donnent deux images différentes sans aucune modification (lazy-loading, polices).
+
+Deux sources de bruit connues dans le comparateur lui-même : le point pulsant de
+`guepes-et-frelons` (box-shadow animé) diverge toujours, et une section de
+l'accueil diverge environ 1 fois sur 10. **Tout écart isolé doit être re-mesuré
+page par page avant d'être traité comme une régression.**
+
+Vérifier aussi visuellement, a minima : accueil, une fiche nuisible, une page de
+zone, `contact` (envoi du formulaire compris), en mobile et en desktop.
+
+---
+
+## 7. Méthode de travail attendue
+
+- **Par lots homogènes, pas page par page.** Ces 28 fichiers sont des variations
+  d'un même gabarit : utiliser `sed`/scripts sur l'ensemble, puis vérifier avec §6.
+  Une correction appliquée à une seule page recrée exactement la divergence
+  qu'on cherche à supprimer.
+- **Un commit par nature de changement** (normalisation du footer, extraction du
+  CSS inline, recompression des images…), jamais un commit fourre-tout : en
+  statique, le diff HTML est le seul filet de sécurité.
+- **Annoncer avant d'agir** sur tout ce qui touche les URLs, le `.htaccess` ou
+  le `sitemap.xml` : l'impact porte sur le référencement en production, pas sur le code.
+- Messages de commit en français, à l'impératif
+  (`Normalise le footer sur les 28 pages`).
+
+---
+
+## 8. Contexte de production
+
+- Domaine canonique : `https://dezinsect-corse.fr` (sans `www`, HTTPS forcé).
+- URLs servies **sans** `.html` — toujours écrire les liens internes en `/page`.
+- Hébergement Apache mutualisé ; `.htaccess` est la seule configuration serveur.
+- Le site a migré depuis un ancien builder : les 301 de `.htaccess` protègent
+  l'historique de référencement. Ne jamais en supprimer une sans preuve qu'elle
+  est devenue inutile.
+ | sort -u \n  | while read f; do [ -e "" ] || echo "CIBLE MANQUANTE: "; done
 
 # images référencées absentes
 grep -oh 'src="/images/[^"]*"' *.html | sed 's|src="/||;s|"||' | sort -u \

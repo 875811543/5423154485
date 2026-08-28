@@ -67,7 +67,6 @@
 /* Paragraphes ponctuels de la page. */
 .method-box p.procedure-intro { font-size: 0.95rem; color: var(--text-muted); line-height: 1.75; margin: 0; }
 .gallery-caption { font-size: 0.85rem; color: var(--text-muted); margin: -8px 0 40px; }
-.note-text { font-size: 0.9rem; }
 .lead-text.lead-text--tight { margin-top: 8px; }
 .product-grid.product-grid--spaced { margin-top: 16px; }
 .figure-img--380 { width: 100%; max-height: 380px; object-fit: cover; display: block; }

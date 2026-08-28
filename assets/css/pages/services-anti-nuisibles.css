@@ -226,3 +226,7 @@
       .sticky-mobile-bar { display: none; }
       .hero-seo h1 { font-size: 2.2rem; }
     }
+
+/* Motifs auparavant decrits en style="" dans le HTML de cette page. */
+.service-link.service-link--sub { display: block; margin-top: 6px; font-size: 0.85rem; }
+.btn-phone.btn-phone--inline { display: inline-flex; }

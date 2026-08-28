@@ -255,3 +255,9 @@
       .hero-seo h1 { font-size: 2.2rem; }
       .cta-group { flex-direction: row; }
     }
+
+/* Motifs auparavant decrits en style="" dans le HTML de cette page. */
+.zone-heading-sm { font-size: 1.15rem; color: var(--primary); }
+.zone-heading-md { font-size: 1.2rem; margin-bottom: 16px; color: var(--primary); }
+.zone-text--spaced { margin-top: 8px; }
+.btn-phone.btn-phone--block { display: inline-block; }

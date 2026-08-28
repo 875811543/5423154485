@@ -293,3 +293,35 @@
     .zones-top-bar, .zones-bottom-bar { flex-direction: column; align-items: flex-start; gap: 8px; }
     .zones-btn-sm { width: 100%; text-align: center; justify-content: center; box-sizing: border-box; }
   }
+
+/* ==========================================================================
+   Motifs auparavant decrits en style="" dans le HTML de cette page.
+   ========================================================================== */
+
+/* Section du formulaire de devis. */
+.devis-section {
+  padding: clamp(16px, 3vw, 32px) 20px clamp(48px, 7vw, 88px);
+  background: var(--surface);
+}
+.devis-inner { max-width: 600px; margin: 0 auto; }
+.devis-header { text-align: center; margin-bottom: 32px; }
+.devis-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  color: var(--ink);
+  margin: 0 0 10px;
+}
+.devis-subtitle { color: var(--muted); font-size: 1rem; margin: 0; }
+
+/* Section des cartes "pourquoi nous choisir". */
+.why-section { padding: 8px 20px 56px; max-width: 1180px; margin: 0 auto; }
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.why-card { position: relative; }
+
+/* Bandeau de localisation au-dessus des zones. */
+.zones-top-bar p { margin: 0; }
