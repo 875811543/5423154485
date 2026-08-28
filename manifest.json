@@ -1,18 +1,18 @@
 {
   "name": "Dezinsect Corse",
   "short_name": "Dezinsect Corse",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1A4DFB",
   "icons": [
     {
-      "src": "/images/logo-icone.png",
+      "src": "images/logo-icone.png",
       "sizes": "96x96",
       "type": "image/png"
     },
     {
-      "src": "/images/icon-512.png",
+      "src": "images/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
