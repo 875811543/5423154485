@@ -1,0 +1,190 @@
+  /* Regles conservees en inline : elles redefinissent des selecteurs
+     deja presents dans un CSS partage. Les extraire changerait leur
+     position dans la cascade, donc le rendu. Voir AGENTS.md §3 P2. */
+    :root {
+      --primary: #0F172A;
+      --accent-blue: #1A4DFB;
+      --accent-blue-hover: #0F37BE;
+      --blue-bg: #EDF2FF;
+      --blue-border: #C7D9FF;
+      --text-main: #334155;
+      --text-muted: #64748B;
+      --bg-light: #F8FAFC;
+      --card-border: #E2E8F0;
+      --font-heading: 'Poppins', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, .hero-badge, .species-title, .mesh-header h3,
+    .action-cta-box h2, .top-contact-bar, .faq-item summary {
+      font-family: var(--font-heading);
+    }
+    .container { max-width: 1140px; margin: 0 auto; }
+
+    /* BADGE SIEGE / URGENCE */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-blue);
+      background: var(--blue-bg);
+      padding: 8px 16px;
+      border-radius: 100px;
+      border: 1px solid var(--blue-border);
+      margin-bottom: 16px;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(26, 77, 251, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(26, 77, 251, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(26, 77, 251, 0); }
+    }
+
+    /* TITRES DE SECTIONS */
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin: 36px 0 18px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title svg { width: 24px; height: 24px; color: var(--accent-blue); flex-shrink: 0; }
+
+    .species-card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 22px 18px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    .species-card.alert {
+      border: 2px solid var(--accent-blue);
+      background: linear-gradient(180deg, #FFFFFF 0%, #EDF2FF 100%);
+    }
+
+    .species-tag.strong { background: var(--accent-blue); color: #FFF; }
+    .species-tag.soft { background: var(--blue-bg); color: var(--accent-blue-hover); }
+
+    .commune-chip.highlight {
+      background: var(--blue-bg);
+      color: var(--accent-blue-hover);
+      border-color: var(--blue-border);
+    }
+
+    .commune-chip.link {
+      background: var(--blue-bg);
+      color: var(--accent-blue-hover);
+      border-color: var(--blue-border);
+      text-decoration: none;
+    }
+
+    .commune-chip.link:hover {
+      background: var(--accent-blue);
+      color: #FFF;
+    }
+
+    /* FAQ */
+    .faq-section { margin-top: 20px; }
+
+    .faq-item {
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--primary);
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      color: var(--accent-blue);
+      transition: transform 0.25s;
+    }
+
+    .faq-item[open] .faq-icon { transform: rotate(45deg); }
+
+    .faq-answer {
+      padding: 0 18px 18px 18px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .action-cta-box a.cta-call {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      background: var(--accent-blue);
+      color: #FFF;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      min-height: 44px;
+    }
+
+    .action-cta-box a.cta-call:hover {
+      background: var(--accent-blue-hover);
+    }
+
+    /* TABLETTE : 640px+ */
+    @media (min-width: 640px) {
+      .reassurance-bar { grid-template-columns: repeat(2, 1fr); }
+      .hero-title { font-size: 2rem; }
+      .top-contact-bar { font-size: 1.05rem; }
+    }
+
+    /* TABLETTE LARGE / DESKTOP : 768px+ */
+    @media (min-width: 768px) {
+      .main-section { padding: 56px 24px; }
+      .hero-title { font-size: 2.5rem; }
+      .hero-subtitle { font-size: 1rem; }
+      .reassurance-bar { grid-template-columns: repeat(4, 1fr); }
+      .species-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+      }
+      .section-title { font-size: 1.4rem; }
+    }
+
+    /* DESKTOP LARGE : 1024px+ */
+    @media (min-width: 1024px) {
+      .hero-title { font-size: 2.8rem; }
+      .action-cta-box { padding: 40px 32px; }
+      .action-cta-box h2 { font-size: 1.6rem; }
+    }

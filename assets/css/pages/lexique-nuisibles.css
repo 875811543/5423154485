@@ -1,0 +1,7 @@
+  /* Regles conservees en inline : elles redefinissent des selecteurs
+     deja presents dans un CSS partage. Les extraire changerait leur
+     position dans la cascade, donc le rendu. Voir AGENTS.md §3 P2. */
+  .lex-card .card-title {
+    margin: 4px 0 0;
+    color: var(--text-main, #334155);
+  }

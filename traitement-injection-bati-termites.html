@@ -140,24 +140,7 @@
 }
 </script>
 
-  <style>
-  /* Regles conservees en inline : elles redefinissent des selecteurs
-     deja presents dans un CSS partage. Les extraire changerait leur
-     position dans la cascade, donc le rendu. Voir AGENTS.md §3 P2. */
-    :root { --primary-blue:#1A4DFB; --primary-blue-hover:#0F37BE; --text-main:#0F172A; --text-muted:#64748B; --border-color:#E2E8F0; --bg-soft:#F8FAFC; --accent-green:#0F7A38; }
-    * { box-sizing: border-box; }
-    body { margin:0; font-family: var(--font-body); color:#334155; }
-    .container { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
-    .breadcrumb { font-size:0.82rem; color:var(--text-muted); padding: 16px 0 0; }
-    .breadcrumb a { color:var(--text-muted); text-decoration:none; }
-    .section-heading { font-family: var(--font-heading); font-weight:800; font-size:clamp(1.3rem,2.4vw,1.7rem); color:var(--text-main); margin: 48px 0 16px; }
-    .method-box .num { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; background:#EDF2FF; color:var(--primary-blue); font-weight:800; font-family:var(--font-heading); margin-bottom:12px; }
-    .product-card .tag { align-self:flex-start; background:#EDF2FF; color:var(--primary-blue-hover); font-size:0.72rem; font-weight:700; text-transform:uppercase; padding:4px 10px; border-radius:999px; margin-bottom:10px; }
-    .product-card .tag.curatif { background:var(--accent-green-bg,#EAF7EC); color:#2F7A3C; }
-
-    .photo-gallery figure { margin:0; border-radius: 14px; overflow: hidden; border: 1px solid var(--border-color); }
-    .photo-gallery figcaption { padding: 10px 14px; font-size: 0.85rem; color: var(--text-muted); }
-  </style>
+  <link rel="stylesheet" href="assets/css/pages/traitement-injection-bati-termites.css?v=9653b297">
 
   <!-- Polices auto-hébergées : aucun appel à Google, aucune IP transmise -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-latin-400-normal.woff2" crossorigin>

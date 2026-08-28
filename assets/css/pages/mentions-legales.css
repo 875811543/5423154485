@@ -1,0 +1,9 @@
+  /* Regles conservees en inline : elles redefinissent des selecteurs
+     deja presents dans un CSS partage. Les extraire changerait leur
+     position dans la cascade, donc le rendu. Voir AGENTS.md §3 P2. */
+    :root { --primary-blue:#1A4DFB; --primary-blue-hover:#0F37BE; --text-main:#0F172A; --text-muted:#64748B; --border-color:#E2E8F0; --bg-soft:#F8FAFC; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: var(--font-body); color:#334155; }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+    .breadcrumb { font-size:0.82rem; color:var(--text-muted); padding: 16px 0 0; }
+    .breadcrumb a { color:var(--text-muted); text-decoration:none; }

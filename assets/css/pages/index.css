@@ -1,0 +1,295 @@
+  /* Regles conservees en inline : elles redefinissent des selecteurs
+     deja presents dans un CSS partage. Les extraire changerait leur
+     position dans la cascade, donc le rendu. Voir AGENTS.md §3 P2. */
+  .hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #EDF2FF;
+    color: #0F37BE;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+    padding: 7px 14px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+  .hero__eyebrow::before {
+    content: "";
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #22C55E;
+  }
+  /* Regles conservees en inline : elles redefinissent des selecteurs
+     deja presents dans un CSS partage. Les extraire changerait leur
+     position dans la cascade, donc le rendu. Voir AGENTS.md §3 P2. */
+:root {
+  --primary-blue: #1A4DFB;
+  --primary-blue-hover: #2557d6;
+  --primary-dark: #1e293b;
+  --accent-yellow: #facc15;
+  --accent-yellow-text: #854d0e;
+  --bg-light: #f8fafc;
+  --bg-blue-soft: #f5f8ff;
+  --border-color: #e2e8f0;
+  --text-main: #334155;
+  --text-muted: #64748b;
+  --text-dark: #0f172a;
+  --card-radius: 16px;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+.combined-wrapper h2, .combined-wrapper h3, .why-tag, .certi-badge {
+  font-family: var(--font-heading);
+}
+
+.services-grid { display: flex; flex-direction: column; gap: 16px; }
+
+/* Carte entièrement cliquable (pattern "stretched link") */
+.service-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-category-tag {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.service-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+  color: var(--text-dark);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.highlight-badge {
+  display: inline-block;
+  align-self: flex-start;
+  background-color: var(--accent-yellow);
+  color: var(--accent-yellow-text);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 50px;
+  margin-bottom: 12px;
+}
+
+.service-card ul { margin: 0 0 16px 0; padding-left: 0; list-style: none; flex-grow: 1; }
+
+.service-card li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.service-card li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--primary-blue);
+  font-weight: 800;
+}
+
+.why-card .icon-box {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  background: #eff6ff;
+  color: var(--primary-blue);
+}
+
+.why-card .icon-box svg { width: 22px; height: 22px; }
+
+.why-card .card-title { font-size: 1.05rem; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
+
+.certi-badge {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #eff6ff;
+  color: var(--primary-blue-hover);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.cta-mobile { margin-top: 20px; text-align: center; }
+
+.btn-call {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 380px;
+  min-height: 48px;
+  background-color: var(--primary-blue);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(26, 77, 251, 0.25);
+  transition: background-color 0.2s ease;
+}
+
+.btn-call:hover { background-color: var(--primary-blue-hover); }
+.btn-call svg { width: 18px; height: 18px; }
+
+/* Adaptation Tablette & Ordinateur (768px+) */
+@media (min-width: 768px) {
+  :root { --card-radius: 20px; }
+
+  .services-section { margin: 60px auto; padding: 0 20px; }
+  .services-header { margin-bottom: 45px; }
+  .services-header .sub-tag { font-size: 0.85rem; padding: 6px 16px; margin-bottom: 14px; }
+  .services-header p { font-size: 1.1rem; line-height: 1.75; }
+
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 28px; }
+
+  .service-card {
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 35px rgba(26, 77, 251, 0.12);
+    border-color: #cbd5e1;
+  }
+
+  .card-visual-header { height: 130px; border-radius: 14px; margin-bottom: 20px; }
+  .card-visual-header svg { width: 60px; height: 60px; transition: transform 0.3s ease; }
+  .service-card:hover .card-visual-header svg { transform: scale(1.1); }
+
+  .card-category-tag { font-size: 0.75rem; margin-bottom: 8px; }
+  .service-card h3 { font-size: 1.35rem; margin-bottom: 14px; }
+  .highlight-badge { font-size: 0.82rem; padding: 6px 14px; margin-bottom: 16px; }
+  .service-card ul { margin-bottom: 24px; }
+  .service-card li { padding-left: 24px; margin-bottom: 8px; font-size: 0.93rem; }
+
+  .card-cta-banner {
+    padding: 14px 18px;
+    font-size: 0.95rem;
+    border-radius: 12px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .card-cta-banner:hover { background-color: var(--primary-blue); color: #ffffff; }
+  .card-cta-banner.primary-cta:hover { background-color: var(--primary-blue-hover); }
+  .card-cta-banner svg { width: 18px; height: 18px; }
+
+  .why-mobile-section { padding: 20px 20px 60px 20px; }
+  .cta-mobile { text-align: left; }
+  .btn-call { width: auto; }
+}
+
+/* Respect des préférences de réduction de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .service-card, .card-visual-header svg, .card-cta-banner, .why-card, .btn-call {
+    transition: none !important;
+  }
+  .service-card:hover { transform: none; }
+}
+  /* Regles conservees en inline : elles redefinissent des selecteurs
+     deja presents dans un CSS partage. Les extraire changerait leur
+     position dans la cascade, donc le rendu. Voir AGENTS.md §3 P2. */
+  .zones-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #eff6ff;
+    border: 1px solid #dbeafe;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-bottom: 16px;
+    font-size: 0.88rem;
+    color: #1e3a8a;
+  }
+
+  .zones-top-bar a { color: #1A4DFB; font-weight: 700; text-decoration: none; }
+  .zones-top-bar a:hover { text-decoration: underline; }
+
+  .zone-block-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .zone-block-title a {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #1A4DFB;
+    text-decoration: none;
+  }
+  .zone-block-title a:hover { text-decoration: underline; }
+
+  .tag-sm {
+    display: inline-block;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    font-size: 0.76rem;
+    padding: 2px 7px;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+
+  a.tag-sm.featured {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    color: #2563eb;
+    font-weight: 600;
+  }
+  a.tag-sm.featured:hover { background: #2563eb; color: #ffffff; border-color: #2563eb; }
+
+  .zones-btn-sm {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    background: #1A4DFB;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.82rem;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .zones-btn-sm:hover { background: #2557d6; }
+
+  @media (max-width: 640px) {
+    .zones-top-bar, .zones-bottom-bar { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .zones-btn-sm { width: 100%; text-align: center; justify-content: center; box-sizing: border-box; }
+  }

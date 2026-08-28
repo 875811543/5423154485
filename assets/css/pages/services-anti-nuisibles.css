@@ -1,0 +1,228 @@
+  /* Regles conservees en inline : elles redefinissent des selecteurs
+     deja presents dans un CSS partage. Les extraire changerait leur
+     position dans la cascade, donc le rendu. Voir AGENTS.md §3 P2. */
+    :root {
+      --primary: #0F172A;
+      --accent-blue: #1A4DFB;
+      --accent-blue-hover: #0F37BE;
+      --blue-bg: #EDF2FF;
+      --blue-border: #C7D9FF;
+      --text-main: #334155;
+      --text-muted: #64748B;
+      --bg-light: #F8FAFC;
+      --card-border: #E2E8F0;
+      --font-heading: 'Poppins', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    h1, h2, h3, .hero-tag, .service-title {
+      font-family: var(--font-heading);
+    }
+
+    .seo-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 16px;
+    }
+
+    .hero-seo {
+      text-align: center;
+      background: #FFFFFF;
+      padding: 40px 20px;
+      border-radius: 20px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+      margin-bottom: 40px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent-blue-hover);
+      background: var(--blue-bg);
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1px solid var(--blue-border);
+      margin-bottom: 16px;
+    }
+
+    .hero-seo h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+
+    .hero-seo .subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 750px;
+      margin: 0 auto 24px auto;
+    }
+
+    .btn-phone {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--accent-blue);
+      color: #FFFFFF;
+      font-weight: 800;
+      padding: 16px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 4px 14px rgba(26, 77, 251, 0.3);
+      transition: background-color 0.2s;
+      min-height: 48px;
+      gap: 8px;
+    }
+    .btn-phone:hover { background-color: var(--accent-blue-hover); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .service-card {
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    }
+
+    .service-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .service-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .service-list {
+      list-style: none;
+      margin-bottom: 18px;
+    }
+
+    .service-list li {
+      font-size: 0.92rem;
+      color: var(--text-main);
+      padding: 6px 0;
+      padding-left: 22px;
+      position: relative;
+    }
+
+    .service-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent-blue);
+      font-weight: 800;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin: 44px 0 20px 0;
+      border-bottom: 3px solid var(--accent-blue);
+      padding-bottom: 8px;
+      display: inline-block;
+    }
+
+    .reassurance-box {
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .reassurance-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .reassurance-list li {
+      font-size: 0.95rem;
+    }
+
+    .internal-link {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .internal-link:hover { text-decoration: underline; }
+
+    .cta-final {
+      text-align: center;
+      background: var(--primary);
+      color: #FFFFFF;
+      padding: 40px 20px;
+      border-radius: 20px;
+      margin-top: 50px;
+    }
+
+    .cta-final h2 { font-size: 1.4rem; margin-bottom: 10px; }
+    .cta-final p { color: #94A3B8; margin-bottom: 22px; }
+
+    .sticky-mobile-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #FFFFFF;
+      border-top: 1px solid var(--card-border);
+      padding: 12px 16px;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+    }
+
+    .sticky-call-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 480px;
+      min-height: 48px;
+      background: var(--accent-blue);
+      color: #FFFFFF;
+      font-size: 1rem;
+      font-weight: 800;
+      padding: 14px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+    }
+
+    @media (min-width: 640px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 768px) {
+      body { padding-bottom: 0; }
+      .sticky-mobile-bar { display: none; }
+      .hero-seo h1 { font-size: 2.2rem; }
+    }
