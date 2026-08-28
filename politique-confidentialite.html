@@ -14,6 +14,9 @@
   <link rel="icon" type="image/png" href="/images/logo-icone.png">
   <link rel="manifest" href="/manifest.json">
   <style>
+  /* Regles conservees en inline : elles redefinissent des selecteurs
+     deja presents dans un CSS partage. Les extraire changerait leur
+     position dans la cascade, donc le rendu. Voir AGENTS.md §3 P2. */
     :root { --primary-blue:#1A4DFB; --primary-blue-hover:#0F37BE; --text-main:#0F172A; --text-muted:#64748B; --border-color:#E2E8F0; --bg-soft:#F8FAFC; }
     * { box-sizing: border-box; }
     body { margin:0; font-family: var(--font-body); color:#334155; }
@@ -29,7 +32,6 @@
     .legal-body ul { padding-left:20px; margin:0 0 16px; }
     .legal-body a { color:var(--primary-blue); font-weight:600; text-decoration:none; }
     .legal-body a:hover { text-decoration:underline; }
-    .info-box { background:var(--bg-soft); border:1px solid var(--border-color); border-radius:14px; padding:20px 22px; margin: 20px 0; }
   </style>
 
   <!-- Polices auto-hébergées : aucun appel à Google, aucune IP transmise -->
@@ -73,6 +75,7 @@
 }
 </script>
   <link rel="stylesheet" href="/assets/css/footer.css?v=67e67818">
+  <link rel="stylesheet" href="/assets/css/pages-legales.css?v=48a1d063">
 </head>
 <body>
 <a href="#main-content" class="skip-link">Aller au contenu principal</a>

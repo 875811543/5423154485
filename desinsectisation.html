@@ -272,6 +272,9 @@
 </script>
 
   <style>
+  /* Regles conservees en inline : elles redefinissent des selecteurs
+     deja presents dans un CSS partage. Les extraire changerait leur
+     position dans la cascade, donc le rendu. Voir AGENTS.md §3 P2. */
     :root {
       --primary: #0F172A;
       --accent-blue: #1A4DFB;
@@ -493,24 +496,6 @@
       border-color: var(--accent-blue);
     }
 
-    .faq-question {
-      padding: 18px 20px;
-      font-size: 0.98rem;
-      font-weight: 700;
-      color: var(--primary);
-      cursor: pointer;
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      user-select: none;
-    }
-
-    .faq-question::-webkit-details-marker {
-      display: none;
-    }
-
     .faq-icon {
       width: 18px;
       height: 18px;
@@ -627,6 +612,7 @@
   <link rel="preload" as="image" href="/images/interventions/traitement-fourmis-produit-professionnel.webp" type="image/webp">
   <link rel="stylesheet" href="/assets/css/global.css?v=ae27c54e">
   <link rel="stylesheet" href="/assets/css/footer.css?v=67e67818">
+  <link rel="stylesheet" href="/assets/css/pages-services.css?v=7e08697a">
 </head>
 <body>
 <a href="#main-content" class="skip-link">Aller au contenu principal</a>

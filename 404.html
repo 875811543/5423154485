@@ -19,6 +19,7 @@
 
   <link rel="stylesheet" href="/assets/css/global.css?v=ae27c54e">
   <link rel="stylesheet" href="/assets/css/footer.css?v=67e67818">
+  <link rel="stylesheet" href="/assets/css/pages-legales.css?v=48a1d063">
   <!-- Schema.org : BreadcrumbList -->
 </head>
 <body>
@@ -118,32 +119,9 @@
 <main id="main-content">
 
 <style>
-  .err-wrap {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: clamp(56px, 10vw, 110px) 20px clamp(48px, 8vw, 90px);
-    text-align: center;
-  }
-  .err-code {
-    font-family: 'Poppins', system-ui, sans-serif;
-    font-weight: 800;
-    font-size: clamp(4.5rem, 18vw, 8rem);
-    line-height: 1;
-    letter-spacing: -0.04em;
-    background: linear-gradient(135deg, #1A4DFB 0%, #0F7A38 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin: 0 0 8px;
-  }
-  .err-wrap h1 {
-    font-family: 'Poppins', system-ui, sans-serif;
-    font-weight: 800;
-    font-size: clamp(1.5rem, 4.5vw, 2.15rem);
-    color: #0F172A;
-    margin: 0 0 14px;
-    line-height: 1.25;
-  }
+  /* Regles conservees en inline : elles redefinissent des selecteurs
+     deja presents dans un CSS partage. Les extraire changerait leur
+     position dans la cascade, donc le rendu. Voir AGENTS.md §3 P2. */
   .err-wrap p.lead {
     font-size: clamp(1rem, 2.4vw, 1.08rem);
     color: #475569;
@@ -151,77 +129,13 @@
     margin: 0 auto 32px;
     max-width: 560px;
   }
-  .err-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-    margin-bottom: 48px;
-  }
-  .err-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 26px;
-    border-radius: 999px;
-    font-weight: 700;
-    font-size: 0.97rem;
-    text-decoration: none;
-    transition: transform .18s ease, box-shadow .18s ease;
-  }
   .err-btn--primary {
     background: #1A4DFB;
     color: #fff;
     box-shadow: 0 6px 18px rgba(26,77,251,.28);
   }
-  .err-btn--ghost {
-    background: #fff;
-    color: #16308F;
-    border: 1.5px solid #D6E0FF;
-  }
-  .err-btn:hover { transform: translateY(-2px); }
   .err-btn--primary:hover { box-shadow: 0 10px 24px rgba(26,77,251,.36); }
-
-  .err-links {
-    border-top: 1px solid #E7EDF7;
-    padding-top: 32px;
-    text-align: left;
-  }
-  .err-links h2 {
-    font-family: 'Poppins', system-ui, sans-serif;
-    font-weight: 800;
-    font-size: 1.05rem;
-    color: #0F172A;
-    margin: 0 0 18px;
-    text-align: center;
-  }
-  .err-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 10px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .err-grid a {
-    display: block;
-    padding: 13px 16px;
-    background: #F6F9FE;
-    border: 1px solid #E7EDF7;
-    border-radius: 12px;
-    color: #16308F;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.93rem;
-    transition: background .16s ease, border-color .16s ease;
-  }
-  .err-grid a:hover { background: #EDF2FF; border-color: #BDCDFF; }
-
-  @media (max-width: 480px) {
-    .err-actions { flex-direction: column; }
-    .err-btn { justify-content: center; }
-  }
-</style>
+  </style>
 
 <div class="err-wrap">
   <div class="err-code" aria-hidden="true">404</div>

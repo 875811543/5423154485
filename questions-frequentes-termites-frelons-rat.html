@@ -220,6 +220,9 @@
 </script>
 
   <style>
+  /* Regles conservees en inline : elles redefinissent des selecteurs
+     deja presents dans un CSS partage. Les extraire changerait leur
+     position dans la cascade, donc le rendu. Voir AGENTS.md §3 P2. */
     :root {
       --primary: #0F172A;
       --accent-blue: #1A4DFB;

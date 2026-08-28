@@ -1,0 +1,155 @@
+/* pages-legales.css — regles extraites des blocs <style> inline.
+   Chaque classe ici n' existe que sur une page ; aucune collision avec un
+   autre CSS. Extraction sans effet sur le rendu. Voir AGENTS.md §3 P2. */
+
+/* --- issu de mentions-legales.html --- */
+
+    .todo-box { background:#FFFBEB; border:1px solid #FDE68A; border-radius:14px; padding:16px 20px; margin: 16px 0; font-size:0.88rem; color:#92610A; }
+
+/* --- issu de politique-confidentialite.html --- */
+
+    .info-box { background:var(--bg-soft); border:1px solid var(--border-color); border-radius:14px; padding:20px 22px; margin: 20px 0; }
+
+/* --- issu de merci.html --- */
+
+  .ty-wrap { max-width: 660px; margin: 0 auto; padding: clamp(52px,9vw,96px) 20px clamp(44px,7vw,80px); text-align: center; }
+
+  .ty-badge { width: 78px; height: 78px; margin: 0 auto 24px; border-radius: 50%;
+    background: linear-gradient(135deg,#0F7A38 0%,#0B5B2C 100%); display: flex;
+    align-items: center; justify-content: center; color: #fff;
+    box-shadow: 0 10px 26px rgba(15,122,56,.32); }
+
+  .ty-badge svg { width: 38px; height: 38px; }
+
+  .ty-wrap h1 { font-family:'Poppins',system-ui,sans-serif; font-weight:800;
+    font-size: clamp(1.5rem,4.6vw,2.1rem); color:#0F172A; margin:0 0 14px; line-height:1.25; }
+
+  .ty-steps { text-align:left; background:#F6F9FE; border:1px solid #E7EDF7; border-radius:16px;
+    padding: clamp(20px,4vw,28px); margin-bottom:32px; }
+
+  .ty-steps h2 { font-family:'Poppins',system-ui,sans-serif; font-weight:800; font-size:1.02rem; color:#0F172A; margin:0 0 16px; }
+
+  .ty-steps ol { margin:0; padding-left:22px; color:#475569; line-height:1.75; font-size:.95rem; }
+
+  .ty-steps li { margin-bottom:9px; }
+
+  .ty-steps li:last-child { margin-bottom:0; }
+
+  .ty-urgent { background:#FFF7ED; border:1px solid #FED7AA; border-radius:14px;
+    padding:18px 20px; margin-bottom:30px; color:#7C2D12; font-size:.93rem; line-height:1.65; text-align:left; }
+
+  .ty-actions { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+
+  .ty-btn { display:inline-flex; align-items:center; gap:8px; padding:14px 26px; border-radius:999px;
+    font-weight:700; font-size:.97rem; text-decoration:none; transition:transform .18s ease, box-shadow .18s ease; }
+
+  .ty-btn--ghost { background:#fff; color:#16308F; border:1.5px solid #D6E0FF; }
+
+  .ty-btn:hover { transform: translateY(-2px); }
+
+  @media (max-width:480px){ .ty-actions{flex-direction:column;} .ty-btn{justify-content:center;} }
+
+/* --- issu de 404.html --- */
+
+  .err-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: clamp(56px, 10vw, 110px) 20px clamp(48px, 8vw, 90px);
+    text-align: center;
+  }
+
+  .err-code {
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(4.5rem, 18vw, 8rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    background: linear-gradient(135deg, #1A4DFB 0%, #0F7A38 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0 0 8px;
+  }
+
+  .err-wrap h1 {
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.5rem, 4.5vw, 2.15rem);
+    color: #0F172A;
+    margin: 0 0 14px;
+    line-height: 1.25;
+  }
+
+  .err-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+
+  .err-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.97rem;
+    text-decoration: none;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+
+  .err-btn--ghost {
+    background: #fff;
+    color: #16308F;
+    border: 1.5px solid #D6E0FF;
+  }
+
+  .err-btn:hover { transform: translateY(-2px); }
+
+
+  .err-links {
+    border-top: 1px solid #E7EDF7;
+    padding-top: 32px;
+    text-align: left;
+  }
+
+  .err-links h2 {
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: #0F172A;
+    margin: 0 0 18px;
+    text-align: center;
+  }
+
+  .err-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .err-grid a {
+    display: block;
+    padding: 13px 16px;
+    background: #F6F9FE;
+    border: 1px solid #E7EDF7;
+    border-radius: 12px;
+    color: #16308F;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.93rem;
+    transition: background .16s ease, border-color .16s ease;
+  }
+
+  .err-grid a:hover { background: #EDF2FF; border-color: #BDCDFF; }
+
+
+  @media (max-width: 480px) {
+    .err-actions { flex-direction: column; }
+    .err-btn { justify-content: center; }
+  }

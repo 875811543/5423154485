@@ -117,3 +117,36 @@
     font-weight: 600;
     margin-top: 20px;
   }
+
+/* --- issu de contact.html --- */
+
+  .contact-hero {
+    padding: clamp(40px,6vw,64px) 20px 8px;
+    max-width: 800px; margin: 0 auto; text-align: center;
+  }
+
+  .contact-hero h1 {
+    font-family: var(--font-heading); font-weight: 800;
+    font-size: clamp(1.8rem,3.6vw,2.6rem); color: var(--ink); margin: 0 0 14px;
+  }
+
+  .contact-hero p { color: var(--muted); font-size: 1.05rem; line-height: 1.6; margin: 0; }
+
+  .contact-wrap {
+    max-width: 1080px; margin: 0 auto; padding: 32px 20px clamp(56px,8vw,96px);
+    display: grid; gap: 32px;
+  }
+
+  @media (min-width: 900px) { .contact-wrap { grid-template-columns: 1fr 1fr; align-items: start; } }
+
+  .contact-infos { background:#F8FAFC; border:1px solid var(--border); border-radius:16px; padding:28px; }
+
+  .contact-infos h2 { font-family: var(--font-heading); font-size:1.15rem; color: var(--ink); margin:0 0 18px; }
+
+  .contact-infos ul { list-style:none; margin:0; padding:0; display:grid; gap:16px; }
+
+  .contact-infos li { display:flex; gap:12px; align-items:flex-start; font-size:0.95rem; }
+
+  .contact-infos a { color: var(--primary-blue); text-decoration:none; font-weight:600; }
+
+  .contact-infos a:hover { text-decoration:underline; }
