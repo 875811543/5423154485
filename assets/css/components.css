@@ -1,0 +1,93 @@
+/* ==========================================================================
+   DEZINSECT CORSE — components.css
+   Motifs de contenu repetes sur plusieurs pages, extraits des attributs
+   style="" qui etaient poses directement dans le HTML. Chargee apres
+   global.css et avant la feuille propre a chaque page.
+   ========================================================================== */
+
+/* Lien discret dans un paragraphe : herite la couleur, garde le souligne. */
+.link-plain { color: inherit; text-decoration: underline; }
+
+/* Lien d'action colore, sans souligne. */
+.link-action { color: var(--accent-blue); font-weight: 700; text-decoration: none; }
+
+/* Icone SVG alignee sur la ligne de texte qui la suit. */
+.icon-inline { vertical-align: -2px; margin-right: 5px; }
+.icon-inline--tight { vertical-align: -2px; margin-right: 4px; }
+
+/* Figure illustree : image pleine largeur + legende sur fond clair. */
+.media-figure {
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.media-figure--r16 { border-radius: 16px; }
+.media-figure--spaced {
+  margin: 0 0 40px;
+  border-radius: 16px;
+}
+.media-figure__caption {
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Image d une figure : pleine largeur, recadree, hauteur selon la variante.
+   Le selecteur ne peut pas etre un enfant direct : l image est dans <picture>. */
+.media-figure__img--sm,
+.media-figure__img--md,
+.media-figure__img--lg,
+.media-figure__img--tall {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+.media-figure__img--sm   { height: 200px; }
+.media-figure__img--md   { height: 220px; }
+.media-figure__img--lg   { height: 240px; }
+.media-figure__img--tall { max-height: 420px; }
+
+/* Encart d'information sur fond gris. */
+.info-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+}
+.info-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.02rem;
+  margin: 0 0 8px;
+}
+.info-card__text {
+  font-size: 0.9rem;
+  color: #475569;
+  margin: 0;
+}
+
+/* Pastille numerotee d'une etape de procedure. */
+.step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface-blue);
+  color: var(--primary-blue);
+  font-weight: 800;
+  font-family: var(--font-heading);
+  margin-bottom: 12px;
+}
+
+/* Liste a puces custom : chaque item est une ligne icone + texte. */
+.check-list__item {
+  display: flex;
+  gap: 10px;
+  font-size: 0.92rem;
+  color: var(--body-text);
+}
+
+/* Chiffre ou mention mise en avant dans un paragraphe. */
+.stat-accent { color: var(--accent-green); font-weight: 800; }

@@ -270,6 +270,7 @@
 
   <link rel="preload" as="image" href="images/interventions/nid-frelons-charpente-toiture.webp" type="image/webp">
   <link rel="stylesheet" href="assets/css/global.css?v=ae27c54e">
+  <link rel="stylesheet" href="assets/css/components.css?v=9f065167">
   <link rel="stylesheet" href="assets/css/footer.css?v=67e67818">
   <link rel="stylesheet" href="assets/css/pages-services.css?v=9a8392ef">
 </head>
@@ -511,25 +512,25 @@
     <!-- PROTOCOLE D'INTERVENTION -->
     <h2 class="section-title" style="margin-top:48px;">Notre protocole d'intervention</h2>
     <div style="display:grid; gap:16px; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); margin-top:20px;">
-      <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:20px;">
-        <div style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; background:#EDF2FF; color:#1A4DFB; font-weight:800; font-family:var(--font-heading,'Poppins',sans-serif); margin-bottom:12px;">1</div>
-        <h3 style="font-family:var(--font-heading,'Poppins',sans-serif); font-size:1.02rem; margin:0 0 8px;">Diagnostic à distance</h3>
-        <p style="font-size:0.9rem; color:#475569; margin:0;">Description du nid par téléphone (emplacement, taille, activité) pour préparer le bon équipement et évaluer le degré d'urgence.</p>
+      <div class="info-card">
+        <div class="step-badge">1</div>
+        <h3 class="info-card__title">Diagnostic à distance</h3>
+        <p class="info-card__text">Description du nid par téléphone (emplacement, taille, activité) pour préparer le bon équipement et évaluer le degré d'urgence.</p>
       </div>
-      <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:20px;">
-        <div style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; background:#EDF2FF; color:#1A4DFB; font-weight:800; font-family:var(--font-heading,'Poppins',sans-serif); margin-bottom:12px;">2</div>
-        <h3 style="font-family:var(--font-heading,'Poppins',sans-serif); font-size:1.02rem; margin:0 0 8px;">Sécurisation de la zone</h3>
-        <p style="font-size:0.9rem; color:#475569; margin:0;">Tenue de protection intégrale, éloignement des personnes et animaux, repérage des voies d'accès et de retraite avant toute action sur le nid.</p>
+      <div class="info-card">
+        <div class="step-badge">2</div>
+        <h3 class="info-card__title">Sécurisation de la zone</h3>
+        <p class="info-card__text">Tenue de protection intégrale, éloignement des personnes et animaux, repérage des voies d'accès et de retraite avant toute action sur le nid.</p>
       </div>
-      <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:20px;">
-        <div style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; background:#EDF2FF; color:#1A4DFB; font-weight:800; font-family:var(--font-heading,'Poppins',sans-serif); margin-bottom:12px;">3</div>
-        <h3 style="font-family:var(--font-heading,'Poppins',sans-serif); font-size:1.02rem; margin:0 0 8px;">Traitement biocide ciblé</h3>
-        <p style="font-size:0.9rem; color:#475569; margin:0;">Application d'un insecticide professionnel directement dans le nid (poudrage ou nébulisation selon l'accès), pour une élimination de la colonie à la source.</p>
+      <div class="info-card">
+        <div class="step-badge">3</div>
+        <h3 class="info-card__title">Traitement biocide ciblé</h3>
+        <p class="info-card__text">Application d'un insecticide professionnel directement dans le nid (poudrage ou nébulisation selon l'accès), pour une élimination de la colonie à la source.</p>
       </div>
-      <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:20px;">
-        <div style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; background:#EDF2FF; color:#1A4DFB; font-weight:800; font-family:var(--font-heading,'Poppins',sans-serif); margin-bottom:12px;">4</div>
-        <h3 style="font-family:var(--font-heading,'Poppins',sans-serif); font-size:1.02rem; margin:0 0 8px;">Retrait & vérification</h3>
-        <p style="font-size:0.9rem; color:#475569; margin:0;">Retrait du nid si l'accès le permet, contrôle de l'absence d'activité résiduelle et conseils pour éviter qu'un nouveau nid ne s'installe au même endroit.</p>
+      <div class="info-card">
+        <div class="step-badge">4</div>
+        <h3 class="info-card__title">Retrait & vérification</h3>
+        <p class="info-card__text">Retrait du nid si l'accès le permet, contrôle de l'absence d'activité résiduelle et conseils pour éviter qu'un nouveau nid ne s'installe au même endroit.</p>
       </div>
     </div>
 
@@ -539,10 +540,10 @@
       Un nid de guêpes ou de frelons repéré tôt (quelques centimètres) se traite plus vite, avec moins de risques, qu'un nid installé depuis plusieurs semaines. Quelques signes à surveiller :
     </p>
     <ul style="display:grid; gap:10px; padding:0; list-style:none; max-width:70ch;">
-      <li style="display:flex; gap:10px; font-size:0.92rem; color:#334155;"><span style="color:var(--accent-green); font-weight:800;"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M20 6 9 17l-5-5"/></svg></span> Va-et-vient répété d'insectes vers un même point (charpente, gaine, cavité murale, arbre creux)</li>
-      <li style="display:flex; gap:10px; font-size:0.92rem; color:#334155;"><span style="color:var(--accent-green); font-weight:800;"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M20 6 9 17l-5-5"/></svg></span> Petite structure grise en forme de coupole ou de boule, visible sous un débord de toit ou dans un angle</li>
-      <li style="display:flex; gap:10px; font-size:0.92rem; color:#334155;"><span style="color:var(--accent-green); font-weight:800;"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M20 6 9 17l-5-5"/></svg></span> Bruit de bourdonnement régulier provenant d'un mur, d'un coffre de volet roulant ou des combles</li>
-      <li style="display:flex; gap:10px; font-size:0.92rem; color:#334155;"><span style="color:var(--accent-green); font-weight:800;"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M20 6 9 17l-5-5"/></svg></span> Présence inhabituelle de frelons autour d'un point d'eau, d'un compost ou d'un arbre fruitier en été</li>
+      <li class="check-list__item"><span class="stat-accent"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M20 6 9 17l-5-5"/></svg></span> Va-et-vient répété d'insectes vers un même point (charpente, gaine, cavité murale, arbre creux)</li>
+      <li class="check-list__item"><span class="stat-accent"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M20 6 9 17l-5-5"/></svg></span> Petite structure grise en forme de coupole ou de boule, visible sous un débord de toit ou dans un angle</li>
+      <li class="check-list__item"><span class="stat-accent"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M20 6 9 17l-5-5"/></svg></span> Bruit de bourdonnement régulier provenant d'un mur, d'un coffre de volet roulant ou des combles</li>
+      <li class="check-list__item"><span class="stat-accent"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M20 6 9 17l-5-5"/></svg></span> Présence inhabituelle de frelons autour d'un point d'eau, d'un compost ou d'un arbre fruitier en été</li>
     </ul>
     <p style="color:#475569; font-size:0.9rem; max-width:70ch; margin-top:16px;">
       <strong>Important :</strong> ne tentez jamais de détruire un nid vous-même (eau, feu, bombe insecticide grand public) — cela disperse les insectes plutôt que d'éliminer la colonie, et augmente fortement le risque de piqûres. Contactez-nous dès le repérage, même pour un nid de petite taille.
@@ -552,25 +553,25 @@
     <div class="photo-gallery" style="margin: 48px 0;">
       <h3 style="font-family: var(--font-heading, 'Poppins', sans-serif); font-size: 1.3rem; color: #0F172A; margin-bottom: 20px;">Nos interventions en Corse</h3>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
-        <figure style="margin:0; border-radius: 14px; overflow: hidden; border: 1px solid #E2E8F0;">
-          <picture><source srcset="images/interventions/nid-frelons-charpente-toiture.webp" type="image/webp"><img src="images/interventions/nid-frelons-charpente-toiture.jpg" alt="Nid de frelons sous une charpente de toiture en Corse" width="400" height="220" style="width:100%; height:220px; object-fit:cover; display:block;" fetchpriority="high" decoding="async"></picture>
-          <figcaption style="padding: 10px 14px; font-size: 0.85rem; color: #64748B;">Nid de frelons repéré sous une charpente</figcaption>
+        <figure class="media-figure">
+          <picture><source srcset="images/interventions/nid-frelons-charpente-toiture.webp" type="image/webp"><img src="images/interventions/nid-frelons-charpente-toiture.jpg" alt="Nid de frelons sous une charpente de toiture en Corse" width="400" height="220" class="media-figure__img--md" fetchpriority="high" decoding="async"></picture>
+          <figcaption class="media-figure__caption">Nid de frelons repéré sous une charpente</figcaption>
         </figure>
-        <figure style="margin:0; border-radius: 14px; overflow: hidden; border: 1px solid #E2E8F0;">
-          <picture><source srcset="images/interventions/nid-frelons-porte-fenetre-interieur.webp" type="image/webp"><img src="images/interventions/nid-frelons-porte-fenetre-interieur.jpg" alt="Nid de frelons contre une porte-fenêtre" width="400" height="220" loading="lazy" style="width:100%; height:220px; object-fit:cover; display:block;"></picture>
-          <figcaption style="padding: 10px 14px; font-size: 0.85rem; color: #64748B;">Nid volumineux détecté en intérieur</figcaption>
+        <figure class="media-figure">
+          <picture><source srcset="images/interventions/nid-frelons-porte-fenetre-interieur.webp" type="image/webp"><img src="images/interventions/nid-frelons-porte-fenetre-interieur.jpg" alt="Nid de frelons contre une porte-fenêtre" width="400" height="220" loading="lazy" class="media-figure__img--md"></picture>
+          <figcaption class="media-figure__caption">Nid volumineux détecté en intérieur</figcaption>
         </figure>
-        <figure style="margin:0; border-radius: 14px; overflow: hidden; border: 1px solid #E2E8F0;">
-          <picture><source srcset="images/interventions/intervention-destruction-nid-frelons-exterieur.webp" type="image/webp"><img src="images/interventions/intervention-destruction-nid-frelons-exterieur.jpg" alt="Technicien Dezinsect Corse en intervention de destruction de nid" width="400" height="220" loading="lazy" style="width:100%; height:220px; object-fit:cover; display:block;"></picture>
-          <figcaption style="padding: 10px 14px; font-size: 0.85rem; color: #64748B;">Intervention équipée et sécurisée</figcaption>
+        <figure class="media-figure">
+          <picture><source srcset="images/interventions/intervention-destruction-nid-frelons-exterieur.webp" type="image/webp"><img src="images/interventions/intervention-destruction-nid-frelons-exterieur.jpg" alt="Technicien Dezinsect Corse en intervention de destruction de nid" width="400" height="220" loading="lazy" class="media-figure__img--md"></picture>
+          <figcaption class="media-figure__caption">Intervention équipée et sécurisée</figcaption>
         </figure>
-        <figure style="margin:0; border-radius: 14px; overflow: hidden; border: 1px solid #E2E8F0;">
-          <picture><source srcset="images/interventions/nid-guepes-frelons-remise-atelier-corse.webp" type="image/webp"><img src="images/interventions/nid-guepes-frelons-remise-atelier-corse.jpg" alt="Nid de guêpes découvert dans une remise en Corse" width="400" height="220" loading="lazy" style="width:100%; height:220px; object-fit:cover; display:block;"></picture>
-          <figcaption style="padding: 10px 14px; font-size: 0.85rem; color: #64748B;">Nid découvert dans une remise</figcaption>
+        <figure class="media-figure">
+          <picture><source srcset="images/interventions/nid-guepes-frelons-remise-atelier-corse.webp" type="image/webp"><img src="images/interventions/nid-guepes-frelons-remise-atelier-corse.jpg" alt="Nid de guêpes découvert dans une remise en Corse" width="400" height="220" loading="lazy" class="media-figure__img--md"></picture>
+          <figcaption class="media-figure__caption">Nid découvert dans une remise</figcaption>
         </figure>
-        <figure style="margin:0; border-radius: 14px; overflow: hidden; border: 1px solid #E2E8F0;">
-          <picture><source srcset="images/interventions/nid-frelons-auvent-mur-beton-corse.webp" type="image/webp"><img src="images/interventions/nid-frelons-auvent-mur-beton-corse.jpg" alt="Nid de frelons en formation dans une cavité murale près d'une gaine extérieure" width="400" height="220" loading="lazy" style="width:100%; height:220px; object-fit:cover; display:block;"></picture>
-          <figcaption style="padding: 10px 14px; font-size: 0.85rem; color: #64748B;">Nid naissant repéré dans une cavité murale</figcaption>
+        <figure class="media-figure">
+          <picture><source srcset="images/interventions/nid-frelons-auvent-mur-beton-corse.webp" type="image/webp"><img src="images/interventions/nid-frelons-auvent-mur-beton-corse.jpg" alt="Nid de frelons en formation dans une cavité murale près d'une gaine extérieure" width="400" height="220" loading="lazy" class="media-figure__img--md"></picture>
+          <figcaption class="media-figure__caption">Nid naissant repéré dans une cavité murale</figcaption>
         </figure>
       </div>
     </div>
@@ -585,7 +586,7 @@
         </p>
       </div>
 
-      <div class="mesh-block-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px; margin-right:4px;"><path d="M12 21s-7-6.5-7-11.5A7 7 0 0119 9.5C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg>Communes de Costa Verde</div>
+      <div class="mesh-block-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-inline--tight"><path d="M12 21s-7-6.5-7-11.5A7 7 0 0119 9.5C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg>Communes de Costa Verde</div>
       <div class="communes-list">
         <span class="commune-chip highlight">Cervione</span>
         <span class="commune-chip">Moriani-Plage</span>
@@ -597,7 +598,7 @@
         <span class="commune-chip">Sant'Andria-di-Cotone</span>
       </div>
 
-      <div class="mesh-block-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px; margin-right:4px;"><path d="M5 13l1.5-4.5A2 2 0 018.4 7h7.2a2 2 0 011.9 1.5L19 13"/><rect x="3" y="13" width="18" height="5" rx="1.5"/><circle cx="7.5" cy="18.5" r="1.3"/><circle cx="16.5" cy="18.5" r="1.3"/></svg>Plaine Orientale & Casinca</div>
+      <div class="mesh-block-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-inline--tight"><path d="M5 13l1.5-4.5A2 2 0 018.4 7h7.2a2 2 0 011.9 1.5L19 13"/><rect x="3" y="13" width="18" height="5" rx="1.5"/><circle cx="7.5" cy="18.5" r="1.3"/><circle cx="16.5" cy="18.5" r="1.3"/></svg>Plaine Orientale & Casinca</div>
       <div class="communes-list">
         <span class="commune-chip">Folelli</span>
         <span class="commune-chip">Penta-di-Casinca</span>
@@ -607,7 +608,7 @@
         <span class="commune-chip">Solenzara</span>
       </div>
 
-      <div class="mesh-block-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px; margin-right:4px;"><path d="M12 21s-7-6.5-7-11.5A7 7 0 0119 9.5C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg>Intervention sur toute la Corse</div>
+      <div class="mesh-block-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-inline--tight"><path d="M12 21s-7-6.5-7-11.5A7 7 0 0119 9.5C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg>Intervention sur toute la Corse</div>
       <div class="communes-list">
         <a href="anti-nuisibles-costa-verde.html" class="commune-chip link">Bastia & Agglo</a>
         <span class="commune-chip">Biguglia / Borgo</span>
@@ -675,7 +676,7 @@
     </div>
 
     <p style="text-align:center; margin-top:20px;">
-      <a href="questions-frequentes-termites-frelons-rat.html#guepes-frelons-fourmis" style="color:var(--accent-blue); font-weight:700; text-decoration:none;">Voir toutes nos questions sur les guêpes et frelons →</a>
+      <a href="questions-frequentes-termites-frelons-rat.html#guepes-frelons-fourmis" class="link-action">Voir toutes nos questions sur les guêpes et frelons →</a>
     </p>
 
     <!-- CTA FINAL -->
@@ -760,7 +761,7 @@
 
   </div>
 
-  <p class="footer-copy">© 2026 Dezinsect Corse. <a href="mentions-legales.html" style="color:inherit; text-decoration:underline;">Mentions légales</a> · <a href="politique-confidentialite.html" style="color:inherit; text-decoration:underline;">Politique de confidentialité</a></p>
+  <p class="footer-copy">© 2026 Dezinsect Corse. <a href="mentions-legales.html" class="link-plain">Mentions légales</a> · <a href="politique-confidentialite.html" class="link-plain">Politique de confidentialité</a></p>
 </footer>
 
   <script src="assets/js/main.js?v=51bcce48" defer></script>
