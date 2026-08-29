@@ -609,36 +609,47 @@ li.feature-item::before {
 
 /* ==========================================================================
    BARRE D'APPEL FLOTTANTE (mobile uniquement)
+   --------------------------------------------------------------------------
+   Definition unique. Elle etait auparavant recopiee dans six feuilles
+   (pages-nuisibles, deratisation, desinsectisation, services-anti-nuisibles,
+   zones-dintervention, questions-frequentes) avec de legeres divergences de
+   padding et de taille de police. Les tokens --accent-blue et --card-border
+   utilises la-bas ne sont pas globaux : on passe par --primary-blue et
+   --border, de valeurs identiques (#1A4DFB, #E2E8F0).
    ========================================================================== */
-.mobile-call-bar {
-  display: flex;
+.sticky-mobile-bar {
   position: fixed;
-  left: 0; right: 0; bottom: 0;
-  z-index: 95;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: saturate(180%) blur(12px);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #FFFFFF;
   border-top: 1px solid var(--border);
-  padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
-  box-shadow: 0 -8px 24px rgba(15,23,42,0.08);
+  padding: 10px 16px;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
 }
-.mobile-call-bar a {
-  flex: 1;
+.sticky-call-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  background: linear-gradient(135deg, #1A4DFB 0%, #0F37BE 100%);
-  color: #fff;
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 0.98rem;
-  padding: 13px;
-  border-radius: 999px;
+  gap: 10px;
+  width: 100%;
+  max-width: 480px;
+  min-height: 48px;
+  background: var(--primary-blue);
+  color: #FFFFFF;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-weight: 800;
+  padding: 13px 20px;
+  border-radius: 12px;
   text-decoration: none;
-  box-shadow: 0 8px 20px rgba(26,77,251,0.32);
 }
+.sticky-call-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
 @media (min-width: 768px) {
-  .mobile-call-bar { display: none; }
+  .sticky-mobile-bar { display: none; }
 }
 body { padding-bottom: 76px; }
 @media (min-width: 768px) {

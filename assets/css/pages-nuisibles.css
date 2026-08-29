@@ -313,38 +313,8 @@
     }
 
     /* Barre fixe Smartphone */
-    .sticky-mobile-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #FFFFFF;
-      border-top: 1px solid var(--card-border);
-      padding: 10px 16px;
-      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
-      z-index: 999;
-      display: flex;
-      justify-content: center;
-    }
 
-    .sticky-call-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      max-width: 480px;
-      min-height: 48px;
-      background: var(--accent-blue);
-      color: #FFFFFF;
-      font-size: 0.95rem;
-      font-weight: 800;
-      padding: 13px 20px;
-      border-radius: 12px;
-      text-decoration: none;
-    }
 
-    .sticky-call-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
 
     /* TABLETTE : 640px+ */
     @media (min-width: 640px) {
@@ -357,7 +327,6 @@
     /* TABLETTE LARGE / DESKTOP : 768px+ */
     @media (min-width: 768px) {
       body { padding-bottom: 0; }
-      .sticky-mobile-bar { display: none; }
       .termites-section { padding: 64px 24px; }
       .termites-title { font-size: 2.4rem; }
       .section-heading { font-size: 1.5rem; }

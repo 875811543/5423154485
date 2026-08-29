@@ -18,7 +18,7 @@ est exactement ce qui est servi.
   il regroupe les anciens `fonts.css`, `components.css` et `footer.css` —, plus
   `form.css` et les feuilles `pages-*.css` par famille de pages), plus une
   feuille par page dans `assets/css/pages/`. **Aucun `<style>` ni attribut `style=""` dans le HTML.**
-- **1 fichier JS**, `assets/js/main.js` (81 l., ES5, IIFE, sans dépendance).
+- **1 fichier JS**, `assets/js/main.js` (72 l., ES5, IIFE, sans dépendance).
 - **Polices auto-hébergées** en woff2 (Inter + Poppins) — aucun appel à Google.
 - **Images** en doublons `.jpg` + `.webp` servis via `<picture>`.
 - **Déploiement : GitHub Pages**, sur `https://875811543.github.io/5423154485/`,
@@ -115,6 +115,26 @@ Il ne reste **aucun style dans le HTML** : zéro bloc `<style>`, zéro attribut
   feuille de portée de leur page (`404` et `merci` → `pages-legales.css`,
   `lexique-nuisibles` → `pages-nuisibles.css`). Fusionner vers `global.css`
   aurait au contraire cassé la cascade : ces règles sont des surcharges.
+
+#### Barre d'appel mobile — une seule, en HTML, sur les 28 pages
+
+Le site en portait **deux** superposées. `main.js` injectait un
+`<div class="mobile-call-bar">` sur chacune des 28 pages, pendant que 16 pages
+déclaraient en plus un `<div class="sticky-mobile-bar">` dans leur HTML. Sur ces
+16 pages les deux barres se chevauchaient en bas de l'écran ; sur les 12 autres,
+le `body { padding-bottom: 76px }` de `global.css` réservait la place d'une barre
+qui n'était que celle du JS.
+
+Ce qui a été fait : l'injection JS est supprimée, `.sticky-mobile-bar` est ajoutée
+au HTML des 12 pages qui ne l'avaient pas, et sa CSS — jusque-là recopiée dans six
+feuilles avec des divergences de padding et de taille de police — vit maintenant
+en un seul endroit dans `global.css`. Un `line-height: 1.6` explicite a été ajouté
+sur `.sticky-call-btn` : sans lui, la hauteur variait de 69 à 72 px selon le
+`line-height` hérité de la feuille de chaque page.
+
+Mesuré page par page après coup : les 28 barres rendent `fixed`/`flex`, fond
+`#FFFFFF`, padding 10 px, hauteur 71 px. **Ne pas réintroduire d'injection JS
+pour cette barre** — même raison qu'en P1 pour le header.
 
 #### Ce qui rend cette extraction risquée — à savoir avant d'y retoucher
 
