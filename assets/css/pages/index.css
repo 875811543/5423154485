@@ -36,8 +36,6 @@
   --text-muted: #64748b;
   --text-dark: #0f172a;
   --card-radius: 16px;
-  --font-heading: 'Poppins', sans-serif;
-  --font-body: 'Inter', sans-serif;
 }
 
 .combined-wrapper h2, .combined-wrapper h3, .why-tag, .certi-badge {

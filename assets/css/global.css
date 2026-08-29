@@ -197,6 +197,10 @@ a { color: inherit; }
   top: 0;
   z-index: 100;
   background: var(--primary-blue);
+  /* line-height explicite : sans elle, la hauteur des liens de nav et du
+     bouton CTA suivait le line-height que chaque page pose sur body,
+     ce qui donnait un bandeau de 36, 40 ou 44 px selon la page. */
+  line-height: 1.6;
   height: var(--header-height);
 }
 

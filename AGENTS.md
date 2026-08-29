@@ -116,6 +116,31 @@ Il ne reste **aucun style dans le HTML** : zéro bloc `<style>`, zéro attribut
   `lexique-nuisibles` → `pages-nuisibles.css`). Fusionner vers `global.css`
   aurait au contraire cassé la cascade : ces règles sont des surcharges.
 
+#### Le bandeau d'en-tête rendait à trois hauteurs différentes
+
+Le HTML du header est identique sur les 28 pages depuis P1, mais il ne *rendait*
+pas pareil : les liens de navigation et le bouton CTA mesuraient 44 px sur 17
+pages, 40 px sur 10, et 36 px sur l'accueil. Deux causes, toutes deux par
+héritage — aucune feuille ne redéfinit `site-header` ni `site-nav` :
+
+- `.site-header` n'avait pas de `line-height`, il suivait donc celui que chaque
+  page pose sur `body` (`1.6`, `1.65` ou `normal` selon la page). Corrigé par un
+  `line-height: 1.6` explicite sur `.site-header`, qui couvre aussi le menu
+  mobile, imbriqué dedans.
+- `--font-heading` et `--font-body` étaient redéfinis dans huit feuilles avec une
+  pile de repli plus courte (`'Poppins', sans-serif`). Sans effet là où la feuille
+  charge avant `global.css`, mais `pages/index.css` charge après : l'accueil
+  rendait son texte dans une autre police que les 27 autres pages. Les huit
+  redéfinitions sont supprimées, la définition de `global.css` fait foi.
+
+Mesuré après coup sur les 28 pages, à 1280 et 390 px : header, conteneur, nav et
+CTA ont exactement les mêmes position, largeur et hauteur partout.
+
+**Leçon générale :** une hauteur qui varie d'une page à l'autre sans qu'aucune
+règle ne cible l'élément vient presque toujours d'un `line-height` hérité. Poser
+la valeur explicitement sur le composant partagé, plutôt que de chercher la
+surcharge.
+
 #### Barre d'appel mobile — une seule, en HTML, sur les 28 pages
 
 Le site en portait **deux** superposées. `main.js` injectait un
