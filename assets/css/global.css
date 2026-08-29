@@ -1,4 +1,120 @@
 /* ==========================================================================
+   POLICES AUTO-HÉBERGÉES — Dezinsect Corse
+   --------------------------------------------------------------------------
+   Poppins et Inter sont servies depuis notre propre hébergement, et non plus
+   depuis fonts.googleapis.com / fonts.gstatic.com.
+
+   Pourquoi :
+   - RGPD : plus aucune adresse IP de visiteur transmise à Google au chargement
+     de la page. C'était le seul transfert vers un tiers qui se produisait sans
+     action ni consentement possible du visiteur.
+   - Performance : deux connexions externes (DNS + TLS + requête) supprimées du
+     chemin critique de rendu. Les fichiers sont mis en cache un an par le
+     .htaccess, comme les autres ressources statiques.
+
+   Fichiers : sous-ensemble « latin » uniquement, au format WOFF2. Vérifié :
+   tous les caractères employés sur le site y figurent (accents français, œ,
+   tirets cadratins, puces, €).
+
+   Licence : Poppins et Inter sont sous SIL Open Font License 1.1, qui autorise
+   explicitement l'hébergement et la redistribution.
+
+   Si de nouvelles graisses sont utilisées un jour dans le CSS, il faut ajouter
+   le fichier correspondant dans /assets/fonts/ et déclarer son @font-face ici.
+   ========================================================================== */
+
+/* Plage de caractères du sous-ensemble latin (identique à celle de Google
+   Fonts). Le navigateur ne télécharge le fichier que si la page contient au
+   moins un de ces caractères. */
+
+/* --------------------------------- Poppins — titres -------------------- */
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/poppins-latin-600-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/poppins-latin-700-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/assets/fonts/poppins-latin-800-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ---------------------------------- Inter — texte courant --------------- */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/inter-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/inter-latin-400-italic.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/inter-latin-500-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/inter-latin-600-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/inter-latin-700-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+/* ==========================================================================
+   GLOBAL — regroupement de fonts.css + global.css + components.css + footer.css
+   --------------------------------------------------------------------------
+   Ces quatre feuilles etaient chargees a la suite, dans cet ordre exact, par
+   les 28 pages. Elles sont concatenees ici dans le meme ordre : la cascade est
+   identique, on economise trois requetes bloquantes par page.
+   form.css n'est pas inclus : il ne concerne que contact.html et index.html,
+   et sa position differe entre les deux.
+   ========================================================================== */
+
+/* ==========================================================================
    DEZINSECT CORSE — global.css
    Fondations partagées par toutes les pages : reset léger, variables de
    marque, header/nav, footer. Le contenu propre à chaque page (déjà rédigé)
@@ -1031,3 +1147,238 @@ li > .ico:first-child {
   align-items: center;
   min-height: 24px;
 }
+
+
+/* ===== depuis components.css ===== */
+
+/* ==========================================================================
+   DEZINSECT CORSE — components.css
+   Motifs de contenu repetes sur plusieurs pages, extraits des attributs
+   style="" qui etaient poses directement dans le HTML. Chargee apres
+   global.css et avant la feuille propre a chaque page.
+   ========================================================================== */
+
+/* Lien discret dans un paragraphe : herite la couleur, garde le souligne. */
+.link-plain { color: inherit; text-decoration: underline; }
+
+/* Lien d'action colore, sans souligne. */
+.link-action { color: var(--primary-blue); font-weight: 700; text-decoration: none; }
+
+/* Icone SVG alignee sur la ligne de texte qui la suit. */
+.icon-inline { vertical-align: -2px; margin-right: 5px; }
+.icon-inline--tight { vertical-align: -2px; margin-right: 4px; }
+
+/* Figure illustree : image pleine largeur + legende sur fond clair. */
+.media-figure {
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.media-figure.media-figure--r16 { border-radius: 16px; }
+.media-figure.media-figure--spaced {
+  margin: 0 0 40px;
+  border-radius: 16px;
+}
+.media-figure__caption {
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Image d une figure : pleine largeur, recadree, hauteur selon la variante.
+   Le selecteur ne peut pas etre un enfant direct : l image est dans <picture>. */
+.media-figure__img--sm,
+.media-figure__img--md,
+.media-figure__img--lg,
+.media-figure__img--tall {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+.media-figure__img--sm   { height: 200px; }
+.media-figure__img--md   { height: 220px; }
+.media-figure__img--lg   { height: 240px; }
+.media-figure__img--tall { max-height: 420px; }
+
+/* Encart d'information sur fond gris. */
+.info-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+}
+.info-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.02rem;
+  margin: 0 0 8px;
+}
+.info-card__text {
+  font-size: 0.9rem;
+  color: #475569;
+  margin: 0;
+}
+
+/* Pastille numerotee d'une etape de procedure. */
+.step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface-blue);
+  color: var(--primary-blue);
+  font-weight: 800;
+  font-family: var(--font-heading);
+  margin-bottom: 12px;
+}
+
+/* Liste a puces custom : chaque item est une ligne icone + texte. */
+.check-list__item {
+  display: flex;
+  gap: 10px;
+  font-size: 0.92rem;
+  color: var(--body-text);
+}
+
+/* Chiffre ou mention mise en avant dans un paragraphe. */
+.stat-accent { color: var(--accent-green); font-weight: 800; }
+
+/* Paragraphes successifs d'une reponse de FAQ : espaces entre eux, le
+   premier reste colle a son titre. */
+.faq-answer p + p { margin-top: 12px; }
+
+/* Titre d'une carte de methode : l'espacement vient du .method-header. */
+.method-header .card-title { margin: 0; }
+
+/* Galerie photo detachee du texte qui l'entoure. */
+.photo-gallery.photo-gallery--spaced { margin: 48px 0; }
+
+/* Ligne de lien centree cloturant une section. */
+.link-row { text-align: center; margin-top: 20px; }
+
+/* Lien colore d'un poids intermediaire, dans un paragraphe de contenu. */
+.link-inline { color: var(--primary-blue); font-weight: 600; text-decoration: none; }
+
+/* Grilles de cartes auto-ajustables, partagees par plusieurs pages. */
+.card-grid-240 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-top: 20px;
+}
+.card-grid-260 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+.card-grid-260--spaced { margin-top: 20px; }
+
+/* Figure limitee en largeur, dans une colonne de texte. */
+.media-figure--narrow { max-width: 620px; }
+.media-figure__img--360 { width: 100%; max-height: 360px; object-fit: cover; display: block; }
+
+/* Paragraphe secondaire, plus petit que le corps de texte. */
+.note-text { font-size: 0.9rem; }
+
+/* Figure collee a sa legende, la marge basse etant portee par la legende. */
+.media-figure.media-figure--tight { margin: 0 0 8px; border-radius: 16px; }
+
+/* Credit ou source sous une illustration. */
+.figure-credit { font-size: 0.75rem; color: var(--muted); margin: 0 0 40px; }
+
+/* Mention centree en fin de bloc. */
+.note-centered { text-align: center; margin-top: 16px; font-size: 0.86rem; color: var(--text-muted); }
+
+
+/* ===== depuis footer.css ===== */
+
+/* Dezinsect Corse — Pied de page global */
+
+.site-footer {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #F8FAFC;
+    color: #334155;
+    padding: 40px 20px 24px 20px;
+    border-top: 2px solid #1A4DFB;
+  }
+
+  .site-footer h3 {
+    font-family: 'Poppins', sans-serif;
+    color: #0F172A;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 14px;
+  }
+
+  .footer-grid {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .footer-brand img { height: 48px; width: auto; margin-bottom: 12px; }
+
+  .footer-brand p {
+    font-size: 0.88rem;
+    color: #64748B;
+    line-height: 1.5;
+    max-width: 300px;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .footer-col a {
+    color: #334155;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .footer-col a:hover { color: #1A4DFB; }
+
+  .footer-col .footer-note {
+    font-size: 0.78rem;
+    color: #64748B;
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  .footer-contact-col a {
+    display: block;
+    color: #1A4DFB;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .footer-contact-col a:hover { color: #0F37BE; text-decoration: underline; }
+
+  .footer-copy {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #64748B;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid #E2E8F0;
+  }
+
+  @media (min-width: 640px) {
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .footer-grid { grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr; gap: 24px; }
+  }

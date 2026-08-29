@@ -14,10 +14,10 @@ est exactement ce qui est servi.
 
 - **28 pages HTML** à la racine (1 accueil, 8 services, 4 zones, 10 nuisibles,
   contact, merci, 2 pages légales, lexique, FAQ, 404).
-- **CSS** dans `assets/css/` : 7 feuilles partagées (`global.css` faisant socle,
-  puis `components.css`, `fonts.css`, `footer.css`, `form.css`, et les feuilles
-  `pages-*.css` par famille de pages), plus une feuille par page dans
-  `assets/css/pages/`. **Aucun `<style>` ni attribut `style=""` dans le HTML.**
+- **CSS** dans `assets/css/` : 4 feuilles partagées (`global.css` faisant socle —
+  il regroupe les anciens `fonts.css`, `components.css` et `footer.css` —, plus
+  `form.css` et les feuilles `pages-*.css` par famille de pages), plus une
+  feuille par page dans `assets/css/pages/`. **Aucun `<style>` ni attribut `style=""` dans le HTML.**
 - **1 fichier JS**, `assets/js/main.js` (81 l., ES5, IIFE, sans dépendance).
 - **Polices auto-hébergées** en woff2 (Inter + Poppins) — aucun appel à Google.
 - **Images** en doublons `.jpg` + `.webp` servis via `<picture>`.
@@ -107,6 +107,14 @@ Il ne reste **aucun style dans le HTML** : zéro bloc `<style>`, zéro attribut
   une feuille par page.
 - **379 attributs `style=""`** supprimés. Les motifs partagés par plusieurs
   pages sont dans `components.css` ; le reste est dans la feuille de sa page.
+- `fonts.css`, `components.css` et `footer.css` ont ensuite été concaténés dans
+  `global.css`, dans leur ordre de chargement d'origine : 3 requêtes bloquantes
+  en moins sur chacune des 28 pages, cascade inchangée. Vérifié avec
+  `tools/compare-rendered-styles.sh` à 390, 768, 1024 et 1280 px.
+- Trois feuilles de `assets/css/pages/` faisant moins de 1 Ko ont rejoint la
+  feuille de portée de leur page (`404` et `merci` → `pages-legales.css`,
+  `lexique-nuisibles` → `pages-nuisibles.css`). Fusionner vers `global.css`
+  aurait au contraire cassé la cascade : ces règles sont des surcharges.
 
 #### Ce qui rend cette extraction risquée — à savoir avant d'y retoucher
 
@@ -132,8 +140,8 @@ perdait avant, souvent de façon invisible. Trois pièges rencontrés :
 `--accent-blue`, `--text-main`, `--text-muted`, `--border-color`, `--primary`
 ne sont **pas** définies dans le `:root` de `global.css` — seulement dans
 certaines feuilles de page. `--accent-blue` par exemple n'existe que sur 7 des
-28 pages. Une règle mutualisée dans `components.css` ne doit utiliser que les
-variables du `:root` de `global.css` (`--primary-blue`, `--muted`, `--border`,
+28 pages. Une règle mutualisée dans la partie « composants » de `global.css` ne
+doit utiliser que les variables de son `:root` (`--primary-blue`, `--muted`, `--border`,
 `--surface`, `--ink`, `--body-text`, `--font-heading`…), sinon la propriété est
 invalide sur les autres pages, sans erreur visible.
 
@@ -194,7 +202,7 @@ largeur où ce menu est visible. Contrôler en desktop seul n'aurait rien prouv�
 - `lang="fr"`, encodage UTF-8, textes et commentaires **en français**.
 - Ordre du `<head>` : charset / theme-color / viewport → title + description +
   robots + canonical → Open Graph → Twitter → icônes + manifest → polices
-  (preload puis `fonts.css`) → preload image LCP → CSS → JSON-LD.
+  (preload puis `global.css`) → preload image LCP → CSS → JSON-LD.
 - Classes en **BEM** : `site-header`, `site-header__inner`, `site-header__brand`,
   `site-nav__submenu`, modificateurs d'état en `is-` (`is-open`, `is-visible`).
 - Images toujours en `<picture>` avec `<source type="image/webp">`, `alt` en
@@ -219,17 +227,15 @@ Rôle des fichiers :
 
 | Fichier | Portée |
 |---|---|
-| `fonts.css` | `@font-face` uniquement (28 pages) |
-| `global.css` | reset, tokens, header, nav, cartes, CTA, animations (28 pages) |
-| `footer.css` | footer (28 pages) |
+| `global.css` | `@font-face`, reset, tokens, header, nav, cartes, CTA, animations, composants mutualisés, footer (28 pages) |
 | `form.css` | formulaires (`contact`, `index`) |
-| `pages-nuisibles.css` | fiches nuisibles (11 pages) |
+| `pages-nuisibles.css` | fiches nuisibles (11 pages) ; porte aussi la surcharge de `lexique-nuisibles`, fusionnée depuis `pages/` |
 | `pages-zones.css` | pages de zones (4 pages) |
 | `pages-services.css` | pages de services (6 pages) |
-| `pages-legales.css` | `mentions-legales`, `politique-confidentialite`, `merci`, `404` |
+| `pages-legales.css` | `mentions-legales`, `politique-confidentialite`, `merci`, `404` ; porte aussi les surcharges de `404` et `merci`, fusionnées depuis `pages/` |
 | `page-accueil.css` | `index` uniquement |
 
-Les `<link>` se posent dans cet ordre : `fonts` → `global` → `footer` → fichier
+Les `<link>` se posent dans cet ordre : `global` → fichier
 de portée de la page. Le fichier de portée charge en dernier, donc il l'emporte
 sur `global.css` à spécificité égale.
 
