@@ -421,3 +421,10 @@
     font-weight: 700;
     color: var(--accent-blue, #1A4DFB);
   }
+
+/* --- Fusionne depuis pages/lexique-nuisibles.css : .lex-card n'existe
+   que sur lexique-nuisibles.html, la regle est inerte ailleurs. --- */
+  .lex-card .card-title {
+    margin: 4px 0 0;
+    color: var(--text-main, #334155);
+  }
