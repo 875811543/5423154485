@@ -343,21 +343,6 @@ a { color: inherit; }
 }
 .site-header__cta:hover { background: #E9EEFF; }
 
-/* Second numero dans l en-tete : contour blanc plutot que fond plein,
-   pour garder une hierarchie entre les deux lignes. Le seuil
-   d apparition est mesure au navigateur : le conteneur de l en-tete est
-   plafonne a 1280 px, la marque + la navigation + les deux boutons en
-   demandent 1209, il reste donc 31 px. En dessous de 1320 px de viewport
-   (barre de defilement comprise) cette marge disparait et le second bouton
-   se fait couper. Il n a pas d icone, contrairement au premier : avec, la
-   marge tombait a 7 px. */
-.site-header__cta--alt {
-  background: transparent;
-  color: #fff;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
-}
-.site-header__cta--alt:hover { background: rgba(255, 255, 255, 0.14); color: #fff; }
-@media (max-width: 1319px) { .site-header .site-header__cta--alt { display: none; } }
 
 .site-header__burger {
   margin-left: auto;
@@ -428,11 +413,12 @@ a { color: inherit; }
   font-weight: 700;
 }
 
-/* Bascule bureau a 1120 px, pas 1024. Mesure au navigateur : la marque, la
-   navigation et le bouton d appel demandent 1096 px ; en dessous, le numero
-   de telephone etait coupe par le bord droit. Valeur a garder alignee sur le
-   seuil du resize de main.js. */
-@media (min-width: 1120px) {
+/* Bascule bureau a 1200 px. Mesure en HTTP, polices reellement chargees : la
+   marque, la navigation et le bouton d appel demandent 1190 px. Un premier
+   relevé en file:// avait donne 1096 px — les polices ne s y chargeaient pas et
+   tout rendait plus etroit, do'u un seuil trop bas et le numero coupe entre
+   1120 et 1189 px. Valeur a garder alignee sur le resize de main.js. */
+@media (min-width: 1200px) {
   .site-nav { display: block; }
   .site-header__cta { display: flex; }
   .site-header__burger { display: none; }

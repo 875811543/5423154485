@@ -15,7 +15,7 @@
 
     // Ferme le menu mobile si on repasse en desktop
     window.addEventListener("resize", function () {
-      if (window.innerWidth >= 1120 && mobileMenu.classList.contains("is-open")) {
+      if (window.innerWidth >= 1200 && mobileMenu.classList.contains("is-open")) {
         mobileMenu.classList.remove("is-open");
         burger.setAttribute("aria-expanded", "false");
         document.body.style.overflow = "";

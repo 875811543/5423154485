@@ -379,12 +379,20 @@ Les `<link>` se posent dans cet ordre : `global` → fichier
 de portée de la page. Le fichier de portée charge en dernier, donc il l'emporte
 sur `global.css` à spécificité égale.
 
-Mobile-first, breakpoint desktop de l'en-tête à `1120px` (aligné sur le `resize`
-de `main.js` — les deux valeurs doivent rester identiques). Il était à `1024px`,
-mais la marque, la navigation et le bouton d'appel demandent 1096 px : entre 1024
-et 1095, le numéro de téléphone était coupé par le bord droit. Les autres media
-queries à `1024px` (grilles de contenu, `footer-grid`) sont indépendantes et
-restent à cette valeur.
+Mobile-first, breakpoint desktop de l’en-tête à `1200px` (aligné sur le `resize`
+de `main.js` — les deux valeurs doivent rester identiques). Mesuré **en HTTP** :
+la marque, la navigation et le bouton d’appel demandent 1190 px.
+**Deux seuils faux ont été posés avant d’en arriver là, tous deux mesurés en
+`file://`** : 1024 px à l’origine, puis 1120 px. Sans serveur, les `@font-face`
+ne se chargent pas, tout rend en police système donc plus étroit, et le seuil
+mesuré est trop bas — le numéro se retrouve coupé sur la bande entre le seuil
+posé et le seuil réel. **Toute mesure de largeur doit se faire en HTTP.**
+Un second bouton d’appel dans l’en-tête a été tenté puis retiré : avec les vraies
+polices, marque + navigation + deux boutons demandent 1349 px alors que le
+conteneur est plafonné à 1280 — il ne tient à aucune largeur. Le second numéro
+reste dans la barre mobile, le pied de page et le menu mobile.
+Les autres media queries à `1024px` (grilles de contenu, `footer-grid`) sont
+indépendantes et restent à cette valeur.
 
 ### JavaScript
 
