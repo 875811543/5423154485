@@ -21,6 +21,14 @@ est exactement ce qui est servi.
 - **1 fichier JS**, `assets/js/main.js` (125 l., ES5, IIFE, sans dépendance).
 - **Polices auto-hébergées** en woff2 (Inter + Poppins) — aucun appel à Google.
 - **Images** en doublons `.jpg` + `.webp` servis via `<picture>`.
+  **Le logo est en `.png` + `.webp` et porte de la transparence.** Son WebP avait
+  été encodé sans canal alpha : les coins transparents s’étaient aplatis sur du
+  noir, et comme le navigateur préfère le WebP, un cadre noir entourait le logo
+  sur les 28 pages. Réencodé en `cwebp -lossless -exact`. Contrôle après toute
+  régénération : `webpinfo images/logo-icone.webp` doit afficher `Alpha: 1`.
+  **Sa taille d’affichage est posée en CSS** (`.site-header__logo`), pas par les
+  attributs `width`/`height` du HTML, qui décrivent le fichier. Sans cette règle
+  le logo rend en 96×96 et déborde d’un bandeau haut de 72 px.
 - **Deux cibles de déploiement, à ne pas confondre.** La cible réelle est
   `https://dezinsect-corse.fr`, **à la racine**, sur un Apache mutualisé — c'est
   ce que déclarent tous les `canonical`, le `sitemap.xml` et le JSON-LD. La

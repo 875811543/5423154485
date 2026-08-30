@@ -223,7 +223,11 @@ a { color: inherit; }
   flex-shrink: 0;
   margin-right: auto;
 }
-.site-header__logo { border-radius: 8px; }
+/* La taille d affichage est posee ici, pas dans les attributs width/height du
+   HTML : ceux-ci decrivent le fichier (96x96) pour reserver la place avant
+   chargement. Sans cette regle, le logo rendait a sa taille naturelle et
+   debordait de 12 px sous un bandeau haut de 72 px. */
+.site-header__logo { width: 40px; height: 40px; border-radius: 8px; }
 .site-header__brand-text {
   font-family: var(--font-heading);
   font-weight: 800;
