@@ -1464,7 +1464,8 @@ li > .ico:first-child {
      contrairement a une image ou a un iframe. Une video integree coute
      4,2 Mo et contacte des domaines publicitaires — voir AGENTS.md. */
   .footer-youtube,
-  .footer-instagram {
+  .footer-instagram,
+  .footer-facebook {
     display: inline-flex !important;
     align-items: center;
     gap: 7px;
@@ -1474,9 +1475,11 @@ li > .ico:first-child {
     margin-top: 4px;
   }
   .footer-youtube svg,
-  .footer-instagram svg { flex-shrink: 0; }
+  .footer-instagram svg,
+  .footer-facebook svg { flex-shrink: 0; }
   .footer-youtube:hover { color: #C4302B !important; }
   .footer-instagram:hover { color: #C13584 !important; }
+  .footer-facebook:hover { color: #1877F2 !important; }
 
   .footer-copy {
     text-align: center;
