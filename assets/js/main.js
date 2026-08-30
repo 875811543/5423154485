@@ -112,7 +112,7 @@
         .then(function (r) { return r.json(); })
         .then(function (result) {
           if (!result.success) throw new Error(result.message || "Erreur inconnue");
-          window.location.href = "merci.html";
+          window.location.href = "merci";
         })
         .catch(function () {
           if (errorBox) errorBox.style.display = "block";

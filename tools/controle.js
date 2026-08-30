@@ -150,7 +150,12 @@ const CONTROLES = [
           const c = u.replace(/[?#].*$/, '');
           if (c && !/^(https?:|mailto:|tel:|data:|#)/.test(c)) cibles.add(c);
         }
-    return [...cibles].filter(c => !fs.existsSync(c)).map(c => 'cible absente : ' + c);
+    // Les liens internes sont sans extension (le .htaccess sert page.html
+    // quand on demande /page) : une cible resout donc soit telle quelle,
+    // soit avec .html ajoute. « ./ » designe l'accueil.
+    const resout = c => c === './' ? fs.existsSync('index.html')
+      : fs.existsSync(c) || fs.existsSync(c + '.html');
+    return [...cibles].filter(c => !resout(c)).map(c => 'cible absente : ' + c);
   }},
 
 { nom: 'hashes', titre: 'Les hashes ?v= correspondent aux fichiers',

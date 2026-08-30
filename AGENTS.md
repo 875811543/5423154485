@@ -15,6 +15,19 @@ est exactement ce qui est servi.
 - **33 pages HTML** à la racine (1 accueil, 8 services, 4 zones, 4 pages
   « service + ville », 10 nuisibles, actualités, contact, merci, 2 pages
   légales, lexique, FAQ, 404).
+- **Liens internes sans extension.** Les `href` internes s'ecrivent
+  `deratisation`, pas `deratisation.html` ; l'accueil s'ecrit `./`. Le
+  `.htaccess` sert `page.html` quand on demande `/page`, et redirige
+  `/page.html` vers `/page` en 301 : ecrire les liens en `.html` faisait
+  donc payer une redirection a chaque clic et a chaque passage de robot,
+  sur 2057 liens. Ils restent **relatifs** — la regle 7 tient toujours.
+  Consequence assumee, tranchee par le proprietaire du site : l'apercu
+  GitHub Pages, servi sous un sous-chemin, ne resout plus ces liens. Seul
+  `dezinsect-corse.fr` fait foi.
+- Le serveur de test (`scratchpad/viewport/serveur.js`) rejoue cette
+  reecriture. Sans cela toute mesure de navigation faite en local est
+  fausse : il repondait 404 la ou Apache sert la page.
+
 - Les pages **service + ville** (`deratisation-bastia`, `deratisation-ajaccio`,
   `traitement-termites-ajaccio`, `destruction-nid-guepes-porto-vecchio`) visent
   les requêtes « service + ville », que les pages de zones ne couvraient pas.

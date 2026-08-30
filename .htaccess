@@ -48,6 +48,13 @@ DirectoryIndex index.html
   RewriteCond %{REQUEST_FILENAME}.html !-f
   RewriteRule ^anti-nuisibles?-.+$ /zones-dintervention [R=301,L]
 
+  # Supprimer la barre finale sur les pages (pas sur les vrais dossiers).
+  # Indispensable depuis que les liens internes sont sans extension : sur
+  # /deratisation/, l'URL de base devient /deratisation/ et tous les liens
+  # relatifs de la page pointeraient une cible inexistante.
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.+)/$ /$1 [R=301,L]
+
   # Rediriger /page.html -> /page (évite le contenu dupliqué)
   RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
   RewriteRule ^ /%1 [R=301,L]
