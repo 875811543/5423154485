@@ -117,7 +117,7 @@ function toutesLesImages() {
 
 const CONTROLES = [
 
-{ nom: 'entete-pied', titre: 'En-tete et pied de page identiques sur les 28 pages',
+{ nom: 'entete-pied', titre: 'En-tete et pied de page identiques sur toutes les pages',
   run() {
     const pbs = [];
     for (const [nom, motif] of [['en-tete', /<header class="site-header"[\s\S]*?<\/header>/],
@@ -305,7 +305,14 @@ const CONTROLES = [
     const definis = new Set(), references = new Map();
     for (const f of pages) {
       const src = lire(f);
-      const visible = sansScripts(src).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+      // Le JSON-LD porte du texte deja decode, le HTML porte des entites :
+      // sans les decoder ici, toute reponse contenant une espace insecable
+      // est declaree absente alors qu'elle est bien presente.
+      const entites = t => t
+        .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&')
+        .replace(/&#39;|&rsquo;/g, '\u2019')
+        .replace(/&laquo;|&raquo;|&quot;/g, '"');
+      const visible = entites(sansScripts(src).replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ');
       let i = 0;
       for (const b of src.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
         i++;
@@ -330,7 +337,7 @@ const CONTROLES = [
             const t = n.acceptedAnswer && n.acceptedAnswer.text;
             if (!t) pbs.push(f + ' : question sans reponse — ' + String(n.name).slice(0, 40));
             else {
-              const debut = String(t).replace(/\s+/g, ' ').trim().slice(0, 45);
+              const debut = entites(String(t)).replace(/\s+/g, ' ').trim().slice(0, 45);
               if (debut && !visible.includes(debut))
                 pbs.push(f + ' : reponse absente du texte visible — ' + String(n.name).slice(0, 45));
             }

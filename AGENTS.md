@@ -12,8 +12,16 @@ Site vitrine **statique** d'une entreprise de lutte anti-nuisibles en Corse.
 Aucun build, aucune dépendance npm, aucun framework. Ce qui est dans le dépôt
 est exactement ce qui est servi.
 
-- **28 pages HTML** à la racine (1 accueil, 8 services, 4 zones, 10 nuisibles,
-  contact, merci, 2 pages légales, lexique, FAQ, 404).
+- **33 pages HTML** à la racine (1 accueil, 8 services, 4 zones, 4 pages
+  « service + ville », 10 nuisibles, actualités, contact, merci, 2 pages
+  légales, lexique, FAQ, 404).
+- Les pages **service + ville** (`deratisation-bastia`, `deratisation-ajaccio`,
+  `traitement-termites-ajaccio`, `destruction-nid-guepes-porto-vecchio`) visent
+  les requêtes « service + ville », que les pages de zones ne couvraient pas.
+  Elles réutilisent `pages-zones.css` sans une règle nouvelle. **Ne pas en
+  décliner mécaniquement pour les 53 communes** : le contenu doit être
+  réellement propre à chaque ville, sinon Google les traite comme du
+  remplissage et elles affaiblissent les pages existantes.
 - **CSS** dans `assets/css/` : 4 feuilles partagées (`global.css` faisant socle —
   il regroupe les anciens `fonts.css`, `components.css` et `footer.css` —, plus
   `form.css` et les feuilles `pages-*.css` par famille de pages), plus une
