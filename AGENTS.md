@@ -309,6 +309,15 @@ largeur où ce menu est visible. Contrôler en desktop seul n'aurait rien prouv�
   (preload puis `global.css`) → preload image LCP → CSS → JSON-LD.
 - Classes en **BEM** : `site-header`, `site-header__inner`, `site-header__brand`,
   `site-nav__submenu`, modificateurs d'état en `is-` (`is-open`, `is-visible`).
+- **Variantes mobiles.** Neuf photos ont une déclinaison `-760.webp`, servie par
+  une `<source media="(max-width: 767px)">` placée **avant** la source normale —
+  le navigateur retient la première dont le `media` correspond. Le choix de
+  `media` plutôt que `srcset`/`sizes` est délibéré : il est déterministe et
+  n'oblige pas à deviner une densité d'écran. Le `<link rel="preload" as="image">`
+  de ces pages est dédoublé avec le même `media`, **sans quoi le mobile
+  téléchargerait les deux fichiers** et la variante coûterait plus qu'elle ne
+  rapporte. Seuil retenu : au moins 25 Ko d'économie, sinon la variante ne vaut
+  pas le fichier supplémentaire.
 - Images toujours en `<picture>` avec `<source type="image/webp">`, `alt` en
   français descriptif, `width`/`height` explicites.
 - Accessibilité : `skip-link` en premier enfant du `<body>`, `aria-label` sur les
