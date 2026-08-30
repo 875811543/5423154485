@@ -394,6 +394,29 @@ const CONTROLES = [
     return pbs;
   }},
 
+{ nom: 'mobilier', titre: 'Chaque page porte le mobilier commun, une fois et une seule',
+  run() {
+    // Une page creee a partir d'un gabarit perd facilement un de ces blocs :
+    // c'est arrive a actualites.html, batie en remplacant le <main> d'une page
+    // existante — la barre d'appel y etait, et a disparu avec.
+    const attendus = [
+      ['barre d appel mobile', /class="sticky-mobile-bar"/g],
+      ['lien d evitement', /class="skip-link"/g],
+      ['en-tete de site', /<header class="site-header"/g],
+      ['pied de site', /<footer class="site-footer"/g],
+      ['bloc d appel de l en-tete', /class="site-header__appel"/g]
+    ];
+    const pbs = [];
+    for (const f of pages) {
+      const s = lire(f);
+      for (const [nom, re] of attendus) {
+        const n = (s.match(re) || []).length;
+        if (n !== 1) pbs.push(f + ' : ' + n + ' ' + nom + ' (1 attendu)');
+      }
+    }
+    return pbs;
+  }},
+
 { nom: 'orphelins', titre: 'Aucune image inutilisee dans le depot',
   run() {
     const tout = pages.map(lire).join('\n') + (fs.existsSync('manifest.json') ? lire('manifest.json') : '');
