@@ -56,13 +56,21 @@ est exactement ce qui est servi.
   **Sa taille d’affichage est posée en CSS** (`.site-header__logo`), pas par les
   attributs `width`/`height` du HTML, qui décrivent le fichier. Sans cette règle
   le logo rend en 96×96 et déborde d’un bandeau haut de 72 px.
-- **Deux cibles de déploiement, à ne pas confondre.** La cible réelle est
-  `https://dezinsect-corse.fr`, **à la racine**, sur un Apache mutualisé — c'est
-  ce que déclarent tous les `canonical`, le `sitemap.xml` et le JSON-LD. La
-  préversion GitHub Pages, `https://875811543.github.io/5423154485/`, est servie
-  **sous un sous-chemin** et sans Apache. Tous les chemins du site restent
-  **relatifs** (`assets/...`, `images/...`, `deratisation.html`) pour fonctionner
-  dans les deux cas — voir règle 7.
+- **Une seule cible de déploiement.** `https://dezinsect-corse.fr`, **à la
+  racine**, chez **Hostinger** — mutualisé sous LiteSpeed, qui lit les
+  `.htaccess` nativement. C'est ce que déclarent tous les `canonical`, le
+  `sitemap.xml` et le JSON-LD.
+  **Le site n'était pas encore en ligne au 30 août 2026** : la bascule du
+  domaine restait à faire.
+  La préversion GitHub Pages (`https://875811543.github.io/5423154485/`, servie
+  sous un sous-chemin et sans réécriture) **n'est plus une cible**. Décision du
+  propriétaire du site, prise en connaissance de cause quand les liens internes
+  sont passés en URL sans extension : ces liens n'y résolvent plus. Elle reste à
+  couper côté réglages du dépôt.
+  Les chemins du site restent néanmoins **relatifs** (`assets/...`,
+  `images/...`, `deratisation`) — voir règle 7. Ce n'est plus pour la
+  préversion, c'est parce que rien n'oblige à des chemins absolus et qu'un
+  chemin relatif ne peut pas casser en changeant de racine.
 - **Le `.htaccess` est bien dans le dépôt**, suivi depuis le commit initial, et
   il porte la réécriture d'URL. C'est lui qui rend valides les URLs sans `.html`
   utilisées par les `canonical`, le `sitemap.xml` et le JSON-LD : sa dernière
@@ -71,9 +79,11 @@ est exactement ce qui est servi.
   **Ne pas ajouter de `.html` aux URLs canoniques** en croyant corriger quelque
   chose : elles sont correctes pour la cible réelle.
   Deux réserves à garder en tête :
-  - **GitHub Pages ignore `.htaccess`.** Sur la préversion, les URLs sans
-    extension renvoient donc 404. C'est normal, et une raison de plus de couper
-    cette préversion.
+  - **Rien ne fonctionne sans ce `.htaccess`.** Depuis que les liens internes
+    sont sans extension, un hébergement qui ne le lit pas sert un site dont
+    toute la navigation renvoie 404. LiteSpeed (Hostinger) le lit ; GitHub
+    Pages non. À vérifier en premier si la navigation casse après un
+    changement d'hébergement.
   - `/index.html` passe par deux redirections en chaîne (`/index.html` → `/index`
     → `/`). Sans gravité, mais évitable en remontant la règle `^index/?$`
     au-dessus de celle qui retire le `.html`.
