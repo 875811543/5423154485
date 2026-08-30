@@ -81,8 +81,16 @@ copie de fichiers.
    renvoyaient 404 sur la préversion GitHub Pages, où le rendu retombait sur les
    polices système — et les deux `preload` du `<head>`, eux relatifs,
    téléchargeaient des fichiers que personne n'utilisait. Corrigé en
-   `url('../fonts/…')`, relatif à l'emplacement de la feuille. Le contrôle est
-   `grep -rn "url('/" assets/css/`.
+   `url('../fonts/…')`, relatif à l'emplacement de la feuille.
+   **Et pour le JavaScript** : le formulaire redirigeait vers `'/merci'` en dur,
+   qui renvoyait 404 sur la préversion. Corrigé en `'merci.html'`, valide sur les
+   deux cibles. Les trois contrôles sont à passer ensemble, un chemin absolu
+   pouvant se cacher dans chacun des trois langages :
+   ```sh
+   grep -rn "url('/" assets/css/
+   grep -rn "location.href = '/" *.html assets/js/
+   # plus le contrôle des href/src du §6
+   ```
 8. **Ne jamais remettre de style dans le HTML**, ni `<style>`, ni `style=""`.
    Tout style nouveau va dans un fichier de `assets/css/`.
 
