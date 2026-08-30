@@ -21,6 +21,12 @@ est exactement ce qui est servi.
 - **1 fichier JS**, `assets/js/main.js` (125 l., ES5, IIFE, sans dépendance).
 - **Polices auto-hébergées** en woff2 (Inter + Poppins) — aucun appel à Google.
 - **Images** en doublons `.jpg` + `.webp` servis via `<picture>`.
+- **Aucun service tiers chargé au premier rendu.** La carte Google et toute vidéo
+  passent par une façade : l’iframe n’est créée qu’au clic. Mesuré : un `<iframe>`
+  YouTube coûte **4,2 Mo et 17 requêtes**, dont `googleads.doubleclick.net` et
+  `static.doubleclick.net` — des traceurs publicitaires qui déposent des cookies
+  avant tout consentement. La façade coûte 0 Ko tant que personne ne clique.
+  Les logos de réseaux sont des **SVG inline**, jamais des images distantes.
   **Le logo est en `.png` + `.webp` et porte de la transparence.** Son WebP avait
   été encodé sans canal alpha : les coins transparents s’étaient aplatis sur du
   noir, et comme le navigateur préfère le WebP, un cadre noir entourait le logo

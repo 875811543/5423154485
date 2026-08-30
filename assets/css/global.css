@@ -1460,6 +1460,21 @@ li > .ico:first-child {
 
   .footer-contact-col a:hover { color: #0F37BE; text-decoration: underline; }
 
+  /* Lien vers la chaine YouTube. Le logo est un SVG inline : aucune requete,
+     contrairement a une image ou a un iframe. Une video integree coute
+     4,2 Mo et contacte des domaines publicitaires — voir AGENTS.md. */
+  .footer-youtube {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 7px;
+    color: #64748B !important;
+    font-weight: 600;
+    font-size: 0.84rem;
+    margin-top: 4px;
+  }
+  .footer-youtube svg { flex-shrink: 0; }
+  .footer-youtube:hover { color: #C4302B !important; }
+
   .footer-copy {
     text-align: center;
     font-size: 0.8rem;
