@@ -1,0 +1,18 @@
+# Fins de ligne uniformes en LF, y compris sur Windows.
+#
+# Sans ce fichier, core.autocrlf=true reecrit les fichiers en CRLF a chaque
+# checkout. Le depot restait sain — tout ce qui est commite est en LF — mais la
+# copie de travail se retrouvait panachee des qu'un `git checkout` passait par
+# la, ce qui faisait echouer a tort le controle d'identite en-tete/pied de
+# tools/controle.js et noyait chaque commit sous des avertissements.
+
+* text=auto eol=lf
+
+# Binaires : ne jamais toucher au contenu.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.webp  binary
+*.ico   binary
+*.woff2 binary
+*.svg   text eol=lf

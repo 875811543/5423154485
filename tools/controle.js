@@ -23,7 +23,10 @@ const RACINE = path.resolve(__dirname, '..');
 process.chdir(RACINE);
 
 const pages = fs.readdirSync('.').filter(f => f.endsWith('.html')).sort();
-const lire = f => fs.readFileSync(f, 'utf8');
+// Les fins de ligne sont normalisees a la lecture : on compare du contenu, pas
+// un encodage. Sans cela, un simple `git checkout` sous Windows suffit a faire
+// echouer le controle d'identite en-tete/pied — vecu.
+const lire = f => fs.readFileSync(f, 'utf8').replace(/\r\n/g, '\n');
 const md5 = f => crypto.createHash('md5').update(fs.readFileSync(f)).digest('hex').slice(0, 8);
 const sansScripts = s => s.replace(/<script[\s\S]*?<\/script>/g, '');
 
