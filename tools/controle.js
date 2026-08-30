@@ -406,6 +406,41 @@ const CONTROLES = [
     return pbs;
   }},
 
+{ nom: 'sitemap', titre: 'Le sitemap decrit exactement les pages indexables',
+  run() {
+    // Le sitemap a ete edite a chaque ajout de page, a la main ou par script.
+    // Une page indexable oubliee n'est pas crawlee ; une page en noindex qui y
+    // figure envoie deux consignes contradictoires a Google.
+    //
+    // Un controle du sitemap existait deja ici, mais son motif contenait une
+    // concatenation JavaScript non evaluee : il ne pouvait rien matcher. Du
+    // code mort qui se donnait l'air d'un controle. Celui-ci est eprouve.
+    const sm = lire('sitemap.xml');
+    const declarees = [...sm.matchAll(/<loc>https:\/\/dezinsect-corse\.fr\/([^<]*)<\/loc>/g)]
+      .map(m => m[1]);
+    const ensemble = new Set(declarees);
+    const pbs = [];
+
+    const vus = new Set();
+    for (const u of declarees) {
+      if (vus.has(u)) pbs.push('url en double dans le sitemap : /' + u);
+      vus.add(u);
+    }
+
+    const slug = f => f === 'index.html' ? '' : f.replace(/\.html$/, '');
+    const fichiers = new Set(pages.map(slug));
+    for (const u of ensemble)
+      if (!fichiers.has(u)) pbs.push('url au sitemap sans fichier : /' + u);
+
+    for (const f of pages) {
+      const noindex = /<meta name="robots"[^>]*noindex/i.test(lire(f));
+      const present = ensemble.has(slug(f));
+      if (!noindex && !present) pbs.push(f + ' : indexable mais absente du sitemap');
+      if (noindex && present) pbs.push(f + ' : en noindex mais presente au sitemap');
+    }
+    return pbs;
+  }},
+
 { nom: 'doublons', titre: 'Aucune section entiere recopiee d une page a l autre',
   run() {
     // L'article de saisonnalite d'actualites.html avait ete ecrit en copiant
