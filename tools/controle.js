@@ -401,6 +401,61 @@ const CONTROLES = [
     return pbs;
   }},
 
+{ nom: 'doublons', titre: 'Aucune section entiere recopiee d une page a l autre',
+  run() {
+    // L'article de saisonnalite d'actualites.html avait ete ecrit en copiant
+    // le bloc equivalent d'anti-nuisibles-costa-verde.html : quatre phrases
+    // identiques mot pour mot entre deux pages visant toutes deux la Corse.
+    //
+    // On ne compare que le corps editorial — l'en-tete, le pied, la nav et la
+    // barre d'appel sont identiques par construction.
+    //
+    // Le critere n'est pas le nombre de phrases partagees mais leur nature.
+    // Une premiere version de ce controle comptait les phrases communes et
+    // declenchait a 5 : elle ne rattrapait pas le decalque d'actualites.html,
+    // qui n'en partageait que 4. Compter plus bas aurait fait echouer les
+    // pages nuisibles, qui partagent legitimement leurs blocs de navigation.
+    //
+    // On ecarte donc d'abord les phrases presentes sur MOBILIER pages ou plus
+    // — a ce stade de diffusion, une phrase est du mobilier de site, pas du
+    // contenu — puis on signale toute paire qui en partage encore SEUIL.
+    const MOBILIER = 4;
+    const SEUIL = 3;
+    const corps = f => {
+      let s = lire(f);
+      const d = s.indexOf('<main'), fin = s.lastIndexOf('</main>');
+      if (d === -1 || fin === -1) return '';
+      return s.slice(d, fin)
+        .replace(/<script[\s\S]*?<\/script>/g, '')
+        .replace(/<svg[\s\S]*?<\/svg>/g, ' ')
+        .replace(/<nav class="breadcrumb"[\s\S]*?<\/nav>/g, ' ')
+        .replace(/<footer class="contact-footer"[\s\S]*?<\/footer>/g, ' ');
+    };
+    const phrases = h => h.replace(/<[^>]+>/g, ' ')
+      .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&[a-z]+;/g, ' ')
+      .replace(/\s+/g, ' ').trim()
+      .split(/(?<=[.!?])\s+/)
+      .map(p => p.trim().toLowerCase().replace(/[«»"'\u2019,;:()–—-]/g, ' ').replace(/\s+/g, ' ').trim())
+      .filter(p => p.split(' ').length >= 12);
+
+    const par = pages.map(f => [f, new Set(phrases(corps(f)))]);
+
+    const diffusion = new Map();
+    for (const [, ps] of par) for (const p of ps)
+      diffusion.set(p, (diffusion.get(p) || 0) + 1);
+    for (const [, ps] of par) for (const p of [...ps])
+      if (diffusion.get(p) >= MOBILIER) ps.delete(p);
+
+    const pbs = [];
+    for (let i = 0; i < par.length; i++) for (let j = i + 1; j < par.length; j++) {
+      let n = 0;
+      for (const p of par[i][1]) if (par[j][1].has(p)) n++;
+      if (n >= SEUIL)
+        pbs.push(par[i][0] + ' et ' + par[j][0] + ' partagent ' + n + ' phrases entieres');
+    }
+    return pbs;
+  }},
+
 { nom: 'mobilier', titre: 'Chaque page porte le mobilier commun, une fois et une seule',
   run() {
     // Une page creee a partir d'un gabarit perd facilement un de ces blocs :
