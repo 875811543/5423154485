@@ -21,12 +21,27 @@ est exactement ce qui est servi.
 - **1 fichier JS**, `assets/js/main.js` (72 l., ES5, IIFE, sans dépendance).
 - **Polices auto-hébergées** en woff2 (Inter + Poppins) — aucun appel à Google.
 - **Images** en doublons `.jpg` + `.webp` servis via `<picture>`.
-- **Déploiement : GitHub Pages**, sur `https://875811543.github.io/5423154485/`,
-  donc **sous un sous-chemin**. Tous les chemins du site sont **relatifs**
-  (`assets/...`, `images/...`, `deratisation.html`) — voir règle 7.
-- **Pas de `.htaccess` dans le dépôt.** Les sections ci-dessous qui en parlent
-  décrivent une cible Apache qui n'existe pas ici : il n'y a aucune réécriture
-  d'URL, donc pas d'URL sans `.html`.
+- **Deux cibles de déploiement, à ne pas confondre.** La cible réelle est
+  `https://dezinsect-corse.fr`, **à la racine**, sur un Apache mutualisé — c'est
+  ce que déclarent tous les `canonical`, le `sitemap.xml` et le JSON-LD. La
+  préversion GitHub Pages, `https://875811543.github.io/5423154485/`, est servie
+  **sous un sous-chemin** et sans Apache. Tous les chemins du site restent
+  **relatifs** (`assets/...`, `images/...`, `deratisation.html`) pour fonctionner
+  dans les deux cas — voir règle 7.
+- **Le `.htaccess` est bien dans le dépôt**, suivi depuis le commit initial, et
+  il porte la réécriture d'URL. C'est lui qui rend valides les URLs sans `.html`
+  utilisées par les `canonical`, le `sitemap.xml` et le JSON-LD : sa dernière
+  règle sert `page.html` quand `/page` est demandé, et une règle précédente
+  redirige `/page.html` vers `/page` en 301 pour éviter le contenu dupliqué.
+  **Ne pas ajouter de `.html` aux URLs canoniques** en croyant corriger quelque
+  chose : elles sont correctes pour la cible réelle.
+  Deux réserves à garder en tête :
+  - **GitHub Pages ignore `.htaccess`.** Sur la préversion, les URLs sans
+    extension renvoient donc 404. C'est normal, et une raison de plus de couper
+    cette préversion.
+  - `/index.html` passe par deux redirections en chaîne (`/index.html` → `/index`
+    → `/`). Sans gravité, mais évitable en remontant la règle `^index/?$`
+    au-dessus de celle qui retire le `.html`.
 
 **Contraintes non négociables :** pas de build step, pas de framework, pas de
 dépendance externe supplémentaire. Le site doit rester déployable par simple
@@ -39,8 +54,9 @@ copie de fichiers.
 1. **Ne jamais casser une URL.** Chaque page correspond à une URL indexée.
    Renommer ou supprimer un `.html` exige, dans le même changement :
    la mise à jour de `sitemap.xml` et la correction de tous les liens internes.
-   Aucune réécriture d'URL n'est disponible : un fichier renommé est une URL
-   perdue, sans filet.
+   Le `.htaccess` permet d'ajouter une 301 pour rattraper l'ancienne URL, et
+   c'est ce qu'il faut faire — mais uniquement sur la cible Apache : la
+   préversion GitHub Pages, elle, n'a aucun filet.
 2. **Ne jamais retirer de JSON-LD ni de balise meta SEO** (canonical, OG,
    Twitter, robots) au nom du nettoyage. En cas de doublon, garder le plus complet.
 3. **Ne pas toucher aux numéros de téléphone, adresses, mentions de
@@ -52,10 +68,13 @@ copie de fichiers.
    **toutes** les pages qui référencent le fichier (voir §5).
 6. **Pas de refonte visuelle non demandée.** Le nettoyage est structurel ;
    le rendu final doit rester pixel-identique sauf demande contraire.
-7. **Ne jamais réintroduire de chemin absolu commençant par `/`.** Le site est
-   servi sous le sous-chemin `/5423154485/` : un `href="/assets/..."` ou un
-   `href="/deratisation"` renvoie un 404. C'est ce qui a fait servir le site
-   entier sans CSS, sans images et sans navigation.
+7. **Ne jamais réintroduire de chemin absolu commençant par `/`.** La préversion
+   est servie sous le sous-chemin `/5423154485/` : un `href="/assets/..."` ou un
+   `href="/deratisation"` y renvoie un 404. C'est ce qui a fait servir le site
+   entier sans CSS, sans images et sans navigation. La règle ne vaut que pour
+   les **ressources et liens internes** ; les URLs absolues des `canonical`, du
+   `sitemap.xml`, du JSON-LD et des balises Open Graph doivent au contraire
+   rester en `https://dezinsect-corse.fr/…`, c'est leur rôle.
    **Le contrôle vaut aussi pour les `url()` des CSS**, pas seulement pour le
    HTML : les huit `@font-face` de `global.css` pointaient vers
    `/assets/fonts/…`. Les polices se chargeaient donc sur le domaine réel, mais
