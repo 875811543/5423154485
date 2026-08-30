@@ -1463,7 +1463,8 @@ li > .ico:first-child {
   /* Lien vers la chaine YouTube. Le logo est un SVG inline : aucune requete,
      contrairement a une image ou a un iframe. Une video integree coute
      4,2 Mo et contacte des domaines publicitaires — voir AGENTS.md. */
-  .footer-youtube {
+  .footer-youtube,
+  .footer-instagram {
     display: inline-flex !important;
     align-items: center;
     gap: 7px;
@@ -1472,8 +1473,10 @@ li > .ico:first-child {
     font-size: 0.84rem;
     margin-top: 4px;
   }
-  .footer-youtube svg { flex-shrink: 0; }
+  .footer-youtube svg,
+  .footer-instagram svg { flex-shrink: 0; }
   .footer-youtube:hover { color: #C4302B !important; }
+  .footer-instagram:hover { color: #C13584 !important; }
 
   .footer-copy {
     text-align: center;
