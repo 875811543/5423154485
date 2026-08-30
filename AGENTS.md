@@ -56,6 +56,14 @@ copie de fichiers.
    servi sous le sous-chemin `/5423154485/` : un `href="/assets/..."` ou un
    `href="/deratisation"` renvoie un 404. C'est ce qui a fait servir le site
    entier sans CSS, sans images et sans navigation.
+   **Le contrôle vaut aussi pour les `url()` des CSS**, pas seulement pour le
+   HTML : les huit `@font-face` de `global.css` pointaient vers
+   `/assets/fonts/…`. Les polices se chargeaient donc sur le domaine réel, mais
+   renvoyaient 404 sur la préversion GitHub Pages, où le rendu retombait sur les
+   polices système — et les deux `preload` du `<head>`, eux relatifs,
+   téléchargeaient des fichiers que personne n'utilisait. Corrigé en
+   `url('../fonts/…')`, relatif à l'emplacement de la feuille. Le contrôle est
+   `grep -rn "url('/" assets/css/`.
 8. **Ne jamais remettre de style dans le HTML**, ni `<style>`, ni `style=""`.
    Tout style nouveau va dans un fichier de `assets/css/`.
 
