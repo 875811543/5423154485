@@ -141,6 +141,34 @@ règle ne cible l'élément vient presque toujours d'un `line-height` hérité. 
 la valeur explicitement sur le composant partagé, plutôt que de chercher la
 surcharge.
 
+#### Les composants partagés ne doivent hériter de rien
+
+Le bandeau n'était pas un cas isolé. Un relevé des composants partagés sur les
+28 pages, à vraie largeur de viewport, a montré la même dérive sur le pied de
+page, le fil d'Ariane, le lien d'évitement et le bouton « retour en haut ».
+Deux causes, toutes deux par héritage :
+
+- `body { line-height }` vaut `1.6` dans sept feuilles de page, `1.65` dans
+  celle de la FAQ, et n'est posé nulle part dans `global.css` — donc `normal`
+  sur les onze pages restantes. Le pied de page passait de 391 à 426 px selon
+  la page.
+- **Le reset des marges par défaut n'existe que dans 17 des 28 feuilles.** Sur
+  les onze autres, le navigateur appliquait ses valeurs propres au pied de
+  page : marges sur `p` et `h3`, et surtout un `padding-left: 40px` sur les
+  `<ul>`, qui décalait les colonnes de liens vers la droite.
+
+Corrigé en figeant dans `global.css` le `line-height` de `.site-footer`,
+`.breadcrumb`, `.skip-link`, `.back-to-top` et `.sticky-mobile-bar`, et en y
+ajoutant un reset limité au pied de page (`.site-footer p/h3/ul`). Le corps de
+texte des pages n'est pas touché : la règle 6 interdit la refonte visuelle non
+demandée, et la divergence qui se voyait était celle des composants communs.
+
+**Règle à suivre :** tout composant présent sur les 28 pages doit poser
+lui-même ce dont il dépend — `line-height`, marges, `padding` de liste. S'il
+hérite, il rendra différemment selon la feuille de la page qui le porte. Le
+script de relevé est dans le scratchpad (`viewport/composants.js`), à rejouer
+après toute modification de `global.css`.
+
 #### Barre d'appel mobile — une seule, en HTML, sur les 28 pages
 
 Le site en portait **deux** superposées. `main.js` injectait un

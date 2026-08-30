@@ -175,6 +175,7 @@ a { color: inherit; }
 
 /* Skip link */
 .skip-link {
+  line-height: 1.6;
   position: absolute;
   left: -9999px;
   top: 0;
@@ -442,6 +443,7 @@ a { color: inherit; }
    BREADCRUMB (utilisé sur les pages internes)
    ========================================================================== */
 .breadcrumb {
+  line-height: 1.6;
   max-width: 1180px;
   margin: 0 auto;
   padding: 16px 20px 0;
@@ -455,6 +457,8 @@ a { color: inherit; }
    BOUTON RETOUR EN HAUT (optionnel, léger)
    ========================================================================== */
 .back-to-top {
+  line-height: 1.6;
+  padding: 0;
   position: fixed;
   right: 20px;
   bottom: 92px;
@@ -642,6 +646,7 @@ li.feature-item::before {
    --border, de valeurs identiques (#1A4DFB, #E2E8F0).
    ========================================================================== */
 .sticky-mobile-bar {
+  line-height: 1.6;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -1355,7 +1360,21 @@ li > .ico:first-child {
 
 /* Dezinsect Corse — Pied de page global */
 
+/* line-height explicite, comme sur .site-header : sans elle, le pied de page
+   suit le line-height que chaque page pose sur body (1.6, 1.65 ou normal
+   selon la feuille) et sa hauteur passe de 391 a 426 px. Un composant
+   partage ne doit pas dependre de la typographie de la page qui le porte. */
+/* Le pied de page est un composant partage : il ne doit pas dependre du reset
+   que seules 17 des 28 feuilles de page apportent. Sans ces trois regles, le
+   navigateur applique ses marges par defaut et surtout un padding-left de
+   40 px sur les <ul>, qui decalait les colonnes de liens vers la droite sur
+   les 11 autres pages. */
+.site-footer p { margin: 0; }
+.site-footer h3 { margin-top: 0; }
+.site-footer ul { margin: 0; padding-left: 0; }
+
 .site-footer {
+    line-height: 1.6;
     font-family: 'Inter', system-ui, sans-serif;
     background: #F8FAFC;
     color: #334155;
