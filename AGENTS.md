@@ -396,10 +396,14 @@ la marque, la navigation et le bouton d’appel demandent 1190 px.
 ne se chargent pas, tout rend en police système donc plus étroit, et le seuil
 mesuré est trop bas — le numéro se retrouve coupé sur la bande entre le seuil
 posé et le seuil réel. **Toute mesure de largeur doit se faire en HTTP.**
-Un second bouton d’appel dans l’en-tête a été tenté puis retiré : avec les vraies
-polices, marque + navigation + deux boutons demandent 1349 px alors que le
-conteneur est plafonné à 1280 — il ne tient à aucune largeur. Le second numéro
-reste dans la barre mobile, le pied de page et le menu mobile.
+Un second bouton d’appel **à côté** du premier a été tenté puis retiré : avec les
+vraies polices, marque + navigation + deux boutons demandent 1349 px alors que le
+conteneur est plafonné à 1280 — ils ne tiennent à aucune largeur.
+Le second numéro est donc **empilé sous le bouton** (`.site-header__appel`), en
+petit : la largeur ne bouge pas, et il reste 29 px de libre sous un bouton de
+43 px dans un bandeau de 72. Sans lui, le 06 29 n’apparaissait sur bureau que
+dans le pied de page, à 93 % de la hauteur — la barre d’appel et le menu mobile
+y étant masqués.
 Les autres media queries à `1024px` (grilles de contenu, `footer-grid`) sont
 indépendantes et restent à cette valeur.
 

@@ -347,6 +347,30 @@ a { color: inherit; }
 }
 .site-header__cta:hover { background: #E9EEFF; }
 
+/* Les deux lignes telephoniques dans le bandeau. Le second numero est empile
+   sous le bouton plutot que place a cote : cote a cote, marque + navigation +
+   deux boutons demandent 1349 px alors que le conteneur est plafonne a 1280,
+   ils ne tenaient a aucune largeur. Empile, la largeur ne bouge pas et il
+   reste 29 px de libre sous un bouton de 43 px dans un bandeau de 72. */
+.site-header__appel {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.site-header__cta2 {
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  opacity: 0.92;
+}
+.site-header__cta2:hover { opacity: 1; text-decoration: underline; }
+
 
 .site-header__burger {
   margin-left: auto;
@@ -424,6 +448,7 @@ a { color: inherit; }
    1120 et 1189 px. Valeur a garder alignee sur le resize de main.js. */
 @media (min-width: 1200px) {
   .site-nav { display: block; }
+  .site-header__appel { display: flex; }
   .site-header__cta { display: flex; }
   .site-header__burger { display: none; }
   .mobile-menu { display: none !important; }
