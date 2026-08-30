@@ -208,9 +208,10 @@ demandée, et la divergence qui se voyait était celle des composants communs.
 
 **Règle à suivre :** tout composant présent sur les 28 pages doit poser
 lui-même ce dont il dépend — `line-height`, marges, `padding` de liste. S'il
-hérite, il rendra différemment selon la feuille de la page qui le porte. Le
-script de relevé est dans le scratchpad (`viewport/composants.js`), à rejouer
-après toute modification de `global.css`.
+hérite, il rendra différemment selon la feuille de la page qui le porte.
+Pour le vérifier après une modification de `global.css`, relever les propriétés
+calculées des composants partagés sur les 28 pages et comparer — la recette est
+en §6, « Mesurer dans un navigateur ».
 
 #### Barre d'appel mobile — une seule, en HTML, sur les 28 pages
 
@@ -462,7 +463,36 @@ existants. C'est l'erreur la plus facile à commettre sur ce projet.
 
 ## 6. Vérifications avant de déclarer un travail terminé
 
-À rejouer systématiquement — aucune n'exige d'outil externe :
+```sh
+node tools/controle.js            # les treize contrôles
+node tools/controle.js --liste    # ce qu'ils vérifient
+node tools/controle.js alpha      # un seul, par son nom
+```
+
+**C'est le passage obligé avant d'annoncer un travail fini.** Aucune dépendance,
+aucun navigateur, quelques secondes. Sortie en code 1 dès qu'un contrôle échoue,
+ce qui permet de l'enchaîner dans un `&&`.
+
+Il couvre les contrôles manuels de cette section, et cinq de plus qui ont chacun
+attrapé un défaut réel sur ce site :
+
+| Contrôle | Ce qu'il a attrapé |
+|---|---|
+| `alpha` | Le WebP du logo encodé sans canal alpha : un cadre noir sur les 28 pages, depuis le commit initial |
+| `taille-css` | Le logo rendant en 96×96 et débordant du bandeau, faute de dimension en CSS |
+| `chemins-absolus` | Les huit `@font-face` en `/assets/fonts/…` et la redirection JS vers `/merci` |
+| `dimensions` | 22 images déclarant un rapport largeur/hauteur qui n'était pas celui du fichier |
+| `paires`, `nap`, `orphelins` | Garde-fous : aucun défaut à ce jour, mais peu coûteux |
+
+Chacun a été éprouvé en rejouant le script sur le commit où le défaut existait :
+il échoue bien là où il doit échouer. Un contrôle qui ne se déclenche jamais ne
+vaut rien — le vérifier avant d'en ajouter un.
+
+Ce qui **demande un navigateur** — largeurs de rendu, contraste, poids réel,
+décalage de mise en page — n'est pas dans ce script : voir la section suivante,
+et **toujours mesurer en HTTP, jamais en `file://`**.
+
+Le détail des contrôles, si l'on veut les rejouer à la main :
 
 ```sh
 # aucun chemin absolu (casserait tout sous le sous-chemin GitHub Pages)
@@ -506,7 +536,26 @@ régression. Le motif du footer est bien `<footer class="site-footer"` — utili
 `<footer` tout court agrège les blocs de contenu des 5 pages listées en §3 et
 produit un faux positif.
 
-### Comparer le rendu avant / après une modification CSS
+### Mesurer dans un navigateur
+
+**Toujours en HTTP, jamais en `file://`.** Trois défauts de cette session sont
+nés de cette confusion, et deux d'entre eux ont été livrés avant d'être repris :
+
+- en `file://`, les `@font-face` ne se chargent pas — le `crossorigin` des
+  `preload` déclenche un contrôle CORS qui échoue. Tout rend en police système,
+  donc plus étroit, et **tout seuil de largeur mesuré ainsi est trop bas** ;
+- Chrome headless a un **plancher de fenêtre à 500 px** : `--window-size=390`
+  rend à 500. Pour une vraie largeur, passer par l'émulation CDP
+  (`page.setViewport`) et non par la taille de fenêtre.
+
+Servir le site avant de mesurer, avec n'importe quel serveur statique, puis
+piloter Chrome. Pour éprouver la préversion GitHub Pages, servir le **dossier
+parent** et charger le site par son sous-chemin : c'est ainsi qu'ont été trouvés
+les chemins absolus des polices et de la redirection du formulaire.
+
+Ce qui n'a de sens qu'ainsi : largeur de rendu et débordement, contraste sur le
+fond effectif, poids réel d'une page, décalage de mise en page, taille rendue
+d'une image, parcours du formulaire.
 
 ```sh
 tools/compare-rendered-styles.sh                 # compare a HEAD, en 1280px
