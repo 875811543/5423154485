@@ -446,7 +446,8 @@
   .dept-badge-sm {
     font-size: 0.7rem;
     background: #f1f5f9;
-    color: #64748b;
+    /* #64748b donnait 4,34:1 sur ce fond, sous le seuil AA de 4,5. */
+    color: #617187;
     padding: 2px 8px;
     border-radius: 4px;
     font-weight: 600;

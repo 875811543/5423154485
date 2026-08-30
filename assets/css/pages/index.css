@@ -28,7 +28,9 @@
   --primary-blue-hover: #2557d6;
   --primary-dark: #1e293b;
   --accent-yellow: #facc15;
-  --accent-yellow-text: #854d0e;
+  /* #854d0e donnait 4,47:1 sur le jaune du badge, juste sous le seuil AA
+     de 4,5. Un point de moins suffit a passer. */
+  --accent-yellow-text: #844c0e;
   --bg-light: #f8fafc;
   --bg-blue-soft: #f5f8ff;
   --border-color: #e2e8f0;
