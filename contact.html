@@ -283,47 +283,6 @@
   </div>
 </div>
 
-<script>
-  (function () {
-    const form = document.getElementById('dezinsectContactForm');
-    const errorBox = document.getElementById('formError');
-    const submitBtn = document.getElementById('submitBtn');
-
-    form.addEventListener('submit', async function (event) {
-      event.preventDefault();
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Envoi en cours...';
-      errorBox.style.display = 'none';
-
-      const formData = new FormData(form);
-      const payload = Object.fromEntries(formData.entries());
-
-      try {
-        const response = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify(payload),
-        });
-        const result = await response.json();
-
-        if (result.success) {
-          // Chemin relatif : '/merci' renvoyait 404 sur la preversion GitHub Pages,
-          // servie sous un sous-chemin et sans les reecritures du .htaccess.
-          window.location.href = 'merci.html';
-          return;
-        } else {
-          throw new Error(result.message || 'Erreur inconnue');
-        }
-      } catch (err) {
-        errorBox.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Envoyer ma demande';
-      }
-    });
-  })();
-</script>
-
   </div>
 </div>
 
@@ -454,21 +413,7 @@
   <p class="footer-copy">© 2026 Dezinsect Corse. <a href="mentions-legales.html" class="link-plain">Mentions légales</a> · <a href="politique-confidentialite.html" class="link-plain">Politique de confidentialité</a></p>
 </footer>
 
-  <script src="assets/js/main.js?v=6e3238a5" defer></script>
-
-<script>
-  document.querySelectorAll('[data-map-load]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var f = document.createElement('iframe');
-      f.src = 'https://www.google.com/maps?q=Dezinsect+Corse,+20221+Santa-Maria-Poggio&output=embed';
-      f.loading = 'lazy';
-      f.title = 'Localisation de Dezinsect Corse';
-      f.referrerPolicy = 'no-referrer-when-downgrade';
-      f.allowFullscreen = true;
-      btn.parentNode.replaceChild(f, btn);
-    });
-  });
-</script>
+  <script src="assets/js/main.js?v=a96f0db2" defer></script>
 
 </body>
 </html>

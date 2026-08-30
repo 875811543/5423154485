@@ -18,7 +18,7 @@ est exactement ce qui est servi.
   il regroupe les anciens `fonts.css`, `components.css` et `footer.css` —, plus
   `form.css` et les feuilles `pages-*.css` par famille de pages), plus une
   feuille par page dans `assets/css/pages/`. **Aucun `<style>` ni attribut `style=""` dans le HTML.**
-- **1 fichier JS**, `assets/js/main.js` (72 l., ES5, IIFE, sans dépendance).
+- **1 fichier JS**, `assets/js/main.js` (125 l., ES5, IIFE, sans dépendance).
 - **Polices auto-hébergées** en woff2 (Inter + Poppins) — aucun appel à Google.
 - **Images** en doublons `.jpg` + `.webp` servis via `<picture>`.
 - **Deux cibles de déploiement, à ne pas confondre.** La cible réelle est
@@ -388,7 +388,17 @@ restent à cette valeur.
 
 ### JavaScript
 
-`main.js` est le **seul** fichier JS et doit le rester. Style : IIFE,
+`main.js` est le **seul** fichier JS et doit le rester — et le seul endroit
+où mettre un comportement partagé. Le gestionnaire du formulaire de devis y a
+été rapatrié depuis `contact.html` et `index.html`, où il était recopié à
+l'identique, et le chargeur de carte depuis `contact.html` et
+`zones-dintervention.html`, même chose. Un correctif sur le formulaire demandait
+jusque-là de modifier deux fichiers.
+Un seul script reste en ligne, dans la FAQ : il gère le défilement vers une
+ancre entrante. Il ne concerne qu'une page, et le déplacer l'activerait sur les
+27 autres — c'est une raison suffisante pour le laisser où il est.
+Tout bloc rapatrié doit porter une garde d'existence (`if (form)`) ou un
+sélecteur qui ne fait rien à vide, puisque `main.js` s'exécute sur les 28 pages. Style : IIFE,
 `"use strict"`, ES5 (`var`, `function`), pas de dépendance, garde d'existence
 avant chaque `addEventListener`. Tout nouveau comportement s'ajoute comme un bloc
 commenté dans ce fichier.

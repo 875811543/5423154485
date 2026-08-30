@@ -69,4 +69,56 @@
 
     revealTargets.forEach(function (el) { io.observe(el); });
   }
+
+  // --- Carte Google chargee au clic (contact, zones-dintervention) ---
+  // L iframe n est creee qu apres action de l utilisateur : pas de requete
+  // vers Google tant qu il ne l a pas demandee. Le forEach ne fait rien sur
+  // les pages sans bouton, aucune garde n est necessaire.
+  document.querySelectorAll("[data-map-load]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var f = document.createElement("iframe");
+      f.src = "https://www.google.com/maps?q=Dezinsect+Corse,+20221+Santa-Maria-Poggio&output=embed";
+      f.loading = "lazy";
+      f.title = "Localisation de Dezinsect Corse";
+      f.referrerPolicy = "no-referrer-when-downgrade";
+      f.allowFullscreen = true;
+      btn.parentNode.replaceChild(f, btn);
+    });
+  });
+
+  // --- Formulaire de devis (contact, index) ---
+  // Envoi en arriere-plan vers Web3Forms, puis redirection vers la page de
+  // remerciement. Le chemin est relatif : un chemin absolu casserait sous le
+  // sous-chemin de la preversion. Voir regle 7 d AGENTS.md.
+  var form = document.getElementById("dezinsectContactForm");
+  if (form) {
+    var errorBox = document.getElementById("formError");
+    var submitBtn = document.getElementById("submitBtn");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Envoi en cours...";
+      if (errorBox) errorBox.style.display = "none";
+
+      var payload = {};
+      new FormData(form).forEach(function (v, k) { payload[k] = v; });
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload)
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (result) {
+          if (!result.success) throw new Error(result.message || "Erreur inconnue");
+          window.location.href = "merci.html";
+        })
+        .catch(function () {
+          if (errorBox) errorBox.style.display = "block";
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Envoyer ma demande";
+        });
+    });
+  }
 })();
