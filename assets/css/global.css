@@ -342,6 +342,22 @@ a { color: inherit; }
 }
 .site-header__cta:hover { background: #E9EEFF; }
 
+/* Second numero dans l en-tete : contour blanc plutot que fond plein,
+   pour garder une hierarchie entre les deux lignes. Le seuil
+   d apparition est mesure au navigateur : le conteneur de l en-tete est
+   plafonne a 1280 px, la marque + la navigation + les deux boutons en
+   demandent 1209, il reste donc 31 px. En dessous de 1320 px de viewport
+   (barre de defilement comprise) cette marge disparait et le second bouton
+   se fait couper. Il n a pas d icone, contrairement au premier : avec, la
+   marge tombait a 7 px. */
+.site-header__cta--alt {
+  background: transparent;
+  color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+.site-header__cta--alt:hover { background: rgba(255, 255, 255, 0.14); color: #fff; }
+@media (max-width: 1319px) { .site-header .site-header__cta--alt { display: none; } }
+
 .site-header__burger {
   margin-left: auto;
   display: flex;
@@ -411,7 +427,11 @@ a { color: inherit; }
   font-weight: 700;
 }
 
-@media (min-width: 1024px) {
+/* Bascule bureau a 1120 px, pas 1024. Mesure au navigateur : la marque, la
+   navigation et le bouton d appel demandent 1096 px ; en dessous, le numero
+   de telephone etait coupe par le bord droit. Valeur a garder alignee sur le
+   seuil du resize de main.js. */
+@media (min-width: 1120px) {
   .site-nav { display: block; }
   .site-header__cta { display: flex; }
   .site-header__burger { display: none; }
@@ -633,25 +653,49 @@ li.feature-item::before {
   z-index: 999;
   display: flex;
   justify-content: center;
+  gap: 8px;
 }
+/* Deux boutons a parts egales. Le fond et la couleur du texte ne sont pas
+   poses ici : la section « Boutons de conversion en vert » plus bas les
+   impose en !important a tous les CTA d'appel. La ligne principale garde
+   donc le vert plein du systeme, et la seconde est declinee en contour
+   (voir .sticky-mobile-bar .sticky-call-btn--alt, specificite superieure
+   pour passer devant ce bloc). Le max-width est pose sur la paire
+   (2 x 236 + 8 de gap = 480), soit la largeur qu'occupait le bouton unique. */
 .sticky-call-btn {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 236px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  width: 100%;
-  max-width: 480px;
+  gap: 8px;
   min-height: 48px;
-  background: var(--primary-blue);
-  color: #FFFFFF;
   font-size: 0.95rem;
   line-height: 1.6;
   font-weight: 800;
-  padding: 13px 20px;
+  padding: 13px 12px;
   border-radius: 12px;
   text-decoration: none;
+  white-space: nowrap;
+}
+.sticky-mobile-bar .sticky-call-btn--alt {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  color: var(--accent-green) !important;
+  box-shadow: inset 0 0 0 2px var(--cta-green) !important;
+}
+.sticky-mobile-bar .sticky-call-btn--alt:hover {
+  background: var(--accent-green-bg) !important;
+  background-color: var(--accent-green-bg) !important;
 }
 .sticky-call-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+/* Sous 360 px, l'icone saute plutot que de tronquer le numero. */
+@media (max-width: 359px) {
+  .sticky-mobile-bar { padding: 10px 10px; gap: 6px; }
+  .sticky-call-btn { font-size: 0.88rem; padding: 13px 8px; }
+  .sticky-call-btn svg { display: none; }
+}
 @media (min-width: 768px) {
   .sticky-mobile-bar { display: none; }
 }

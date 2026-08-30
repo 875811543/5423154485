@@ -161,6 +161,29 @@ Mesuré page par page après coup : les 28 barres rendent `fixed`/`flex`, fond
 `#FFFFFF`, padding 10 px, hauteur 71 px. **Ne pas réintroduire d'injection JS
 pour cette barre** — même raison qu'en P1 pour le header.
 
+Elle porte ensuite **deux** boutons, un par ligne téléphonique. Le fond et la
+couleur du texte ne sont **pas** posés sur `.sticky-call-btn` : la section
+« Boutons de conversion en vert » de `global.css` les impose en `!important` à
+tous les CTA d'appel. La ligne principale garde donc le vert plein du système ;
+la seconde est déclinée en contour via `.sticky-mobile-bar .sticky-call-btn--alt`
+— sélecteur à deux classes, nécessaire pour passer devant ce bloc, la
+spécificité seule ne suffisant pas puisqu'il est déclaré plus bas dans le
+fichier. Sous 360 px l'icône disparaît plutôt que de tronquer le numéro.
+
+En-tête : le second numéro apparaît à partir de **1320 px** seulement, et sans
+icône. Le conteneur est plafonné à 1280 px ; marque + navigation + deux boutons
+demandent 1209 px, il reste 31 px. Avec l'icône sur le second bouton, la marge
+tombait à 7 px.
+
+#### Mesurer une largeur de viewport réelle
+
+`--window-size=390` **ne donne pas un viewport de 390 px** : Chrome headless a un
+plancher de fenêtre à 500 px sur cette machine, et rend donc à 500. Toute
+vérification « en mobile » faite ainsi teste une autre largeur que celle annoncée.
+Passer par l'émulation CDP (`page.setViewport`) via `puppeteer-core`, installé
+**hors du dépôt** — la contrainte « aucune dépendance npm » porte sur le site
+livré, pas sur l'outillage de mesure, qui doit rester dans un répertoire externe.
+
 #### Ce qui rend cette extraction risquée — à savoir avant d'y retoucher
 
 Un attribut `style=""` a la **spécificité maximale** : il gagne contre tout
@@ -284,7 +307,12 @@ Les `<link>` se posent dans cet ordre : `global` → fichier
 de portée de la page. Le fichier de portée charge en dernier, donc il l'emporte
 sur `global.css` à spécificité égale.
 
-Mobile-first, breakpoint desktop à `1024px` (aligné sur le `resize` de `main.js`).
+Mobile-first, breakpoint desktop de l'en-tête à `1120px` (aligné sur le `resize`
+de `main.js` — les deux valeurs doivent rester identiques). Il était à `1024px`,
+mais la marque, la navigation et le bouton d'appel demandent 1096 px : entre 1024
+et 1095, le numéro de téléphone était coupé par le bord droit. Les autres media
+queries à `1024px` (grilles de contenu, `footer-grid`) sont indépendantes et
+restent à cette valeur.
 
 ### JavaScript
 
