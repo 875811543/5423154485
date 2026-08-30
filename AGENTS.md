@@ -12,7 +12,7 @@ Site vitrine **statique** d'une entreprise de lutte anti-nuisibles en Corse.
 Aucun build, aucune dépendance npm, aucun framework. Ce qui est dans le dépôt
 est exactement ce qui est servi.
 
-- **33 pages HTML** à la racine (1 accueil, 8 services, 4 zones, 4 pages
+- **36 pages HTML** à la racine (1 accueil, 8 services, 4 zones, 7 pages
   « service + ville », 10 nuisibles, actualités, contact, merci, 2 pages
   légales, lexique, FAQ, 404).
 - **Liens internes sans extension.** Les `href` internes s'ecrivent
@@ -28,8 +28,9 @@ est exactement ce qui est servi.
   reecriture. Sans cela toute mesure de navigation faite en local est
   fausse : il repondait 404 la ou Apache sert la page.
 
-- Les pages **service + ville** (`deratisation-bastia`, `deratisation-ajaccio`,
-  `traitement-termites-ajaccio`, `destruction-nid-guepes-porto-vecchio`) visent
+- Les **7 pages service + ville** (dératisation à Bastia, Ajaccio et
+  Porto-Vecchio ; termites à Ajaccio et Bastia ; guêpes et frelons à
+  Porto-Vecchio et Bastia) visent
   les requêtes « service + ville », que les pages de zones ne couvraient pas.
   Elles réutilisent `pages-zones.css` sans une règle nouvelle. **Ne pas en
   décliner mécaniquement pour les 53 communes** : le contenu doit être
