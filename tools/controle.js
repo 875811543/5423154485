@@ -162,6 +162,44 @@ const CONTROLES = [
     return [...cibles].filter(c => !resout(c)).map(c => 'cible absente : ' + c);
   }},
 
+{ nom: 'octets', titre: 'Aucun CRLF ni BOM dans les fichiers texte',
+  run() {
+    // Deux hasards propres au developpement sous Windows, invisibles a tout
+    // test de rendu et qui ne se manifestent qu'une fois le fichier servi.
+    //
+    // core.autocrlf vaut true sur ce poste : sans le .gitattributes qui
+    // impose eol=lf, chaque checkout produirait des CRLF — y compris dans le
+    // .htaccess, ou selon la configuration d'Apache le retour chariot est
+    // compte comme faisant partie de la valeur d'une directive. Ce controle
+    // existe parce qu'un seul fichier protege aujourd'hui contre cela.
+    //
+    // Le BOM, lui, fait basculer certains navigateurs en mode de
+    // compatibilite quand il precede <!DOCTYPE>, invalide la premiere regle
+    // d'une feuille CSS, et empeche l'analyse d'un JSON.
+    const pbs = [];
+    const textes = [];
+    (function marche(d) {
+      for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+        if (e.name === '.git' || e.name === 'node_modules') continue;
+        const p = (d === '.' ? '' : d + '/') + e.name;
+        if (e.isDirectory()) marche(p);
+        else if (/\.(html|css|js|json|xml|txt|webmanifest)$/i.test(e.name) || e.name === '.htaccess')
+          textes.push(p);
+      }
+    })('.');
+
+    for (const f of textes) {
+      const b = fs.readFileSync(f);
+      if (b.length >= 3 && b[0] === 0xEF && b[1] === 0xBB && b[2] === 0xBF)
+        pbs.push(f + ' : commence par un BOM');
+      for (let i = 0; i + 1 < b.length; i++)
+        if (b[i] === 0x0D && b[i + 1] === 0x0A) { pbs.push(f + ' : fins de ligne CRLF'); break; }
+    }
+    if (!fs.existsSync('.gitattributes'))
+      pbs.push('.gitattributes absent : rien n\'empeche plus les CRLF au checkout');
+    return pbs;
+  }},
+
 { nom: 'casse', titre: 'La casse des chemins correspond aux fichiers reels',
   run() {
     // Windows resout les chemins sans tenir compte de la casse, Linux la
