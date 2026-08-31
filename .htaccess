@@ -87,16 +87,21 @@ ErrorDocument 404 /404.html
 #  3. Compression GZIP / Brotli
 # ------------------------------------------------------------
 <IfModule mod_deflate.c>
+  # text/javascript est indispensable : selon la version d'Apache, un .js
+  # part sous ce type plutot que sous application/javascript. Sans lui, le
+  # JS risque d'etre servi non compresse.
   AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
-  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/javascript text/javascript application/x-javascript
   AddOutputFilterByType DEFLATE application/json application/manifest+json
   AddOutputFilterByType DEFLATE image/svg+xml application/xml
 </IfModule>
 
 <IfModule mod_brotli.c>
-  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/xml
-  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json
-  AddOutputFilterByType BROTLI_COMPRESS image/svg+xml
+  # meme liste que deflate ci-dessus : elle etait plus complete.
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/xml
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript text/javascript application/x-javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/json application/manifest+json
+  AddOutputFilterByType BROTLI_COMPRESS image/svg+xml application/xml
 </IfModule>
 
 # ------------------------------------------------------------
@@ -113,6 +118,27 @@ ErrorDocument 404 /404.html
   ExpiresByType application/javascript "access plus 1 month"
   ExpiresByType application/manifest+json "access plus 1 week"
   ExpiresByType text/html            "access plus 0 seconds"
+</IfModule>
+
+# ------------------------------------------------------------
+#  Fichiers de travail : jamais servis
+# ------------------------------------------------------------
+# AGENTS.md decrit la construction du site, son hebergement et ses
+# faiblesses connues ; tools/ contient le script de verification. La
+# checklist de mise en ligne dit de les exclure de l'archive, mais cela
+# suppose de s'en souvenir. Si l'archive part complete, le serveur refuse
+# de lui-meme.
+#
+# Au premier niveau volontairement : « Require all denied » ne depend pas
+# de mod_headers et RedirectMatch depend de mod_alias. Un garde-fou place
+# sous <IfModule mod_headers.c> disparaitrait justement le jour ou la
+# configuration se degrade.
+<FilesMatch "\.(md|log|bak|orig|sh)$">
+  Require all denied
+</FilesMatch>
+<IfModule mod_alias.c>
+  RedirectMatch 404 ^/tools/
+  RedirectMatch 404 ^/\.git
 </IfModule>
 
 <IfModule mod_headers.c>
