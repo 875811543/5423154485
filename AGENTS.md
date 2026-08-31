@@ -12,7 +12,7 @@ Site vitrine **statique** d'une entreprise de lutte anti-nuisibles en Corse.
 Aucun build, aucune dépendance npm, aucun framework. Ce qui est dans le dépôt
 est exactement ce qui est servi.
 
-- **36 pages HTML** à la racine (1 accueil, 8 services, 4 zones, 7 pages
+- **37 pages HTML** à la racine (1 accueil, 8 services, 4 zones, 7 pages
   « service + ville », 10 nuisibles, actualités, contact, merci, 2 pages
   légales, lexique, FAQ, 404).
 - **Liens internes sans extension.** Les `href` internes s'ecrivent
@@ -28,6 +28,14 @@ est exactement ce qui est servi.
   reecriture. Sans cela toute mesure de navigation faite en local est
   fausse : il repondait 404 la ou Apache sert la page.
 
+- `etat-parasitaire-termites-corse` vise le groupe réglementaire (« état
+  parasitaire », « diagnostic termites obligatoire vente », « commune déclarée
+  infestée »). **Elle dit explicitement que nous ne réalisons pas le diagnostic
+  réglementaire** et vise le traitement curatif qui le suit : l’état parasitaire
+  exige une certification de diagnostiqueur distincte du Certibiocide. Ne pas
+  retourner ce cadrage sans vérifier que l’entreprise détient cette
+  certification — ce serait revendiquer une qualification qu’elle n’a peut-être
+  pas, sur une page qui parle d’un document annexé à un acte de vente.
 - Les **7 pages service + ville** (dératisation à Bastia, Ajaccio et
   Porto-Vecchio ; termites à Ajaccio et Bastia ; guêpes et frelons à
   Porto-Vecchio et Bastia) visent
