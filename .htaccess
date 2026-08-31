@@ -12,14 +12,18 @@ DirectoryIndex index.html
   RewriteEngine On
   RewriteBase /
 
-  # Forcer HTTPS
+  # Supprimer le www ET forcer HTTPS en une seule redirection.
+  # Cette regle passe AVANT celle qui force HTTPS : elle redirige deja vers
+  # https, donc http://www/page arrive a destination en un seul saut. Dans
+  # l'ordre inverse, la regle HTTPS reutilisait %{HTTP_HOST} tel quel,
+  # conservait le www, et il fallait une seconde redirection.
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+  # Forcer HTTPS pour le domaine sans www
   RewriteCond %{HTTPS} !=on
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
-
-  # Supprimer le www (canonique = dezinsect-corse.fr sans www)
-  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-  RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
   # ----------------------------------------------------------
   #  Redirections des anciennes URLs (migration builder -> site statique)

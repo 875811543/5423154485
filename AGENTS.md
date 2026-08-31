@@ -615,6 +615,23 @@ Ce qui n'a de sens qu'ainsi : largeur de rendu et débordement, contraste sur le
 fond effectif, poids réel d'une page, décalage de mise en page, taille rendue
 d'une image, parcours du formulaire.
 
+#### Simuler les règles du `.htaccess`
+
+Ce fichier décide de toute la navigation et **ne peut pas être testé en
+local** : aucun serveur Apache n’est disponible avant la mise en ligne, et
+le serveur de test se contente de rejouer la réécriture `page` → `page.html`.
+
+`scratchpad/simule-htaccess.js` évalue les règles réellement écrites ici —
+`RewriteCond` sur `HTTP_HOST`, `HTTPS`, `THE_REQUEST`, `REQUEST_FILENAME`,
+et `RewriteRule` avec `R=301`, `L`, `NC` — et compte les redirections pour
+chaque chemin d’entrée. Il n’implémente pas Apache ; il se valide d’abord
+sur deux cas dont la réponse est certaine et refuse de rendre un verdict
+si cette validation échoue.
+
+À relancer après toute modification du `.htaccess`. Il a déjà servi deux
+fois : `/index.html` passait par deux 301 en chaîne, et
+`http://www.…/page` aussi.
+
 #### Vérifier avant de déclarer un défaut
 
 Sur cette base de code, **la sonde s'est trompée bien plus souvent que le
