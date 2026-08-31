@@ -634,6 +634,25 @@ Ce qui n'a de sens qu'ainsi : largeur de rendu et débordement, contraste sur le
 fond effectif, poids réel d'une page, décalage de mise en page, taille rendue
 d'une image, parcours du formulaire.
 
+#### Le site sans JavaScript reste navigable
+
+Vérifié sur cinq pages, à 390 px, moteur JS coupé : **35 à 62 liens restent
+atteignables**, le pied de page — qui porte le plan complet du site —
+s’affiche, la barre d’appel fonctionne (elle est en HTML et CSS pur, sans
+rien de scripté), et 5 à 8 liens `tel:` restent cliquables. Un visiteur dont
+le JavaScript échoue garde donc l’accès à tout le site et au téléphone.
+
+Deux pertes, l’une voulue, l’autre à connaître :
+
+- le bouton « retour en haut » n’existe pas : il est injecté par `main.js`,
+  ce qui est correct puisqu’il ne servirait à rien sans lui ;
+- **le bouton du menu mobile reste visible mais n’ouvre rien.** Le masquer
+  demanderait soit un `<style>` dans un `<noscript>`, que le contrôle
+  `styles-en-ligne` refuse, soit une classe posée sur `<html>` par le script
+  — au prix d’un clignotement du bouton au chargement. Laissé en l’état :
+  la navigation reste assurée par le pied, et le remède coûte plus que le
+  défaut. À ne pas « corriger » sans peser ces deux coûts.
+
 #### Ne pas chasser la CSS morte : il n’y en a pas
 
 Un relevé de couverture Chrome annonce **43 % de `global.css` jamais
