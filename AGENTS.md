@@ -599,6 +599,27 @@ Ce qui n'a de sens qu'ainsi : largeur de rendu et débordement, contraste sur le
 fond effectif, poids réel d'une page, décalage de mise en page, taille rendue
 d'une image, parcours du formulaire.
 
+#### Éprouver le formulaire sans rien envoyer
+
+Les trois issues de l'envoi ont été vérifiées sur `contact` et `index` en
+interceptant l'appel à Web3Forms et en fabriquant la réponse — échec réseau,
+réponse `success: false`, et succès. Résultat : les deux pages affichent bien
+le message de repli avec le numéro de téléphone et réactivent le bouton, et
+toutes deux redirigent vers `/merci`.
+
+Deux pièges, tous deux **du côté de la sonde** et pas du site. Les deux
+produisent le même symptôme — le chemin d'échec se déclenche alors qu'on croit
+tester le succès — donc les deux font conclure à tort à un bug :
+
+1. **La réponse fabriquée doit porter `Access-Control-Allow-Origin`.** Sans
+   lui le navigateur la bloque et le `fetch` rejette. La vraie API l'envoie.
+2. **Le POST en `application/json` est pré-volé.** Le navigateur envoie
+   d'abord un `OPTIONS`, à traiter à part avec `Access-Control-Allow-Methods`
+   et `Access-Control-Allow-Headers`, sinon le POST n'est jamais émis.
+
+Sonde : `scratchpad/viewport/formulaire-succes.js` et
+`formulaire-chemins.js`.
+
 ```sh
 tools/compare-rendered-styles.sh                 # compare a HEAD, en 1280px
 tools/compare-rendered-styles.sh HEAD~3 390      # autre reference, autre largeur
