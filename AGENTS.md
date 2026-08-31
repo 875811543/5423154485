@@ -634,6 +634,23 @@ Ce qui n'a de sens qu'ainsi : largeur de rendu et débordement, contraste sur le
 fond effectif, poids réel d'une page, décalage de mise en page, taille rendue
 d'une image, parcours du formulaire.
 
+#### Zoom et reflow : conforme, et à ne pas surtester
+
+**WCAG 1.4.10** exige l’absence de défilement horizontal à **320 px** de
+large. **WCAG 1.4.4** exige un texte agrandissable à 200 % sans perte. Les
+deux sont vérifiés : défilement horizontal de **0 px** à 320 px, à 640 px
+(bureau à 200 %) et même à 195 px, largeur qu’aucune norme ne demande.
+
+**Le piège** : mesurer le débordement élément par élément, en comparant
+chaque `getBoundingClientRect().right` à `clientWidth`. Une première version
+de la sonde le faisait et annonçait cinq pages en défaut — alors que
+`scrollWidth - clientWidth` du document valait 0. Un élément dont la boîte
+dépasse ne pose problème que s’il **force la page à défiler** ; sinon il est
+simplement rogné ou positionné, ce qui est courant et voulu.
+
+Mesurer `document.documentElement.scrollWidth - clientWidth`, rien d’autre.
+Sonde : `scratchpad/viewport/reflow.js`.
+
 #### Le site sans JavaScript reste navigable
 
 Vérifié sur cinq pages, à 390 px, moteur JS coupé : **35 à 62 liens restent
