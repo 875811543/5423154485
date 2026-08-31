@@ -540,7 +540,7 @@ comparant les deux échouerait après chaque commit, le sitemap ayant été
 permanent.
 
 ```sh
-node tools/controle.js            # les dix-sept contrôles
+node tools/controle.js            # les dix-huit contrôles
 node tools/controle.js --liste    # ce qu'ils vérifient
 node tools/controle.js alpha      # un seul, par son nom
 ```
@@ -559,6 +559,7 @@ attrapé un défaut réel sur ce site :
 | `chemins-absolus` | Les huit `@font-face` en `/assets/fonts/…` et la redirection JS vers `/merci` |
 | `dimensions` | 22 images déclarant un rapport largeur/hauteur qui n'était pas celui du fichier |
 | `hashes` | Deux fois le cache-busting de `main.js` oublié après modification, et une fois celui de `global.css` |
+| `casse` | Garde-fou que `cibles` ne peut pas assurer : `fs.existsSync` est insensible à la casse sous Windows, donc un lien vers `Images/logo.png` y passe et renvoie 404 sur le serveur Linux |
 | `mobilier` | La barre d'appel mobile absente d'`actualites.html`, bâtie depuis un gabarit |
 | `json-ld` | Une réponse de FAQ déclarée mais introuvable dans le texte visible |
 | `sitemap` | Deux pages créées et oubliées au sitemap, signalées dès la génération |

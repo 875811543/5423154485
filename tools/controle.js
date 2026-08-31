@@ -162,6 +162,62 @@ const CONTROLES = [
     return [...cibles].filter(c => !resout(c)).map(c => 'cible absente : ' + c);
   }},
 
+{ nom: 'casse', titre: 'La casse des chemins correspond aux fichiers reels',
+  run() {
+    // Windows resout les chemins sans tenir compte de la casse, Linux la
+    // respecte. Un lien vers « Images/Logo.png » alors que le fichier est
+    // « images/logo.png » fonctionne en developpement et renvoie 404 sur le
+    // serveur. Le controle « cibles » ne peut pas le voir : fs.existsSync est
+    // insensible a la casse sous Windows, donc il valide les deux.
+    //
+    // On compare donc les chaines a la liste reelle des fichiers.
+    //
+    // Les attributs content= sont exclus a dessein : un titre comme
+    // « Contact | Devis gratuit » y commence par un mot qui ressemble a un nom
+    // de page, et les inclure produisait quatre faux positifs.
+    const reels = new Set();
+    (function marche(d) {
+      for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+        if (e.name === '.git' || e.name === 'node_modules') continue;
+        const p = (d === '.' ? '' : d + '/') + e.name;
+        if (e.isDirectory()) marche(p); else reels.add(p);
+      }
+    })('.');
+    const parMinuscule = new Map();
+    for (const f of reels) parMinuscule.set(f.toLowerCase(), f);
+
+    const pbs = [];
+    const vus = new Set();
+    for (const f of pages)
+      for (const m of lire(f).matchAll(/(?:href|src|srcset)="([^"]+)"/g))
+        for (const brut of m[1].split(',').map(x => x.trim().split(' ')[0])) {
+          const cible = brut.replace(/[?#].*$/, '');
+          if (!cible || /^(https?:|mailto:|tel:|data:|#|\/)/.test(cible)) continue;
+          if (cible === './') continue;
+          for (const cand of [cible, cible + '.html']) {
+            if (reels.has(cand)) break;
+            const vrai = parMinuscule.get(cand.toLowerCase());
+            if (vrai) {
+              const cle = cand + '|' + vrai;
+              if (!vus.has(cle)) {
+                vus.add(cle);
+                pbs.push(f + ' : ecrit « ' + cand + ' », fichier « ' + vrai + ' »');
+              }
+              break;
+            }
+          }
+        }
+
+    // deux fichiers ne differant que par la casse : impossible a servir
+    const vusMin = new Map();
+    for (const f of reels) {
+      const k = f.toLowerCase();
+      if (vusMin.has(k)) pbs.push('deux fichiers ne different que par la casse : ' + vusMin.get(k) + ' et ' + f);
+      else vusMin.set(k, f);
+    }
+    return pbs;
+  }},
+
 { nom: 'hashes', titre: 'Les hashes ?v= correspondent aux fichiers',
   run() {
     const pbs = [];
