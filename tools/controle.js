@@ -153,7 +153,11 @@ const CONTROLES = [
     // Les liens internes sont sans extension (le .htaccess sert page.html
     // quand on demande /page) : une cible resout donc soit telle quelle,
     // soit avec .html ajoute. « ./ » designe l'accueil.
-    const resout = c => c === './' ? fs.existsSync('index.html')
+    // « ./ » et « / » designent l'accueil. Le second vient de la balise
+    // <base> de la page 404 ; sans ce cas explicite, il ne passait que par
+    // accident, fs.existsSync('/') renvoyant vrai sous Windows parce que « / »
+    // y designe la racine du disque.
+    const resout = c => (c === './' || c === '/') ? fs.existsSync('index.html')
       : fs.existsSync(c) || fs.existsSync(c + '.html');
     return [...cibles].filter(c => !resout(c)).map(c => 'cible absente : ' + c);
   }},

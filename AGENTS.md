@@ -521,6 +521,24 @@ existants. C'est l'erreur la plus facile à commettre sur ce projet.
 
 ## 6. Vérifications avant de déclarer un travail terminé
 
+### Aligner les dates du sitemap avant de téléverser
+
+```sh
+node tools/sitemap-dates.js            # ce qui serait changé
+node tools/sitemap-dates.js --ecrire   # applique
+```
+
+Google traite `lastmod` comme un indice pour décider quand repasser.
+Annoncer une date d’il y a une semaine sur une page réécrite le jour même
+retarde sa réindexation — précisément pour le travail le plus récent. Au
+premier passage, **29 des 34 dates étaient obsolètes**.
+
+**Ce n’est volontairement pas un contrôle de `tools/controle.js`** : la date
+git d’un fichier change au moment même où on le commite, donc un contrôle
+comparant les deux échouerait après chaque commit, le sitemap ayant été
+écrit avant. C’est une étape à passer avant de téléverser, pas un garde-fou
+permanent.
+
 ```sh
 node tools/controle.js            # les dix-sept contrôles
 node tools/controle.js --liste    # ce qu'ils vérifient
