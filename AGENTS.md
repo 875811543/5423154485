@@ -12,7 +12,7 @@ Site vitrine **statique** d'une entreprise de lutte anti-nuisibles en Corse.
 Aucun build, aucune dépendance npm, aucun framework. Ce qui est dans le dépôt
 est exactement ce qui est servi.
 
-- **37 pages HTML** à la racine (1 accueil, 8 services, 4 zones, 7 pages
+- **38 pages HTML** à la racine (1 accueil, 8 services, 4 zones, 7 pages
   « service + ville », 10 nuisibles, actualités, contact, merci, 2 pages
   légales, lexique, FAQ, 404).
 - **Liens internes sans extension.** Les `href` internes s'ecrivent
@@ -28,6 +28,14 @@ est exactement ce qui est servi.
   reecriture. Sans cela toute mesure de navigation faite en local est
   fausse : il repondait 404 la ou Apache sert la page.
 
+- `tarifs-anti-nuisibles-corse` vise le groupe « prix / tarif / devis ».
+  **Un seul montant est publiable : « à partir de 100 € » pour un nid de guêpes
+  ou de frelons.** Ne jamais y ajouter de fourchette, d’ordre de grandeur ni de
+  prix « indicatif » pour la dératisation ou les termites — ce sont des
+  informations d’entreprise, voir règle 3. Le script de génération vérifie
+  qu’aucun autre montant en euros n’apparaît sur la page.
+  C’est la seule des pages récentes à avoir une entrée de menu, posée dans les
+  trois listes de services (nav de bureau, menu mobile, pied).
 - `etat-parasitaire-termites-corse` vise le groupe réglementaire (« état
   parasitaire », « diagnostic termites obligatoire vente », « commune déclarée
   infestée »). **Elle dit explicitement que nous ne réalisons pas le diagnostic
