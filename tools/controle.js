@@ -406,6 +406,31 @@ const CONTROLES = [
     return pbs;
   }},
 
+{ nom: 'liens-externes', titre: 'Tout lien ouvrant un onglet porte rel="noopener"',
+  run() {
+    // Sans noopener, la page ouverte recoit un window.opener utilisable pour
+    // rediriger l'onglet d'origine vers une page qu'elle choisit. Les
+    // navigateurs recents l'impliquent pour target="_blank", mais pas tous, et
+    // la protection saute des qu'un rel explicite est pose sans noopener.
+    //
+    // Ce controle reste hors ligne : verifier que les liens repondent demande
+    // le reseau, ce qui rendrait tools/controle.js lent et intermittent alors
+    // qu'il doit pouvoir tourner a chaque modification. La joignabilite se
+    // verifie a part, ponctuellement.
+    const pbs = [];
+    for (const f of pages)
+      for (const m of lire(f).matchAll(/<a\b([^>]*)>/g)) {
+        const attrs = m[1];
+        if (!/target="_blank"/.test(attrs)) continue;
+        const rel = (attrs.match(/rel="([^"]*)"/) || [])[1] || '';
+        if (!/\bnoopener\b/.test(rel)) {
+          const href = (attrs.match(/href="([^"]*)"/) || [])[1] || '(sans href)';
+          pbs.push(f + ' : target="_blank" sans noopener — ' + href.slice(0, 70));
+        }
+      }
+    return pbs;
+  }},
+
 { nom: 'sitemap', titre: 'Le sitemap decrit exactement les pages indexables',
   run() {
     // Le sitemap a ete edite a chaque ajout de page, a la main ou par script.
