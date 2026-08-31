@@ -220,6 +220,18 @@ const CONTROLES = [
       if (m) pbs.push(f + ' : caracteres mal encodes, autour de « ' + m[0] + ' »');
       const d = s.match(doubleEchappee);
       if (d) pbs.push(f + ' : entite doublement echappee « ' + d[0] + ' », affichee telle quelle');
+
+      // Une lettre accentuee ecrite en entite numerique — « b&#226;ti » pour
+      // « bâti » — s'affiche correctement mais rend la source illisible, et
+      // detonne au milieu de milliers d'accents ecrits en clair. C'est un
+      // residu d'outil d'edition. On ne vise que la plage latine accentuee :
+      // les entites numeriques d'espaces fines ou de symboles restent
+      // legitimes.
+      if (/\.html$/i.test(f)) {
+        const num = s.match(/&#(1[9-9][2-9]|2[0-5][0-9]|338|339|376);/);
+        if (num) pbs.push(f + ' : lettre accentuee en entite numerique « ' + num[0]
+          + ' » = « ' + String.fromCharCode(+num[1]) + ' »');
+      }
     }
     if (!fs.existsSync('.gitattributes'))
       pbs.push('.gitattributes absent : rien n\'empeche plus les CRLF au checkout');
