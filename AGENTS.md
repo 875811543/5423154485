@@ -615,6 +615,31 @@ Ce qui n'a de sens qu'ainsi : largeur de rendu et débordement, contraste sur le
 fond effectif, poids réel d'une page, décalage de mise en page, taille rendue
 d'une image, parcours du formulaire.
 
+#### Ne pas chasser la CSS morte : il n’y en a pas
+
+Un relevé de couverture Chrome annonce **43 % de `global.css` jamais
+atteint**, mesuré sur les 38 pages, à deux largeurs, menus ouverts et FAQ
+dépliées. Le chiffre est exact et la conclusion qu’on en tire spontanément
+est fausse.
+
+Ce que la couverture compte comme « non utilisé » :
+
+| | part du fichier |
+|---|---|
+| commentaires | 28 % |
+| espaces et retours à la ligne | 12 % |
+| règles `:hover`, `:focus`, `:active` | 7 % |
+
+Soit 47 % — davantage que les 43 % annoncés. **Aucun octet de règle morte
+n’est démontré.** Un outil de couverture ne marque « utilisé » ni un
+commentaire, ni du formatage, ni un état qu’aucune mesure ne déclenche.
+
+Et les commentaires ne sont pas du remplissage : ils portent la raison
+d’être des règles, souvent des correctifs durement acquis. Sans étape de
+build, les retirer de la source reviendrait à supprimer la documentation
+pour gagner quelques kilo-octets avant compression, sur un fichier mis en
+cache dès la première page.
+
 #### Simuler les règles du `.htaccess`
 
 Ce fichier décide de toute la navigation et **ne peut pas être testé en
