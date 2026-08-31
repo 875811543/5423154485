@@ -634,6 +634,23 @@ Ce qui n'a de sens qu'ainsi : largeur de rendu et débordement, contraste sur le
 fond effectif, poids réel d'une page, décalage de mise en page, taille rendue
 d'une image, parcours du formulaire.
 
+#### Remplacer une image : renommer le fichier
+
+La CSS et le JS portent une empreinte `?v=` propagée sur les 38 pages, et un
+contrôle la vérifie. **Les images et les polices n’en ont pas.** Elles sont
+servies avec `max-age=31536000` — un an.
+
+Elles l’étaient aussi avec `immutable`, retiré depuis : cette directive
+interdit au navigateur de revalider, y compris sur rechargement forcé, et ne
+se justifie que pour des URL portant une empreinte. Le WebP du logo a déjà
+été réencodé une fois sur ce projet ; si le site avait été en ligne, aucun
+visiteur déjà venu n’aurait reçu le correctif pendant un an.
+
+**La règle qui en découle : pour remplacer une image ou une police, renommer
+le fichier.** Changer l’URL est le seul moyen fiable de forcer le
+renouvellement. Le contrôle `orphelins` signalera l’ancien fichier resté
+inutilisé, ce qui rappelle de le supprimer.
+
 #### Zoom et reflow : conforme, et à ne pas surtester
 
 **WCAG 1.4.10** exige l’absence de défilement horizontal à **320 px** de

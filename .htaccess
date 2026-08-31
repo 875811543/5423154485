@@ -116,8 +116,21 @@ ErrorDocument 404 /404.html
 </IfModule>
 
 <IfModule mod_headers.c>
+  # Images et polices : un an de cache, mais SANS « immutable ».
+  # « immutable » interdit au navigateur de revalider, meme sur
+  # rechargement force. Cela ne se justifie que pour des URL portant une
+  # empreinte, comme /app.4f2a91.css. Ici seuls la CSS et le JS ont un ?v= :
+  # les images et les polices sont servies sans empreinte dans leur URL.
+  #
+  # Le WebP du logo a deja ete reencode une fois pendant ce projet. Avec
+  # « immutable », un visiteur deja venu aurait garde la version fautive
+  # pendant un an, rechargement compris.
+  #
+  # REGLE : pour remplacer une image ou une police, RENOMMER le fichier.
+  # Changer l'URL est le seul moyen fiable de forcer le renouvellement.
+  # Le controle « orphelins » signalera l'ancien fichier reste inutilise.
   <FilesMatch "\.(jpg|jpeg|png|webp|svg|ico|woff2)$">
-    Header set Cache-Control "public, max-age=31536000, immutable"
+    Header set Cache-Control "public, max-age=31536000"
   </FilesMatch>
 
   # ----------------------------------------------------------
