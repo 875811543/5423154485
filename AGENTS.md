@@ -522,7 +522,7 @@ existants. C'est l'erreur la plus facile à commettre sur ce projet.
 ## 6. Vérifications avant de déclarer un travail terminé
 
 ```sh
-node tools/controle.js            # les treize contrôles
+node tools/controle.js            # les dix-sept contrôles
 node tools/controle.js --liste    # ce qu'ils vérifient
 node tools/controle.js alpha      # un seul, par son nom
 ```
@@ -531,16 +531,35 @@ node tools/controle.js alpha      # un seul, par son nom
 aucun navigateur, quelques secondes. Sortie en code 1 dès qu'un contrôle échoue,
 ce qui permet de l'enchaîner dans un `&&`.
 
-Il couvre les contrôles manuels de cette section, et cinq de plus qui ont chacun
+Il couvre les contrôles manuels de cette section, et d'autres qui ont chacun
 attrapé un défaut réel sur ce site :
 
 | Contrôle | Ce qu'il a attrapé |
 |---|---|
-| `alpha` | Le WebP du logo encodé sans canal alpha : un cadre noir sur les 28 pages, depuis le commit initial |
+| `alpha` | Le WebP du logo encodé sans canal alpha : un cadre noir sur toutes les pages, depuis le commit initial |
 | `taille-css` | Le logo rendant en 96×96 et débordant du bandeau, faute de dimension en CSS |
 | `chemins-absolus` | Les huit `@font-face` en `/assets/fonts/…` et la redirection JS vers `/merci` |
 | `dimensions` | 22 images déclarant un rapport largeur/hauteur qui n'était pas celui du fichier |
-| `paires`, `nap`, `orphelins` | Garde-fous : aucun défaut à ce jour, mais peu coûteux |
+| `hashes` | Deux fois le cache-busting de `main.js` oublié après modification, et une fois celui de `global.css` |
+| `mobilier` | La barre d'appel mobile absente d'`actualites.html`, bâtie depuis un gabarit |
+| `json-ld` | Une réponse de FAQ déclarée mais introuvable dans le texte visible |
+| `sitemap` | Deux pages créées et oubliées au sitemap, signalées dès la génération |
+| `doublons` | L'article de saisonnalité recopié depuis la page Costa Verde |
+| `entete-pied` | Les divergences d'en-tête et de pied, dont une introduite le jour même par une insertion mal ancrée |
+| `paires`, `nap`, `orphelins`, `liens-externes`, `h1-canonical`, `cibles`, `styles-en-ligne` | Garde-fous : aucun défaut à ce jour, mais peu coûteux |
+
+Deux d'entre eux ont dû être repris après coup, ce qui vaut avertissement :
+
+- `doublons` comptait d'abord les phrases partagées et déclenchait à cinq. Éprouvé
+  sur le commit fautif, il ne rattrapait pas le décalque, qui n'en partageait que
+  quatre — et descendre le seuil aurait fait échouer les pages nuisibles, qui
+  partagent légitimement leurs blocs de navigation. Le critère porte donc sur la
+  **nature** et non le nombre : on écarte les phrases présentes sur quatre pages ou
+  plus, c'est du mobilier de site, puis on signale toute paire qui en partage
+  encore trois.
+- un contrôle du sitemap existait avant celui-ci, mais son motif contenait une
+  concaténation JavaScript non évaluée : il ne pouvait rien matcher. **Du code mort
+  qui se donnait l'air d'un contrôle**, le pire cas, puisqu'il rassurait.
 
 Chacun a été éprouvé en rejouant le script sur le commit où le défaut existait :
 il échoue bien là où il doit échouer. Un contrôle qui ne se déclenche jamais ne
@@ -553,7 +572,7 @@ et **toujours mesurer en HTTP, jamais en `file://`**.
 Le détail des contrôles, si l'on veut les rejouer à la main :
 
 ```sh
-# aucun chemin absolu (casserait tout sous le sous-chemin GitHub Pages)
+# aucun chemin absolu (un chemin relatif ne peut pas casser en changeant de racine)
 grep -oh '\(href\|src\|srcset\)="/[^"]*"' *.html
 
 # aucun style dans le HTML
