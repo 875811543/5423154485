@@ -72,6 +72,15 @@ DirectoryIndex index.html
   # Rediriger /index -> /
   RewriteRule ^index/?$ / [R=301,L]
 
+  # Une demande sur un vrai dossier devient une vraie 404, qui declenche la
+  # page 404 du site. Sans cela, Options -Indexes fait repondre 403 et
+  # Apache sert sa propre page d'erreur : fond blanc, « Forbidden », et la
+  # signature du serveur. Pour le visiteur il n'y a pas de page a cette
+  # adresse — ce n'est pas une question de droit d'acces.
+  # ^.+$ exige au moins un caractere : la racine, elle, reste servie.
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^.+$ - [R=404,L]
+
   # Servir /page.html quand on demande /page
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}\.html -f
@@ -82,6 +91,9 @@ DirectoryIndex index.html
 #  2. Page d'erreur personnalisée
 # ------------------------------------------------------------
 ErrorDocument 404 /404.html
+# Filet : tout autre refus retombe sur la meme page plutot que sur celle
+# d'Apache, qui expose la signature du serveur.
+ErrorDocument 403 /404.html
 
 # ------------------------------------------------------------
 #  3. Compression GZIP / Brotli
