@@ -372,6 +372,31 @@ a { color: inherit; }
 .site-header__cta2:hover { opacity: 1; text-decoration: underline; }
 
 
+/* ==========================================================================
+   CIBLES TACTILES — zone sensible des liens d'appel
+   --------------------------------------------------------------------------
+   Le critere WCAG 2.5.8 demande 24 x 24 px minimum. Les deux liens
+   telephoniques autonomes du site mesuraient 92 x 16 et 116 x 20. Ce sont des
+   cibles isolees, pas des liens au fil d'une phrase : l'exemption « inline »
+   ne s'applique pas, et ce sont les liens d'appel — le chemin de conversion.
+
+   Le padding cree la surface, la marge negative de meme valeur annule son
+   effet sur la mise en page : rien ne se deplace a l'ecran.
+   ========================================================================== */
+.site-header__cta2 {
+  padding: 4px 6px;
+  margin: -4px -6px;
+}
+.footer-contact-col > a[href^="tel:"] {
+  padding: 2px 4px;
+  margin: -2px -4px;
+}
+.contact-info a[href^="tel:"] {
+  display: inline-block;
+  padding: 2px 4px;
+  margin: -2px -4px;
+}
+
 .site-header__burger {
   margin-left: auto;
   display: flex;
