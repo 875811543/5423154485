@@ -615,6 +615,38 @@ Ce qui n'a de sens qu'ainsi : largeur de rendu et débordement, contraste sur le
 fond effectif, poids réel d'une page, décalage de mise en page, taille rendue
 d'une image, parcours du formulaire.
 
+#### Vérifier avant de déclarer un défaut
+
+Sur cette base de code, **la sonde s'est trompée bien plus souvent que le
+site**. Cinq fausses alertes en une session, toutes du même genre : un outil
+de mesure mal écrit qui accuse un code correct. Le coût est réel — on
+« corrige » alors quelque chose qui marchait.
+
+Les cinq, pour reconnaître la famille :
+
+1. **Un tableau affiché comme une chaîne.** `"tel : " + n.telephone` sur
+   `["+33…", "+33…"]` imprime `+33…,+33…` et donne l'illusion d'un numéro
+   invalide. Le JSON-LD était correct.
+2. **Un séparateur détruit par la normalisation.** Joindre des titres avec
+   `~` puis passer la chaîne dans une fonction qui supprime la ponctuation :
+   le découpage n'a plus lieu, et deux mots situés dans deux titres
+   différents comptent comme voisins. Ce bug a fait annoncer une couverture
+   de 8/8 là où elle était de 4/7.
+3. **Un type cherché au premier niveau seulement.** Le `FAQPage` du site est
+   souvent dans un tableau : `d["@type"] === "FAQPage"` ne le voit pas, et
+   on conclut à des questions déclarées mais non affichées — ce qui serait
+   une violation des règles de Google. Il n'y en avait aucune.
+4. **Un clic programmatique sur un menu ouvert en CSS.** Voir ci-dessous.
+5. **Une valeur absente prise pour une valeur différente.** `og !== twitter`
+   est vrai quand `twitter` n'existe pas ; 27 pages ont été déclarées
+   incohérentes alors qu'elles s'appuient sur le repli documenté de X.
+
+**Règle** : avant d'annoncer un défaut, reproduire le symptôme par un second
+chemin — lire le fichier à la main, ou mesurer autrement. Et se méfier
+particulièrement d'un résultat qui accuse d'un coup un grand nombre de
+pages : le site est homogène, une erreur qui frappe partout vient plus
+probablement de l'outil que du code.
+
 #### Éprouver les comportements au clic
 
 Menu mobile, sous-menus de la nav, dépliage des FAQ : mesurés à l’arrêt, ils
