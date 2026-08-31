@@ -634,6 +634,22 @@ Ce qui n'a de sens qu'ainsi : largeur de rendu et débordement, contraste sur le
 fond effectif, poids réel d'une page, décalage de mise en page, taille rendue
 d'une image, parcours du formulaire.
 
+#### HSTS : ne pas remettre `includeSubDomains` a la legere
+
+Le `.htaccess` envoie `Strict-Transport-Security: max-age=31536000`. Le
+directif `includeSubDomains` a ete **volontairement retire**.
+
+Une fois cet en-tete vu, le navigateur refuse le HTTP en clair pendant un an.
+Avec `includeSubDomains`, sur **tous les sous-domaines** aussi — y compris
+ceux qui n’existent pas encore. Un webmail, un outil ou un site de test créé
+plus tard sans HTTPS deviendrait inatteignable pour tout visiteur déjà venu,
+et l’annulation suppose de servir `max-age=0` puis d’attendre que chacun
+repasse.
+
+Le domaine principal est certainement en HTTPS ; les sous-domaines sont
+l’inconnue. **À rajouter seulement quand tous les sous-domaines sont en
+HTTPS**, pas avant.
+
 #### Remplacer une image : renommer le fichier
 
 La CSS et le JS portent une empreinte `?v=` propagée sur les 38 pages, et un
