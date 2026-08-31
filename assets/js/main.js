@@ -2,6 +2,32 @@
 (function () {
   "use strict";
 
+  // --- Sous-menus de la nav de bureau : refleter l'etat reel ---
+  // L'ouverture est faite en CSS (:hover et :focus-within). Le bouton
+  // declare aria-haspopup et aria-expanded ; sans ce qui suit, l'attribut
+  // resterait a "false" en permanence et annoncerait un menu replie alors
+  // qu'il est ouvert.
+  var parents = document.querySelectorAll(".site-nav__has-submenu");
+  Array.prototype.forEach.call(parents, function (li) {
+    var bouton = li.querySelector(".site-nav__toplink");
+    if (!bouton) return;
+    var dire = function (ouvert) {
+      bouton.setAttribute("aria-expanded", ouvert ? "true" : "false");
+    };
+    li.addEventListener("mouseenter", function () { dire(true); });
+    li.addEventListener("mouseleave", function () {
+      if (!li.contains(document.activeElement)) dire(false);
+    });
+    li.addEventListener("focusin", function () { dire(true); });
+    li.addEventListener("focusout", function () {
+      // focusout part avant que le focus n'arrive : on laisse le navigateur
+      // le poser, puis on regarde ou il est reellement.
+      window.setTimeout(function () {
+        if (!li.contains(document.activeElement) && !li.matches(":hover")) dire(false);
+      }, 0);
+    });
+  });
+
   // --- Menu mobile ---
   var burger = document.getElementById("burgerBtn");
   var mobileMenu = document.getElementById("mobileMenu");

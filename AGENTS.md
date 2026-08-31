@@ -615,6 +615,19 @@ Ce qui n'a de sens qu'ainsi : largeur de rendu et débordement, contraste sur le
 fond effectif, poids réel d'une page, décalage de mise en page, taille rendue
 d'une image, parcours du formulaire.
 
+#### Éprouver les comportements au clic
+
+Menu mobile, sous-menus de la nav, dépliage des FAQ : mesurés à l’arrêt, ils
+paraissent corrects ; ils ne se vérifient qu’en interagissant.
+
+**Le sous-menu de bureau s’ouvre en CSS**, par `:hover` et `:focus-within` —
+il n’y a aucun JavaScript derrière son ouverture. Un clic programmatique ne
+survole ni ne focalise rien : une sonde qui clique conclut à tort que le
+sous-menu est cassé. Éprouver par `page.hover()` puis par `.focus()`, jamais
+par `click()`.
+
+Sonde : `scratchpad/viewport/interactions.js`.
+
 #### Éprouver le formulaire sans rien envoyer
 
 Les trois issues de l'envoi ont été vérifiées sur `contact` et `index` en
