@@ -560,7 +560,7 @@ attrapé un défaut réel sur ce site :
 | `dimensions` | 22 images déclarant un rapport largeur/hauteur qui n'était pas celui du fichier |
 | `hashes` | Deux fois le cache-busting de `main.js` oublié après modification, et une fois celui de `global.css` |
 | `casse` | Garde-fou que `cibles` ne peut pas assurer : `fs.existsSync` est insensible à la casse sous Windows, donc un lien vers `Images/logo.png` y passe et renvoie 404 sur le serveur Linux |
-| `octets` | Garde-fou lui aussi propre à Windows : `core.autocrlf` vaut `true` sur ce poste, et seul le `.gitattributes` empêche que chaque checkout produise des CRLF — y compris dans le `.htaccess`, où Apache peut compter le retour chariot dans la valeur d’une directive |
+| `octets` | Garde-fou propre à Windows et aux scripts : `core.autocrlf` vaut `true` sur ce poste, et seul le `.gitattributes` empêche que chaque checkout produise des CRLF — y compris dans le `.htaccess`, où Apache peut compter le retour chariot dans la valeur d’une directive. Couvre aussi le BOM, les caractères mal encodés et les entités doublement échappées, dégâts typiques d’un script qui réécrit un fichier |
 | `identifiants` | Garde-fou contre le défaut classique de la génération depuis un gabarit — dix pages du site ont été produites ainsi. Un identifiant en double casse `label[for]`, `aria-labelledby` et les liens de fragment, en silence : Chrome répare et affiche |
 | `mobilier` | La barre d'appel mobile absente d'`actualites.html`, bâtie depuis un gabarit |
 | `json-ld` | Une réponse de FAQ déclarée mais introuvable dans le texte visible |

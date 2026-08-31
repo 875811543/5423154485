@@ -162,7 +162,7 @@ const CONTROLES = [
     return [...cibles].filter(c => !resout(c)).map(c => 'cible absente : ' + c);
   }},
 
-{ nom: 'octets', titre: 'Aucun CRLF ni BOM dans les fichiers texte',
+{ nom: 'octets', titre: 'Ni CRLF, ni BOM, ni caracteres mal encodes',
   run() {
     // Deux hasards propres au developpement sous Windows, invisibles a tout
     // test de rendu et qui ne se manifestent qu'une fois le fichier servi.
@@ -188,12 +188,38 @@ const CONTROLES = [
       }
     })('.');
 
+    // Suites d'octets typiques d'un texte UTF-8 relu comme du latin-1 puis
+    // reecrit : « A tilde, e accent » la ou il devrait y avoir « e accent ».
+    // Le texte reste a peu pres lisible, et on ne s'en apercoit qu'en relisant
+    // vraiment la page. Des dizaines de fichiers de ce depot sont reecrits par
+    // script a chaque session.
+    //
+    // Le motif est construit par codes de caracteres, et non ecrit en clair :
+    // sinon ce fichier contiendrait lui-meme les suites qu'il traque, et le
+    // controle se signalerait tout seul — ce qui est arrive.
+    const C3 = String.fromCharCode(0xC3);     // A tilde
+    const C2 = String.fromCharCode(0xC2);     // A circonflexe
+    const suffixes = [0xA9, 0xA8, 0xAA, 0xA0, 0xA7, 0xB9, 0xB4, 0xAE, 0xBB]
+      .map(x => String.fromCharCode(x)).join('');
+    const mojibake = new RegExp('[' + C3 + C2 + '][' + suffixes + ']');
+
+    // Une entite doublement echappee s'affiche litteralement : le visiteur lit
+    // « et-commercial n b s p point-virgule » dans le texte de la page.
+    const doubleEchappee = new RegExp('&' + 'amp;(nbsp|amp|lt|gt|quot|eacute|egrave|agrave'
+      + '|ccedil|rsquo|laquo|raquo|hellip|mdash|ndash|euro);');
+
     for (const f of textes) {
       const b = fs.readFileSync(f);
       if (b.length >= 3 && b[0] === 0xEF && b[1] === 0xBB && b[2] === 0xBF)
         pbs.push(f + ' : commence par un BOM');
       for (let i = 0; i + 1 < b.length; i++)
         if (b[i] === 0x0D && b[i + 1] === 0x0A) { pbs.push(f + ' : fins de ligne CRLF'); break; }
+
+      const s = b.toString('utf8');
+      const m = s.match(mojibake);
+      if (m) pbs.push(f + ' : caracteres mal encodes, autour de « ' + m[0] + ' »');
+      const d = s.match(doubleEchappee);
+      if (d) pbs.push(f + ' : entite doublement echappee « ' + d[0] + ' », affichee telle quelle');
     }
     if (!fs.existsSync('.gitattributes'))
       pbs.push('.gitattributes absent : rien n\'empeche plus les CRLF au checkout');
