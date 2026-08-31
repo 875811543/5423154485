@@ -488,6 +488,38 @@ const CONTROLES = [
     return pbs;
   }},
 
+{ nom: 'identifiants', titre: 'Identifiants uniques, references aria et ancres resolues',
+  run() {
+    // Un identifiant en double casse label[for], aria-labelledby et les liens
+    // de fragment : le navigateur ne retient que le premier, en silence. C'est
+    // le defaut classique de la generation de pages depuis un gabarit — dix
+    // pages de ce site ont ete produites ainsi.
+    //
+    // Rien de tout cela ne se voit au rendu : Chrome repare et affiche.
+    const pbs = [];
+    for (const f of pages) {
+      const s = sansScripts(lire(f));
+
+      const vus = new Map();
+      for (const m of s.matchAll(/\sid="([^"]+)"/g))
+        vus.set(m[1], (vus.get(m[1]) || 0) + 1);
+      for (const [id, n] of vus)
+        if (n > 1) pbs.push(f + ' : identifiant « ' + id + ' » declare ' + n + ' fois');
+
+      for (const attr of ['aria-labelledby', 'aria-describedby', 'aria-controls'])
+        for (const m of s.matchAll(new RegExp('\\s' + attr + '="([^"]+)"', 'g')))
+          for (const id of m[1].split(/\s+/).filter(Boolean))
+            if (!vus.has(id)) pbs.push(f + ' : ' + attr + ' pointe vers « ' + id + ' », qui n\'existe pas');
+
+      for (const m of s.matchAll(/<label[^>]*\sfor="([^"]+)"/g))
+        if (!vus.has(m[1])) pbs.push(f + ' : label for="' + m[1] + '" sans champ correspondant');
+
+      for (const m of s.matchAll(/href="#([^"]+)"/g))
+        if (!vus.has(m[1])) pbs.push(f + ' : ancre #' + m[1] + ' sans cible');
+    }
+    return pbs;
+  }},
+
 { nom: 'h1-canonical', titre: 'Un seul h1 par page, canonical present',
   run() {
     const pbs = [];
