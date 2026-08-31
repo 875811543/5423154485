@@ -769,11 +769,11 @@ fois : `/index.html` passait par deux 301 en chaîne, et
 #### Vérifier avant de déclarer un défaut
 
 Sur cette base de code, **la sonde s'est trompée bien plus souvent que le
-site**. Cinq fausses alertes en une session, toutes du même genre : un outil
+site**. Six fausses alertes, toutes du même genre : un outil
 de mesure mal écrit qui accuse un code correct. Le coût est réel — on
 « corrige » alors quelque chose qui marchait.
 
-Les cinq, pour reconnaître la famille :
+Les six, pour reconnaître la famille :
 
 1. **Un tableau affiché comme une chaîne.** `"tel : " + n.telephone` sur
    `["+33…", "+33…"]` imprime `+33…,+33…` et donne l'illusion d'un numéro
@@ -791,6 +791,13 @@ Les cinq, pour reconnaître la famille :
 5. **Une valeur absente prise pour une valeur différente.** `og !== twitter`
    est vrai quand `twitter` n'existe pas ; 27 pages ont été déclarées
    incohérentes alors qu'elles s'appuient sur le repli documenté de X.
+6. **La première valeur d'un bloc prise pour la seule.** Une carte de la page
+   services porte quatre liens — vers les fiches d'espèce *et* vers la page
+   de service. Une expression qui ne retient que le premier `href` a fait
+   conclure que trois cartes ignoraient les pages de service, alors qu'elles
+   les citent toutes. Même famille que le point 3 : le défaut n'est pas là
+   où la sonde regarde. Quand un bloc peut contenir plusieurs occurrences,
+   les relever toutes avant de conclure.
 
 **Règle** : avant d'annoncer un défaut, reproduire le symptôme par un second
 chemin — lire le fichier à la main, ou mesurer autrement. Et se méfier
