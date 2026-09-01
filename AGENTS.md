@@ -769,11 +769,11 @@ fois : `/index.html` passait par deux 301 en chaîne, et
 #### Vérifier avant de déclarer un défaut
 
 Sur cette base de code, **la sonde s'est trompée bien plus souvent que le
-site**. Six fausses alertes, toutes du même genre : un outil
+site**. Sept fausses alertes, toutes du même genre : un outil
 de mesure mal écrit qui accuse un code correct. Le coût est réel — on
 « corrige » alors quelque chose qui marchait.
 
-Les six, pour reconnaître la famille :
+Les sept, pour reconnaître la famille :
 
 1. **Un tableau affiché comme une chaîne.** `"tel : " + n.telephone` sur
    `["+33…", "+33…"]` imprime `+33…,+33…` et donne l'illusion d'un numéro
@@ -798,6 +798,13 @@ Les six, pour reconnaître la famille :
    les citent toutes. Même famille que le point 3 : le défaut n'est pas là
    où la sonde regarde. Quand un bloc peut contenir plusieurs occurrences,
    les relever toutes avant de conclure.
+7. **Un élément cherché dans la source, alors qu'il naît à l'exécution.**
+   Aucun `<iframe>` dans les 38 fichiers : j'en ai conclu que le site n'avait
+   pas de carte Google Maps, et j'ai proposé de réécrire la politique de
+   confidentialité en conséquence — ce qui l'aurait rendue fausse. Les cartes
+   existent : `main.js` crée l'iframe au clic sur le bouton `data-map-load`.
+   Une page n'est pas seulement ce que son fichier contient ; avant de conclure
+   qu'un élément est absent, chercher aussi dans le JavaScript ce qui le crée.
 
 **Règle** : avant d'annoncer un défaut, reproduire le symptôme par un second
 chemin — lire le fichier à la main, ou mesurer autrement. Et se méfier
