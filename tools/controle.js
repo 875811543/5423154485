@@ -966,6 +966,37 @@ const CONTROLES = [
     return [...pbs];
   }}
 
+,
+
+{ nom: 'sitemap-coherent', titre: 'Le sitemap declare exactement les pages indexables',
+  run() {
+    if (!fs.existsSync('sitemap.xml')) return ['sitemap.xml absent'];
+    const pbs = [];
+    const sm = lire('sitemap.xml');
+    const fichier = u => {
+      const p = u.replace(/^https?:[/][/][^/]+[/]/, '').replace(/[/]$/, '');
+      return (p === '' ? 'index' : p) + '.html';
+    };
+    const declares = new Map([...sm.matchAll(/<loc>([^<]+)<[/]loc>/g)].map(m => [fichier(m[1]), m[1]]));
+    const noindex = f => /<meta name="robots"[^>]*noindex/.test(lire(f));
+
+    for (const [f, u] of declares) {
+      if (!pages.includes(f)) pbs.push(u + ' : declaree au sitemap, page absente du depot');
+      else if (noindex(f)) pbs.push(u + ' : declaree au sitemap alors que la page est en noindex');
+    }
+    for (const f of pages)
+      if (!declares.has(f) && !noindex(f)) pbs.push(f + ' : indexable mais absente du sitemap');
+
+    // le canonical doit designer la meme adresse que le sitemap
+    for (const [f, u] of declares) {
+      if (!pages.includes(f)) continue;
+      const m = lire(f).match(/<link rel="canonical" href="([^"]+)"/);
+      if (m && m[1].replace(/[/]$/, '') !== u.replace(/[/]$/, ''))
+        pbs.push(f + ' : le sitemap dit ' + u + ', le canonical dit ' + m[1]);
+    }
+    return pbs;
+  }}
+
 ];
 
 /* ------------------------------------------------------------------ *
