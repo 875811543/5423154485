@@ -764,6 +764,37 @@ const CONTROLES = [
     return pbs;
   }}
 
+,
+
+{ nom: 'nom-accessible', titre: 'Le texte visible est contenu dans le nom accessible',
+  run() {
+    // Critere 2.5.3 des WCAG, niveau A. Quand un lien porte un aria-label, ce
+    // libelle REMPLACE son texte visible pour les technologies d'assistance.
+    // Si le texte affiche n'y figure pas, l'utilisateur en commande vocale
+    // prononce ce qu'il lit et rien ne se declenche.
+    //
+    // Dix-huit liens du site etaient dans ce cas, tous des boutons d'appel :
+    // « Expertise & Devis : 06 85 75 30 40 » annonce comme « Appeler DEZINSECT
+    // CORSE au 06 85 75 30 40 ». Ecrire un aria-label plus descriptif que le
+    // texte visible est le reflexe naturel, et c'est l'erreur.
+    //
+    // La comparaison se fait sur la source telle quelle, entites comprises :
+    // le texte visible « Expertise &amp; Devis » n'est contenu dans l'attribut
+    // que s'il y est ecrit de la meme facon.
+    const pbs = [];
+    for (const f of pages) {
+      const s = lire(f).replace(/<script[\s\S]*?<\/script>/g, '');
+      for (const m of s.matchAll(/<a\b[^>]*aria-label="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g)) {
+        const visible = m[2].replace(/<[^>]+>/g, ' ').replace(/[\u2190\u2192]/g, '')
+          .replace(/\s+/g, ' ').trim();
+        if (!visible) continue;          // lien sans texte : l'aria-label est la seule source
+        if (m[1].toLowerCase().includes(visible.toLowerCase())) continue;
+        pbs.push(f + ' : « ' + visible.slice(0, 46) + ' » absent de « ' + m[1].slice(0, 56) + ' »');
+      }
+    }
+    return pbs;
+  }}
+
 ];
 
 /* ------------------------------------------------------------------ *
