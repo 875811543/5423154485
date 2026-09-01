@@ -835,6 +835,47 @@ const CONTROLES = [
     return pbs;
   }}
 
+,
+
+{ nom: 'typographie', titre: 'Espace insecable devant les signes doubles et les guillemets',
+  run() {
+    // En francais, deux-points, point-virgule, point d'interrogation et point
+    // d'exclamation se precedent d'une espace insecable, et les guillemets en
+    // encadrent une. Avec une espace ordinaire, le navigateur coupe la ligne
+    // juste avant le signe : le visiteur lit une ligne qui commence par « ? ».
+    // Mesure a 320 px avant correction : onze coupures reelles.
+    //
+    // On n'examine que le texte hors balises : un deux-points d'attribut ou
+    // d'URL n'est pas concerne. La regle exige une espace ORDINAIRE avant le
+    // signe, ce qui exclut d'office les point-virgules d'entites — le « ; » de
+    // &amp; est precede d'un « p », pas d'une espace.
+    const pbs = [];
+    for (const f of pages) {
+      const src = lire(f);
+      // decoupage strict sur les frontieres de balises
+      let i = 0, dansScript = false;
+      while (i < src.length) {
+        const d = src.indexOf('<', i);
+        const segment = d === -1 ? src.slice(i) : src.slice(i, d);
+        if (!dansScript && segment) {
+          for (const m of segment.matchAll(/ ([:;?!])(?=[\s]|$)/g))
+            pbs.push(f + ' : espace ordinaire avant « ' + m[1] + ' » — «\u00a0'
+              + segment.slice(Math.max(0, m.index - 34), m.index + 2).replace(/\s+/g, ' ').trim() + '\u00a0»');
+          for (const m of segment.matchAll(/« | »/g))
+            pbs.push(f + ' : guillemet sans insecable');
+        }
+        if (d === -1) break;
+        const fin = src.indexOf('>', d);
+        if (fin === -1) break;
+        const balise = src.slice(d, fin + 1);
+        if (/^<(script|style)\b/i.test(balise)) dansScript = true;
+        if (/^<\/(script|style)>/i.test(balise)) dansScript = false;
+        i = fin + 1;
+      }
+    }
+    return pbs;
+  }}
+
 ];
 
 /* ------------------------------------------------------------------ *
