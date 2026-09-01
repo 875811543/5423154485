@@ -908,6 +908,48 @@ const CONTROLES = [
     return pbs;
   }}
 
+,
+
+{ nom: 'maillage', titre: 'Chaque page est citee par une autre et reste a trois clics',
+  run() {
+    const pbs = [];
+    const existe = new Set(pages);
+    // servies autrement que par un lien : ErrorDocument, et la cible du formulaire
+    const SANS_LIEN = new Set(['404.html', 'merci.html']);
+    const liens = {}, entrants = {};
+
+    for (const f of pages) {
+      const h = sansScripts(lire(f));
+      const s2 = new Set();
+      for (const m of h.matchAll(/href="([^"#?:]+)"/g)) {
+        let c = m[1].replace(/^[.][/]/, '');
+        if (/^(https?:|mailto:|tel:)/.test(m[1])) continue;
+        if (c === '' || c === 'index') c = 'index.html';   // le logo pointe « ./ »
+        if (!c.endsWith('.html')) c += '.html';
+        if (existe.has(c) && c !== f) s2.add(c);
+      }
+      liens[f] = [...s2];
+      for (const c of s2) (entrants[c] = entrants[c] || new Set()).add(f);
+    }
+
+    for (const f of pages)
+      if (!SANS_LIEN.has(f) && !(entrants[f] && entrants[f].size))
+        pbs.push(f + ' : aucune page ne la cite, elle n existe que dans le sitemap');
+
+    const prof = { 'index.html': 0 };
+    const file = ['index.html'];
+    while (file.length) {
+      const n = file.shift();
+      for (const c of liens[n] || []) if (!(c in prof)) { prof[c] = prof[n] + 1; file.push(c); }
+    }
+    for (const f of pages) {
+      if (SANS_LIEN.has(f)) continue;
+      if (!(f in prof)) pbs.push(f + ' : inatteignable depuis l accueil');
+      else if (prof[f] > 3) pbs.push(f + ' : a ' + prof[f] + ' clics de l accueil');
+    }
+    return pbs;
+  }}
+
 ];
 
 /* ------------------------------------------------------------------ *
