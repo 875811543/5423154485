@@ -749,6 +749,32 @@ build, les retirer de la source reviendrait à supprimer la documentation
 pour gagner quelques kilo-octets avant compression, sur un fichier mis en
 cache dès la première page.
 
+#### Éprouver la page 404 et parcourir le site en HTTP
+
+Deux vérifications demandent un serveur et échappent donc aux contrôles.
+Le serveur de test ordinaire ne suffit pas : il répond un texte brut sur une
+adresse inconnue, là où Apache sert le contenu de `404.html` **sous l'URL
+demandée**. C'est ce détail qui crée le problème que `<base href="/">` corrige.
+
+`scratchpad/viewport/serveur-404.js` rejoue ce comportement.
+`scratchpad/viewport/crawl.js` s'en sert pour suivre tous les liens depuis
+l'accueil et relever le statut de chaque adresse.
+
+Ce qu'ils ont établi, et qui n'avait jamais été démontré :
+
+- sur `/a/b/c-inexistant`, **sans** la balise `<base>`, la feuille de style est
+  cherchée dans `/a/b/assets/css/` et la page d'erreur s'affiche en Times New
+  Roman, sans aucun style. Avec la balise, elle est correctement rendue ;
+- une adresse inconnue renvoie **404 et non 200**. Un « soft 404 » ferait
+  indexer la page d'erreur par Google comme une page valide ;
+- 37 pages et 76 ressources répondent 200 ; seules `404` et `merci` sont hors
+  du parcours, ce qui est voulu — elles portent `noindex` et ne sont pas au
+  sitemap.
+
+Le contrôle `cibles` vérifie qu'un fichier existe ; ce parcours vérifie que le
+serveur le sert. Une casse différente ou une règle de réécriture trop étroite
+passe le premier et échoue au second.
+
 #### Simuler les règles du `.htaccess`
 
 Ce fichier décide de toute la navigation et **ne peut pas être testé en
