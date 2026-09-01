@@ -950,6 +950,22 @@ const CONTROLES = [
     return pbs;
   }}
 
+,
+
+{ nom: 'fichiers-cites', titre: 'Tout fichier cite existe reellement dans le depot',
+  run() {
+    const pbs = new Set();
+    for (const f of pages) {
+      const h = lire(f);
+      for (const m of h.matchAll(/(?:src|srcset|href)="([^"]+[.](?:jpg|jpeg|png|webp|svg|ico|woff2|css|js))"/g))
+        for (const c of m[1].split(',').map(x => x.trim().split(/\s+/)[0])) {
+          if (!c || /^(https?:|data:)/.test(c)) continue;
+          if (!fs.existsSync(c.split('?')[0])) pbs.add(c + ' : cite par ' + f + ', absent du depot');
+        }
+    }
+    return [...pbs];
+  }}
+
 ];
 
 /* ------------------------------------------------------------------ *
