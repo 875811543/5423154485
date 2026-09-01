@@ -1603,3 +1603,22 @@ li > .ico:first-child {
   @media (min-width: 1024px) {
     .footer-grid { grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr; gap: 24px; }
   }
+
+/* ------------------------------------------------------------
+   Questions de FAQ : le texte est un h3 pour exister dans le plan
+   du document — Google et la navigation par titres d'un lecteur
+   d'ecran ne voient pas un <summary>. La specification autorise un
+   titre dans un summary ; il ne doit simplement rien changer a
+   l'apparence, d'ou l'heritage complet de la typographie.
+   ------------------------------------------------------------ */
+.faq-item summary .faq-q,
+.faq-question .faq-q {
+  font: inherit;
+  font-weight: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
