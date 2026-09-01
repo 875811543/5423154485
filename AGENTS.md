@@ -77,8 +77,29 @@ est exactement ce qui est servi.
   racine**, chez **Hostinger** — mutualisé sous LiteSpeed, qui lit les
   `.htaccess` nativement. C'est ce que déclarent tous les `canonical`, le
   `sitemap.xml` et le JSON-LD.
-  **Le site n'était pas encore en ligne au 30 août 2026** : la bascule du
-  domaine restait à faire.
+  **Une version antérieure du site est en ligne à cette adresse** — vérifié le
+  1er septembre 2026. Ce dépôt n'a jamais été déployé : la bascule sera un
+  **remplacement**, pas une première publication. Trois faits mesurés ce jour-là,
+  qui décident de la valeur de tout ce qui se fait ici :
+
+  - La version en ligne enferme **tout son contenu dans une `<iframe srcdoc>`**.
+    Mesure page par page dans un navigateur réel : **164 mots indexables** sur
+    l'ensemble du site, contre 6 037 enfermés dans les iframes. Quatorze de ses
+    seize pages n'ont **aucun titre** dans leur propre document, pas même un
+    `h1`. Une recherche sur la chaîne `dezinsect-corse.fr` ne remonte aucune de
+    ses pages — pas même pour son propre nom de domaine.
+  - Ce dépôt sert **43 621 mots** et 762 titres, tous dans le document de leur
+    page, sans iframe et sans JavaScript. C'est la correction de ce défaut, et
+    c'est ce qui rend le référencement possible plutôt que meilleur.
+  - Le sitemap en ligne déclare seize adresses, dont **six n'existent plus ici**.
+    Elles sont redirigées dans le `.htaccess` — voir le bloc de redirections et
+    son commentaire, qui explique comment la liste a été établie sans Search
+    Console et ce qu'elle ne peut pas couvrir.
+
+  Un ancien domaine, `dezinsect20.fr`, remonte encore en première position sur
+  la marque mais **ne résout plus en DNS**, ni avec ni sans `www`. Le premier
+  résultat sur le nom de l'entreprise est donc un lien mort. Savoir si le
+  propriétaire possède encore ce domaine reste une question ouverte.
   La préversion GitHub Pages (`https://875811543.github.io/5423154485/`, servie
   sous un sous-chemin et sans réécriture) **n'est plus une cible**. Décision du
   propriétaire du site, prise en connaissance de cause quand les liens internes
