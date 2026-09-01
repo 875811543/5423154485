@@ -876,6 +876,38 @@ const CONTROLES = [
     return pbs;
   }}
 
+,
+
+{ nom: 'metadonnees', titre: 'Title, description et canonical presents et uniques',
+  run() {
+    const pbs = [];
+    const dec = v => v.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&#39;/g, "'");
+    const champ = (h, re) => { const m = h.match(re); return m ? dec(m[1]).trim() : null; };
+    const vus = { title: {}, description: {}, canonical: {} };
+
+    for (const f of pages) {
+      const h = lire(f).split('\n').join(' ');
+      // une page en noindex n'a pas a porter de canonical : 404 et merci
+      const noindex = /<meta name="robots"[^>]*noindex/.test(h);
+      const v = {
+        title: champ(h, /<title>([^<]*)</),
+        description: champ(h, /<meta name="description" content="([^"]*)"/),
+        canonical: champ(h, /<link rel="canonical" href="([^"]*)"/)
+      };
+      for (const k of ['title', 'description', 'canonical']) {
+        if (!v[k]) { if (!(k === 'canonical' && noindex)) pbs.push(f + ' : pas de ' + k); continue; }
+        (vus[k][v[k]] = vus[k][v[k]] || []).push(f);
+      }
+      // longueur affichee, entites decodees
+      if (v.title && v.title.length > 70) pbs.push(f + ' : title de ' + v.title.length + ' signes affiches, tronque dans les resultats');
+      if (v.description && v.description.length > 170) pbs.push(f + ' : description de ' + v.description.length + ' signes affiches, tronquee');
+    }
+    for (const k of ['title', 'description', 'canonical'])
+      for (const [val, fs_] of Object.entries(vus[k]))
+        if (fs_.length > 1) pbs.push(k + ' partage par ' + fs_.join(', ') + ' : « ' + val.slice(0, 60) + ' »');
+    return pbs;
+  }}
+
 ];
 
 /* ------------------------------------------------------------------ *
