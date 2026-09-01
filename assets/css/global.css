@@ -693,13 +693,12 @@ li.feature-item::before {
   justify-content: center;
   gap: 8px;
 }
-/* Deux boutons a parts egales. Le fond et la couleur du texte ne sont pas
-   poses ici : la section « Boutons de conversion en vert » plus bas les
-   impose en !important a tous les CTA d'appel. La ligne principale garde
-   donc le vert plein du systeme, et la seconde est declinee en contour
-   (voir .sticky-mobile-bar .sticky-call-btn--alt, specificite superieure
-   pour passer devant ce bloc). Le max-width est pose sur la paire
-   (2 x 236 + 8 de gap = 480), soit la largeur qu'occupait le bouton unique. */
+/* Deux boutons a parts egales, au sens strict : meme fond, meme couleur, meme
+   graisse. Le fond et la couleur du texte ne sont pas poses ici, la section
+   « Boutons de conversion en vert » plus bas les impose en !important a tous
+   les CTA d'appel — les deux lignes en heritent donc a l'identique. Le
+   max-width est pose sur la paire (2 x 236 + 8 de gap = 480), soit la largeur
+   qu'occupait le bouton unique. */
 .sticky-call-btn {
   flex: 1 1 0;
   min-width: 0;
@@ -716,16 +715,6 @@ li.feature-item::before {
   border-radius: 12px;
   text-decoration: none;
   white-space: nowrap;
-}
-.sticky-mobile-bar .sticky-call-btn--alt {
-  background: #FFFFFF !important;
-  background-color: #FFFFFF !important;
-  color: var(--accent-green) !important;
-  box-shadow: inset 0 0 0 2px var(--cta-green) !important;
-}
-.sticky-mobile-bar .sticky-call-btn--alt:hover {
-  background: var(--accent-green-bg) !important;
-  background-color: var(--accent-green-bg) !important;
 }
 .sticky-call-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
 /* Sous 360 px, l'icone saute plutot que de tronquer le numero. */
@@ -1075,21 +1064,6 @@ li > .ico:first-child {
   white-space: nowrap;
 }
 .tel-pair .ico { flex: 0 0 auto; }
-
-/* Deuxième ligne : même forme, teinte plus sobre pour hiérarchiser */
-.tel-pair > a.tel-alt {
-  background: #EAFBF0 !important;
-  background-color: #EAFBF0 !important;
-  color: #0B5B2C !important;
-  border: 1.5px solid #9FE7BB !important;
-  box-shadow: none !important;
-}
-.tel-pair > a.tel-alt:hover {
-  background: var(--cta-green) !important;
-  background-color: var(--cta-green) !important;
-  color: var(--on-cta) !important;
-  border-color: var(--cta-green) !important;
-}
 
 /* Sous 420 px, on empile pour éviter les numéros tronqués */
 @media (max-width: 420px) {
