@@ -795,6 +795,46 @@ const CONTROLES = [
     return pbs;
   }}
 
+,
+
+{ nom: 'a11y-structure', titre: 'Langue declaree, titres sans saut, images decrites',
+  run() {
+    const pbs = [];
+    for (const f of pages) {
+      const s = lire(f).replace(/<script[\s\S]*?<\/script>/g, '');
+
+      // 1. Sans lang, la synthese vocale lit le francais a l'anglaise.
+      const lang = s.match(/<html[^>]*\slang="([^"]*)"/);
+      if (!lang || !/^fr/i.test(lang[1]))
+        pbs.push(f + ' : langue absente ou non francaise (' + (lang ? lang[1] : 'aucun attribut') + ')');
+
+      // 2. Un lecteur d'ecran navigue de titre en titre : un niveau saute
+      // casse la carte de la page. Critere 1.3.1 des WCAG.
+      const niv = [];
+      for (const m of s.matchAll(/<h([1-6])[^>]*>([\s\S]*?)<\/h\1>/g))
+        niv.push({ n: +m[1], t: m[2].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() });
+      if (niv.length && niv[0].n !== 1)
+        pbs.push(f + ' : le premier titre est un h' + niv[0].n + ', pas un h1');
+      for (let i = 1; i < niv.length; i++)
+        if (niv[i].n > niv[i - 1].n + 1)
+          pbs.push(f + ' : saut h' + niv[i - 1].n + ' vers h' + niv[i].n
+            + ' avant « ' + niv[i].t.slice(0, 38) + ' »');
+
+      // 3. Pour un lecteur d'ecran, une image n'existe que par son alt. Un alt
+      // absent fait lire le nom du fichier ; un alt generique ne dit rien.
+      for (const m of s.matchAll(/<img\b[^>]*>/g)) {
+        const src = (m[0].match(/src="([^"]*)"/) || [])[1] || '?';
+        const alt = m[0].match(/\salt="([^"]*)"/);
+        if (!alt) { pbs.push(f + ' : image sans alt — ' + src.split('/').pop()); continue; }
+        const t = alt[1].trim();
+        if (!t) { pbs.push(f + ' : alt vide — ' + src.split('/').pop()); continue; }
+        if (/^(image|photo|illustration|img|visuel)\b/i.test(t))
+          pbs.push(f + ' : alt generique « ' + t.slice(0, 40) + ' » — ' + src.split('/').pop());
+      }
+    }
+    return pbs;
+  }}
+
 ];
 
 /* ------------------------------------------------------------------ *
