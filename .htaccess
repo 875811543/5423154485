@@ -27,9 +27,18 @@ DirectoryIndex index.html
 
   # ----------------------------------------------------------
   #  Redirections des anciennes URLs (migration builder -> site statique)
-  #  ⚠️ À COMPLÉTER avant la bascule du domaine.
-  #  Méthode : Search Console > Indexation > Pages > "Indexées", exporter
-  #  la liste, puis ajouter une ligne par URL qui n'existe plus à l'identique.
+  #
+  #  Liste etablie le 1er septembre 2026 a partir du site alors en ligne sur
+  #  dezinsect-corse.fr, faute d'acces a Search Console. Trois signaux publics
+  #  ont ete croises et donnent les memes seize adresses :
+  #    - /sitemap.xml du site en ligne
+  #    - les liens internes de sa page d'accueil, menus compris
+  #    - /robots.txt, qui ne declare qu'un sitemap et ne bloque aucun chemin
+  #  Six de ces adresses n'existent plus ici ; les six sont redirigees.
+  #
+  #  Reserve : une adresse indexee mais liee nulle part resterait invisible
+  #  depuis l'exterieur. Si Search Console devient accessible, comparer sa
+  #  liste « Indexees » a celles-ci et completer.
   #  Format : RewriteRule ^ancienne-url/?$ /nouvelle-url [R=301,L]
   # ----------------------------------------------------------
 
