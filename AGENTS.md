@@ -769,11 +769,11 @@ fois : `/index.html` passait par deux 301 en chaîne, et
 #### Vérifier avant de déclarer un défaut
 
 Sur cette base de code, **la sonde s'est trompée bien plus souvent que le
-site**. Sept fausses alertes, toutes du même genre : un outil
+site**. Huit fausses alertes, toutes du même genre : un outil
 de mesure mal écrit qui accuse un code correct. Le coût est réel — on
 « corrige » alors quelque chose qui marchait.
 
-Les sept, pour reconnaître la famille :
+Les huit, pour reconnaître la famille :
 
 1. **Un tableau affiché comme une chaîne.** `"tel : " + n.telephone` sur
    `["+33…", "+33…"]` imprime `+33…,+33…` et donne l'illusion d'un numéro
@@ -805,6 +805,12 @@ Les sept, pour reconnaître la famille :
    existent : `main.js` crée l'iframe au clic sur le bouton `data-map-load`.
    Une page n'est pas seulement ce que son fichier contient ; avant de conclure
    qu'un élément est absent, chercher aussi dans le JavaScript ce qui le crée.
+8. **Une capture prise avant l'apparition au défilement.** Les cartes portent
+   `reveal-on-scroll`, en opacité nulle jusqu'à ce que l'`IntersectionObserver`
+   les révèle. Une capture faite juste après le chargement rend une image
+   entièrement vide, qu'on interprète comme une page cassée. Capturer avec
+   JavaScript désactivé — la classe n'est alors jamais posée et le contenu est
+   visible d'emblée — ou attendre la révélation.
 
 **Règle** : avant d'annoncer un défaut, reproduire le symptôme par un second
 chemin — lire le fichier à la main, ou mesurer autrement. Et se méfier
