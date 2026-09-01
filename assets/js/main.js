@@ -70,8 +70,14 @@
   window.addEventListener("scroll", function () {
     backToTop.classList.toggle("is-visible", window.scrollY > 500);
   });
+  // La CSS force scroll-behavior a auto sous prefers-reduced-motion, mais un
+  // behavior passe a scrollTo court-circuite la propriete : il faut relire la
+  // preference ici. Lue au clic, pour suivre un changement de reglage en cours
+  // de visite.
   backToTop.addEventListener("click", function () {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    var mouvementReduit = window.matchMedia
+      && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: mouvementReduit ? "auto" : "smooth" });
   });
 
   // --- Apparition douce des cartes au scroll ---
