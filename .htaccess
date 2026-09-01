@@ -44,6 +44,17 @@ DirectoryIndex index.html
   RewriteRule ^anti-nuisibles-(grand-)?ajaccio/?$ /anti-nuisibles-grand-ajaccio-porto-vecchio [R=301,L]
   RewriteRule ^anti-nuisibles-(porto-vecchio|bonifacio|extreme-sud|sud-corse)/?$ /anti-nuisibles-grand-ajaccio-porto-vecchio [R=301,L]
 
+  # Adresses relevees dans le sitemap du site actuellement en ligne, le
+  # 1er septembre 2026. Elles n'existent plus dans cette version : sans ces
+  # regles, la bascule les renverrait en 404 et perdrait leur anciennete.
+  # Les deux premieres ont un equivalent exact service + ville.
+  RewriteRule ^frelons-porto-vecchio/?$ /destruction-nid-guepes-porto-vecchio [R=301,L]
+  RewriteRule ^termites-grand-ajaccio/?$ /traitement-termites-ajaccio [R=301,L]
+  RewriteRule ^frelons-casinca/?$ /destruction-nid-guepes-bastia [R=301,L]
+  RewriteRule ^plaine-orientale-frelons-termites/?$ /anti-nuisibles-costa-verde [R=301,L]
+  # Ecrit au singulier sur l'ancien site, la regle plurielle ne l'attrapait pas.
+  RewriteRule ^anti-nuisible-balagne(-et-nebbio)?/?$ /anti-nuisible-corte [R=301,L]
+
   # Filet de sécurité : toute ancienne URL de zone non listée ci-dessus
   # atterrit sur le hub plutôt qu'en 404.
   # Les deux conditions sont indispensables : sans elles, cette règle
