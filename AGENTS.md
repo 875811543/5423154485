@@ -540,7 +540,7 @@ comparant les deux échouerait après chaque commit, le sitemap ayant été
 permanent.
 
 ```sh
-node tools/controle.js            # les vingt contrôles
+node tools/controle.js            # les vingt-et-un contrôles
 node tools/controle.js --liste    # ce qu'ils vérifient
 node tools/controle.js alpha      # un seul, par son nom
 ```

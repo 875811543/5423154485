@@ -720,6 +720,50 @@ const CONTROLES = [
       .map(f => 'jamais referencee : ' + f);
   }}
 
+,
+
+{ nom: 'formulaires', titre: 'Les deux formulaires sont identiques et couvrent les services vendus',
+  run() {
+    // Le site porte deux formulaires, sur l'accueil et sur contact. Ils ont
+    // diverge sans que rien ne le signale : la liste des services omettait les
+    // moustiques, pourtant vendus, et la demande arrivait en « Autre demande »,
+    // donc sans qualification. Deux copies d'une meme chose finissent toujours
+    // par diverger si rien ne les compare.
+    const pbs = [];
+    const porteurs = pages.filter(p => /<form[\s\S]*?web3forms/i.test(lire(p)));
+    if (porteurs.length < 2) return pbs;   // un seul formulaire : rien a comparer
+
+    const signature = p => {
+      const s = lire(p);
+      const champs = (s.match(/<(?:input|select|textarea)[^>]*name="([^"]+)"/g) || [])
+        .map(x => (x.match(/name="([^"]+)"/) || [])[1]).sort().join(',');
+      const options = (s.match(/<option[^>]*>[^<]*/g) || [])
+        .map(x => x.replace(/.*>/, '').trim()).join('|');
+      const cle = (s.match(/name="access_key"[^>]*value="([^"]+)"/) || [])[1] || '';
+      return { champs, options, cle };
+    };
+    const ref = signature(porteurs[0]);
+    for (const p of porteurs.slice(1)) {
+      const s = signature(p);
+      for (const k of ['champs', 'options', 'cle'])
+        if (s[k] !== ref[k])
+          pbs.push(p + ' : ' + k + ' differe de ' + porteurs[0] + '\n            '
+            + porteurs[0] + ' : ' + ref[k] + '\n            ' + p + ' : ' + s[k]);
+    }
+
+    // Un service vendu mais absent du menu deroulant arrive sans qualification.
+    const opts = (lire(porteurs[0]).match(/<option[^>]*>[^<]*/g) || [])
+      .map(x => x.replace(/.*>/, '').trim().toLowerCase()).join(' ');
+    const SERVICES = { 'guepes-et-frelons': 'frelons', deratisation: 'ratisation',
+      'traitement-anti-termites': 'termites', desinsectisation: 'sinsectisation',
+      'moustiques-corse': 'moustiques' };
+    for (const [page, mot] of Object.entries(SERVICES))
+      if (pages.includes(page + '.html') && !opts.includes(mot))
+        pbs.push(porteurs[0] + ' : ' + page + ' est un service du site, absent du menu deroulant');
+
+    return pbs;
+  }}
+
 ];
 
 /* ------------------------------------------------------------------ *
