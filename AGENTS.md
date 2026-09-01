@@ -95,6 +95,19 @@ est exactement ce qui est servi.
     Elles sont redirigées dans le `.htaccess` — voir le bloc de redirections et
     son commentaire, qui explique comment la liste a été établie sans Search
     Console et ce qu'elle ne peut pas couvrir.
+  - **Rien du site en ligne n'a été perdu**, vérifié le 1er septembre 2026. Son
+    texte a été extrait des seize pages dans un navigateur — il est dans une
+    iframe, donc illisible autrement — puis comparé mot à mot à l'ensemble du
+    dépôt, sans liste préétablie : tous les mots distinctifs d'un côté, présence
+    de chacun de l'autre. Sur 2 800 mots testés, quatre manquaient. Deux
+    micro-régions ont été remises (piémont casinquais, Gravona) ; deux relèvent
+    du propriétaire et sont portées à la liste de mise en ligne (les chenilles
+    processionnaires, service vendu en ligne et absent ici ; la marque MABI du
+    matériel, nommée six fois en ligne). Le reste des écarts était de la
+    reformulation. **Ne pas refaire cette comparaison** — et si un mot du site
+    en ligne semble manquer, chercher la reformulation avant de conclure : trois
+    fausses alertes sur quatre venaient de là (« déclaration en mairie » contre
+    « déclarer le foyer en mairie »).
 
   Un ancien domaine, `dezinsect20.fr`, remonte encore en première position sur
   la marque mais **ne résout plus en DNS**, ni avec ni sans `www`. Le premier
