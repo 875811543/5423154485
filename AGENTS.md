@@ -77,10 +77,21 @@ est exactement ce qui est servi.
   racine**, chez **Hostinger** — mutualisé sous LiteSpeed, qui lit les
   `.htaccess` nativement. C'est ce que déclarent tous les `canonical`, le
   `sitemap.xml` et le JSON-LD.
-  **Une version antérieure du site est en ligne à cette adresse** — vérifié le
-  1er septembre 2026. Ce dépôt n'a jamais été déployé : la bascule sera un
-  **remplacement**, pas une première publication. Trois faits mesurés ce jour-là,
-  qui décident de la valeur de tout ce qui se fait ici :
+  **Le déploiement est automatique depuis GitHub** — mis en place le 2 septembre
+  2026. Hostinger déploie la branche `main` vers `public_html` à chaque
+  publication. **Un `git push` met le site en ligne**, sans archive à fabriquer
+  ni téléversement dans hPanel.
+
+  Ce que cela change pour une session qui travaille ici : **pousser est un acte
+  public**, plus un enregistrement local. Les 29 contrôles doivent passer avant
+  le push, pas après, et une page à moitié écrite ne se commite pas « pour la
+  nuit ». Vérifier après coup se fait en interrogeant le site réel — les treize
+  pages ajoutées le 2 septembre étaient en ligne avant même qu'on pense à les
+  téléverser.
+
+  **La bascule a eu lieu le 2 septembre 2026 au matin.** Ce qui suit décrit la
+  version qu'elle a remplacée, et reste utile pour comprendre d'où vient le
+  travail fait ici :
 
   - La version en ligne enferme **tout son contenu dans une `<iframe srcdoc>`**.
     Mesure page par page dans un navigateur réel : **164 mots indexables** sur
@@ -91,8 +102,9 @@ est exactement ce qui est servi.
   - Ce dépôt sert **43 621 mots** et 762 titres, tous dans le document de leur
     page, sans iframe et sans JavaScript. C'est la correction de ce défaut, et
     c'est ce qui rend le référencement possible plutôt que meilleur.
-  - Le sitemap en ligne déclare seize adresses, dont **six n'existent plus ici**.
-    Elles sont redirigées dans le `.htaccess` — voir le bloc de redirections et
+  - Le sitemap de cette version déclarait seize adresses, dont **six n'existaient
+    plus ici**. Elles sont redirigées dans le `.htaccess` — les six redirections
+    ont été vérifiées en ligne le 2 septembre, chacune arrivant sur la bonne cible — voir le bloc de redirections et
     son commentaire, qui explique comment la liste a été établie sans Search
     Console et ce qu'elle ne peut pas couvrir.
   - **Rien du site en ligne n'a été perdu**, vérifié le 1er septembre 2026. Son
@@ -399,10 +411,15 @@ largeur où ce menu est visible. Contrôler en desktop seul n'aurait rien prouv�
 
 ### P3 — Cohérence SEO
 
-- Balise `google-site-verification` encore en commentaire (`index.html`).
-- `.htaccess` porte un « ⚠️ À COMPLÉTER avant la bascule du domaine » : les 301
-  d'anciennes URLs sont partielles, à croiser avec l'export Search Console.
-- `sitemap.xml` : `lastmod` identique partout (`2026-08-25`).
+- Balise `google-site-verification` encore en commentaire (`index.html`, ligne 13,
+  valeur `XXXX`). Exact, mais plus bloquant : Search Console accepte aussi la
+  vérification par enregistrement DNS, qui ne touche pas au dépôt.
+- ~~`.htaccess` porte un « ⚠️ À COMPLÉTER avant la bascule »~~ — **réglé.** Le
+  bloc de six redirections a été établi depuis le sitemap du site remplacé, et
+  son commentaire explique la méthode et sa seule réserve. Les six ont été
+  vérifiées en ligne le 2 septembre 2026, chacune arrivant sur la bonne cible.
+- ~~`sitemap.xml` : `lastmod` identique partout~~ — **réglé.** Deux dates
+  distinctes aujourd'hui, alignées sur les modifications réelles.
 - Densité JSON-LD très variable (0 à 6 blocs) — normal pour `404`/`merci`,
   à vérifier pour `contact`, `mentions-legales`, `politique-confidentialite`
   (1 seul bloc chacune).
