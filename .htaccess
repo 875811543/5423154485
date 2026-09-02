@@ -228,3 +228,10 @@ ErrorDocument 403 /404.html
   AddType font/woff2 .woff2
   AddCharset UTF-8 .html .css .js .json .xml
 </IfModule>
+# --------------------------------------------------
+#  Fichiers de travail non publics
+# --------------------------------------------------
+<FilesMatch "^(AGENTS\.md|\.gitignore|\.gitattributes)$">
+  Require all denied
+</FilesMatch>
+RedirectMatch 404 ^/tools/
