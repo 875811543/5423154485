@@ -961,6 +961,23 @@ zone, `contact` (envoi du formulaire compris), en mobile et en desktop.
 
 ## 7. Méthode de travail attendue
 
+**IndexNow est branché.** Après chaque `git push` — et une fois le déploiement
+passé, jamais avant — lancer `node tools/indexnow.js`. Il compare les `lastmod`
+du sitemap à ceux du dernier envoi, mémorisés dans `tools/indexnow-etat.json`,
+et ne notifie que ce qui a changé. `--essai` montre sans poster, `--tout` force
+les 47 adresses.
+
+La clé n'est écrite dans aucun script : elle est **lue depuis le nom du fichier
+`<clé>.txt` à la racine**, dont le contenu doit être identique au nom, sans
+retour à la ligne ni BOM. Une seule source de vérité. **Ne renommez pas ce
+fichier et n'y ajoutez rien** : IndexNow compare octet pour octet, et un simple
+saut de ligne suffit à faire rejeter tous les envois — le script s'arrête de
+lui-même dans ce cas plutôt que de poster dans le vide.
+
+Cette clé est **publique par conception** : c'est ce qui prouve à Bing que le
+domaine vous appartient. Elle n'a rien à voir avec la clé d'accès à l'API Bing
+Webmaster Tools, qui est secrète et ne doit jamais entrer dans ce dépôt.
+
 **Lisez le fichier avant de le modifier. Ne reconstruisez jamais son contenu
 de mémoire.** Une ancre de remplacement doit être copiée depuis le fichier, pas
 retapée d'après ce qu'on croit s'y trouver. Trois tentatives ont été perdues sur
