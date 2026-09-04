@@ -1046,7 +1046,40 @@ const CONTROLES = [
       if (c.o['@id'] !== ID) pbs.push(c.f + ' : @id de l entreprise vaut ' + c.o['@id'] + ', attendu ' + ID);
     }
 
-    // 3. aucune valeur contradictoire d'une declaration a l'autre
+    // 3. l'areaServed de l'entite est un SUR-ENSEMBLE de celui de tous les
+    //    Service. C'est ce defaut qui a coute le lot 1 : des pages de ville
+    //    creees une a une ont declare des communes que l'entreprise ne
+    //    revendiquait nulle part. Une page ajoutee demain le refera sans ce
+    //    controle.
+    if (completes.length === 1) {
+      const zonesEntite = new Set([].concat(completes[0].o.areaServed || [])
+        .map(a => typeof a === 'string' ? a : a.name));
+      const manquantes = new Map();
+      const zones = (o, f, dansService) => {
+        if (!o || typeof o !== 'object') return;
+        if (Array.isArray(o)) return o.forEach(x => zones(x, f, dansService));
+        const t = [].concat(o['@type'] || '');
+        const ici = dansService || t.includes('Service') || t.some(x => TYPES.includes(x));
+        if (ici && o.areaServed)
+          for (const a of [].concat(o.areaServed)) {
+            const n = typeof a === 'string' ? a : a.name;
+            if (n && !zonesEntite.has(n)) {
+              if (!manquantes.has(n)) manquantes.set(n, new Set());
+              manquantes.get(n).add(f);
+            }
+          }
+        for (const k of Object.keys(o)) zones(o[k], f, ici);
+      };
+      for (const f of pages)
+        for (const m of lire(f).matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g))
+          { let o; try { o = JSON.parse(m[1]); } catch (e) { continue; } zones(o, f, false); }
+      for (const [n, fs_] of [...manquantes].slice(0, 8))
+        pbs.push('commune « ' + n +' » declaree par ' + [...fs_].join(', ')
+          + ' mais absente de l areaServed de l entreprise');
+      if (manquantes.size > 8) pbs.push('… et ' + (manquantes.size - 8) + ' autres communes dans le meme cas');
+    }
+
+    // 4. aucune valeur contradictoire d'une declaration a l'autre
     if (completes.length > 1) {
       for (const k of REQUIS) {
         const vues = new Set(completes.map(c => JSON.stringify(c.o[k])));
