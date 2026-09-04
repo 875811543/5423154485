@@ -210,9 +210,16 @@ ErrorDocument 403 /404.html
   # ----------------------------------------------------------
   #  Politique de securite du contenu — MODE RAPPORT
   # ----------------------------------------------------------
-  # Deliberement STRICTE et volontairement en Report-Only : elle ne bloque
-  # rien, elle signale. Ecrire d'emblee 'unsafe-inline' pour que « rien ne
-  # casse » reviendrait a se rassurer sans rien apprendre.
+  # Passee en mode BLOQUANT le 4 septembre 2026, apres zero violation constatee
+  # en Report-Only sur cinq pages -- accueil, deratisation, rat-noir, questions
+  # frequentes et contact -- carte cliquee, pages parcourues et les six
+  # raccourcis de la FAQ sollicites un par un. Un onclick ne viole rien tant
+  # qu'il ne s'execute pas : mesurer au repos aurait donne un rapport rassurant
+  # et faux.
+  #
+  # Elle ne porte AUCUN 'unsafe-inline'. Le JavaScript en ligne a ete retire du
+  # site plutot que permis, et le controle « pas-de-js-en-ligne » empeche qu'il
+  # revienne par une page creee plus tard.
   #
   # Ce qu'elle autorise, et pourquoi :
   #   connect-src  api.web3forms.com  — le formulaire de contact y poste
@@ -220,11 +227,7 @@ ErrorDocument 403 /404.html
   #   form-action  api.web3forms.com  — le formulaire en soumission classique
   #   img-src      data:              — les images encodees dans le CSS
   #
-  # Ce qu'elle refuse sciemment pour l'instant : le JavaScript en ligne. La
-  # page des questions frequentes porte un <script> et six onclick, qui
-  # apparaitront donc en violation. C'est l'information recherchee : elle dit
-  # ce qu'il faudrait deplacer dans main.js avant de passer en mode bloquant.
-  Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.web3forms.com; frame-src https://www.google.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; frame-ancestors 'self'"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.web3forms.com; frame-src https://www.google.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; frame-ancestors 'self'"
 </IfModule>
 
 # ------------------------------------------------------------
