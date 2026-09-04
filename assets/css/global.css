@@ -1641,7 +1641,15 @@ li > .ico:first-child {
   -webkit-overflow-scrolling: touch;
   border: 1px solid #E5E7EB;
   border-radius: 12px;
-  background: #fff;
+
+  /* Indication de defilement, sans JavaScript.
+     Le cache blanc est en attachment local : il defile avec le contenu et
+     vient masquer l'ombre quand on atteint la fin. L'ombre, en attachment
+     scroll, reste collee au bord droit du cadre. */
+  background:
+    linear-gradient(to left, #fff, #fff) right center / 28px 100% no-repeat local,
+    linear-gradient(to left, rgba(15, 23, 42, 0.16), rgba(15, 23, 42, 0)) right center / 28px 100% no-repeat scroll;
+  background-color: #fff;
 }
 .compare-table {
   width: 100%;

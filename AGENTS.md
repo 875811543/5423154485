@@ -961,6 +961,14 @@ zone, `contact` (envoi du formulaire compris), en mobile et en desktop.
 
 ## 7. Méthode de travail attendue
 
+**Tout script qui écrit du texte visible appelle `tools/typo.js`.** Le contrôle
+« typographie » exige l'espace insécable devant les signes doubles. Il a mordu
+**cinq fois** sur cinq scripts d'écriture différents — titres de section,
+questions de FAQ, légendes de tableaux — parce que chaque script réécrivait la
+règle sur place au lieu de la partager. `insecable(chaîne)` traite une chaîne,
+`appliquer(objet)` traite un plan JSON entier. Les deux ignorent l'intérieur des
+balises et sont idempotents.
+
 - **Par lots homogènes, pas page par page.** Ces 28 fichiers sont des variations
   d'un même gabarit : utiliser `sed`/scripts sur l'ensemble, puis vérifier avec §6.
   Une correction appliquée à une seule page recrée exactement la divergence
