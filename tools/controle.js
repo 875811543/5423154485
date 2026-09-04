@@ -1316,7 +1316,12 @@ const CONTROLES = [
       // 4. la date affichee et la date balisee disent la meme chose
       if (!a.dateModified) { pbs.push(f + ' : Article sans dateModified'); continue; }
       const h = lire(f);
-      const visible = h.match(/<time[^>]*datetime="(\d{4}-\d{2}-\d{2})"[^>]*class="[^"]*maj/);
+      // On cherche la balise <time> de mise a jour sans presumer de l'ordre de
+      // ses attributs : exiger datetime avant class produisait une fausse
+      // alerte sur un HTML parfaitement valide.
+      const balise = (h.match(/<time\b[^>]*>/g) || [])
+        .find(t => /class="[^"]*maj/.test(t) && /datetime="\d{4}-\d{2}-\d{2}"/.test(t));
+      const visible = balise && balise.match(/datetime="(\d{4}-\d{2}-\d{2})"/);
       if (!visible) pbs.push(f + ' : aucune date de mise a jour visible sur la page');
       else if (visible[1] !== a.dateModified)
         pbs.push(f + ' : la page affiche ' + visible[1] + ' et le balisage declare ' + a.dateModified);

@@ -961,6 +961,16 @@ zone, `contact` (envoi du formulaire compris), en mobile et en desktop.
 
 ## 7. Méthode de travail attendue
 
+**Le sommaire de la page FAQ n'a besoin d'aucun JavaScript.** Ses six raccourcis
+sont de vraies ancres — `href="#termites"` et le reste — et le défilement doux
+comme le décalage sous l'en-tête fixe viennent du CSS :
+`html { scroll-behavior: smooth; scroll-padding-top: var(--header-height) }`,
+avec repli sous `prefers-reduced-motion`. **N'y réintroduisez pas d'écouteur.**
+Ils étaient auparavant des `<a href="#">` pilotés par `onclick`, donc morts sans
+JavaScript ; un écouteur délégué rétablirait cette dépendance pour un
+comportement que le navigateur assure seul, et violerait la CSP, qui ne porte
+aucun `'unsafe-inline'`.
+
 **Tout script qui appelle `git` doit être testé sous Windows.** `execSync`
 passe par `cmd.exe`, qui interprète `|`, `&`, `^` et `%` avant que git ne les
 voie. Un format non protégé par des guillemets — `--format=%H|%cs` — échoue
