@@ -1693,3 +1693,15 @@ li > .ico:first-child {
   .compare-table th,
   .compare-table td { padding: 10px 12px; }
 }
+
+
+/* --------------------------------------------------------------
+   Coordonnees du pied de page
+   <address> est le bon element pour des coordonnees, mais les
+   navigateurs l'affichent en italique par defaut. On neutralise :
+   le rendu ne doit pas changer, seule la semantique change.
+   -------------------------------------------------------------- */
+.footer-coordonnees {
+  font-style: normal;
+  display: contents;
+}

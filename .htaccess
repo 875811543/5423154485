@@ -206,6 +206,25 @@ ErrorDocument 403 /404.html
   # servir max-age=0 puis d'attendre que chacun repasse.
   # A rajouter une fois que TOUS les sous-domaines sont en HTTPS.
   Header always set Strict-Transport-Security "max-age=31536000"
+
+  # ----------------------------------------------------------
+  #  Politique de securite du contenu — MODE RAPPORT
+  # ----------------------------------------------------------
+  # Deliberement STRICTE et volontairement en Report-Only : elle ne bloque
+  # rien, elle signale. Ecrire d'emblee 'unsafe-inline' pour que « rien ne
+  # casse » reviendrait a se rassurer sans rien apprendre.
+  #
+  # Ce qu'elle autorise, et pourquoi :
+  #   connect-src  api.web3forms.com  — le formulaire de contact y poste
+  #   frame-src    www.google.com     — la carte, creee par main.js au clic
+  #   form-action  api.web3forms.com  — le formulaire en soumission classique
+  #   img-src      data:              — les images encodees dans le CSS
+  #
+  # Ce qu'elle refuse sciemment pour l'instant : le JavaScript en ligne. La
+  # page des questions frequentes porte un <script> et six onclick, qui
+  # apparaitront donc en violation. C'est l'information recherchee : elle dit
+  # ce qu'il faudrait deplacer dans main.js avant de passer en mode bloquant.
+  Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.web3forms.com; frame-src https://www.google.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; frame-ancestors 'self'"
 </IfModule>
 
 # ------------------------------------------------------------
