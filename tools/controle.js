@@ -1126,6 +1126,42 @@ const CONTROLES = [
     return pbs;
   }}
 
+,
+
+{ nom: 'sitemap-genere', titre: 'Le sitemap est genere, pas ecrit a la main',
+  run() {
+    const pbs = [];
+    const OUTIL = 'tools/build-sitemap.js';
+
+    if (!fs.existsSync(OUTIL)) {
+      pbs.push(OUTIL + ' absent : le sitemap est maintenu a la main');
+    } else {
+      // Le generateur doit etre idempotent et faire autorite : ce qu'il produit
+      // doit etre exactement ce que porte le depot.
+      let produit;
+      try { produit = require(path.resolve(OUTIL)).construire(); }
+      catch (e) { pbs.push(OUTIL + ' : ' + e.message.slice(0, 90)); }
+      if (produit !== undefined) {
+        const actuel = fs.existsSync('sitemap.xml') ? lire('sitemap.xml') : '';
+        if (produit.trim() !== actuel.trim())
+          pbs.push('sitemap.xml differe de ce que produit le generateur — il a ete edite a la main, ou le generateur n a pas ete relance');
+      }
+    }
+
+    // Regle posee explicitement : aucune page indexable absente du sitemap.
+    if (fs.existsSync('sitemap.xml')) {
+      const sm = lire('sitemap.xml');
+      for (const f of pages) {
+        if (/<meta name="robots"[^>]*noindex/.test(lire(f))) continue;
+        const slug = f === 'index.html' ? '' : f.replace(/\.html$/, '');
+        const url = 'https://dezinsect-corse.fr/' + slug;
+        if (!sm.includes('<loc>' + url + '</loc>'))
+          pbs.push(f + ' : page indexable absente du sitemap');
+      }
+    }
+    return pbs;
+  }}
+
 ];
 
 /* ------------------------------------------------------------------ *
