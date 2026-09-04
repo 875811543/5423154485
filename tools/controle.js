@@ -129,7 +129,12 @@ const CONTROLES = [
       for (const f of pages) {
         const m = lire(f).match(motif);
         if (!m) { pbs.push(nom + ' absent de ' + f); continue; }
-        const k = crypto.createHash('md5').update(m[0]).digest('hex').slice(0, 8);
+        // aria-current="page" marque le lien de la page courante : il DOIT
+        // differer d'une page a l'autre, c'est sa raison d'etre. On le retire
+        // avant de comparer, sinon la regle « mobilier identique » interdirait
+        // de signaler la page active — deux exigences justes qui s'annulent.
+        const normalise = m[0].replace(/ aria-current="page"/g, '');
+        const k = crypto.createHash('md5').update(normalise).digest('hex').slice(0, 8);
         if (!vus.has(k)) vus.set(k, []);
         vus.get(k).push(f);
       }
