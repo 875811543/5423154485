@@ -997,6 +997,65 @@ const CONTROLES = [
     return pbs;
   }}
 
+,
+
+{ nom: 'entite-entreprise', titre: 'L entreprise est declaree une seule fois et en entier',
+  run() {
+    const pbs = [];
+    const TYPES = ['PestControlService', 'LocalBusiness', 'Organization', 'HomeAndConstructionBusiness'];
+    const ID = 'https://dezinsect-corse.fr/#organisation';
+    // Ce qui caracterise l'entreprise. Une declaration qui n'en porte qu'une
+    // partie decrit une entreprise plus pauvre que la vraie.
+    const REQUIS = ['name', 'address', 'telephone', 'geo', 'areaServed',
+      'openingHoursSpecification', 'image', 'logo', 'description', 'hasCredential', 'sameAs'];
+
+    const completes = [];   // { page, noeud, chemin }
+    const parcourir = (o, ch, f) => {
+      if (!o || typeof o !== 'object') return;
+      if (Array.isArray(o)) { o.forEach(x => parcourir(x, ch, f)); return; }
+      const t = [].concat(o['@type'] || '');
+      if (t.some(x => TYPES.includes(x))) {
+        const cles = Object.keys(o).filter(k => k !== '@type' && k !== '@id' && k !== '@context');
+        if (cles.length) completes.push({ f, o, ch: ch || '(racine)' });
+        else if (o['@id'] !== ID) pbs.push(f + ' : reference l entreprise par un @id inattendu — ' + o['@id']);
+      }
+      for (const k of Object.keys(o)) parcourir(o[k], ch ? ch + '.' + k : k, f);
+    };
+
+    for (const f of pages) {
+      for (const m of lire(f).matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+        let o; try { o = JSON.parse(m[1]); } catch (e) { continue; }
+        parcourir(o, '', f);
+      }
+    }
+
+    // 1. une seule declaration complete sur tout le site
+    if (completes.length !== 1) {
+      pbs.push(completes.length + ' declarations completes de l entreprise (attendu : 1)');
+      const parPage = {};
+      for (const c of completes) parPage[c.f] = (parPage[c.f] || 0) + 1;
+      for (const f of Object.keys(parPage).slice(0, 6))
+        pbs.push('    ' + f + ' : ' + parPage[f] + ' declaration(s)');
+      if (Object.keys(parPage).length > 6) pbs.push('    … et ' + (Object.keys(parPage).length - 6) + ' autres pages');
+    }
+
+    // 2. elle porte le jeu complet, et elle porte le bon @id
+    for (const c of completes.slice(0, 3)) {
+      const manque = REQUIS.filter(k => !(k in c.o));
+      if (manque.length) pbs.push(c.f + ' : declaration incomplete, manque ' + manque.join(', '));
+      if (c.o['@id'] !== ID) pbs.push(c.f + ' : @id de l entreprise vaut ' + c.o['@id'] + ', attendu ' + ID);
+    }
+
+    // 3. aucune valeur contradictoire d'une declaration a l'autre
+    if (completes.length > 1) {
+      for (const k of REQUIS) {
+        const vues = new Set(completes.map(c => JSON.stringify(c.o[k])));
+        if (vues.size > 1) pbs.push('champ « ' + k + ' » : ' + vues.size + ' valeurs differentes selon la page');
+      }
+    }
+    return pbs;
+  }}
+
 ];
 
 /* ------------------------------------------------------------------ *
