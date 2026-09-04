@@ -1241,6 +1241,35 @@ const CONTROLES = [
     return pbs;
   }}
 
+,
+
+{ nom: 'pas-de-js-en-ligne', titre: 'Aucun JavaScript en ligne dans le HTML',
+  run() {
+    const pbs = [];
+    for (const f of pages) {
+      const h = lire(f);
+
+      // 1. gestionnaires en ligne
+      for (const m of h.matchAll(/\s(on[a-z]+)="/g)) {
+        const ligne = h.slice(0, m.index).split('\n').length;
+        pbs.push(f + ':' + ligne + ' : gestionnaire en ligne ' + m[1] + ' — interdit par la CSP');
+      }
+
+      // 2. <script> sans src, hors donnees structurees
+      for (const m of h.matchAll(/<script\b([^>]*)>/g)) {
+        const attrs = m[1];
+        if (/\bsrc=/.test(attrs)) continue;
+        if (/type="application\/ld\+json"/.test(attrs)) continue;   // donnees, pas code
+        const ligne = h.slice(0, m.index).split('\n').length;
+        pbs.push(f + ':' + ligne + ' : <script> en ligne — interdit par la CSP');
+      }
+
+      // 3. pseudo-protocole javascript:
+      if (/href="javascript:/i.test(h)) pbs.push(f + ' : href="javascript:" — interdit par la CSP');
+    }
+    return pbs;
+  }}
+
 ];
 
 /* ------------------------------------------------------------------ *
