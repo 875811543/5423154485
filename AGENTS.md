@@ -961,6 +961,14 @@ zone, `contact` (envoi du formulaire compris), en mobile et en desktop.
 
 ## 7. Méthode de travail attendue
 
+**Lisez le fichier avant de le modifier. Ne reconstruisez jamais son contenu
+de mémoire.** Une ancre de remplacement doit être copiée depuis le fichier, pas
+retapée d'après ce qu'on croit s'y trouver. Trois tentatives ont été perdues sur
+`rat-noir.html` le 4 septembre 2026 : l'indentation était de 8 espaces et non de
+10, puis le texte portait l'entité `&nbsp;` là où une espace avait été écrite.
+Ces différences sont invisibles à la lecture d'un extrait de terminal. En cas de
+doute, afficher les caractères non ASCII par leur code avant d'écrire l'ancre.
+
 **Le sommaire de la page FAQ n'a besoin d'aucun JavaScript.** Ses six raccourcis
 sont de vraies ancres — `href="#termites"` et le reste — et le défilement doux
 comme le décalage sous l'en-tête fixe viennent du CSS :
