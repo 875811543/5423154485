@@ -961,6 +961,15 @@ zone, `contact` (envoi du formulaire compris), en mobile et en desktop.
 
 ## 7. Méthode de travail attendue
 
+**Tout script qui appelle `git` doit être testé sous Windows.** `execSync`
+passe par `cmd.exe`, qui interprète `|`, `&`, `^` et `%` avant que git ne les
+voie. Un format non protégé par des guillemets — `--format=%H|%cs` — échoue
+**en silence** : la commande retourne une erreur, le script tombe sur son repli,
+et le résultat paraît plausible. C'est arrivé sur `build-sitemap.js`, où le repli
+donnait la date du jour pour les 47 pages, c'est-à-dire exactement le sitemap
+sans signal que le script cherchait à éviter. Écrire `--format="%H|%cs"`, et
+vérifier la sortie plutôt que l'absence d'exception.
+
 **Tout script qui écrit du texte visible appelle `tools/typo.js`.** Le contrôle
 « typographie » exige l'espace insécable devant les signes doubles. Il a mordu
 **cinq fois** sur cinq scripts d'écriture différents — titres de section,
