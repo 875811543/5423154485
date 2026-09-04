@@ -42,6 +42,13 @@ Vérifié par comptage sur les 51 pages :
 
 ---
 
+> **Mesure du 2 septembre, postérieure à la première rédaction.** Le défaut des données
+> structurées n'est pas un problème de rangement mais de **cohérence d'entité** : les
+> déclarations d'entreprise se contredisent d'une page à l'autre. Les contrôles existants ne
+> pouvaient pas le voir — ils vérifient le texte visible, où nom, adresse et téléphones sont
+> parfaitement cohérents sur les 51 pages, jamais le JSON-LD. C'est ce qui justifie le
+> **trentième contrôle**, écrit avant la correction.
+
 ## 2. Problèmes détectés
 
 Gravité : **B** bloquant · **I** important · **C** cosmétique.
@@ -66,10 +73,12 @@ Gravité : **B** bloquant · **I** important · **C** cosmétique.
 
 | Fichier / portée | Problème | Gravité |
 |---|---|---|
-| 47 pages | **JSON-LD éclaté en 6 blocs isolés** au lieu d'un `@graph` unique. Les entités ne sont pas reliées par `@id` : Google reconstruit les liens au lieu de les lire | **B** |
-| 49 pages | **Aucun `@graph`** | **B** |
-| 51 pages | **`hasCredential` absent** du bloc entreprise : le Certibiocide n'existe pas en données structurées | **I** |
-| 51 pages | **`sameAs` à vérifier** — la fiche Google Business n'est pas certaine d'y figurer | **I** |
+| 51 pages | **L'entreprise est déclarée 48 fois** — 29 à la racine d'un bloc, 19 imbriquées dans un `provider` — plus 194 références par `@id`. Sans `@graph`, rien ne dit qu'il s'agit du même établissement : un moteur voit jusqu'à 48 candidats | **B** |
+| 25 pages | **`areaServed` a 6 valeurs différentes** selon la page. L'accueil déclare « Haute-Corse, Corse-du-Sud… », 16 pages « Corte, Venaco, Vivario, Calvi… », 8 autres « Moriani-Plage, Cervione… ». **Ce n'est pas un manque, c'est une contradiction** : selon la page où Google atterrit, l'entreprise ne dessert pas le même territoire | **B** |
+| 28 déclarations sur 29 | **`hasCredential` absent** : le Certibiocide n'existe en données structurées que sur l'accueil. Pour un métier où la certification *est* l'argument d'autorité, 28 déclarations décrivent une entreprise sans qualification | **B** |
+| 28 déclarations sur 29 | **`logo`, `description`, `makesOffer`, `employee` absents** — mêmes pages, même cause | **I** |
+| 1 page | **`image` a 2 valeurs** : l'accueil en déclare deux, les autres une | **C** |
+| 51 pages | **`sameAs` à compléter** avec la fiche Google Business (voir §6) | **I** |
 | 9 fiches nuisibles | **`Article` + `dateModified` absents** | **I** |
 | `404`, `merci` | Aucun JSON-LD — **correct**, ce sont des pages `noindex` | — |
 
