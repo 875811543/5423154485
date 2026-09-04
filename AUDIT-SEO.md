@@ -110,7 +110,7 @@ Dites-moi si vous voulez que je le fasse quand même — c'est votre décision, 
 | Information | Pourquoi elle manque |
 |---|---|
 | **SIREN / RCS** | Société en cours d'immatriculation (garde-fou du brief). Obligation légale ouverte |
-| **URL exacte de la fiche Google Business** | Nécessaire pour `sameAs`. Le site porte un `cid` Maps, pas l'URL du profil |
+| ~~**URL exacte de la fiche Google Business**~~ | **Fournie le 2 septembre 2026.** Le lien de partage résout vers une recherche « Dezinsect Corse » portant `kgmid=/g/11x7nktl5f` — l'identifiant de l'établissement dans le Knowledge Graph. Le site déclare par ailleurs `cid=6330082989377733098` dans `hasMap` sur 44 pages. **Non vérifié d'ici que les deux désignent la même fiche** : Google oppose un mur de consentement à toute requête automatisée. Voir §6 |
 | **Horaires réels** | Le JSON-LD déclare 08:00-20:00, 7 j/7. À confirmer avant de l'afficher en clair |
 | **Chenilles processionnaires** | Service vendu sur l'ancien site, absent d'ici. Méthode et saison inconnues |
 | **Marque MABI** | Nommée six fois sur l'ancien site, jamais ici. Matériel actuel à confirmer |
@@ -126,3 +126,30 @@ Dites-moi si vous voulez que je le fasse quand même — c'est votre décision, 
   avant et après le lot performance, et reportée dans `RAPPORT-SEO.md`.
 - **Volumes de recherche** : Semrush reste sans unités API. Aucun arbitrage de ce document
   ne repose sur un volume estimé.
+
+
+---
+
+## 6. Fiche Google Business — ce qui sera écrit dans le schema
+
+Deux identifiants sont connus, et ils ne se valent pas.
+
+| Identifiant | Origine | Fiabilité |
+|---|---|---|
+| `kgmid=/g/11x7nktl5f` | Lien de partage transmis par le propriétaire | **Certaine** — vient de sa propre fiche |
+| `cid=6330082989377733098` | Déjà dans le dépôt, champ `hasMap` de 44 pages | **Héritée**, jamais vérifiée |
+
+Ce qui sera écrit au lot 1, et pourquoi :
+
+- **`sameAs`** recevra `https://www.google.com/maps/place/?cid=6330082989377733098`.
+  C'est la forme canonique d'une fiche d'établissement, et c'est déjà celle que le site
+  emploie dans `hasMap` : les deux champs resteront cohérents.
+- **`identifier`** recevra le MID sous forme de `PropertyValue`
+  (`propertyID: "Google Knowledge Graph MID"`, `value: "/g/11x7nktl5f"`). C'est un type
+  schema.org valide, et c'est l'identifiant le plus stable qui existe pour une entité Google.
+
+**`TODO(dumé)` — une vérification de trente secondes :** ouvrez
+`https://www.google.com/maps/place/?cid=6330082989377733098` dans votre navigateur. Si vous
+tombez sur votre fiche, tout est juste et il n'y a rien à faire. Sinon, dites-le-moi : le
+`cid` hérité serait faux, et il faudrait le corriger sur les 44 pages, pas seulement dans le
+`sameAs`.
