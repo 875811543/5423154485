@@ -1162,6 +1162,43 @@ const CONTROLES = [
     return pbs;
   }}
 
+,
+
+{ nom: 'formats-images', titre: 'Chaque picture sert AVIF, WebP et un repli, avec ses dimensions',
+  run() {
+    const pbs = new Set();
+    for (const f of pages) {
+      for (const m of lire(f).matchAll(/<picture>([\s\S]*?)<\/picture>/g)) {
+        const bloc = m[1];
+        const img = (bloc.match(/<img\b[^>]*>/) || [])[0];
+        if (!img) { pbs.add(f + ' : <picture> sans <img> de repli'); continue; }
+
+        const src = (img.match(/src="([^"]+)"/) || [])[1];
+        if (!src) { pbs.add(f + ' : <img> sans src'); continue; }
+
+        // 4. dimensions conservees
+        if (!/\bwidth=/.test(img) || !/\bheight=/.test(img))
+          pbs.add(src + ' : <img> sans width ou height (' + f + ')');
+
+        // 1. les deux sources, dans le bon ordre
+        const types = [...bloc.matchAll(/<source[^>]*type="image\/(avif|webp)"/g)].map(x => x[1]);
+        if (!types.includes('avif')) pbs.add(src + ' : aucune source AVIF (' + f + ')');
+        if (!types.includes('webp')) pbs.add(src + ' : aucune source WebP (' + f + ')');
+        if (types.includes('avif') && types.includes('webp')
+            && types.indexOf('avif') > types.indexOf('webp'))
+          pbs.add(src + ' : AVIF declare apres WebP, il ne sera jamais servi (' + f + ')');
+
+        // 2 et 3. les trois fichiers existent
+        const base = src.replace(/\.(jpe?g|png|webp|avif)$/i, '');
+        if (!fs.existsSync(src)) pbs.add(src + ' : repli absent du depot');
+        for (const ext of ['webp', 'avif'])
+          if (!fs.existsSync(base + '.' + ext))
+            pbs.add(base + '.' + ext + ' : fichier absent du depot (' + f + ')');
+      }
+    }
+    return [...pbs];
+  }}
+
 ];
 
 /* ------------------------------------------------------------------ *
