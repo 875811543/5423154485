@@ -105,7 +105,10 @@ function toutesLesImages() {
     for (const e of fs.readdirSync(d, { withFileTypes: true })) {
       const p = path.join(d, e.name);
       if (e.isDirectory()) marche(p);
-      else if (/\.(png|webp|jpe?g)$/i.test(e.name)) out.push(p.replace(/\\/g, '/'));
+      // L'AVIF a ete ajoute au site apres coup : sans lui dans cette liste, le
+      // controle « orphelins » restait aveugle a tout un format, et un fichier
+      // genere mais jamais reference passait inapercu.
+      else if (/\.(png|webp|jpe?g|avif)$/i.test(e.name)) out.push(p.replace(/\\/g, '/'));
     }
   })('images');
   return out;
@@ -1188,12 +1191,16 @@ const CONTROLES = [
             && types.indexOf('avif') > types.indexOf('webp'))
           pbs.add(src + ' : AVIF declare apres WebP, il ne sera jamais servi (' + f + ')');
 
-        // 2 et 3. les trois fichiers existent
-        const base = src.replace(/\.(jpe?g|png|webp|avif)$/i, '');
-        if (!fs.existsSync(src)) pbs.add(src + ' : repli absent du depot');
-        for (const ext of ['webp', 'avif'])
-          if (!fs.existsSync(base + '.' + ext))
-            pbs.add(base + '.' + ext + ' : fichier absent du depot (' + f + ')');
+        // 2 et 3. tous les fichiers REELLEMENT references existent.
+        //    On ne devine pas les noms depuis le src de l'<img> : un <picture>
+        //    peut servir les variantes -760 en source et le pleine taille en
+        //    repli, auquel cas les deux jeux n'ont pas le meme nom de base.
+        //    Deviner produisait ici une fausse alerte.
+        if (!fs.existsSync(src)) pbs.add(src + ' : repli absent du depot (' + f + ')');
+        for (const m2 of bloc.matchAll(/<source[^>]*srcset="([^"]+)"/g))
+          for (const c of m2[1].split(',').map(x => x.trim().split(/\s+/)[0]))
+            if (c && !fs.existsSync(c.split('?')[0]))
+              pbs.add(c + ' : source declaree mais fichier absent (' + f + ')');
       }
     }
     return [...pbs];
