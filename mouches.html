@@ -30,217 +30,166 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": "https://dezinsect-corse.fr/#website",
-  "name": "Dezinsect Corse",
-  "url": "https://dezinsect-corse.fr/",
-  "inLanguage": "fr-FR",
-  "publisher": {
-    "@id": "https://dezinsect-corse.fr/#organisation"
-  }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Traiter les Mouches en Corse | Dezinsect Corse",
-  "url": "https://dezinsect-corse.fr/mouches",
-  "speakable": {
-    "@type": "SpeakableSpecification",
-    "cssSelector": [
-      "#page-h1",
-      "#page-lead"
-    ]
-  },
-  "isPartOf": {
-    "@id": "https://dezinsect-corse.fr/#website"
-  },
-  "publisher": {
-    "@id": "https://dezinsect-corse.fr/#organisation"
-  },
-  "@id": "https://dezinsect-corse.fr/mouches#webpage",
-  "inLanguage": "fr-FR"
-}
-</script>
-
-  <!-- Schema.org : BreadcrumbList -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
+  "@graph": [
     {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Accueil",
-      "item": "https://dezinsect-corse.fr/"
+      "@type": "WebSite",
+      "@id": "https://dezinsect-corse.fr/#website",
+      "name": "Dezinsect Corse",
+      "url": "https://dezinsect-corse.fr/",
+      "inLanguage": "fr-FR",
+      "publisher": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      }
     },
     {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Lexique des nuisibles",
-      "item": "https://dezinsect-corse.fr/lexique-nuisibles"
+      "@type": "WebPage",
+      "name": "Traiter les Mouches en Corse | Dezinsect Corse",
+      "url": "https://dezinsect-corse.fr/mouches",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          "#page-h1",
+          "#page-lead"
+        ]
+      },
+      "isPartOf": {
+        "@id": "https://dezinsect-corse.fr/#website"
+      },
+      "publisher": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      },
+      "@id": "https://dezinsect-corse.fr/mouches#webpage",
+      "inLanguage": "fr-FR"
     },
     {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Mouches",
-      "item": "https://dezinsect-corse.fr/mouches"
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://dezinsect-corse.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Lexique des nuisibles",
+          "item": "https://dezinsect-corse.fr/lexique-nuisibles"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Mouches",
+          "item": "https://dezinsect-corse.fr/mouches"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Désinsectisation Mouches en Corse",
+      "serviceType": "Traitement anti-mouches (zones de ponte et pulvérisation résiduelle)",
+      "provider": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Cervione"
+        },
+        {
+          "@type": "City",
+          "name": "Moriani-Plage"
+        },
+        {
+          "@type": "City",
+          "name": "Aléria"
+        },
+        {
+          "@type": "City",
+          "name": "Ghisonaccia"
+        },
+        {
+          "@type": "City",
+          "name": "Bastia"
+        },
+        {
+          "@type": "City",
+          "name": "Ajaccio"
+        },
+        {
+          "@type": "City",
+          "name": "Calvi"
+        },
+        {
+          "@type": "City",
+          "name": "L'Île-Rousse"
+        },
+        {
+          "@type": "City",
+          "name": "Corte"
+        },
+        {
+          "@type": "City",
+          "name": "Porto-Vecchio"
+        },
+        {
+          "@type": "City",
+          "name": "Bonifacio"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Haute-Corse"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Corse-du-Sud"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "D'où viennent les mouches chez moi ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Presque toujours d'un foyer identifiable à proximité : poubelles mal fermées, déchets organiques, fruits en décomposition ou point d'eau stagnante. Le diagnostic vise justement à retrouver cette source."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Intervenez-vous pour les restaurants et exploitations agricoles ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Dezinsect Corse propose des interventions ponctuelles et des contrats de suivi saisonnier adaptés aux contraintes des professionnels de la restauration et de l'agroalimentaire."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Le traitement est-il sans risque en cuisine ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nos applicateurs certifiés Certibiocide appliquent des produits homologués selon les dosages réglementaires et communiquent les délais de rentrée à respecter avant réutilisation des surfaces traitées."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment éviter le retour des mouches après traitement ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En complément du traitement, un nettoyage régulier des zones à risque (bacs à graisse, poubelles, résidus de fermentation) limite fortement la réapparition d'un foyer."
+          }
+        }
+      ]
     }
   ]
 }
-</script>
+  </script>
+
+  <!-- Schema.org : BreadcrumbList -->
 
   <!-- Schema LocalBusiness & FAQPage combinés -->
-  <script type="application/ld+json">
-[
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Désinsectisation Mouches en Corse",
-    "serviceType": "Traitement anti-mouches (zones de ponte et pulvérisation résiduelle)",
-    "provider": {
-      "@type": "PestControlService",
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
-        ],
-        "opens": "08:00",
-        "closes": "20:00"
-      },
-      "@id": "https://dezinsect-corse.fr/#organisation",
-      "hasMap": "https://www.google.com/maps/place/?cid=6330082989377733098",
-      "sameAs": [
-        "https://www.google.com/maps/place/?cid=6330082989377733098",
-        "https://www.youtube.com/@Dezinsect-corse-DM",
-        "https://www.instagram.com/dezinsectcorse/",
-        "https://www.facebook.com/dezinsect20/"
-      ],
-      "name": "Dezinsect Corse",
-      "url": "https://dezinsect-corse.fr/",
-      "telephone": [
-        "+33685753040",
-        "+33629421638"
-      ],
-      "image": "https://dezinsect-corse.fr/images/og-default.jpg",
-      "priceRange": "€€",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Lieu-dit Acqua Calda",
-        "addressLocality": "Santa-Maria-Poggio",
-        "postalCode": "20221",
-        "addressRegion": "Haute-Corse",
-        "addressCountry": "FR"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 42.3454,
-        "longitude": 9.4964
-      }
-    },
-    "areaServed": [
-      {
-        "@type": "City",
-        "name": "Cervione"
-      },
-      {
-        "@type": "City",
-        "name": "Moriani-Plage"
-      },
-      {
-        "@type": "City",
-        "name": "Aléria"
-      },
-      {
-        "@type": "City",
-        "name": "Ghisonaccia"
-      },
-      {
-        "@type": "City",
-        "name": "Bastia"
-      },
-      {
-        "@type": "City",
-        "name": "Ajaccio"
-      },
-      {
-        "@type": "City",
-        "name": "Calvi"
-      },
-      {
-        "@type": "City",
-        "name": "L'Île-Rousse"
-      },
-      {
-        "@type": "City",
-        "name": "Corte"
-      },
-      {
-        "@type": "City",
-        "name": "Porto-Vecchio"
-      },
-      {
-        "@type": "City",
-        "name": "Bonifacio"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Haute-Corse"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Corse-du-Sud"
-      }
-    ]
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "D'où viennent les mouches chez moi ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Presque toujours d'un foyer identifiable à proximité : poubelles mal fermées, déchets organiques, fruits en décomposition ou point d'eau stagnante. Le diagnostic vise justement à retrouver cette source."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Intervenez-vous pour les restaurants et exploitations agricoles ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Oui. Dezinsect Corse propose des interventions ponctuelles et des contrats de suivi saisonnier adaptés aux contraintes des professionnels de la restauration et de l'agroalimentaire."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Le traitement est-il sans risque en cuisine ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Nos applicateurs certifiés Certibiocide appliquent des produits homologués selon les dosages réglementaires et communiquent les délais de rentrée à respecter avant réutilisation des surfaces traitées."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Comment éviter le retour des mouches après traitement ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "En complément du traitement, un nettoyage régulier des zones à risque (bacs à graisse, poubelles, résidus de fermentation) limite fortement la réapparition d'un foyer."
-        }
-      }
-    ]
-  }
-]
-</script>
 
   <link rel="preload" as="image" href="images/nuisibles/mouche-domestique-macro.webp" type="image/webp">
   <link rel="stylesheet" href="assets/css/pages-nuisibles.css?v=298e2c85">

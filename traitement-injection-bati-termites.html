@@ -32,136 +32,91 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Service",
-  "serviceType": "Traitement du bâti par injection anti-termites",
-  "provider": {
-    "@type": "PestControlService",
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
-      ],
-      "opens": "08:00",
-      "closes": "20:00"
+  "@graph": [
+    {
+      "@type": "Service",
+      "serviceType": "Traitement du bâti par injection anti-termites",
+      "provider": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      },
+      "description": "Traitement du bâti contre les termites par injection en quinconce tous les 10 à 15 cm (mur et sol, ou mur seul), avec pose de pièges de détection et stations curatives professionnelles.",
+      "url": "https://dezinsect-corse.fr/traitement-injection-bati-termites"
     },
-    "@id": "https://dezinsect-corse.fr/#organisation",
-    "hasMap": "https://www.google.com/maps/place/?cid=6330082989377733098",
-    "sameAs": [
-      "https://www.google.com/maps/place/?cid=6330082989377733098",
-      "https://www.youtube.com/@Dezinsect-corse-DM",
-      "https://www.instagram.com/dezinsectcorse/",
-      "https://www.facebook.com/dezinsect20/"
-    ],
-    "name": "Dezinsect Corse",
-    "url": "https://dezinsect-corse.fr/",
-    "telephone": [
-      "+33685753040",
-      "+33629421638"
-    ],
-    "image": "https://dezinsect-corse.fr/images/og-default.jpg",
-    "priceRange": "€€",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Lieu-dit Acqua Calda",
-      "addressLocality": "Santa-Maria-Poggio",
-      "postalCode": "20221",
-      "addressRegion": "Haute-Corse",
-      "addressCountry": "FR"
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://dezinsect-corse.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Termites",
+          "item": "https://dezinsect-corse.fr/traitement-anti-termites"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Injection en quinconce & détection",
+          "item": "https://dezinsect-corse.fr/traitement-injection-bati-termites"
+        }
+      ]
     },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 42.3454,
-      "longitude": 9.4964
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Pourquoi percer en quinconce plutôt qu'en simple ligne droite ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le quinconce (lignes de perçage décalées plutôt qu'alignées) évite les zones intermédiaires non couvertes qui subsistent avec un perçage en ligne droite classique. Combiné à un espacement rigoureux de 10 à 15 cm, cela vise une couverture aussi continue que possible sur la surface traitée."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Faut-il traiter le mur et le sol, ou le mur seul ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cela dépend de la configuration constatée : si les termites remontent uniquement par les murs, un traitement mur seul suffit. Si une dalle ou un sol en contact avec la terre est concerné, nous traitons mur et sol en quinconce pour fermer toutes les voies de passage possibles."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "À quoi sert une station de détection ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Une station de détection, posée dans le sol autour du bâtiment, permet de vérifier à intervalles réguliers la présence de termites souterrains avant même qu'ils n'atteignent la structure. Si des termites sont détectés, un traitement curatif est engagé rapidement."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quelle est la différence entre un piège de détection et un piège curatif ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le piège de détection sert à surveiller et confirmer la présence de termites. Le piège curatif (station murale) intervient une fois les termites clairement localisés : il permet de les intercepter directement sur leur trajet et de traiter la colonie à la source."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Pourquoi ne pas se contenter d'une seule des deux méthodes ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "L'injection traite le bâti déjà exposé, mais ne surveille pas ce qui se passe ensuite autour de la structure. Les pièges surveillent les alentours dans la durée, mais ne traitent pas une infestation déjà installée dans la maçonnerie. Utilisées seules, chacune des deux méthodes laisse une partie du risque non couverte : c'est pourquoi nous les associons systématiquement."
+          }
+        }
+      ]
     }
-  },
-  "description": "Traitement du bâti contre les termites par injection en quinconce tous les 10 à 15 cm (mur et sol, ou mur seul), avec pose de pièges de détection et stations curatives professionnelles.",
-  "url": "https://dezinsect-corse.fr/traitement-injection-bati-termites"
+  ]
 }
-</script>
+  </script>
 
   <!-- Schema.org : BreadcrumbList -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Accueil",
-      "item": "https://dezinsect-corse.fr/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Termites",
-      "item": "https://dezinsect-corse.fr/traitement-anti-termites"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Injection en quinconce & détection",
-      "item": "https://dezinsect-corse.fr/traitement-injection-bati-termites"
-    }
-  ]
-}
-</script>
 
   <!-- Schema.org : FAQPage -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Pourquoi percer en quinconce plutôt qu'en simple ligne droite ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Le quinconce (lignes de perçage décalées plutôt qu'alignées) évite les zones intermédiaires non couvertes qui subsistent avec un perçage en ligne droite classique. Combiné à un espacement rigoureux de 10 à 15 cm, cela vise une couverture aussi continue que possible sur la surface traitée."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Faut-il traiter le mur et le sol, ou le mur seul ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Cela dépend de la configuration constatée : si les termites remontent uniquement par les murs, un traitement mur seul suffit. Si une dalle ou un sol en contact avec la terre est concerné, nous traitons mur et sol en quinconce pour fermer toutes les voies de passage possibles."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "À quoi sert une station de détection ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Une station de détection, posée dans le sol autour du bâtiment, permet de vérifier à intervalles réguliers la présence de termites souterrains avant même qu'ils n'atteignent la structure. Si des termites sont détectés, un traitement curatif est engagé rapidement."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Quelle est la différence entre un piège de détection et un piège curatif ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Le piège de détection sert à surveiller et confirmer la présence de termites. Le piège curatif (station murale) intervient une fois les termites clairement localisés : il permet de les intercepter directement sur leur trajet et de traiter la colonie à la source."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Pourquoi ne pas se contenter d'une seule des deux méthodes ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "L'injection traite le bâti déjà exposé, mais ne surveille pas ce qui se passe ensuite autour de la structure. Les pièges surveillent les alentours dans la durée, mais ne traitent pas une infestation déjà installée dans la maçonnerie. Utilisées seules, chacune des deux méthodes laisse une partie du risque non couverte : c'est pourquoi nous les associons systématiquement."
-      }
-    }
-  ]
-}
-</script>
 
 
   <!-- Polices auto-hébergées : aucun appel à Google, aucune IP transmise -->

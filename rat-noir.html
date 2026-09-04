@@ -30,217 +30,166 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": "https://dezinsect-corse.fr/#website",
-  "name": "Dezinsect Corse",
-  "url": "https://dezinsect-corse.fr/",
-  "inLanguage": "fr-FR",
-  "publisher": {
-    "@id": "https://dezinsect-corse.fr/#organisation"
-  }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Rat Noir en Corse : Traitement | Dezinsect Corse",
-  "url": "https://dezinsect-corse.fr/rat-noir",
-  "speakable": {
-    "@type": "SpeakableSpecification",
-    "cssSelector": [
-      "#page-h1",
-      "#page-lead"
-    ]
-  },
-  "isPartOf": {
-    "@id": "https://dezinsect-corse.fr/#website"
-  },
-  "publisher": {
-    "@id": "https://dezinsect-corse.fr/#organisation"
-  },
-  "@id": "https://dezinsect-corse.fr/rat-noir#webpage",
-  "inLanguage": "fr-FR"
-}
-</script>
-
-  <!-- Schema.org : BreadcrumbList -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
+  "@graph": [
     {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Accueil",
-      "item": "https://dezinsect-corse.fr/"
+      "@type": "WebSite",
+      "@id": "https://dezinsect-corse.fr/#website",
+      "name": "Dezinsect Corse",
+      "url": "https://dezinsect-corse.fr/",
+      "inLanguage": "fr-FR",
+      "publisher": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      }
     },
     {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Lexique des nuisibles",
-      "item": "https://dezinsect-corse.fr/lexique-nuisibles"
+      "@type": "WebPage",
+      "name": "Rat Noir en Corse : Traitement | Dezinsect Corse",
+      "url": "https://dezinsect-corse.fr/rat-noir",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          "#page-h1",
+          "#page-lead"
+        ]
+      },
+      "isPartOf": {
+        "@id": "https://dezinsect-corse.fr/#website"
+      },
+      "publisher": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      },
+      "@id": "https://dezinsect-corse.fr/rat-noir#webpage",
+      "inLanguage": "fr-FR"
     },
     {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Rat noir",
-      "item": "https://dezinsect-corse.fr/rat-noir"
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://dezinsect-corse.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Lexique des nuisibles",
+          "item": "https://dezinsect-corse.fr/lexique-nuisibles"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Rat noir",
+          "item": "https://dezinsect-corse.fr/rat-noir"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Dératisation Rat Noir en Corse",
+      "serviceType": "Traitement anti-rongeurs (postes d'appâtage en hauteur)",
+      "provider": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Cervione"
+        },
+        {
+          "@type": "City",
+          "name": "Moriani-Plage"
+        },
+        {
+          "@type": "City",
+          "name": "Aléria"
+        },
+        {
+          "@type": "City",
+          "name": "Ghisonaccia"
+        },
+        {
+          "@type": "City",
+          "name": "Bastia"
+        },
+        {
+          "@type": "City",
+          "name": "Ajaccio"
+        },
+        {
+          "@type": "City",
+          "name": "Calvi"
+        },
+        {
+          "@type": "City",
+          "name": "L'Île-Rousse"
+        },
+        {
+          "@type": "City",
+          "name": "Corte"
+        },
+        {
+          "@type": "City",
+          "name": "Porto-Vecchio"
+        },
+        {
+          "@type": "City",
+          "name": "Bonifacio"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Haute-Corse"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Corse-du-Sud"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quelle différence entre rat noir et rat brun (surmulot) ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le rat noir est plus fin, meilleur grimpeur, et s'installe en hauteur (toitures, combles, charpentes) avec une queue plus longue que le corps. Le rat brun est plus massif, mauvais grimpeur, et reste au sol ou en sous-sol (terriers, réseaux d'évacuation). Le traitement diffère selon l'espèce en cause."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Pourquoi le rat noir est-il si présent en Corse ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le climat méditerranéen lui est particulièrement favorable : le rat noir y maintient des populations stables et abondantes, y compris en dehors des habitations, jusqu'à 1000 mètres d'altitude selon les études régionales."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment savoir si j'ai des rats noirs plutôt que des rats bruns ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Des bruits de déplacement en toiture ou en combles, plutôt qu'au sol ou en cave, orientent vers le rat noir. Un diagnostic sur place permet de confirmer l'espèce à partir des indices de présence (déjections, traces de passage, dégâts)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment empêcher son retour ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La taille des branches en contact avec la toiture et le calfeutrage des accès en combles sont les mesures les plus efficaces, en complément du traitement par appâtage."
+          }
+        }
+      ]
     }
   ]
 }
-</script>
+  </script>
+
+  <!-- Schema.org : BreadcrumbList -->
 
   <!-- Schema LocalBusiness & FAQPage combinés -->
-  <script type="application/ld+json">
-[
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Dératisation Rat Noir en Corse",
-    "serviceType": "Traitement anti-rongeurs (postes d'appâtage en hauteur)",
-    "provider": {
-      "@type": "PestControlService",
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
-        ],
-        "opens": "08:00",
-        "closes": "20:00"
-      },
-      "@id": "https://dezinsect-corse.fr/#organisation",
-      "hasMap": "https://www.google.com/maps/place/?cid=6330082989377733098",
-      "sameAs": [
-        "https://www.google.com/maps/place/?cid=6330082989377733098",
-        "https://www.youtube.com/@Dezinsect-corse-DM",
-        "https://www.instagram.com/dezinsectcorse/",
-        "https://www.facebook.com/dezinsect20/"
-      ],
-      "name": "Dezinsect Corse",
-      "url": "https://dezinsect-corse.fr/",
-      "telephone": [
-        "+33685753040",
-        "+33629421638"
-      ],
-      "image": "https://dezinsect-corse.fr/images/og-default.jpg",
-      "priceRange": "€€",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Lieu-dit Acqua Calda",
-        "addressLocality": "Santa-Maria-Poggio",
-        "postalCode": "20221",
-        "addressRegion": "Haute-Corse",
-        "addressCountry": "FR"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 42.3454,
-        "longitude": 9.4964
-      }
-    },
-    "areaServed": [
-      {
-        "@type": "City",
-        "name": "Cervione"
-      },
-      {
-        "@type": "City",
-        "name": "Moriani-Plage"
-      },
-      {
-        "@type": "City",
-        "name": "Aléria"
-      },
-      {
-        "@type": "City",
-        "name": "Ghisonaccia"
-      },
-      {
-        "@type": "City",
-        "name": "Bastia"
-      },
-      {
-        "@type": "City",
-        "name": "Ajaccio"
-      },
-      {
-        "@type": "City",
-        "name": "Calvi"
-      },
-      {
-        "@type": "City",
-        "name": "L'Île-Rousse"
-      },
-      {
-        "@type": "City",
-        "name": "Corte"
-      },
-      {
-        "@type": "City",
-        "name": "Porto-Vecchio"
-      },
-      {
-        "@type": "City",
-        "name": "Bonifacio"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Haute-Corse"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Corse-du-Sud"
-      }
-    ]
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Quelle différence entre rat noir et rat brun (surmulot) ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Le rat noir est plus fin, meilleur grimpeur, et s'installe en hauteur (toitures, combles, charpentes) avec une queue plus longue que le corps. Le rat brun est plus massif, mauvais grimpeur, et reste au sol ou en sous-sol (terriers, réseaux d'évacuation). Le traitement diffère selon l'espèce en cause."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Pourquoi le rat noir est-il si présent en Corse ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Le climat méditerranéen lui est particulièrement favorable : le rat noir y maintient des populations stables et abondantes, y compris en dehors des habitations, jusqu'à 1000 mètres d'altitude selon les études régionales."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Comment savoir si j'ai des rats noirs plutôt que des rats bruns ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Des bruits de déplacement en toiture ou en combles, plutôt qu'au sol ou en cave, orientent vers le rat noir. Un diagnostic sur place permet de confirmer l'espèce à partir des indices de présence (déjections, traces de passage, dégâts)."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Comment empêcher son retour ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "La taille des branches en contact avec la toiture et le calfeutrage des accès en combles sont les mesures les plus efficaces, en complément du traitement par appâtage."
-        }
-      }
-    ]
-  }
-]
-</script>
 
   <link rel="preload" as="image" href="images/nuisibles/rat-noir-feuilles.webp" type="image/webp">
   <link rel="stylesheet" href="assets/css/pages-nuisibles.css?v=298e2c85">

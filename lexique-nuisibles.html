@@ -30,132 +30,127 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": "https://dezinsect-corse.fr/#website",
-  "name": "Dezinsect Corse",
-  "url": "https://dezinsect-corse.fr/",
-  "inLanguage": "fr-FR",
-  "publisher": {
-    "@id": "https://dezinsect-corse.fr/#organisation"
-  }
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://dezinsect-corse.fr/#website",
+      "name": "Dezinsect Corse",
+      "url": "https://dezinsect-corse.fr/",
+      "inLanguage": "fr-FR",
+      "publisher": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "name": "Lexique des Nuisibles en Corse : Identification & Traitement | Dezinsect Corse",
+      "url": "https://dezinsect-corse.fr/lexique-nuisibles",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          "#page-h1",
+          "#page-lead"
+        ]
+      },
+      "isPartOf": {
+        "@id": "https://dezinsect-corse.fr/#website"
+      },
+      "publisher": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      },
+      "@id": "https://dezinsect-corse.fr/lexique-nuisibles#webpage",
+      "inLanguage": "fr-FR"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://dezinsect-corse.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Lexique des nuisibles",
+          "item": "https://dezinsect-corse.fr/lexique-nuisibles"
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "name": "Nuisibles traités par Dezinsect Corse",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Fourmis",
+          "url": "https://dezinsect-corse.fr/fourmis"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Cafards & blattes",
+          "url": "https://dezinsect-corse.fr/cafards"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Moustiques",
+          "url": "https://dezinsect-corse.fr/moustiques-corse"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Mouches",
+          "url": "https://dezinsect-corse.fr/mouches"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Termites",
+          "url": "https://dezinsect-corse.fr/traitement-anti-termites"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "Capricorne, vrillette & lyctus",
+          "url": "https://dezinsect-corse.fr/capricorne-des-maisons"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "Mérule & champignons du bois",
+          "url": "https://dezinsect-corse.fr/merule-champignons-bois"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "name": "Rat noir",
+          "url": "https://dezinsect-corse.fr/rat-noir"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "name": "Rat brun (surmulot)",
+          "url": "https://dezinsect-corse.fr/rat-brun-surmulot"
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "name": "Souris",
+          "url": "https://dezinsect-corse.fr/souris"
+        }
+      ]
+    }
+  ]
 }
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Lexique des Nuisibles en Corse : Identification & Traitement | Dezinsect Corse",
-  "url": "https://dezinsect-corse.fr/lexique-nuisibles",
-  "speakable": {
-    "@type": "SpeakableSpecification",
-    "cssSelector": [
-      "#page-h1",
-      "#page-lead"
-    ]
-  },
-  "isPartOf": {
-    "@id": "https://dezinsect-corse.fr/#website"
-  },
-  "publisher": {
-    "@id": "https://dezinsect-corse.fr/#organisation"
-  },
-  "@id": "https://dezinsect-corse.fr/lexique-nuisibles#webpage",
-  "inLanguage": "fr-FR"
-}
-</script>
+  </script>
 
   <!-- Schema.org : BreadcrumbList -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Accueil",
-      "item": "https://dezinsect-corse.fr/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Lexique des nuisibles",
-      "item": "https://dezinsect-corse.fr/lexique-nuisibles"
-    }
-  ]
-}
-</script>
 
   <!-- Schema.org : ItemList des nuisibles traités -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "Nuisibles traités par Dezinsect Corse",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Fourmis",
-      "url": "https://dezinsect-corse.fr/fourmis"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Cafards & blattes",
-      "url": "https://dezinsect-corse.fr/cafards"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Moustiques",
-      "url": "https://dezinsect-corse.fr/moustiques-corse"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "Mouches",
-      "url": "https://dezinsect-corse.fr/mouches"
-    },
-    {
-      "@type": "ListItem",
-      "position": 5,
-      "name": "Termites",
-      "url": "https://dezinsect-corse.fr/traitement-anti-termites"
-    },
-    {
-      "@type": "ListItem",
-      "position": 6,
-      "name": "Capricorne, vrillette & lyctus",
-      "url": "https://dezinsect-corse.fr/capricorne-des-maisons"
-    },
-    {
-      "@type": "ListItem",
-      "position": 7,
-      "name": "Mérule & champignons du bois",
-      "url": "https://dezinsect-corse.fr/merule-champignons-bois"
-    },
-    {
-      "@type": "ListItem",
-      "position": 8,
-      "name": "Rat noir",
-      "url": "https://dezinsect-corse.fr/rat-noir"
-    },
-    {
-      "@type": "ListItem",
-      "position": 9,
-      "name": "Rat brun (surmulot)",
-      "url": "https://dezinsect-corse.fr/rat-brun-surmulot"
-    },
-    {
-      "@type": "ListItem",
-      "position": 10,
-      "name": "Souris",
-      "url": "https://dezinsect-corse.fr/souris"
-    }
-  ]
-}
-</script>
 
   <!-- Schema.org : LocalBusiness -->
   <link rel="stylesheet" href="assets/css/pages-nuisibles.css?v=298e2c85">

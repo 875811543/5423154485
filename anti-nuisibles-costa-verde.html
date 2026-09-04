@@ -31,279 +31,130 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": "https://dezinsect-corse.fr/#website",
-  "name": "Dezinsect Corse",
-  "url": "https://dezinsect-corse.fr/",
-  "inLanguage": "fr-FR",
-  "publisher": {
-    "@id": "https://dezinsect-corse.fr/#organisation"
-  }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "PestControlService",
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday"
-    ],
-    "opens": "08:00",
-    "closes": "20:00"
-  },
-  "@id": "https://dezinsect-corse.fr/#organisation",
-  "sameAs": [
-    "https://www.google.com/maps/place/?cid=6330082989377733098",
-    "https://www.youtube.com/@Dezinsect-corse-DM",
-    "https://www.instagram.com/dezinsectcorse/",
-    "https://www.facebook.com/dezinsect20/"
-  ],
-  "name": "Dezinsect Corse",
-  "url": "https://dezinsect-corse.fr/",
-  "telephone": [
-    "+33685753040",
-    "+33629421638"
-  ],
-  "image": "https://dezinsect-corse.fr/images/og-default.jpg",
-  "priceRange": "€€",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Lieu-dit Acqua Calda",
-    "addressLocality": "Santa-Maria-Poggio",
-    "postalCode": "20221",
-    "addressRegion": "Haute-Corse",
-    "addressCountry": "FR"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 42.3454,
-    "longitude": 9.4964
-  },
-  "areaServed": [
+  "@graph": [
     {
-      "@type": "City",
-      "name": "Moriani-Plage"
+      "@type": "WebSite",
+      "@id": "https://dezinsect-corse.fr/#website",
+      "name": "Dezinsect Corse",
+      "url": "https://dezinsect-corse.fr/",
+      "inLanguage": "fr-FR",
+      "publisher": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      }
     },
     {
-      "@type": "City",
-      "name": "Cervione"
+      "@id": "https://dezinsect-corse.fr/#organisation"
     },
     {
-      "@type": "City",
-      "name": "San-Nicolao"
+      "@type": "WebPage",
+      "@id": "https://dezinsect-corse.fr/anti-nuisibles-costa-verde#webpage",
+      "name": "Expert Anti-Nuisibles Nord-Est Corse (Costa Verde, Bastia, Casinca) | Dezinsect Corse",
+      "url": "https://dezinsect-corse.fr/anti-nuisibles-costa-verde",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          "#page-h1",
+          "#page-lead"
+        ]
+      },
+      "isPartOf": {
+        "@id": "https://dezinsect-corse.fr/#website"
+      },
+      "publisher": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      },
+      "inLanguage": "fr-FR"
     },
     {
-      "@type": "City",
-      "name": "Santa-Maria-Poggio"
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://dezinsect-corse.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Zones d'intervention",
+          "item": "https://dezinsect-corse.fr/zones-dintervention"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Nord-Est & Costa Verde",
+          "item": "https://dezinsect-corse.fr/anti-nuisibles-costa-verde"
+        }
+      ]
     },
     {
-      "@type": "City",
-      "name": "San-Giuliano"
-    },
-    {
-      "@type": "City",
-      "name": "Valle-di-Campoloro"
-    },
-    {
-      "@type": "City",
-      "name": "Bastia"
-    },
-    {
-      "@type": "City",
-      "name": "Biguglia"
-    },
-    {
-      "@type": "City",
-      "name": "Borgo"
-    },
-    {
-      "@type": "City",
-      "name": "Furiani"
-    },
-    {
-      "@type": "City",
-      "name": "Lucciana"
-    },
-    {
-      "@type": "City",
-      "name": "Ville-di-Pietrabugno"
-    },
-    {
-      "@type": "City",
-      "name": "San-Martino-di-Lota"
-    },
-    {
-      "@type": "City",
-      "name": "Santa-Maria-di-Lota"
-    },
-    {
-      "@type": "City",
-      "name": "Folelli"
-    },
-    {
-      "@type": "City",
-      "name": "Penta-di-Casinca"
-    },
-    {
-      "@type": "City",
-      "name": "Vescovato"
-    },
-    {
-      "@type": "City",
-      "name": "Querciolo"
-    },
-    {
-      "@type": "City",
-      "name": "Venzolasca"
-    },
-    {
-      "@type": "City",
-      "name": "Aléria"
-    },
-    {
-      "@type": "City",
-      "name": "Ghisonaccia"
-    },
-    {
-      "@type": "City",
-      "name": "Solenzara"
-    },
-    {
-      "@type": "City",
-      "name": "Prunelli-di-Fiumorbo"
-    },
-    {
-      "@type": "City",
-      "name": "Ventiseri"
-    }
-  ],
-  "hasMap": "https://www.google.com/maps/place/?cid=6330082989377733098"
-}
-</script>
-
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "@id": "https://dezinsect-corse.fr/anti-nuisibles-costa-verde#webpage",
-  "name": "Expert Anti-Nuisibles Nord-Est Corse (Costa Verde, Bastia, Casinca) | Dezinsect Corse",
-  "url": "https://dezinsect-corse.fr/anti-nuisibles-costa-verde",
-  "speakable": {
-    "@type": "SpeakableSpecification",
-    "cssSelector": [
-      "#page-h1",
-      "#page-lead"
-    ]
-  },
-  "isPartOf": {
-    "@id": "https://dezinsect-corse.fr/#website"
-  },
-  "publisher": {
-    "@id": "https://dezinsect-corse.fr/#organisation"
-  },
-  "inLanguage": "fr-FR"
-}
-</script>
-
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Accueil",
-      "item": "https://dezinsect-corse.fr/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Zones d'intervention",
-      "item": "https://dezinsect-corse.fr/zones-dintervention"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Nord-Est & Costa Verde",
-      "item": "https://dezinsect-corse.fr/anti-nuisibles-costa-verde"
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Descendez-vous jusqu'à Aléria et Ghisonaccia ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, la Plaine Orientale fait partie de notre secteur historique. Depuis la Costa Verde, Aléria, Ghisonaccia, Solenzara, Prunelli-di-Fiumorbo et Ventiseri sont accessibles par la route côtière, avec une intervention sous 24h dans la plupart des cas. Ce littoral concentre campings, résidences de tourisme et restauration saisonnière, où la pression des nuisibles monte fortement en été."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "En combien de temps intervenez-vous depuis la Costa Verde ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Notre siège opérationnel en Costa Verde nous permet des départs immédiats sur toute la façade Nord-Est : Costa Verde, Grand Bastia, Casinca et Plaine Orientale. Pour une urgence (nid de guêpes ou de frelons), nous intervenons généralement le jour même."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Le devis est-il vraiment gratuit et sans engagement ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, chaque demande donne lieu à un devis gratuit et personnalisé, établi après diagnostic de la situation, sans aucun engagement de votre part."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Vos produits sont-ils sans danger pour les enfants et les animaux ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nous utilisons exclusivement des biocides professionnels homologués, appliqués par un applicateur certifié Certibiocide selon des protocoles stricts qui limitent l'exposition des occupants, enfants et animaux domestiques."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Intervenez-vous aussi bien à Bastia qu'en zone rurale de la Casinca ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, notre zone Nord-Est couvre aussi bien le tissu urbain dense du Grand Bastia (immeubles, commerces, copropriétés) que les zones rurales et agricoles de la Casinca et de la Plaine Orientale."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Traitez-vous aussi les termites et les insectes du bois ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, nous réalisons des traitements par injection contre les termites et les insectes xylophages, sur les charpentes comme sur le bâti, avec pose de postes d'appâtage intérieurs et extérieurs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Intervenez-vous le week-end en cas d'urgence ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, nos interventions sont assurées 7j/7, y compris pour les urgences liées aux nids de guêpes et de frelons."
+          }
+        }
+      ]
     }
   ]
 }
-</script>
+  </script>
 
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Descendez-vous jusqu'à Aléria et Ghisonaccia ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Oui, la Plaine Orientale fait partie de notre secteur historique. Depuis la Costa Verde, Aléria, Ghisonaccia, Solenzara, Prunelli-di-Fiumorbo et Ventiseri sont accessibles par la route côtière, avec une intervention sous 24h dans la plupart des cas. Ce littoral concentre campings, résidences de tourisme et restauration saisonnière, où la pression des nuisibles monte fortement en été."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "En combien de temps intervenez-vous depuis la Costa Verde ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Notre siège opérationnel en Costa Verde nous permet des départs immédiats sur toute la façade Nord-Est : Costa Verde, Grand Bastia, Casinca et Plaine Orientale. Pour une urgence (nid de guêpes ou de frelons), nous intervenons généralement le jour même."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Le devis est-il vraiment gratuit et sans engagement ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Oui, chaque demande donne lieu à un devis gratuit et personnalisé, établi après diagnostic de la situation, sans aucun engagement de votre part."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Vos produits sont-ils sans danger pour les enfants et les animaux ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nous utilisons exclusivement des biocides professionnels homologués, appliqués par un applicateur certifié Certibiocide selon des protocoles stricts qui limitent l'exposition des occupants, enfants et animaux domestiques."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Intervenez-vous aussi bien à Bastia qu'en zone rurale de la Casinca ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Oui, notre zone Nord-Est couvre aussi bien le tissu urbain dense du Grand Bastia (immeubles, commerces, copropriétés) que les zones rurales et agricoles de la Casinca et de la Plaine Orientale."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Traitez-vous aussi les termites et les insectes du bois ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Oui, nous réalisons des traitements par injection contre les termites et les insectes xylophages, sur les charpentes comme sur le bâti, avec pose de postes d'appâtage intérieurs et extérieurs."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Intervenez-vous le week-end en cas d'urgence ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Oui, nos interventions sont assurées 7j/7, y compris pour les urgences liées aux nids de guêpes et de frelons."
-      }
-    }
-  ]
-}
-</script>
+
+
   <link rel="stylesheet" href="assets/css/pages-zones.css?v=f73c1861">
 
   <!-- Polices auto-hébergées : aucun appel à Google, aucune IP transmise -->

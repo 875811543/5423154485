@@ -30,125 +30,120 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": "https://dezinsect-corse.fr/#website",
-  "name": "Dezinsect Corse",
-  "url": "https://dezinsect-corse.fr/",
-  "inLanguage": "fr-FR",
-  "publisher": {
-    "@id": "https://dezinsect-corse.fr/#organisation"
-  }
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://dezinsect-corse.fr/#website",
+      "name": "Dezinsect Corse",
+      "url": "https://dezinsect-corse.fr/",
+      "inLanguage": "fr-FR",
+      "publisher": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "name": "Actualités Nuisibles en Corse | Dezinsect Corse",
+      "url": "https://dezinsect-corse.fr/actualites",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          "#page-h1",
+          "#page-lead"
+        ]
+      },
+      "isPartOf": {
+        "@id": "https://dezinsect-corse.fr/#website"
+      },
+      "publisher": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      },
+      "@id": "https://dezinsect-corse.fr/actualites#webpage",
+      "inLanguage": "fr-FR",
+      "description": "Frelon oriental détecté en Corse, diagnostic termites obligatoire à la vente, calendrier saisonnier des nuisibles : les informations utiles de Dezinsect Corse."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://dezinsect-corse.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Actualités"
+        }
+      ]
+    },
+    {
+      "@type": "Blog",
+      "@id": "https://dezinsect-corse.fr/actualites#blog",
+      "name": "Actualités Dezinsect Corse",
+      "inLanguage": "fr-FR",
+      "publisher": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      },
+      "blogPost": [
+        {
+          "@type": "BlogPosting",
+          "@id": "https://dezinsect-corse.fr/actualites#frelon-oriental",
+          "headline": "Le frelon oriental atteint la Haute-Corse : un nid identifié à Bastia",
+          "description": "Après Ajaccio en septembre 2025, un nid de frelons orientaux a été identifié à Bastia, une première en Haute-Corse. Une surveillance est en cours depuis mars 2026.",
+          "datePublished": "2026-08-30",
+          "dateModified": "2026-08-30",
+          "inLanguage": "fr-FR",
+          "mainEntityOfPage": "https://dezinsect-corse.fr/actualites#frelon-oriental",
+          "author": {
+            "@id": "https://dezinsect-corse.fr/#organisation"
+          },
+          "publisher": {
+            "@id": "https://dezinsect-corse.fr/#organisation"
+          }
+        },
+        {
+          "@type": "BlogPosting",
+          "@id": "https://dezinsect-corse.fr/actualites#diagnostic-termites",
+          "headline": "Vente immobilière : quand le diagnostic termites devient obligatoire",
+          "description": "La Corse est classée zone à risque termites sur l'intégralité de son territoire. Dans les communes déclarées par arrêté préfectoral, le diagnostic est exigé à la vente.",
+          "datePublished": "2026-08-30",
+          "dateModified": "2026-08-30",
+          "inLanguage": "fr-FR",
+          "mainEntityOfPage": "https://dezinsect-corse.fr/actualites#diagnostic-termites",
+          "author": {
+            "@id": "https://dezinsect-corse.fr/#organisation"
+          },
+          "publisher": {
+            "@id": "https://dezinsect-corse.fr/#organisation"
+          }
+        },
+        {
+          "@type": "BlogPosting",
+          "@id": "https://dezinsect-corse.fr/actualites#calendrier-saisonnier",
+          "headline": "Anticiper plutôt que subir : à quel moment de l'année appeler",
+          "description": "Un nid traité en mai coûte une fraction de ce qu'il coûte en août, et une hermétisation faite en septembre évite l'infestation de janvier. Le calendrier de l'anticipation.",
+          "datePublished": "2026-08-30",
+          "dateModified": "2026-08-30",
+          "inLanguage": "fr-FR",
+          "mainEntityOfPage": "https://dezinsect-corse.fr/actualites#calendrier-saisonnier",
+          "author": {
+            "@id": "https://dezinsect-corse.fr/#organisation"
+          },
+          "publisher": {
+            "@id": "https://dezinsect-corse.fr/#organisation"
+          }
+        }
+      ]
+    }
+  ]
 }
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Actualités Nuisibles en Corse | Dezinsect Corse",
-  "url": "https://dezinsect-corse.fr/actualites",
-  "speakable": {
-    "@type": "SpeakableSpecification",
-    "cssSelector": [
-      "#page-h1",
-      "#page-lead"
-    ]
-  },
-  "isPartOf": {
-    "@id": "https://dezinsect-corse.fr/#website"
-  },
-  "publisher": {
-    "@id": "https://dezinsect-corse.fr/#organisation"
-  },
-  "@id": "https://dezinsect-corse.fr/actualites#webpage",
-  "inLanguage": "fr-FR",
-  "description": "Frelon oriental détecté en Corse, diagnostic termites obligatoire à la vente, calendrier saisonnier des nuisibles : les informations utiles de Dezinsect Corse."
-}
-</script>
+  </script>
 
   <!-- Schema.org : BreadcrumbList -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Accueil",
-      "item": "https://dezinsect-corse.fr/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Actualités"
-    }
-  ]
-}
-</script>
 
   <!-- Schema.org : ItemList des nuisibles traités -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Blog",
-  "@id": "https://dezinsect-corse.fr/actualites#blog",
-  "name": "Actualités Dezinsect Corse",
-  "inLanguage": "fr-FR",
-  "publisher": {
-    "@id": "https://dezinsect-corse.fr/#organisation"
-  },
-  "blogPost": [
-    {
-      "@type": "BlogPosting",
-      "@id": "https://dezinsect-corse.fr/actualites#frelon-oriental",
-      "headline": "Le frelon oriental atteint la Haute-Corse : un nid identifié à Bastia",
-      "description": "Après Ajaccio en septembre 2025, un nid de frelons orientaux a été identifié à Bastia, une première en Haute-Corse. Une surveillance est en cours depuis mars 2026.",
-      "datePublished": "2026-08-30",
-      "dateModified": "2026-08-30",
-      "inLanguage": "fr-FR",
-      "mainEntityOfPage": "https://dezinsect-corse.fr/actualites#frelon-oriental",
-      "author": {
-        "@id": "https://dezinsect-corse.fr/#organisation"
-      },
-      "publisher": {
-        "@id": "https://dezinsect-corse.fr/#organisation"
-      }
-    },
-    {
-      "@type": "BlogPosting",
-      "@id": "https://dezinsect-corse.fr/actualites#diagnostic-termites",
-      "headline": "Vente immobilière : quand le diagnostic termites devient obligatoire",
-      "description": "La Corse est classée zone à risque termites sur l'intégralité de son territoire. Dans les communes déclarées par arrêté préfectoral, le diagnostic est exigé à la vente.",
-      "datePublished": "2026-08-30",
-      "dateModified": "2026-08-30",
-      "inLanguage": "fr-FR",
-      "mainEntityOfPage": "https://dezinsect-corse.fr/actualites#diagnostic-termites",
-      "author": {
-        "@id": "https://dezinsect-corse.fr/#organisation"
-      },
-      "publisher": {
-        "@id": "https://dezinsect-corse.fr/#organisation"
-      }
-    },
-    {
-      "@type": "BlogPosting",
-      "@id": "https://dezinsect-corse.fr/actualites#calendrier-saisonnier",
-      "headline": "Anticiper plutôt que subir : à quel moment de l'année appeler",
-      "description": "Un nid traité en mai coûte une fraction de ce qu'il coûte en août, et une hermétisation faite en septembre évite l'infestation de janvier. Le calendrier de l'anticipation.",
-      "datePublished": "2026-08-30",
-      "dateModified": "2026-08-30",
-      "inLanguage": "fr-FR",
-      "mainEntityOfPage": "https://dezinsect-corse.fr/actualites#calendrier-saisonnier",
-      "author": {
-        "@id": "https://dezinsect-corse.fr/#organisation"
-      },
-      "publisher": {
-        "@id": "https://dezinsect-corse.fr/#organisation"
-      }
-    }
-  ]
-}
-</script>
 
   <!-- Schema.org : LocalBusiness -->
 

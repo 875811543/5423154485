@@ -31,215 +31,114 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": "https://dezinsect-corse.fr/#website",
-  "name": "Dezinsect Corse",
-  "url": "https://dezinsect-corse.fr/",
-  "inLanguage": "fr-FR",
-  "publisher": {
-    "@id": "https://dezinsect-corse.fr/#organisation"
-  }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "PestControlService",
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday"
-    ],
-    "opens": "08:00",
-    "closes": "20:00"
-  },
-  "@id": "https://dezinsect-corse.fr/#organisation",
-  "sameAs": [
-    "https://www.google.com/maps/place/?cid=6330082989377733098",
-    "https://www.youtube.com/@Dezinsect-corse-DM",
-    "https://www.instagram.com/dezinsectcorse/",
-    "https://www.facebook.com/dezinsect20/"
-  ],
-  "name": "Dezinsect Corse",
-  "url": "https://dezinsect-corse.fr/",
-  "telephone": [
-    "+33685753040",
-    "+33629421638"
-  ],
-  "image": "https://dezinsect-corse.fr/images/og-default.jpg",
-  "priceRange": "€€",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Lieu-dit Acqua Calda",
-    "addressLocality": "Santa-Maria-Poggio",
-    "postalCode": "20221",
-    "addressRegion": "Haute-Corse",
-    "addressCountry": "FR"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 42.3454,
-    "longitude": 9.4964
-  },
-  "areaServed": [
+  "@graph": [
     {
-      "@type": "City",
-      "name": "Corte"
+      "@type": "WebSite",
+      "@id": "https://dezinsect-corse.fr/#website",
+      "name": "Dezinsect Corse",
+      "url": "https://dezinsect-corse.fr/",
+      "inLanguage": "fr-FR",
+      "publisher": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      }
     },
     {
-      "@type": "City",
-      "name": "Venaco"
+      "@id": "https://dezinsect-corse.fr/#organisation"
     },
     {
-      "@type": "City",
-      "name": "Vivario"
+      "@type": "WebPage",
+      "@id": "https://dezinsect-corse.fr/anti-nuisible-corte#webpage",
+      "name": "Expert Anti-Nuisibles Centre Corse & Balagne (Corte, Calvi) | Dezinsect Corse",
+      "url": "https://dezinsect-corse.fr/anti-nuisible-corte",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          "#page-h1",
+          "#page-lead"
+        ]
+      },
+      "isPartOf": {
+        "@id": "https://dezinsect-corse.fr/#website"
+      },
+      "publisher": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      },
+      "inLanguage": "fr-FR"
     },
     {
-      "@type": "City",
-      "name": "Ponte-Leccia"
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://dezinsect-corse.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Zones d'intervention",
+          "item": "https://dezinsect-corse.fr/zones-dintervention"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Centre Corse & Balagne",
+          "item": "https://dezinsect-corse.fr/anti-nuisible-corte"
+        }
+      ]
     },
     {
-      "@type": "City",
-      "name": "Calvi"
-    },
-    {
-      "@type": "City",
-      "name": "L'Île-Rousse"
-    },
-    {
-      "@type": "City",
-      "name": "Saint-Florent"
-    },
-    {
-      "@type": "City",
-      "name": "Algajola"
-    },
-    {
-      "@type": "City",
-      "name": "Lumio"
-    },
-    {
-      "@type": "City",
-      "name": "Belgodère"
-    },
-    {
-      "@type": "City",
-      "name": "Murato"
-    },
-    {
-      "@type": "City",
-      "name": "Rutali"
-    }
-  ],
-  "hasMap": "https://www.google.com/maps/place/?cid=6330082989377733098"
-}
-</script>
-
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "@id": "https://dezinsect-corse.fr/anti-nuisible-corte#webpage",
-  "name": "Expert Anti-Nuisibles Centre Corse & Balagne (Corte, Calvi) | Dezinsect Corse",
-  "url": "https://dezinsect-corse.fr/anti-nuisible-corte",
-  "speakable": {
-    "@type": "SpeakableSpecification",
-    "cssSelector": [
-      "#page-h1",
-      "#page-lead"
-    ]
-  },
-  "isPartOf": {
-    "@id": "https://dezinsect-corse.fr/#website"
-  },
-  "publisher": {
-    "@id": "https://dezinsect-corse.fr/#organisation"
-  },
-  "inLanguage": "fr-FR"
-}
-</script>
-
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Accueil",
-      "item": "https://dezinsect-corse.fr/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Zones d'intervention",
-      "item": "https://dezinsect-corse.fr/zones-dintervention"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Centre Corse & Balagne",
-      "item": "https://dezinsect-corse.fr/anti-nuisible-corte"
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Intervenez-vous à Corte et dans le Centre Corse malgré la distance ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, nous intervenons régulièrement à Corte, Venaco, Vivario et dans tout le Centre Corse, ainsi qu'en Balagne (Calvi, L'Île-Rousse) et dans le Nebbio (Saint-Florent). Le délai d'intervention est simplement adapté à la distance depuis notre siège en Costa Verde."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Le devis est-il vraiment gratuit et sans engagement ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, chaque demande donne lieu à un devis gratuit et personnalisé, établi après diagnostic de la situation, sans aucun engagement de votre part."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Traitez-vous les bâtisses anciennes typiques de la Balagne et du Centre Corse ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, notre expérience sur le bâti traditionnel corse (pierre, charpentes anciennes) nous permet d'adapter nos traitements termites et xylophages aux constructions typiques de Balagne, du Nebbio et du Centre Corse."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quelles communes couvrez-vous en Balagne et Centre Corse ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nous couvrons notamment Corte, Venaco, Vivario, Ponte-Leccia pour le Centre Corse, et Calvi, L'Île-Rousse, Saint-Florent, Algajola, Lumio, Belgodère, Murato, Rutali pour la Balagne et le Nebbio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Intervenez-vous en urgence pour un nid de frelons dans ces secteurs ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, une intervention d'urgence reste possible en Centre Corse et en Balagne, avec un délai adapté à l'éloignement du secteur concerné."
+          }
+        }
+      ]
     }
   ]
 }
-</script>
+  </script>
 
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Intervenez-vous à Corte et dans le Centre Corse malgré la distance ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Oui, nous intervenons régulièrement à Corte, Venaco, Vivario et dans tout le Centre Corse, ainsi qu'en Balagne (Calvi, L'Île-Rousse) et dans le Nebbio (Saint-Florent). Le délai d'intervention est simplement adapté à la distance depuis notre siège en Costa Verde."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Le devis est-il vraiment gratuit et sans engagement ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Oui, chaque demande donne lieu à un devis gratuit et personnalisé, établi après diagnostic de la situation, sans aucun engagement de votre part."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Traitez-vous les bâtisses anciennes typiques de la Balagne et du Centre Corse ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Oui, notre expérience sur le bâti traditionnel corse (pierre, charpentes anciennes) nous permet d'adapter nos traitements termites et xylophages aux constructions typiques de Balagne, du Nebbio et du Centre Corse."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Quelles communes couvrez-vous en Balagne et Centre Corse ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nous couvrons notamment Corte, Venaco, Vivario, Ponte-Leccia pour le Centre Corse, et Calvi, L'Île-Rousse, Saint-Florent, Algajola, Lumio, Belgodère, Murato, Rutali pour la Balagne et le Nebbio."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Intervenez-vous en urgence pour un nid de frelons dans ces secteurs ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Oui, une intervention d'urgence reste possible en Centre Corse et en Balagne, avec un délai adapté à l'éloignement du secteur concerné."
-      }
-    }
-  ]
-}
-</script>
+
+
   <link rel="stylesheet" href="assets/css/pages-zones.css?v=f73c1861">
 
   <!-- Polices auto-hébergées : aucun appel à Google, aucune IP transmise -->

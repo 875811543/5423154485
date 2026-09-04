@@ -33,184 +33,139 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Traitement et destruction des odeurs",
-  "serviceType": "Traitement des odeurs persistantes",
-  "provider": {
-    "@type": "PestControlService",
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Traitement et destruction des odeurs",
+      "serviceType": "Traitement des odeurs persistantes",
+      "provider": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      },
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Haute-Corse"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Corse-du-Sud"
+        }
       ],
-      "opens": "08:00",
-      "closes": "20:00"
+      "url": "https://dezinsect-corse.fr/traitement-odeurs",
+      "description": "Recherche de la source puis traitement des odeurs d'égouts, de rongeurs morts, d'humidité, de moisissures et d'habitacles de véhicules. Particuliers, hôtellerie et professionnels, partout en Corse.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Types d'odeurs traitées",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Odeurs dans les véhicules, habitacles et bateaux"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Odeurs d'égouts, de canalisations et de fosses"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Odeurs de rongeurs morts et de cadavres d'animaux"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Odeurs d'humidité, de moisissures et de renfermé"
+            }
+          }
+        ]
+      }
     },
-    "@id": "https://dezinsect-corse.fr/#organisation",
-    "hasMap": "https://www.google.com/maps/place/?cid=6330082989377733098",
-    "sameAs": [
-      "https://www.google.com/maps/place/?cid=6330082989377733098",
-      "https://www.youtube.com/@Dezinsect-corse-DM",
-      "https://www.instagram.com/dezinsectcorse/",
-      "https://www.facebook.com/dezinsect20/"
-    ],
-    "name": "Dezinsect Corse",
-    "url": "https://dezinsect-corse.fr/",
-    "telephone": [
-      "+33685753040",
-      "+33629421638"
-    ],
-    "image": "https://dezinsect-corse.fr/images/og-default.jpg",
-    "priceRange": "€€",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Lieu-dit Acqua Calda",
-      "addressLocality": "Santa-Maria-Poggio",
-      "postalCode": "20221",
-      "addressRegion": "Haute-Corse",
-      "addressCountry": "FR"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 42.3454,
-      "longitude": 9.4964
-    }
-  },
-  "areaServed": [
     {
-      "@type": "AdministrativeArea",
-      "name": "Haute-Corse"
-    },
-    {
-      "@type": "AdministrativeArea",
-      "name": "Corse-du-Sud"
-    }
-  ],
-  "url": "https://dezinsect-corse.fr/traitement-odeurs",
-  "description": "Recherche de la source puis traitement des odeurs d'égouts, de rongeurs morts, d'humidité, de moisissures et d'habitacles de véhicules. Particuliers, hôtellerie et professionnels, partout en Corse.",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Types d'odeurs traitées",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Odeurs dans les véhicules, habitacles et bateaux"
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Une odeur peut-elle revenir après traitement ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, si la source n'a pas été supprimée. Un traitement d'ambiance masque ou détruit les molécules présentes dans l'air, mais si un cadavre de rongeur reste dans une cloison, si une canalisation continue de refouler ou si l'humidité persiste, l'odeur réapparaît en quelques jours. C'est pourquoi nous commençons systématiquement par localiser l'origine avant de traiter."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien de temps faut-il quitter les lieux ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cela dépend de la méthode. Un traitement par ozonation impose de laisser le local totalement inoccupé pendant l'opération, personnes et animaux compris, puis de ventiler avant de revenir. Le délai va généralement de quelques heures à une demi-journée selon le volume. Une nébulisation ou un traitement enzymatique est moins contraignant. Nous vous indiquons le délai exact avant l'intervention."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Une odeur de tabac part-elle vraiment d'un véhicule ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dans la grande majorité des cas, oui. Le tabac froid se fixe dans les mousses de sièges, la garniture de pavillon et le circuit de ventilation. Un traitement de surface ne suffit pas : il faut atteindre ces trois zones, circuit d'air compris. C'est une demande fréquente avant une vente, et le résultat est généralement net."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien de temps pour traiter un véhicule ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un habitacle de voiture se traite généralement dans la demi-journée, ventilation comprise. Un camping-car ou une cabine de bateau demande plus de temps, le volume étant plus grand et les recoins plus nombreux. Nous vous précisons la durée après avoir vu le véhicule ou d'après votre description."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Faut-il d'abord régler l'humidité avant de traiter l'odeur ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, dans la quasi-totalité des cas. Une odeur de renfermé ou de moisissure est le symptôme d'un excès d'humidité : infiltration, remontée capillaire, ventilation insuffisante. Tant que l'eau arrive, les moisissures se reforment et l'odeur avec elles. Nous vous le disons franchement si le traitement seul n'a pas de sens dans votre situation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Le traitement est-il sans danger pour les occupants ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, dès lors que les consignes sont respectées. Les techniques que nous employons imposent selon les cas de libérer le local pendant l'opération et de ventiler avant de revenir. Nous vous donnons le délai précis et nous ne quittons pas les lieux sans vous avoir indiqué à partir de quand l'espace est de nouveau utilisable."
+          }
         }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Odeurs d'égouts, de canalisations et de fosses"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://dezinsect-corse.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Nos Services",
+          "item": "https://dezinsect-corse.fr/services-anti-nuisibles"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Traitement des odeurs"
         }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Odeurs de rongeurs morts et de cadavres d'animaux"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Odeurs d'humidité, de moisissures et de renfermé"
-        }
-      }
-    ]
-  }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Une odeur peut-elle revenir après traitement ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Oui, si la source n'a pas été supprimée. Un traitement d'ambiance masque ou détruit les molécules présentes dans l'air, mais si un cadavre de rongeur reste dans une cloison, si une canalisation continue de refouler ou si l'humidité persiste, l'odeur réapparaît en quelques jours. C'est pourquoi nous commençons systématiquement par localiser l'origine avant de traiter."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Combien de temps faut-il quitter les lieux ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Cela dépend de la méthode. Un traitement par ozonation impose de laisser le local totalement inoccupé pendant l'opération, personnes et animaux compris, puis de ventiler avant de revenir. Le délai va généralement de quelques heures à une demi-journée selon le volume. Une nébulisation ou un traitement enzymatique est moins contraignant. Nous vous indiquons le délai exact avant l'intervention."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Une odeur de tabac part-elle vraiment d'un véhicule ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Dans la grande majorité des cas, oui. Le tabac froid se fixe dans les mousses de sièges, la garniture de pavillon et le circuit de ventilation. Un traitement de surface ne suffit pas : il faut atteindre ces trois zones, circuit d'air compris. C'est une demande fréquente avant une vente, et le résultat est généralement net."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Combien de temps pour traiter un véhicule ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Un habitacle de voiture se traite généralement dans la demi-journée, ventilation comprise. Un camping-car ou une cabine de bateau demande plus de temps, le volume étant plus grand et les recoins plus nombreux. Nous vous précisons la durée après avoir vu le véhicule ou d'après votre description."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Faut-il d'abord régler l'humidité avant de traiter l'odeur ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Oui, dans la quasi-totalité des cas. Une odeur de renfermé ou de moisissure est le symptôme d'un excès d'humidité : infiltration, remontée capillaire, ventilation insuffisante. Tant que l'eau arrive, les moisissures se reforment et l'odeur avec elles. Nous vous le disons franchement si le traitement seul n'a pas de sens dans votre situation."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Le traitement est-il sans danger pour les occupants ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Oui, dès lors que les consignes sont respectées. Les techniques que nous employons imposent selon les cas de libérer le local pendant l'opération et de ventiler avant de revenir. Nous vous donnons le délai précis et nous ne quittons pas les lieux sans vous avoir indiqué à partir de quand l'espace est de nouveau utilisable."
-      }
+      ]
     }
   ]
 }
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Accueil",
-      "item": "https://dezinsect-corse.fr/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Nos Services",
-      "item": "https://dezinsect-corse.fr/services-anti-nuisibles"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Traitement des odeurs"
-    }
-  ]
-}
-</script>
+  </script>
   <link rel="stylesheet" href="assets/css/pages/traitement-odeurs.css?v=6328968b">
 
 </head>

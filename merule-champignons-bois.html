@@ -30,225 +30,174 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": "https://dezinsect-corse.fr/#website",
-  "name": "Dezinsect Corse",
-  "url": "https://dezinsect-corse.fr/",
-  "inLanguage": "fr-FR",
-  "publisher": {
-    "@id": "https://dezinsect-corse.fr/#organisation"
-  }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Mérule & Champignons du Bois en Corse : Diagnostic & Traitement | Dezinsect Corse",
-  "url": "https://dezinsect-corse.fr/merule-champignons-bois",
-  "speakable": {
-    "@type": "SpeakableSpecification",
-    "cssSelector": [
-      "#page-h1",
-      "#page-lead"
-    ]
-  },
-  "isPartOf": {
-    "@id": "https://dezinsect-corse.fr/#website"
-  },
-  "publisher": {
-    "@id": "https://dezinsect-corse.fr/#organisation"
-  },
-  "@id": "https://dezinsect-corse.fr/merule-champignons-bois#webpage",
-  "inLanguage": "fr-FR"
-}
-</script>
-
-  <!-- Schema.org : BreadcrumbList -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
+  "@graph": [
     {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Accueil",
-      "item": "https://dezinsect-corse.fr/"
+      "@type": "WebSite",
+      "@id": "https://dezinsect-corse.fr/#website",
+      "name": "Dezinsect Corse",
+      "url": "https://dezinsect-corse.fr/",
+      "inLanguage": "fr-FR",
+      "publisher": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      }
     },
     {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Lexique des nuisibles",
-      "item": "https://dezinsect-corse.fr/lexique-nuisibles"
+      "@type": "WebPage",
+      "name": "Mérule & Champignons du Bois en Corse : Diagnostic & Traitement | Dezinsect Corse",
+      "url": "https://dezinsect-corse.fr/merule-champignons-bois",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          "#page-h1",
+          "#page-lead"
+        ]
+      },
+      "isPartOf": {
+        "@id": "https://dezinsect-corse.fr/#website"
+      },
+      "publisher": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      },
+      "@id": "https://dezinsect-corse.fr/merule-champignons-bois#webpage",
+      "inLanguage": "fr-FR"
     },
     {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Mérule & champignons du bois",
-      "item": "https://dezinsect-corse.fr/merule-champignons-bois"
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://dezinsect-corse.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Lexique des nuisibles",
+          "item": "https://dezinsect-corse.fr/lexique-nuisibles"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Mérule & champignons du bois",
+          "item": "https://dezinsect-corse.fr/merule-champignons-bois"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Traitement Mérule et Champignons du Bois en Corse",
+      "serviceType": "Traitement fongicide (bois et maçonnerie)",
+      "provider": {
+        "@id": "https://dezinsect-corse.fr/#organisation"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Cervione"
+        },
+        {
+          "@type": "City",
+          "name": "Moriani-Plage"
+        },
+        {
+          "@type": "City",
+          "name": "Aléria"
+        },
+        {
+          "@type": "City",
+          "name": "Ghisonaccia"
+        },
+        {
+          "@type": "City",
+          "name": "Bastia"
+        },
+        {
+          "@type": "City",
+          "name": "Ajaccio"
+        },
+        {
+          "@type": "City",
+          "name": "Calvi"
+        },
+        {
+          "@type": "City",
+          "name": "L'Île-Rousse"
+        },
+        {
+          "@type": "City",
+          "name": "Corte"
+        },
+        {
+          "@type": "City",
+          "name": "Porto-Vecchio"
+        },
+        {
+          "@type": "City",
+          "name": "Bonifacio"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Haute-Corse"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Corse-du-Sud"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "La mérule est-elle fréquente en Corse ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Moins que dans les régions au climat tempéré humide : le climat globalement sec de l'île limite son développement à grande échelle. Elle reste néanmoins possible localement, partout où l'humidité persiste sans ventilation suffisante (bâti ancien, pièces mal aérées, infiltrations non traitées)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment reconnaît-on la mérule ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Par des filaments blancs à gris cotonneux sur le bois ou la maçonnerie, et une fructification orangée en cas de développement avancé. Le bois touché perd sa résistance et peut se fendiller en cubes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Le traitement fongicide suffit-il sans traiter l'humidité ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. Sans assèchement de la source d'humidité, le champignon peut se redévelopper malgré le traitement. Les deux actions sont systématiquement associées dans notre intervention."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Intervenez-vous en copropriété ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, notamment lorsque la source d'humidité concerne des parties communes (toiture, réseaux) : un diagnostic partagé permet de coordonner le traitement avec le syndic."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment reconnaître la mérule dans une maison ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Quatre signes, dans l'ordre où on les rencontre. Une odeur de champignon ou de cave persistante, souvent perçue avant tout le reste. Des filaments blancs cotonneux, en nappe ou en cordons gris qui traversent la maçonnerie — la mérule est le seul champignon du bâti capable de cheminer ainsi à travers un mur pour aller chercher du bois plus loin. Une fructification brun-rouille bordée d'un liseré blanc, en plaque souple, qui libère une poussière de spores. Et le bois lui-même, qui se craquelle en cubes et s'effrite sous les doigts : c'est la pourriture cubique, caractéristique. Elle s'installe dans l'obscurité, sans ventilation, sur un bois durablement humide — fuite, remontée capillaire, infiltration. Traiter le champignon sans supprimer cette source d'humidité ne fait que retarder la réapparition."
+          }
+        }
+      ]
     }
   ]
 }
-</script>
+  </script>
+
+  <!-- Schema.org : BreadcrumbList -->
 
   <!-- Schema LocalBusiness & FAQPage combinés -->
-  <script type="application/ld+json">
-[
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Traitement Mérule et Champignons du Bois en Corse",
-    "serviceType": "Traitement fongicide (bois et maçonnerie)",
-    "provider": {
-      "@type": "PestControlService",
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
-        ],
-        "opens": "08:00",
-        "closes": "20:00"
-      },
-      "@id": "https://dezinsect-corse.fr/#organisation",
-      "hasMap": "https://www.google.com/maps/place/?cid=6330082989377733098",
-      "sameAs": [
-        "https://www.google.com/maps/place/?cid=6330082989377733098",
-        "https://www.youtube.com/@Dezinsect-corse-DM",
-        "https://www.instagram.com/dezinsectcorse/",
-        "https://www.facebook.com/dezinsect20/"
-      ],
-      "name": "Dezinsect Corse",
-      "url": "https://dezinsect-corse.fr/",
-      "telephone": [
-        "+33685753040",
-        "+33629421638"
-      ],
-      "image": "https://dezinsect-corse.fr/images/og-default.jpg",
-      "priceRange": "€€",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Lieu-dit Acqua Calda",
-        "addressLocality": "Santa-Maria-Poggio",
-        "postalCode": "20221",
-        "addressRegion": "Haute-Corse",
-        "addressCountry": "FR"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 42.3454,
-        "longitude": 9.4964
-      }
-    },
-    "areaServed": [
-      {
-        "@type": "City",
-        "name": "Cervione"
-      },
-      {
-        "@type": "City",
-        "name": "Moriani-Plage"
-      },
-      {
-        "@type": "City",
-        "name": "Aléria"
-      },
-      {
-        "@type": "City",
-        "name": "Ghisonaccia"
-      },
-      {
-        "@type": "City",
-        "name": "Bastia"
-      },
-      {
-        "@type": "City",
-        "name": "Ajaccio"
-      },
-      {
-        "@type": "City",
-        "name": "Calvi"
-      },
-      {
-        "@type": "City",
-        "name": "L'Île-Rousse"
-      },
-      {
-        "@type": "City",
-        "name": "Corte"
-      },
-      {
-        "@type": "City",
-        "name": "Porto-Vecchio"
-      },
-      {
-        "@type": "City",
-        "name": "Bonifacio"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Haute-Corse"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Corse-du-Sud"
-      }
-    ]
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "La mérule est-elle fréquente en Corse ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Moins que dans les régions au climat tempéré humide : le climat globalement sec de l'île limite son développement à grande échelle. Elle reste néanmoins possible localement, partout où l'humidité persiste sans ventilation suffisante (bâti ancien, pièces mal aérées, infiltrations non traitées)."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Comment reconnaît-on la mérule ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Par des filaments blancs à gris cotonneux sur le bois ou la maçonnerie, et une fructification orangée en cas de développement avancé. Le bois touché perd sa résistance et peut se fendiller en cubes."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Le traitement fongicide suffit-il sans traiter l'humidité ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Non. Sans assèchement de la source d'humidité, le champignon peut se redévelopper malgré le traitement. Les deux actions sont systématiquement associées dans notre intervention."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Intervenez-vous en copropriété ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Oui, notamment lorsque la source d'humidité concerne des parties communes (toiture, réseaux) : un diagnostic partagé permet de coordonner le traitement avec le syndic."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Comment reconnaître la mérule dans une maison ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Quatre signes, dans l'ordre où on les rencontre. Une odeur de champignon ou de cave persistante, souvent perçue avant tout le reste. Des filaments blancs cotonneux, en nappe ou en cordons gris qui traversent la maçonnerie — la mérule est le seul champignon du bâti capable de cheminer ainsi à travers un mur pour aller chercher du bois plus loin. Une fructification brun-rouille bordée d'un liseré blanc, en plaque souple, qui libère une poussière de spores. Et le bois lui-même, qui se craquelle en cubes et s'effrite sous les doigts : c'est la pourriture cubique, caractéristique. Elle s'installe dans l'obscurité, sans ventilation, sur un bois durablement humide — fuite, remontée capillaire, infiltration. Traiter le champignon sans supprimer cette source d'humidité ne fait que retarder la réapparition."
-        }
-      }
-    ]
-  }
-]
-</script>
 
   <link rel="preload" as="image" media="(max-width: 767px)" href="images/nuisibles/merule-pleureuse-charpente-760.webp" type="image/webp">
   <link rel="preload" as="image" media="(min-width: 768px)" href="images/nuisibles/merule-pleureuse-charpente.webp" type="image/webp">
