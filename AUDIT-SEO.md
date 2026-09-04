@@ -127,6 +127,51 @@ Dites-moi si vous voulez que je le fasse quand même — c'est votre décision, 
 
 ---
 
+## 5. Lot 5 — écarté par la mesure, ne pas le reproposer
+
+Le CSS critique en ligne figurait au plan. **Il a été abandonné le 4 septembre
+2026, après mesure Lighthouse mobile sur le site en ligne.** Trois raisons, toutes
+chiffrées :
+
+1. **Les feuilles ne bloquent pas le rendu.** L'audit `render-blocking-resources`
+   ne signale **rien** sur les trois pages mesurées. Les quatre feuilles pèsent
+   20 Ko compressés en Brotli, sur une page de 216 Ko.
+2. **Il n'y a pas de CSS morte à séparer.** L'audit `unused-css-rules` ne signale
+   **rien**. Le CSS critique consiste à isoler ce qui sert au premier écran du
+   reste : ici, il n'y a pas de reste.
+3. **Le coût est ailleurs.** Le fil principal de l'accueil passe **1 220 ms en
+   « Style & Layout »**, contre 38 ms d'exécution de script et 38 ms d'analyse
+   HTML/CSS. C'est un coût de *calcul* de mise en page, que la livraison en
+   ligne du CSS ne réduit pas — elle ajouterait même un second jeu de règles à
+   analyser.
+
+**Ce que le lot mettait en risque :** le CLS vaut **0** sur les trois pages
+mesurées. C'est la métrique la plus difficile à retrouver quand on la perd, et
+le différé de feuille est sa cause la plus commune.
+
+**Mesure de référence, 4 septembre 2026, Lighthouse mobile, site en ligne :**
+
+| Page | Perf | A11y | Bonnes pratiques | SEO | LCP | CLS | TBT |
+|---|---|---|---|---|---|---|---|
+| Accueil | 94 | 100 | 100 | 100 | 2,1 s | 0 | 210 ms |
+| `deratisation` | 96 | 100 | 100 | 100 | 1,5 s | 0 | 210 ms |
+| `rat-noir` | 99 | 100 | 100 | 100 | 1,5 s | 0 | 100 ms |
+
+*Lighthouse en laboratoire ne mesure pas l'INP — il demande des interactions
+réelles. Le TBT est son substitut ; aucun INP n'est reporté ici faute d'avoir
+été mesuré.*
+
+**Deux solutions de rechange examinées et écartées :**
+
+- **Les polices** — 121 Ko des 216 de l'accueil, le plus gros poste. Les cinq
+  graisses (400, 500, 600, 700, 800) et l'italique sont **toutes réellement
+  utilisées** : rien à retirer sans changement visible.
+- **`content-visibility: auto`** — l'expérience locale n'a **rien démontré**
+  (0,2 contre 0,4 ms, du bruit). Le gain reste plausible en théorie, mais il
+  n'est pas mesuré, et il n'est donc pas revendiqué.
+
+---
+
 ## 5. Ce que l'audit ne mesure pas
 
 - **Lighthouse** : aucun score n'est mesuré dans ce document. Les affirmations de performance
