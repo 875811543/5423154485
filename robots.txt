@@ -28,4 +28,19 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
 Sitemap: https://dezinsect-corse.fr/sitemap.xml
