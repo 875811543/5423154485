@@ -1270,6 +1270,68 @@ const CONTROLES = [
     return pbs;
   }}
 
+,
+
+{ nom: 'articles-lexique', titre: 'Les fiches du lexique portent un Article date et coherent',
+  run() {
+    const pbs = [];
+    const ID = 'https://dezinsect-corse.fr/#organisation';
+    // Les neuf fiches d'espece. Ni l'index du lexique, ni la page reglementaire
+    // sur l'etat parasitaire, qui n'est pas une fiche d'espece.
+    const FICHES = ['cafards.html', 'capricorne-des-maisons.html', 'fourmis.html',
+      'merule-champignons-bois.html', 'mouches.html', 'moustiques-corse.html',
+      'rat-brun-surmulot.html', 'rat-noir.html', 'souris.html'];
+
+    const noeuds = f => {
+      const out = [];
+      for (const m of lire(f).matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+        let o; try { o = JSON.parse(m[1]); } catch (e) { continue; }
+        for (const n of (o['@graph'] || (Array.isArray(o) ? o : [o]))) out.push(n);
+      }
+      return out;
+    };
+
+    for (const f of pages) {
+      const arts = noeuds(f).filter(n => [].concat(n['@type'] || '').includes('Article'));
+      const attendu = FICHES.includes(f);
+
+      // 1 et 2. Article sur les fiches, et nulle part ailleurs
+      if (attendu && arts.length !== 1)
+        pbs.push(f + ' : ' + arts.length + ' Article (1 attendu sur une fiche du lexique)');
+      if (!attendu && arts.length)
+        pbs.push(f + ' : ' + arts.length + ' Article alors que ce n est pas une fiche du lexique');
+      if (!attendu || arts.length !== 1) continue;
+
+      const a = arts[0];
+
+      // 3. author et publisher referencent l'entite, ils ne la redeclarent pas
+      for (const cle of ['author', 'publisher']) {
+        const v = a[cle];
+        if (!v) { pbs.push(f + ' : Article sans ' + cle); continue; }
+        const cles = Object.keys(v);
+        if (v['@id'] !== ID || cles.length !== 1)
+          pbs.push(f + ' : Article.' + cle + ' redeclare l entite au lieu de la referencer par @id');
+      }
+
+      // 4. la date affichee et la date balisee disent la meme chose
+      if (!a.dateModified) { pbs.push(f + ' : Article sans dateModified'); continue; }
+      const h = lire(f);
+      const visible = h.match(/<time[^>]*datetime="(\d{4}-\d{2}-\d{2})"[^>]*class="[^"]*maj/);
+      if (!visible) pbs.push(f + ' : aucune date de mise a jour visible sur la page');
+      else if (visible[1] !== a.dateModified)
+        pbs.push(f + ' : la page affiche ' + visible[1] + ' et le balisage declare ' + a.dateModified);
+
+      // 5. cette date est celle du dernier commit de fond, comme le sitemap
+      try {
+        const { dateGit } = require(path.resolve('tools/build-sitemap.js'));
+        const reelle = dateGit(f);
+        if (a.dateModified !== reelle)
+          pbs.push(f + ' : dateModified vaut ' + a.dateModified + ', le dernier commit de fond date du ' + reelle);
+      } catch (e) { pbs.push('build-sitemap.js : ' + e.message.slice(0, 70)); }
+    }
+    return pbs;
+  }}
+
 ];
 
 /* ------------------------------------------------------------------ *

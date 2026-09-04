@@ -132,7 +132,7 @@ function construire() {
     + '</urlset>\n';
 }
 
-module.exports = { construire };
+module.exports = { construire, dateGit };
 
 if (require.main === module) {
   const xml = construire();
