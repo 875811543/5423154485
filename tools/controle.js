@@ -1206,6 +1206,36 @@ const CONTROLES = [
     return [...pbs];
   }}
 
+,
+
+{ nom: 'nav-courante', titre: 'La page active est signalee dans les menus, et le pied porte une address',
+  run() {
+    const pbs = [];
+    for (const f of pages) {
+      const h = lire(f);
+      const slug = f === 'index.html' ? './' : f.replace(/\.html$/, '');
+
+      // Les deux menus, isoles chacun de leur cote.
+      const menus = [
+        ['entete', (h.match(/<nav class="site-nav"[\s\S]*?<\/nav>/) || [''])[0]],
+        ['mobile', (h.match(/<div class="mobile-menu"[\s\S]*?<\/div>\s*<\/div>/) || [''])[0]]
+      ];
+
+      const cible = m => m.includes('href="' + slug + '"');
+      for (const [nom, m] of menus) {
+        if (!m) { pbs.push(f + ' : menu ' + nom + ' introuvable'); continue; }
+        const n = (m.match(/aria-current="page"/g) || []).length;
+        if (cible(m) && n === 0) pbs.push(f + ' : menu ' + nom + ' — la page y figure mais rien ne la signale comme active');
+        if (n > 1) pbs.push(f + ' : menu ' + nom + ' — ' + n + ' liens marques « page courante », il n en faut qu un');
+        if (!cible(m) && n > 0) pbs.push(f + ' : menu ' + nom + ' — un lien est marque actif alors que la page n y figure pas');
+      }
+
+      // Le pied de page decrit des coordonnees : c'est ce que <address> designe.
+      if (!/<address[\s>]/.test(h)) pbs.push(f + ' : bloc de coordonnees du pied sans <address>');
+    }
+    return pbs;
+  }}
+
 ];
 
 /* ------------------------------------------------------------------ *
