@@ -350,12 +350,12 @@
   <nav aria-label="Sommaire de la FAQ" class="faq-toc">
     <div class="faq-toc__label">Sommaire</div>
     <div class="faq-toc__list">
-      <a href="#" onclick="event.preventDefault();document.getElementById('termites').scrollIntoView({behavior:'smooth',block:'start'});" class="faq-toc__link">Termites & bois</a>
-      <a href="#" onclick="event.preventDefault();document.getElementById('guepes-frelons-fourmis').scrollIntoView({behavior:'smooth',block:'start'});" class="faq-toc__link">Guêpes, frelons & fourmis</a>
-      <a href="#" onclick="event.preventDefault();document.getElementById('rongeurs').scrollIntoView({behavior:'smooth',block:'start'});" class="faq-toc__link">Rongeurs</a>
-      <a href="#" onclick="event.preventDefault();document.getElementById('cafards').scrollIntoView({behavior:'smooth',block:'start'});" class="faq-toc__link">Cafards</a>
-      <a href="#" onclick="event.preventDefault();document.getElementById('pratique').scrollIntoView({behavior:'smooth',block:'start'});" class="faq-toc__link">Délais, prix & sécurité</a>
-      <a href="#" onclick="event.preventDefault();document.getElementById('prevention').scrollIntoView({behavior:'smooth',block:'start'});" class="faq-toc__link">Prévention</a>
+      <a href="#termites" class="faq-toc__link">Termites & bois</a>
+      <a href="#guepes-frelons-fourmis" class="faq-toc__link">Guêpes, frelons & fourmis</a>
+      <a href="#rongeurs" class="faq-toc__link">Rongeurs</a>
+      <a href="#cafards" class="faq-toc__link">Cafards</a>
+      <a href="#pratique" class="faq-toc__link">Délais, prix & sécurité</a>
+      <a href="#prevention" class="faq-toc__link">Prévention</a>
     </div>
   </nav>
 
@@ -592,22 +592,7 @@
   </a>
 </div>
 
-<script>
-  // Gère les liens entrants avec ancre (ex: /questions-frequentes-termites-frelons-rat#termites) sans dépendre
-  // de la navigation native, qui échoue si la page est intégrée dans un cadre.
-  window.addEventListener('load', function () {
-    if (window.location.hash) {
-      var target = document.getElementById(window.location.hash.substring(1));
-      if (target) {
-        setTimeout(function () {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 300);
-      }
-    }
-  });
-</script>
-
-</main>
+  </main>
 
 
 <footer class="site-footer">
