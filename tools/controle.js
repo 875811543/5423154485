@@ -1089,6 +1089,43 @@ const CONTROLES = [
     return pbs;
   }}
 
+,
+
+{ nom: 'tableaux', titre: 'Les pages comparatives portent un tableau semantique',
+  run() {
+    const pbs = [];
+    // Les quatre comparaisons qu'un client fait vraiment avant d'appeler.
+    const ATTENDUS = {
+      'guepes-et-frelons.html': 'frelon asiatique / europeen / oriental',
+      'deratisation.html': 'rat noir / surmulot / souris',
+      'traitement-anti-termites.html': 'termite / capricorne / vrillette / merule',
+      'cafards.html': 'blatte germanique / orientale'
+    };
+
+    for (const [f, quoi] of Object.entries(ATTENDUS)) {
+      if (!pages.includes(f)) { pbs.push(f + ' : page absente du depot'); continue; }
+      const h = lire(f);
+      const tables = h.match(/<table[\s\S]*?<\/table>/g) || [];
+      if (!tables.length) { pbs.push(f + ' : aucun tableau — comparaison attendue : ' + quoi); continue; }
+      for (const t of tables) {
+        if (!/<caption[\s>]/.test(t)) pbs.push(f + ' : tableau sans <caption>');
+        if (!/<thead[\s>]/.test(t)) pbs.push(f + ' : tableau sans <thead>');
+        const th = t.match(/<th\b[^>]*>/g) || [];
+        if (!th.length) pbs.push(f + ' : tableau sans <th>');
+        else if (th.some(x => !/scope=/.test(x)))
+          pbs.push(f + ' : ' + th.filter(x => !/scope=/.test(x)).length + ' <th> sans attribut scope');
+        // un nom latin, marque du fait verifiable
+        if (!/<em>[A-Z][a-z]+ [a-z]+<\/em>/.test(t))
+          pbs.push(f + ' : tableau sans nom scientifique — un tableau sans donnee verifiable ne se fait pas citer');
+      }
+      // debordement sur telephone
+      const i2 = h.indexOf('<table');
+      if (i2 !== -1 && !/table-wrap|overflow-x/.test(h.slice(Math.max(0, i2 - 400), i2)))
+        pbs.push(f + ' : tableau hors conteneur defilant — deborde a 360 px');
+    }
+    return pbs;
+  }}
+
 ];
 
 /* ------------------------------------------------------------------ *
