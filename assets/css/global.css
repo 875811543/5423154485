@@ -1738,3 +1738,46 @@ li > .ico:first-child {
 @media (max-width: 600px) {
   .reponse-directe { padding: 0 16px; font-size: 1rem; }
 }
+
+/* Page article : le filet du haut separe les articles d'une liste, il n'a
+   pas lieu d'etre quand l'article est seul sur sa page. */
+.actu--page { border-top: 0; padding-top: 20px; }
+.actu__titre--page { font-size: clamp(1.7rem, 5vw, 2.4rem); font-weight: 800; margin-bottom: 18px; }
+.actu--page h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 2.6vw, 1.35rem);
+  line-height: 1.3;
+  color: var(--ink);
+  margin: 30px 0 12px;
+}
+.actu--page ul { margin: 0 0 16px; padding-left: 20px; }
+.actu--page li {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--body-text);
+  margin-bottom: 8px;
+}
+
+/* Titre cliquable dans la liste des actualites. */
+.actu__titre a { color: inherit; text-decoration: none; }
+.actu__titre a:hover { color: var(--primary-blue); text-decoration: underline; }
+
+/* Bloc « A lire aussi » en pied d'article. */
+.actu-suite { border-top: 1px solid var(--border); margin-top: 40px; padding-top: 24px; }
+.actu-suite__titre {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin: 0 0 14px;
+}
+.actu-suite__liste { list-style: none; margin: 0 0 16px; padding: 0; }
+.actu-suite__liste li { margin-bottom: 10px; }
+.actu-suite__liste a {
+  color: var(--body-text);
+  text-decoration: none;
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+.actu-suite__liste a:hover { color: var(--primary-blue); text-decoration: underline; }
