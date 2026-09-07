@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" preserveAspectRatio="xMidYMid meet" role="img"
+     aria-labelledby="cyc-titre cyc-desc" font-family="Inter, system-ui, sans-serif">
+  <title id="cyc-titre">Cycle de vie d'une colonie de termites souterrains</title>
+  <desc id="cyc-desc">Quatre étapes en boucle. Au printemps, des centaines de reproducteurs ailés quittent le nid : c'est l'essaimage. Les survivants forment des couples, perdent leurs ailes et creusent une loge : c'est le couple fondateur. La colonie reste ensuite discrète deux à quatre ans, le temps d'atteindre quelques centaines d'individus. Devenue mature après cinq à huit ans, elle compte plusieurs centaines de milliers d'individus et produit à son tour des ailés, ce qui referme le cycle.</desc>
+
+  <rect width="1000" height="470" fill="#ffffff"/>
+
+  <defs>
+    <marker id="fleche" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#1A4DFB"/>
+    </marker>
+    <marker id="flecheGrise" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#94A3B8"/>
+    </marker>
+  </defs>
+
+  <!-- fleches entre etapes -->
+  <g stroke="#1A4DFB" stroke-width="2.4" fill="none" marker-end="url(#fleche)">
+    <path d="M208 150 L300 150"/>
+    <path d="M448 150 L540 150"/>
+    <path d="M688 150 L780 150"/>
+  </g>
+
+  <!-- boucle de retour -->
+  <path d="M860 338 L860 372 Q860 392 840 392 L160 392 Q140 392 140 372 L140 338"
+        stroke="#94A3B8" stroke-width="2.2" fill="none" stroke-dasharray="7 6" marker-end="url(#flecheGrise)"/>
+  <text x="500" y="418" text-anchor="middle" font-size="14" fill="#64748B">La colonie mature produit à son tour des essaimants&#160;: le cycle recommence, ailleurs.</text>
+
+  <!-- ETAPE 1 : essaimage -->
+  <g>
+    <circle cx="140" cy="150" r="56" fill="#EDF2FF" stroke="#1A4DFB" stroke-width="2"/>
+    <g transform="translate(140,150)" fill="#1A4DFB">
+      <ellipse cx="-13" cy="-13" rx="12" ry="4" transform="rotate(-28 -13 -13)"/>
+      <ellipse cx="9" cy="-19" rx="12" ry="4" transform="rotate(-18 9 -19)"/>
+      <ellipse cx="-6" cy="10" rx="12" ry="4" transform="rotate(20 -6 10)"/>
+      <ellipse cx="16" cy="4" rx="12" ry="4" transform="rotate(12 16 4)"/>
+      <ellipse cx="-20" cy="20" rx="12" ry="4" transform="rotate(30 -20 20)"/>
+    </g>
+    <text x="140" y="238" text-anchor="middle" font-size="17" font-weight="800" fill="#0F172A">1. Essaimage</text>
+    <text x="140" y="262" text-anchor="middle" font-size="13.5" fill="#1A4DFB" font-weight="700">Printemps</text>
+    <text x="140" y="284" text-anchor="middle" font-size="13" fill="#64748B">Des centaines d'ailés</text>
+    <text x="140" y="301" text-anchor="middle" font-size="13" fill="#64748B">quittent le nid. La</text>
+    <text x="140" y="318" text-anchor="middle" font-size="13" fill="#64748B">quasi-totalité meurt.</text>
+  </g>
+
+  <!-- ETAPE 2 : couple fondateur -->
+  <g>
+    <circle cx="380" cy="150" r="56" fill="#EDF2FF" stroke="#1A4DFB" stroke-width="2"/>
+    <g transform="translate(380,150)">
+      <ellipse cx="-13" cy="0" rx="17" ry="8" fill="#1A4DFB"/>
+      <ellipse cx="15" cy="0" rx="13" ry="8" fill="#1A4DFB" fill-opacity="0.55"/>
+      <g stroke="#94A3B8" stroke-width="1.6" fill="none">
+        <path d="M-4 -14 L14 -24"/><path d="M-2 14 L16 24"/>
+      </g>
+    </g>
+    <text x="380" y="238" text-anchor="middle" font-size="17" font-weight="800" fill="#0F172A">2. Couple fondateur</text>
+    <text x="380" y="262" text-anchor="middle" font-size="13.5" fill="#1A4DFB" font-weight="700">Quelques jours</text>
+    <text x="380" y="284" text-anchor="middle" font-size="13" fill="#64748B">Les survivants s'apparient,</text>
+    <text x="380" y="301" text-anchor="middle" font-size="13" fill="#64748B">perdent leurs ailes et</text>
+    <text x="380" y="318" text-anchor="middle" font-size="13" fill="#64748B">creusent une loge.</text>
+  </g>
+
+  <!-- ETAPE 3 : colonie jeune -->
+  <g>
+    <circle cx="620" cy="150" r="56" fill="#EDF2FF" stroke="#1A4DFB" stroke-width="2"/>
+    <g transform="translate(620,150)" fill="#1A4DFB">
+      <ellipse cx="0" cy="-4" rx="15" ry="7"/>
+      <circle cx="-16" cy="12" r="4.5" fill-opacity="0.6"/>
+      <circle cx="-4" cy="16" r="4.5" fill-opacity="0.6"/>
+      <circle cx="8" cy="13" r="4.5" fill-opacity="0.6"/>
+      <circle cx="18" cy="6" r="4.5" fill-opacity="0.6"/>
+    </g>
+    <text x="620" y="238" text-anchor="middle" font-size="17" font-weight="800" fill="#0F172A">3. Colonie jeune</text>
+    <text x="620" y="262" text-anchor="middle" font-size="13.5" fill="#1A4DFB" font-weight="700">2 à 4 ans</text>
+    <text x="620" y="284" text-anchor="middle" font-size="13" fill="#64748B">Quelques centaines</text>
+    <text x="620" y="301" text-anchor="middle" font-size="13" fill="#64748B">d'individus. Aucun signe</text>
+    <text x="620" y="318" text-anchor="middle" font-size="13" fill="#64748B">visible en surface.</text>
+  </g>
+
+  <!-- ETAPE 4 : colonie mature -->
+  <g>
+    <circle cx="860" cy="150" r="56" fill="#1A4DFB" stroke="#0F37BE" stroke-width="2"/>
+    <g transform="translate(860,150)" fill="#ffffff">
+      <ellipse cx="0" cy="-14" rx="19" ry="8"/>
+      <g fill-opacity="0.85">
+        <circle cx="-20" cy="4" r="4.5"/><circle cx="-8" cy="9" r="4.5"/><circle cx="4" cy="9" r="4.5"/><circle cx="16" cy="5" r="4.5"/>
+        <circle cx="-14" cy="21" r="4.5"/><circle cx="-2" cy="24" r="4.5"/><circle cx="10" cy="21" r="4.5"/>
+      </g>
+    </g>
+    <text x="860" y="238" text-anchor="middle" font-size="17" font-weight="800" fill="#0F172A">4. Colonie mature</text>
+    <text x="860" y="262" text-anchor="middle" font-size="13.5" fill="#1A4DFB" font-weight="700">5 à 8 ans</text>
+    <text x="860" y="284" text-anchor="middle" font-size="13" fill="#64748B">Plusieurs centaines de</text>
+    <text x="860" y="301" text-anchor="middle" font-size="13" fill="#64748B">milliers d'individus. Les</text>
+    <text x="860" y="318" text-anchor="middle" font-size="13" fill="#64748B">dégâts deviennent visibles.</text>
+  </g>
+</svg>

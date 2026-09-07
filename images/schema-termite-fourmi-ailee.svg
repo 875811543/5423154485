@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="540" viewBox="0 0 1000 540" preserveAspectRatio="xMidYMid meet" role="img"
+     aria-labelledby="cmp-titre cmp-desc" font-family="Inter, system-ui, sans-serif">
+  <title id="cmp-titre">Différences entre une termite ailée et une fourmi volante</title>
+  <desc id="cmp-desc">Comparaison de deux insectes ailés vus de dessus. La termite a des antennes droites en chapelet, une taille large sans étranglement, et quatre ailes de longueur égale dépassant nettement le corps. La fourmi volante a des antennes coudées, une taille fortement étranglée, et des ailes avant plus longues que les ailes arrière.</desc>
+
+  <rect width="1000" height="540" fill="#ffffff"/>
+  <line x1="500" y1="72" x2="500" y2="470" stroke="#E2E8F0" stroke-width="2"/>
+
+  <text x="250" y="42" text-anchor="middle" font-size="23" font-weight="800" fill="#1A4DFB">TERMITE AILÉE</text>
+  <text x="250" y="64" text-anchor="middle" font-size="13.5" fill="#64748B">Reproducteur qui essaime au printemps</text>
+  <text x="750" y="42" text-anchor="middle" font-size="23" font-weight="800" fill="#64748B">FOURMI VOLANTE</text>
+  <text x="750" y="64" text-anchor="middle" font-size="13.5" fill="#64748B">Souvent confondue, sans danger pour le bois</text>
+
+  <!-- ================= TERMITE ================= -->
+  <g transform="translate(250,268)">
+    <g fill="#1A4DFB" fill-opacity="0.13" stroke="#1A4DFB" stroke-opacity="0.5" stroke-width="1.5">
+      <ellipse cx="40" cy="-34" rx="98" ry="16" transform="rotate(-11 40 -34)"/>
+      <ellipse cx="40" cy="34" rx="98" ry="16" transform="rotate(11 40 34)"/>
+      <ellipse cx="30" cy="-13" rx="94" ry="14" transform="rotate(-2 30 -13)"/>
+      <ellipse cx="30" cy="13" rx="94" ry="14" transform="rotate(2 30 13)"/>
+    </g>
+    <ellipse cx="-64" cy="0" rx="20" ry="16" fill="#0F172A"/>
+    <rect x="-46" y="-14" width="34" height="28" rx="12" fill="#334155"/>
+    <ellipse cx="30" cy="0" rx="46" ry="16" fill="#475569"/>
+    <g fill="#0F172A">
+      <circle cx="-84" cy="-13" r="3.2"/><circle cx="-95" cy="-18" r="3.2"/><circle cx="-106" cy="-23" r="3.2"/><circle cx="-117" cy="-28" r="3.2"/><circle cx="-128" cy="-33" r="3.2"/>
+      <circle cx="-84" cy="13" r="3.2"/><circle cx="-95" cy="18" r="3.2"/><circle cx="-106" cy="23" r="3.2"/><circle cx="-117" cy="28" r="3.2"/><circle cx="-128" cy="33" r="3.2"/>
+    </g>
+    <g stroke="#334155" stroke-width="3" stroke-linecap="round">
+      <path d="M-40 12 L-56 34"/><path d="M-30 14 L-38 40"/><path d="M-20 14 L-16 42"/>
+      <path d="M-40 -12 L-56 -34"/><path d="M-30 -14 L-38 -40"/><path d="M-20 -14 L-16 -42"/>
+    </g>
+  </g>
+
+  <g font-size="13.5" fill="#0F172A">
+    <path d="M104 178 L120 228" stroke="#1A4DFB" stroke-width="1.6" fill="none"/>
+    <text x="26" y="150" font-weight="700">Antennes droites</text>
+    <text x="26" y="167" fill="#64748B">en chapelet de perles</text>
+
+    <path d="M258 292 L258 348" stroke="#1A4DFB" stroke-width="1.6" fill="none"/>
+    <text x="258" y="370" text-anchor="middle" font-weight="700">Taille large</text>
+    <text x="258" y="387" text-anchor="middle" fill="#64748B">aucun étranglement</text>
+
+    <path d="M398 190 L352 226" stroke="#1A4DFB" stroke-width="1.6" fill="none"/>
+    <text x="474" y="145" text-anchor="end" font-weight="700">4 ailes identiques</text>
+    <text x="474" y="162" text-anchor="end" fill="#64748B">bien plus longues</text>
+    <text x="474" y="179" text-anchor="end" fill="#64748B">que le corps</text>
+  </g>
+
+  <!-- ================= FOURMI ================= -->
+  <g transform="translate(750,268)">
+    <g fill="#94A3B8" fill-opacity="0.16" stroke="#94A3B8" stroke-opacity="0.7" stroke-width="1.5">
+      <ellipse cx="24" cy="-28" rx="80" ry="14" transform="rotate(-12 24 -28)"/>
+      <ellipse cx="24" cy="28" rx="80" ry="14" transform="rotate(12 24 28)"/>
+      <ellipse cx="6" cy="-11" rx="42" ry="9" transform="rotate(-4 6 -11)"/>
+      <ellipse cx="6" cy="11" rx="42" ry="9" transform="rotate(4 6 11)"/>
+    </g>
+    <ellipse cx="-62" cy="0" rx="21" ry="17" fill="#0F172A"/>
+    <ellipse cx="-26" cy="0" rx="20" ry="15" fill="#334155"/>
+    <circle cx="-2" cy="0" r="5.5" fill="#334155"/>
+    <ellipse cx="38" cy="0" rx="34" ry="21" fill="#475569"/>
+    <g stroke="#0F172A" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-80 -7 L-118 -14 L-140 -38"/>
+      <path d="M-80 7 L-118 14 L-140 38"/>
+    </g>
+    <g stroke="#334155" stroke-width="3" stroke-linecap="round">
+      <path d="M-34 13 L-50 36"/><path d="M-24 14 L-30 42"/><path d="M-14 13 L-8 42"/>
+      <path d="M-34 -13 L-50 -36"/><path d="M-24 -14 L-30 -42"/><path d="M-14 -13 L-8 -42"/>
+    </g>
+  </g>
+
+  <g font-size="13.5" fill="#0F172A">
+    <path d="M600 186 L611 227" stroke="#94A3B8" stroke-width="1.6" fill="none"/>
+    <text x="526" y="150" font-weight="700">Antennes coudées</text>
+    <text x="526" y="167" fill="#64748B">pliées en angle net</text>
+
+    <path d="M748 292 L748 348" stroke="#94A3B8" stroke-width="1.6" fill="none"/>
+    <text x="748" y="370" text-anchor="middle" font-weight="700">Taille étranglée</text>
+    <text x="748" y="387" text-anchor="middle" fill="#64748B">séparation très marquée</text>
+
+    <path d="M890 190 L846 228" stroke="#94A3B8" stroke-width="1.6" fill="none"/>
+    <text x="974" y="145" text-anchor="end" font-weight="700">Ailes inégales</text>
+    <text x="974" y="162" text-anchor="end" fill="#64748B">les arrière sont</text>
+    <text x="974" y="179" text-anchor="end" fill="#64748B">bien plus courtes</text>
+  </g>
+
+  <text x="500" y="500" text-anchor="middle" font-size="14.5" fill="#64748B">Trois différences suffisent&#160;: les antennes, la taille, la longueur relative des ailes.</text>
+</svg>
