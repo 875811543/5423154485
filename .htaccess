@@ -64,6 +64,32 @@ DirectoryIndex index.html
   # Ecrit au singulier sur l'ancien site, la regle plurielle ne l'attrapait pas.
   RewriteRule ^anti-nuisible-balagne(-et-nebbio)?/?$ /anti-nuisible-corte [R=301,L]
 
+  # Adresses d'un site anterieur au Builder, relevees dans Search Console le
+  # 6 septembre 2026 : quatorze URL en « Introuvable (404) », encore explorees
+  # par Google entre mars et juin 2026. Toutes ont un equivalent ici.
+  #
+  # Les cinq premieres portent un segment de chemin. Aucun repertoire
+  # « expert-nuisibles-corse/ » ni « dezinsect-corse/ » n'existe dans le depot
+  # — verifie —, sinon la regle 404-sur-repertoire plus bas les intercepterait
+  # avant d'arriver ici.
+  #
+  # Ce bloc est place avant la suppression de la barre finale : une demande
+  # avec slash final est ainsi redirigee en une seule 301 au lieu de deux.
+  RewriteRule ^expert-nuisibles-corse/contact-devis-dezinsect-corse/?$ /contact [R=301,L]
+  RewriteRule ^expert-nuisibles-corse/deratisation-desinsectisation-corse/?$ /services-anti-nuisibles [R=301,L]
+  RewriteRule ^expert-nuisibles-corse/suivez-dezinsect-corse-sur-les-rseaux-sociaux/?$ /contact [R=301,L]
+  RewriteRule ^dezinsect-corse/insectes-volants/?$ /guepes-et-frelons [R=301,L]
+  RewriteRule ^dezinsect-corse/rongeurs/?$ /deratisation [R=301,L]
+  RewriteRule ^insectes-rampants/?$ /desinsectisation [R=301,L]
+  RewriteRule ^traitement-charpente/?$ /traitement-anti-termites [R=301,L]
+  RewriteRule ^charpentes/?$ /traitement-anti-termites [R=301,L]
+  RewriteRule ^anti-termites/?$ /traitement-anti-termites [R=301,L]
+  RewriteRule ^expertise-termites/?$ /etat-parasitaire-termites-corse [R=301,L]
+  RewriteRule ^zones-intervention-2a-et-2b/?$ /zones-dintervention [R=301,L]
+  RewriteRule ^actualits-rseaux-sociaux/?$ /actualites [R=301,L]
+  RewriteRule ^lexpert/?$ / [R=301,L]
+  RewriteRule ^avis-clients/?$ / [R=301,L]
+
   # Filet de sécurité : toute ancienne URL de zone non listée ci-dessus
   # atterrit sur le hub plutôt qu'en 404.
   # Les deux conditions sont indispensables : sans elles, cette règle
