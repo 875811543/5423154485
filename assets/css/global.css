@@ -1781,3 +1781,38 @@ li > .ico:first-child {
   line-height: 1.6;
 }
 .actu-suite__liste a:hover { color: var(--primary-blue); text-decoration: underline; }
+
+/* ------------------------------------------------------------
+   Bouton WhatsApp flottant
+   Place au-dessus de la barre d'appel mobile plutot que dedans :
+   celle-ci porte deja les deux numeros et un troisieme bouton y
+   tronquerait les libelles sous 390 px. En pastille, il reste
+   visible sur ordinateur, ou la barre disparait.
+   z-index sous la barre (999) : si les deux se croisent, c'est
+   l'appel qui doit rester cliquable.
+   ------------------------------------------------------------ */
+.wa-float {
+  position: fixed;
+  right: 16px;
+  bottom: 88px;
+  z-index: 998;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #25D366;
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgba(12, 21, 36, .22);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.wa-float:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(12, 21, 36, .28);
+}
+.wa-float svg { width: 30px; height: 30px; fill: #fff; }
+
+/* Sur ordinateur la barre d'appel est masquee : le bouton descend. */
+@media (min-width: 768px) {
+  .wa-float { right: 24px; bottom: 24px; }
+}
