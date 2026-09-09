@@ -1054,14 +1054,21 @@ const CONTROLES = [
       if (c.o['@id'] !== ID) pbs.push(c.f + ' : @id de l entreprise vaut ' + c.o['@id'] + ', attendu ' + ID);
     }
 
-    // 3. l'areaServed de l'entite est un SUR-ENSEMBLE de celui de tous les
-    //    Service. C'est ce defaut qui a coute le lot 1 : des pages de ville
-    //    creees une a une ont declare des communes que l'entreprise ne
-    //    revendiquait nulle part. Une page ajoutee demain le refera sans ce
-    //    controle.
+    // 3. aucune page ne declare une commune hors zone. C'est ce defaut qui a
+    //    coute le lot 1 : des pages de ville creees une a une ont declare des
+    //    communes que l'entreprise ne revendiquait nulle part. Une page
+    //    ajoutee demain le referait sans ce controle.
+    //
+    //    La reference etait l'areaServed de l'entite, qui enumerait pour cela
+    //    99 communes servies a chaque visiteur — 8,2 Ko de JSON-LD dont aucun
+    //    moteur ne se sert pour classer. L'entite declare desormais les deux
+    //    departements, et la liste vit dans tools/communes-desservies.json.
     if (completes.length === 1) {
+      const REF = JSON.parse(fs.readFileSync(
+        path.join(__dirname, 'communes-desservies.json'), 'utf8'));
       const zonesEntite = new Set([].concat(completes[0].o.areaServed || [])
-        .map(a => typeof a === 'string' ? a : a.name));
+        .map(a => typeof a === 'string' ? a : a.name)
+        .concat(REF.departements, REF.communes));
       const manquantes = new Map();
       const zones = (o, f, dansService) => {
         if (!o || typeof o !== 'object') return;
