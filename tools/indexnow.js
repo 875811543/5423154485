@@ -10,9 +10,11 @@
  *
  * Ce qu'il fait
  * -------------
- * - Lit `sitemap.xml` et compare chaque `lastmod` à celui du dernier envoi,
- *   mémorisé dans `tools/indexnow-etat.json`, versionné avec le dépôt.
- * - N'envoie que ce qui a changé. Soumettre les 47 adresses à chaque fois
+ * - Lit `sitemap.xml` et compare une empreinte du contenu de chaque page à
+ *   celle du dernier envoi, mémorisée dans `tools/indexnow-etat.json`,
+ *   versionné avec le dépôt. Le `lastmod` ne servait pas : sa granularité est
+ *   la journée, donc une seconde modification le même jour passait inaperçue.
+ * - N'envoie que ce qui a changé. Soumettre les 59 adresses à chaque fois
  *   n'apporte rien et ressemble à du bruit.
  * - Poste le lot en une requête à `api.indexnow.org/indexnow`.
  *
@@ -29,7 +31,7 @@
  * -----
  *   node tools/indexnow.js            envoie ce qui a changé
  *   node tools/indexnow.js --essai    montre ce qui serait envoyé, sans rien poster
- *   node tools/indexnow.js --tout     force l'envoi des 47 adresses
+ *   node tools/indexnow.js --tout     force l'envoi des 59 adresses
  *
  * À lancer APRÈS un `git push`, une fois le déploiement passé : notifier une
  * page que le serveur ne sert pas encore la ferait rejeter.
@@ -40,6 +42,7 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
+const crypto = require('crypto');
 
 const RACINE = path.resolve(__dirname, '..');
 const HOTE = 'dezinsect-corse.fr';
@@ -59,14 +62,25 @@ function cle() {
   return nom;
 }
 
-/** Les adresses du sitemap, avec leur date de dernière modification. */
+/**
+ * Les adresses du sitemap, avec une empreinte du fichier qu'elles servent.
+ *
+ * L'état ne retenait auparavant que le `lastmod`, qui n'a qu'une granularité
+ * de journée. Deux modifications le même jour se ressemblaient donc : la
+ * seconde n'était jamais notifiée, et ne pouvait plus jamais l'être. On
+ * compare le contenu réel, seule chose qui décide si une page a changé.
+ */
 function adresses() {
   const xml = fs.readFileSync(path.join(RACINE, 'sitemap.xml'), 'utf8');
   const out = {};
   for (const m of xml.matchAll(/<url>[\s\S]*?<\/url>/g)) {
     const loc = (m[0].match(/<loc>([^<]+)<\/loc>/) || [])[1];
-    const mod = (m[0].match(/<lastmod>([^<]+)<\/lastmod>/) || [])[1];
-    if (loc) out[loc] = mod || '';
+    if (!loc) continue;
+    const slug = loc.replace('https://' + HOTE + '/', '');
+    const f = path.join(RACINE, (slug === '' ? 'index' : slug) + '.html');
+    out[loc] = fs.existsSync(f)
+      ? crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex').slice(0, 16)
+      : '';
   }
   return out;
 }
