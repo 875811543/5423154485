@@ -28,6 +28,11 @@
     .commune-tags { display:flex; flex-wrap:wrap; gap:8px; }
     .tag { background:#fff; border:1px solid var(--border-color); border-radius:999px; padding:6px 14px; font-size:0.82rem; color:var(--text-main); }
     .tag.highlight { background:var(--primary-blue); color:#fff; border-color:var(--primary-blue); font-weight:700; }
+    /* Les communes qui ont une page pour le service de la page courante sont
+       des <a> ; les autres restent des <span>. Meme aspect au repos, pour que
+       le nuage garde son unite, et un survol qui revele ce qui est cliquable. */
+    a.tag { text-decoration:none; display:inline-block; transition:background 0.15s ease, border-color 0.15s ease; }
+    a.tag:hover, a.tag:focus-visible { background:var(--primary-blue); color:#fff; border-color:var(--primary-blue); }
     .faq-section { display:grid; gap:12px; margin-bottom: 56px; }
     .faq-item { background:#fff; border:1px solid var(--border-color); border-radius:14px; padding: 4px 20px; }
     .faq-item summary { padding:16px 0; font-weight:700; color:var(--text-main); cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:12px; list-style:none; }
