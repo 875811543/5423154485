@@ -342,12 +342,15 @@
 }
 .hero__badges .hero__eyebrow { margin-bottom: 0; }
 
+/* Le lien se distingue du badge de confiance par le bleu plein d action du
+   site, pas par une couleur inventee : la premiere version introduisait trois
+   hex orange hors du systeme (bleu dominant, vert reserve a la confiance). */
 .hero__eyebrow--lien {
-  background: #FFF4E5;
-  color: #8A4B00;
+  background: var(--primary-blue);
+  color: #fff;
   text-decoration: none;
   transition: background 0.15s ease;
 }
-.hero__eyebrow--lien::before { background: #F59E0B; }
+.hero__eyebrow--lien::before { background: #fff; }
 .hero__eyebrow--lien:hover,
-.hero__eyebrow--lien:focus-visible { background: #FFE8C7; }
+.hero__eyebrow--lien:focus-visible { background: var(--primary-blue-hover); }
