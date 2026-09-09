@@ -325,3 +325,29 @@
 
 /* Bandeau de localisation au-dessus des zones. */
 .zones-top-bar p { margin: 0; }
+
+/* --- Rangee de badges du hero -----------------------------------------------
+   Le badge de confiance « Intervention 7j/7 » est rejoint par un lien vers la
+   page guepes & frelons. Motif : sur l'accueil, aucun lien vers cette page
+   n'etait visible sans defiler (celui du menu principal vit dans un sous-menu
+   deroulant, celui du menu mobile dans le burger replie) alors que la requete
+   est saisonnierement la plus forte. Le lien se loge sur la rangee du badge
+   existant : zero hauteur ajoutee sur grand ecran, une ligne sur mobile.
+   -------------------------------------------------------------------------- */
+.hero__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 20px;
+}
+.hero__badges .hero__eyebrow { margin-bottom: 0; }
+
+.hero__eyebrow--lien {
+  background: #FFF4E5;
+  color: #8A4B00;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+.hero__eyebrow--lien::before { background: #F59E0B; }
+.hero__eyebrow--lien:hover,
+.hero__eyebrow--lien:focus-visible { background: #FFE8C7; }
