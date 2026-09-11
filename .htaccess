@@ -64,6 +64,11 @@ DirectoryIndex index.html
   # Ecrit au singulier sur l'ancien site, la regle plurielle ne l'attrapait pas.
   RewriteRule ^anti-nuisible-balagne(-et-nebbio)?/?$ /anti-nuisible-corte [R=301,L]
 
+  # Article fusionne dans sa page de reference le 11 septembre 2026 : meme
+  # sujet traite en 250 mots contre 1376, les deux se genaient sur la meme
+  # requete. L article avait ete indexe, son adresse doit survivre.
+  RewriteRule ^diagnostic-termites-vente-corse/?$ /etat-parasitaire-termites-corse [R=301,L]
+
   # Adresses d'un site anterieur au Builder, relevees dans Search Console le
   # 6 septembre 2026 : quatorze URL en « Introuvable (404) », encore explorees
   # par Google entre mars et juin 2026. Toutes ont un equivalent ici.
