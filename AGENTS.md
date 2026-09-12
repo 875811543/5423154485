@@ -89,6 +89,21 @@ est exactement ce qui est servi.
   pages ajoutées le 2 septembre étaient en ligne avant même qu'on pense à les
   téléverser.
 
+  **Cette règle a cédé deux fois**, une fois en poussant un contrôle rouge
+  connu, une fois en poussant un sitemap périmé faute d'avoir relancé le
+  générateur. Les deux sont partis en ligne. Une règle qui repose sur la
+  mémoire finit par céder, donc elle est désormais mécanique :
+  `.githooks/pre-push` refuse la publication tant que `tools/controle.js`
+  n'est pas vert. Le hook est versionné, mais Git ne le branche pas tout
+  seul — **une fois par clone** :
+
+  ```bash
+  git config core.hooksPath .githooks
+  ```
+
+  `git push --no-verify` l'outrepasse. C'est pour les cas où l'on sait
+  précisément pourquoi, pas pour se débarrasser d'un rouge gênant.
+
   **La bascule a eu lieu le 2 septembre 2026 au matin.** Ce qui suit décrit la
   version qu'elle a remplacée, et reste utile pour comprendre d'où vient le
   travail fait ici :

@@ -1,0 +1,24 @@
+#!/bin/sh
+# Interdit de pousser tant que les 36 controles ne passent pas.
+#
+# Pourquoi ce garde-fou existe
+# ----------------------------
+# Sur ce depot, `git push` publie : Hostinger deploie automatiquement main
+# vers public_html. AGENTS.md exige donc que les controles passent AVANT de
+# pousser — mais c'est reste une consigne, et elle a cede deux fois. Une fois
+# en poussant un contrôle rouge connu, une fois en poussant un sitemap perime
+# faute d'avoir relance le generateur. Les deux sont partis en ligne.
+#
+# Une regle qui depend de la memoire finit par ceder. Celle-ci est mecanique.
+#
+# Pour outrepasser volontairement : git push --no-verify
+echo "  controles avant publication…"
+if ! node tools/controle.js > /dev/null 2>&1; then
+  echo ""
+  node tools/controle.js 2>&1 | grep -A1 ECHEC
+  echo ""
+  echo "  PUSH REFUSE — pousser ici publie le site."
+  echo "  Corrige, ou force avec --no-verify si tu sais ce que tu fais."
+  exit 1
+fi
+echo "  36 controles verts, publication autorisee"
