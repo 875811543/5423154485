@@ -1,12 +1,13 @@
 # Rapport SEO / GEO — dezinsect-corse.fr
 
-**Chantier du 4 septembre 2026.** Dix lots planifiés, huit exécutés, un écarté par
-la mesure, un fusionné. 51 pages, 47 adresses au sitemap, **36 contrôles
-automatiques** verts.
+**Chantier du 4 septembre 2026**, prolongé le 12 septembre. Dix lots planifiés,
+huit exécutés, un écarté par la mesure, un fusionné — plus un onzième lot
+d'après-coup, déclenché par une remontée de Bing. **62 pages**, 58 adresses au
+sitemap, **36 contrôles automatiques** verts.
 
 ---
 
-## 1. Les dix lots
+## 1. Les onze lots
 
 | Lot | État | Ce qui a été fait |
 |---|---|---|
@@ -20,6 +21,7 @@ automatiques** verts.
 | **8** — `Article` + `dateModified` | ✅ | 9 fiches, date git réelle, cohérente avec l'affichage |
 | **9** — `aria-current`, `address`, CSP | ✅ | 35 liens, 51 blocs, CSP **en mode bloquant** |
 | **10** — Rapport | ✅ | Ce document |
+| **11** — Prose sous les titres | ✅ | Après-coup, déclenché par Bing : 12 sections, 15 titres muets → **3** |
 
 ---
 
@@ -98,6 +100,42 @@ qu'une bonne :
 - Les **deux** H2 de `capricorne-des-maisons` (sa FAQ pose déjà « Quel traitement
   contre le capricorne ? » et « Comment se déroule un traitement de charpente ? »)
 - « Nos solutions pour les professionnels » sur `moustiques-corse`
+
+---
+
+## 3 bis. Lot 11 — la prose que Bing a réclamée
+
+**8 et 12 septembre 2026.** Bing Webmaster Tools signale
+`services-anti-nuisibles` en « contenu insuffisant ». La page fait pourtant
+**1 575 mots**, et n'est pas parmi les dix plus courtes du site.
+
+La mesure déplace le diagnostic : le défaut n'est pas la quantité, c'est la
+**forme**. 44 puces pour 8 paragraphes, soit 196 mots de texte suivi, et
+**6 sections sur 12 sans une seule phrase de prose** — un titre, puis une liste.
+Une heuristique de contenu mince mesure la prose, pas le total ; et un moteur de
+réponse n'a rien à extraire d'une grille à puces.
+
+Le balayage des 60 pages qui a suivi montre que le site n'a pas ce défaut dans
+l'ensemble — **88 % de prose en médiane** — mais qu'il portait **15 titres
+muets**, presque tous sur le même motif : un H2 suivi directement de cartes.
+
+| | avant | après |
+|---|---|---|
+| Titres sans texte suivi | 15 | **3** |
+| Prose de `services-anti-nuisibles` | 196 mots | **611** |
+
+Les **3 restants** sont écartés à dessein : le bandeau de liens et le bloc
+d'avis de l'accueil, plus « Autres nuisibles de saison » sur `moustiques-corse`.
+Ce sont des blocs de navigation ; y mettre de la prose serait exactement le
+remplissage que Bing sanctionne.
+
+**Ce lot ne contredit pas le §3.** Les H2 « Identification & risques » n'ont
+toujours pas été reformulés en question — la raison tient : leur FAQ de page
+poserait la même question deux fois. Le paragraphe ajouté dessous répond au
+besoin réel, donner une phrase extractible, **sans** créer ce doublon.
+
+Aucun fait nouveau n'a été écrit : chaque paragraphe est tiré des puces de sa
+propre section, qu'il cadre au lieu de les répéter.
 
 ---
 
