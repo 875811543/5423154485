@@ -21,4 +21,4 @@ if ! node tools/controle.js > /dev/null 2>&1; then
   echo "  Corrige, ou force avec --no-verify si tu sais ce que tu fais."
   exit 1
 fi
-echo "  36 controles verts, publication autorisee"
+echo "  controles verts, publication autorisee"
