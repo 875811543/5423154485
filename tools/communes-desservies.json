@@ -1,5 +1,5 @@
 {
- "commentaire": "Communes desservies par Dezinsect Corse. Cette liste vivait dans l'areaServed JSON-LD de l'accueil, ou elle pesait 8,2 Ko sans rien apporter au classement. Elle sert desormais de reference au controle « entite », qui refuse qu'une page declare une commune absente d'ici, et au controle « communes-affichees », qui exige qu'elle soit identique au bloc « Communes desservies » de zones-dintervention. Source des noms : API Decoupage administratif (geo.api.gouv.fr). Le Valinco et le Sartenais n'y figurent pas : ils ne sont pas desservis.",
+ "commentaire": "Communes desservies par Dezinsect Corse. Cette liste vivait dans l'areaServed JSON-LD de l'accueil, ou elle pesait 8,2 Ko sans rien apporter au classement. Elle sert desormais de reference au controle « entite », qui refuse qu'une page declare une commune absente d'ici, et au controle « communes-affichees », qui exige qu'elle soit identique au bloc « Communes desservies » de zones-dintervention. Genere par tools/build-communes.js : ne pas editer a la main.",
  "commentaireLieuxDits": "Lieux-dits et hameaux, pas des communes INSEE : Folelli releve de Penta-di-Casinca, Porticcio de Grosseto-Prugna, Solenzara de Sari-Solenzara. Le site a une page pour chacun, ils doivent donc rester declarables en areaServed sans figurer dans la liste des communes.",
  "departements": [
   "Corse-du-Sud",

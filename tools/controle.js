@@ -1391,6 +1391,20 @@ const CONTROLES = [
     return pbs;
   }}
 
+,
+
+{ nom: 'communes-genere', titre: 'Le bloc des communes est genere, pas ecrit a la main',
+  run() {
+    // Meme regle que pour le sitemap. 344 noms de communes saisis a la main
+    // seraient faux quelque part, et impossibles a corriger en serie. Ce
+    // controle refuse que le bloc ou la liste de reference divergent de ce que
+    // produit tools/build-communes.js.
+    try {
+      return require(path.join(__dirname, 'build-communes.js')).ecarts();
+    } catch (e) {
+      return ['le generateur des communes a leve une erreur : ' + e.message];
+    }
+  }}
 ];
 
 /* ------------------------------------------------------------------ *

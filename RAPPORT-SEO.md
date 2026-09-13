@@ -3,7 +3,7 @@
 **Chantier du 4 septembre 2026**, prolongé le 12 septembre. Dix lots planifiés,
 huit exécutés, un écarté par la mesure, un fusionné — plus un onzième lot
 d'après-coup déclenché par une remontée de Bing, et un douzième le 13 septembre.
-**62 pages**, 58 adresses au sitemap, **37 contrôles automatiques** verts.
+**62 pages**, 58 adresses au sitemap, **38 contrôles automatiques** verts.
 
 ---
 
@@ -188,7 +188,7 @@ d'être consignés, parce qu'ils s'écartent de l'intercommunalité :
 
 ---
 
-## 4. Les 37 contrôles
+## 4. Les 38 contrôles
 
 Sept ont été ajoutés pendant ce chantier, **chacun écrit et commité en échec
 avant la correction** — un contrôle écrit après coup décrit le résultat obtenu au
@@ -204,6 +204,7 @@ lieu de vérifier la règle :
 | `pas-de-js-en-ligne` | Le JavaScript qui casserait la CSP à la prochaine page |
 | `articles-lexique` | Une date affichée qui diverge de la date balisée |
 | `communes-affichees` | Un écart entre les communes affichées et les communes déclarées, dans les deux sens |
+| `communes-genere` | Un bloc de communes édité à la main plutôt que produit par son générateur |
 
 Chacun a été **vérifié en cassant volontairement le site**, puis restauré.
 

@@ -1,0 +1,1828 @@
+{
+ "commentaire": "Les 360 communes de Corse, telles que servies par l API Decoupage administratif (geo.api.gouv.fr) le 13 septembre 2026. Versionne pour deux raisons : la generation du bloc reste reproductible sans reseau, et une evolution du decoupage communal se verra en diff au lieu de passer inapercue.",
+ "source": "https://geo.api.gouv.fr/departements/2A,2B/communes?fields=nom,code,codeEpci",
+ "releve": "2026-09-13",
+ "epci": {
+  "200015162": "CC de l'Oriente",
+  "200033827": "CC de Fium'Orbu Castellu",
+  "200034205": "CC de la Costa Verde",
+  "200036499": "CC de Marana-Golo",
+  "200038958": "CC de la Pieve de l'Ornano et du Taravo",
+  "200040764": "CC du Sud Corse",
+  "200042943": "CC du Cap Corse",
+  "200067049": "CC Spelunca-Liamone",
+  "200073104": "CC de l'Ile-Rousse - Balagne",
+  "200073120": "CC Nebbiu - Conca d'Oro",
+  "200073138": "CC Pasquale Paoli",
+  "200073252": "CC de la Castagniccia-Casinca",
+  "242000354": "CA de Bastia",
+  "242000495": "CC de l'Alta Rocca",
+  "242000503": "CC Celavu-Prunelli",
+  "242010056": "CA du Pays Ajaccien",
+  "242010130": "CC du Sartenais Valinco Taravo",
+  "242020071": "CC du Centre Corse",
+  "242020105": "CC de Calvi Balagne"
+ },
+ "communes": [
+  {
+   "nom": "Afa",
+   "code": "2A001",
+   "epci": "242010056"
+  },
+  {
+   "nom": "Ajaccio",
+   "code": "2A004",
+   "epci": "242010056"
+  },
+  {
+   "nom": "Alata",
+   "code": "2A006",
+   "epci": "242010056"
+  },
+  {
+   "nom": "Albitreccia",
+   "code": "2A008",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Altagène",
+   "code": "2A011",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Ambiegna",
+   "code": "2A014",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Appietto",
+   "code": "2A017",
+   "epci": "242010056"
+  },
+  {
+   "nom": "Arbellara",
+   "code": "2A018",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Arbori",
+   "code": "2A019",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Argiusta-Moriccio",
+   "code": "2A021",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Arro",
+   "code": "2A022",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Aullène",
+   "code": "2A024",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Azilone-Ampaza",
+   "code": "2A026",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Azzana",
+   "code": "2A027",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Balogna",
+   "code": "2A028",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Bastelica",
+   "code": "2A031",
+   "epci": "242000503"
+  },
+  {
+   "nom": "Bastelicaccia",
+   "code": "2A032",
+   "epci": "242000503"
+  },
+  {
+   "nom": "Belvédère-Campomoro",
+   "code": "2A035",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Bilia",
+   "code": "2A038",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Bocognano",
+   "code": "2A040",
+   "epci": "242000503"
+  },
+  {
+   "nom": "Bonifacio",
+   "code": "2A041",
+   "epci": "200040764"
+  },
+  {
+   "nom": "Calcatoggio",
+   "code": "2A048",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Campo",
+   "code": "2A056",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Cannelle",
+   "code": "2A060",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Carbini",
+   "code": "2A061",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Carbuccia",
+   "code": "2A062",
+   "epci": "242000503"
+  },
+  {
+   "nom": "Cardo-Torgia",
+   "code": "2A064",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Cargèse",
+   "code": "2A065",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Cargiaca",
+   "code": "2A066",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Casaglione",
+   "code": "2A070",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Casalabriva",
+   "code": "2A071",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Cauro",
+   "code": "2A085",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Ciamannacce",
+   "code": "2A089",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Coggia",
+   "code": "2A090",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Cognocoli-Monticchi",
+   "code": "2A091",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Conca",
+   "code": "2A092",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Corrano",
+   "code": "2A094",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Coti-Chiavari",
+   "code": "2A098",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Cozzano",
+   "code": "2A099",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Cristinacce",
+   "code": "2A100",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Cuttoli-Corticchiato",
+   "code": "2A103",
+   "epci": "242010056"
+  },
+  {
+   "nom": "Eccica-Suarella",
+   "code": "2A104",
+   "epci": "242000503"
+  },
+  {
+   "nom": "Évisa",
+   "code": "2A108",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Figari",
+   "code": "2A114",
+   "epci": "200040764"
+  },
+  {
+   "nom": "Foce",
+   "code": "2A115",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Forciolo",
+   "code": "2A117",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Fozzano",
+   "code": "2A118",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Frasseto",
+   "code": "2A119",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Giuncheto",
+   "code": "2A127",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Granace",
+   "code": "2A128",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Grossa",
+   "code": "2A129",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Grosseto-Prugna",
+   "code": "2A130",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Guagno",
+   "code": "2A131",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Guargualé",
+   "code": "2A132",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Guitera-les-Bains",
+   "code": "2A133",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Lecci",
+   "code": "2A139",
+   "epci": "200040764"
+  },
+  {
+   "nom": "Letia",
+   "code": "2A141",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Levie",
+   "code": "2A142",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Lopigna",
+   "code": "2A144",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Loreto-di-Tallano",
+   "code": "2A146",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Marignana",
+   "code": "2A154",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Mela",
+   "code": "2A158",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Moca-Croce",
+   "code": "2A160",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Monacia-d'Aullène",
+   "code": "2A163",
+   "epci": "200040764"
+  },
+  {
+   "nom": "Murzo",
+   "code": "2A174",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Ocana",
+   "code": "2A181",
+   "epci": "242000503"
+  },
+  {
+   "nom": "Olivese",
+   "code": "2A186",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Olmeto",
+   "code": "2A189",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Olmiccia",
+   "code": "2A191",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Orto",
+   "code": "2A196",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Osani",
+   "code": "2A197",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Ota",
+   "code": "2A198",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Palneca",
+   "code": "2A200",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Partinello",
+   "code": "2A203",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Pastricciola",
+   "code": "2A204",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Peri",
+   "code": "2A209",
+   "epci": "242010056"
+  },
+  {
+   "nom": "Petreto-Bicchisano",
+   "code": "2A211",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Piana",
+   "code": "2A212",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Pianottoli-Caldarello",
+   "code": "2A215",
+   "epci": "200040764"
+  },
+  {
+   "nom": "Pietrosella",
+   "code": "2A228",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Pila-Canale",
+   "code": "2A232",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Poggiolo",
+   "code": "2A240",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Porto-Vecchio",
+   "code": "2A247",
+   "epci": "200040764"
+  },
+  {
+   "nom": "Propriano",
+   "code": "2A249",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Quasquara",
+   "code": "2A253",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Quenza",
+   "code": "2A254",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Renno",
+   "code": "2A258",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Rezza",
+   "code": "2A259",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Rosazia",
+   "code": "2A262",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Salice",
+   "code": "2A266",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Sampolo",
+   "code": "2A268",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Sari-Solenzara",
+   "code": "2A269",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Sari-d'Orcino",
+   "code": "2A270",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Sarrola-Carcopino",
+   "code": "2A271",
+   "epci": "242010056"
+  },
+  {
+   "nom": "Sartène",
+   "code": "2A272",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Serra-di-Ferro",
+   "code": "2A276",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Serra-di-Scopamène",
+   "code": "2A278",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Serriera",
+   "code": "2A279",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Soccia",
+   "code": "2A282",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Sollacaro",
+   "code": "2A284",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Sorbollano",
+   "code": "2A285",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Sotta",
+   "code": "2A288",
+   "epci": "200040764"
+  },
+  {
+   "nom": "Sant'Andréa-d'Orcino",
+   "code": "2A295",
+   "epci": "200067049"
+  },
+  {
+   "nom": "San-Gavino-di-Carbini",
+   "code": "2A300",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Sainte-Lucie-de-Tallano",
+   "code": "2A308",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Santa-Maria-Figaniella",
+   "code": "2A310",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Santa-Maria-Siché",
+   "code": "2A312",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Tasso",
+   "code": "2A322",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Tavaco",
+   "code": "2A323",
+   "epci": "242010056"
+  },
+  {
+   "nom": "Tavera",
+   "code": "2A324",
+   "epci": "242000503"
+  },
+  {
+   "nom": "Tolla",
+   "code": "2A326",
+   "epci": "242000503"
+  },
+  {
+   "nom": "Ucciani",
+   "code": "2A330",
+   "epci": "242000503"
+  },
+  {
+   "nom": "Urbalacone",
+   "code": "2A331",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Valle-di-Mezzana",
+   "code": "2A336",
+   "epci": "242010056"
+  },
+  {
+   "nom": "Vero",
+   "code": "2A345",
+   "epci": "242000503"
+  },
+  {
+   "nom": "Vico",
+   "code": "2A348",
+   "epci": "200067049"
+  },
+  {
+   "nom": "Viggianello",
+   "code": "2A349",
+   "epci": "242010130"
+  },
+  {
+   "nom": "Villanova",
+   "code": "2A351",
+   "epci": "242010056"
+  },
+  {
+   "nom": "Zérubia",
+   "code": "2A357",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Zévaco",
+   "code": "2A358",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Zicavo",
+   "code": "2A359",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Zigliara",
+   "code": "2A360",
+   "epci": "200038958"
+  },
+  {
+   "nom": "Zonza",
+   "code": "2A362",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Zoza",
+   "code": "2A363",
+   "epci": "242000495"
+  },
+  {
+   "nom": "Aghione",
+   "code": "2B002",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Aiti",
+   "code": "2B003",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Alando",
+   "code": "2B005",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Albertacce",
+   "code": "2B007",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Aléria",
+   "code": "2B009",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Algajola",
+   "code": "2B010",
+   "epci": "242020105"
+  },
+  {
+   "nom": "Altiani",
+   "code": "2B012",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Alzi",
+   "code": "2B013",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Ampriani",
+   "code": "2B015",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Antisanti",
+   "code": "2B016",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Aregno",
+   "code": "2B020",
+   "epci": "242020105"
+  },
+  {
+   "nom": "Asco",
+   "code": "2B023",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Avapessa",
+   "code": "2B025",
+   "epci": "242020105"
+  },
+  {
+   "nom": "Barbaggio",
+   "code": "2B029",
+   "epci": "200073120"
+  },
+  {
+   "nom": "Barrettali",
+   "code": "2B030",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Bastia",
+   "code": "2B033",
+   "epci": "242000354"
+  },
+  {
+   "nom": "Belgodère",
+   "code": "2B034",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Bigorno",
+   "code": "2B036",
+   "epci": "200036499"
+  },
+  {
+   "nom": "Biguglia",
+   "code": "2B037",
+   "epci": "200036499"
+  },
+  {
+   "nom": "Bisinchi",
+   "code": "2B039",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Borgo",
+   "code": "2B042",
+   "epci": "200036499"
+  },
+  {
+   "nom": "Brando",
+   "code": "2B043",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Bustanico",
+   "code": "2B045",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Cagnano",
+   "code": "2B046",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Calacuccia",
+   "code": "2B047",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Calenzana",
+   "code": "2B049",
+   "epci": "242020105"
+  },
+  {
+   "nom": "Calvi",
+   "code": "2B050",
+   "epci": "242020105"
+  },
+  {
+   "nom": "Cambia",
+   "code": "2B051",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Campana",
+   "code": "2B052",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Campi",
+   "code": "2B053",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Campile",
+   "code": "2B054",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Campitello",
+   "code": "2B055",
+   "epci": "200036499"
+  },
+  {
+   "nom": "Canale-di-Verde",
+   "code": "2B057",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Canari",
+   "code": "2B058",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Canavaggia",
+   "code": "2B059",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Carcheto-Brustico",
+   "code": "2B063",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Carpineto",
+   "code": "2B067",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Carticasi",
+   "code": "2B068",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Casabianca",
+   "code": "2B069",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Casalta",
+   "code": "2B072",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Casamaccioli",
+   "code": "2B073",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Casanova",
+   "code": "2B074",
+   "epci": "242020071"
+  },
+  {
+   "nom": "Casevecchie",
+   "code": "2B075",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Castellare-di-Casinca",
+   "code": "2B077",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Castellare-di-Mercurio",
+   "code": "2B078",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Castello-di-Rostino",
+   "code": "2B079",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Castifao",
+   "code": "2B080",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Castiglione",
+   "code": "2B081",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Castineta",
+   "code": "2B082",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Castirla",
+   "code": "2B083",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Cateri",
+   "code": "2B084",
+   "epci": "242020105"
+  },
+  {
+   "nom": "Centuri",
+   "code": "2B086",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Cervione",
+   "code": "2B087",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Chiatra",
+   "code": "2B088",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Corbara",
+   "code": "2B093",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Corscia",
+   "code": "2B095",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Corte",
+   "code": "2B096",
+   "epci": "242020071"
+  },
+  {
+   "nom": "Costa",
+   "code": "2B097",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Croce",
+   "code": "2B101",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Crocicchia",
+   "code": "2B102",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Erbajolo",
+   "code": "2B105",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Érone",
+   "code": "2B106",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Ersa",
+   "code": "2B107",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Farinole",
+   "code": "2B109",
+   "epci": "200073120"
+  },
+  {
+   "nom": "Favalello",
+   "code": "2B110",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Felce",
+   "code": "2B111",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Feliceto",
+   "code": "2B112",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Ficaja",
+   "code": "2B113",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Focicchia",
+   "code": "2B116",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Furiani",
+   "code": "2B120",
+   "epci": "242000354"
+  },
+  {
+   "nom": "Galéria",
+   "code": "2B121",
+   "epci": "242020105"
+  },
+  {
+   "nom": "Gavignano",
+   "code": "2B122",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Ghisonaccia",
+   "code": "2B123",
+   "epci": "200033827"
+  },
+  {
+   "nom": "Ghisoni",
+   "code": "2B124",
+   "epci": "200033827"
+  },
+  {
+   "nom": "Giocatojo",
+   "code": "2B125",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Giuncaggio",
+   "code": "2B126",
+   "epci": "200015162"
+  },
+  {
+   "nom": "L'Île-Rousse",
+   "code": "2B134",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Isolaccio-di-Fiumorbo",
+   "code": "2B135",
+   "epci": "200033827"
+  },
+  {
+   "nom": "Lama",
+   "code": "2B136",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Lano",
+   "code": "2B137",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Lavatoggio",
+   "code": "2B138",
+   "epci": "242020105"
+  },
+  {
+   "nom": "Lento",
+   "code": "2B140",
+   "epci": "200036499"
+  },
+  {
+   "nom": "Linguizzetta",
+   "code": "2B143",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Loreto-di-Casinca",
+   "code": "2B145",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Lozzi",
+   "code": "2B147",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Lucciana",
+   "code": "2B148",
+   "epci": "200036499"
+  },
+  {
+   "nom": "Lugo-di-Nazza",
+   "code": "2B149",
+   "epci": "200033827"
+  },
+  {
+   "nom": "Lumio",
+   "code": "2B150",
+   "epci": "242020105"
+  },
+  {
+   "nom": "Luri",
+   "code": "2B152",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Manso",
+   "code": "2B153",
+   "epci": "242020105"
+  },
+  {
+   "nom": "Matra",
+   "code": "2B155",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Mausoléo",
+   "code": "2B156",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Mazzola",
+   "code": "2B157",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Meria",
+   "code": "2B159",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Moïta",
+   "code": "2B161",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Moltifao",
+   "code": "2B162",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Monacia-d'Orezza",
+   "code": "2B164",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Moncale",
+   "code": "2B165",
+   "epci": "242020105"
+  },
+  {
+   "nom": "Monte",
+   "code": "2B166",
+   "epci": "200036499"
+  },
+  {
+   "nom": "Montegrosso",
+   "code": "2B167",
+   "epci": "242020105"
+  },
+  {
+   "nom": "Monticello",
+   "code": "2B168",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Morosaglia",
+   "code": "2B169",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Morsiglia",
+   "code": "2B170",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Muracciole",
+   "code": "2B171",
+   "epci": "242020071"
+  },
+  {
+   "nom": "Murato",
+   "code": "2B172",
+   "epci": "200073120"
+  },
+  {
+   "nom": "Muro",
+   "code": "2B173",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Nessa",
+   "code": "2B175",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Nocario",
+   "code": "2B176",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Noceta",
+   "code": "2B177",
+   "epci": "242020071"
+  },
+  {
+   "nom": "Nonza",
+   "code": "2B178",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Novale",
+   "code": "2B179",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Novella",
+   "code": "2B180",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Occhiatana",
+   "code": "2B182",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Ogliastro",
+   "code": "2B183",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Olcani",
+   "code": "2B184",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Oletta",
+   "code": "2B185",
+   "epci": "200073120"
+  },
+  {
+   "nom": "Olmeta-di-Capocorso",
+   "code": "2B187",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Olmeta-di-Tuda",
+   "code": "2B188",
+   "epci": "200073120"
+  },
+  {
+   "nom": "Olmi-Cappella",
+   "code": "2B190",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Olmo",
+   "code": "2B192",
+   "epci": "200036499"
+  },
+  {
+   "nom": "Omessa",
+   "code": "2B193",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Ortale",
+   "code": "2B194",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Ortiporio",
+   "code": "2B195",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Palasca",
+   "code": "2B199",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Pancheraccia",
+   "code": "2B201",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Parata",
+   "code": "2B202",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Patrimonio",
+   "code": "2B205",
+   "epci": "200073120"
+  },
+  {
+   "nom": "Penta-Acquatella",
+   "code": "2B206",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Penta-di-Casinca",
+   "code": "2B207",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Perelli",
+   "code": "2B208",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Pero-Casevecchie",
+   "code": "2B210",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Pianello",
+   "code": "2B213",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Piano",
+   "code": "2B214",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Piazzali",
+   "code": "2B216",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Piazzole",
+   "code": "2B217",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Piedicorte-di-Gaggio",
+   "code": "2B218",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Piedicroce",
+   "code": "2B219",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Piedigriggio",
+   "code": "2B220",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Piedipartino",
+   "code": "2B221",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Pie-d'Orezza",
+   "code": "2B222",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Pietralba",
+   "code": "2B223",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Pietracorbara",
+   "code": "2B224",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Pietra-di-Verde",
+   "code": "2B225",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Pietraserena",
+   "code": "2B226",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Pietricaggio",
+   "code": "2B227",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Pietroso",
+   "code": "2B229",
+   "epci": "200033827"
+  },
+  {
+   "nom": "Piève",
+   "code": "2B230",
+   "epci": "200073120"
+  },
+  {
+   "nom": "Pigna",
+   "code": "2B231",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Pino",
+   "code": "2B233",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Piobetta",
+   "code": "2B234",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Pioggiola",
+   "code": "2B235",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Poggio-di-Nazza",
+   "code": "2B236",
+   "epci": "200033827"
+  },
+  {
+   "nom": "Poggio-di-Venaco",
+   "code": "2B238",
+   "epci": "242020071"
+  },
+  {
+   "nom": "Poggio-d'Oletta",
+   "code": "2B239",
+   "epci": "200073120"
+  },
+  {
+   "nom": "Poggio-Marinaccio",
+   "code": "2B241",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Poggio-Mezzana",
+   "code": "2B242",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Polveroso",
+   "code": "2B243",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Popolasca",
+   "code": "2B244",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Porri",
+   "code": "2B245",
+   "epci": "200073252"
+  },
+  {
+   "nom": "La Porta",
+   "code": "2B246",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Prato-di-Giovellina",
+   "code": "2B248",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Prunelli-di-Casacconi",
+   "code": "2B250",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Prunelli-di-Fiumorbo",
+   "code": "2B251",
+   "epci": "200033827"
+  },
+  {
+   "nom": "Pruno",
+   "code": "2B252",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Quercitello",
+   "code": "2B255",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Rapaggio",
+   "code": "2B256",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Rapale",
+   "code": "2B257",
+   "epci": "200073120"
+  },
+  {
+   "nom": "Riventosa",
+   "code": "2B260",
+   "epci": "242020071"
+  },
+  {
+   "nom": "Rogliano",
+   "code": "2B261",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Rospigliani",
+   "code": "2B263",
+   "epci": "242020071"
+  },
+  {
+   "nom": "Rusio",
+   "code": "2B264",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Rutali",
+   "code": "2B265",
+   "epci": "200073120"
+  },
+  {
+   "nom": "Saliceto",
+   "code": "2B267",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Scata",
+   "code": "2B273",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Scolca",
+   "code": "2B274",
+   "epci": "200036499"
+  },
+  {
+   "nom": "Sermano",
+   "code": "2B275",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Serra-di-Fiumorbo",
+   "code": "2B277",
+   "epci": "200033827"
+  },
+  {
+   "nom": "Silvareccio",
+   "code": "2B280",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Sisco",
+   "code": "2B281",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Solaro",
+   "code": "2B283",
+   "epci": "200033827"
+  },
+  {
+   "nom": "Sorbo-Ocagnano",
+   "code": "2B286",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Sorio",
+   "code": "2B287",
+   "epci": "200073120"
+  },
+  {
+   "nom": "Soveria",
+   "code": "2B289",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Speloncato",
+   "code": "2B290",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Stazzona",
+   "code": "2B291",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Sant'Andréa-di-Bozio",
+   "code": "2B292",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Sant'Andréa-di-Cotone",
+   "code": "2B293",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Sant'Antonino",
+   "code": "2B296",
+   "epci": "242020105"
+  },
+  {
+   "nom": "San-Damiano",
+   "code": "2B297",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Saint-Florent",
+   "code": "2B298",
+   "epci": "200073120"
+  },
+  {
+   "nom": "San-Gavino-d'Ampugnani",
+   "code": "2B299",
+   "epci": "200073252"
+  },
+  {
+   "nom": "San-Gavino-di-Tenda",
+   "code": "2B301",
+   "epci": "200073120"
+  },
+  {
+   "nom": "San-Giovanni-di-Moriani",
+   "code": "2B302",
+   "epci": "200034205"
+  },
+  {
+   "nom": "San-Giuliano",
+   "code": "2B303",
+   "epci": "200034205"
+  },
+  {
+   "nom": "San-Lorenzo",
+   "code": "2B304",
+   "epci": "200073138"
+  },
+  {
+   "nom": "San-Martino-di-Lota",
+   "code": "2B305",
+   "epci": "242000354"
+  },
+  {
+   "nom": "Santa-Lucia-di-Mercurio",
+   "code": "2B306",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Santa-Lucia-di-Moriani",
+   "code": "2B307",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Santa-Maria-di-Lota",
+   "code": "2B309",
+   "epci": "242000354"
+  },
+  {
+   "nom": "Santa-Maria-Poggio",
+   "code": "2B311",
+   "epci": "200034205"
+  },
+  {
+   "nom": "San-Nicolao",
+   "code": "2B313",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Santo-Pietro-di-Tenda",
+   "code": "2B314",
+   "epci": "200073120"
+  },
+  {
+   "nom": "Santo-Pietro-di-Venaco",
+   "code": "2B315",
+   "epci": "242020071"
+  },
+  {
+   "nom": "Santa-Reparata-di-Balagna",
+   "code": "2B316",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Santa-Reparata-di-Moriani",
+   "code": "2B317",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Taglio-Isolaccio",
+   "code": "2B318",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Talasani",
+   "code": "2B319",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Tallone",
+   "code": "2B320",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Tarrano",
+   "code": "2B321",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Tomino",
+   "code": "2B327",
+   "epci": "200042943"
+  },
+  {
+   "nom": "Tox",
+   "code": "2B328",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Tralonca",
+   "code": "2B329",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Urtaca",
+   "code": "2B332",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Vallecalle",
+   "code": "2B333",
+   "epci": "200073120"
+  },
+  {
+   "nom": "Valle-d'Alesani",
+   "code": "2B334",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Valle-di-Campoloro",
+   "code": "2B335",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Valle-di-Rostino",
+   "code": "2B337",
+   "epci": "200073138"
+  },
+  {
+   "nom": "Valle-d'Orezza",
+   "code": "2B338",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Vallica",
+   "code": "2B339",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Velone-Orneto",
+   "code": "2B340",
+   "epci": "200034205"
+  },
+  {
+   "nom": "Venaco",
+   "code": "2B341",
+   "epci": "242020071"
+  },
+  {
+   "nom": "Ventiseri",
+   "code": "2B342",
+   "epci": "200033827"
+  },
+  {
+   "nom": "Venzolasca",
+   "code": "2B343",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Verdèse",
+   "code": "2B344",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Vescovato",
+   "code": "2B346",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Vezzani",
+   "code": "2B347",
+   "epci": "200033827"
+  },
+  {
+   "nom": "Vignale",
+   "code": "2B350",
+   "epci": "200036499"
+  },
+  {
+   "nom": "Ville-di-Paraso",
+   "code": "2B352",
+   "epci": "200073104"
+  },
+  {
+   "nom": "Ville-di-Pietrabugno",
+   "code": "2B353",
+   "epci": "242000354"
+  },
+  {
+   "nom": "Vivario",
+   "code": "2B354",
+   "epci": "242020071"
+  },
+  {
+   "nom": "Volpajola",
+   "code": "2B355",
+   "epci": "200073252"
+  },
+  {
+   "nom": "Zalana",
+   "code": "2B356",
+   "epci": "200015162"
+  },
+  {
+   "nom": "Zilia",
+   "code": "2B361",
+   "epci": "242020105"
+  },
+  {
+   "nom": "Zuani",
+   "code": "2B364",
+   "epci": "200015162"
+  },
+  {
+   "nom": "San-Gavino-di-Fiumorbo",
+   "code": "2B365",
+   "epci": "200033827"
+  },
+  {
+   "nom": "Chisa",
+   "code": "2B366",
+   "epci": "200033827"
+  }
+ ]
+}
