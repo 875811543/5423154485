@@ -2,12 +2,12 @@
 
 **Chantier du 4 septembre 2026**, prolongé le 12 septembre. Dix lots planifiés,
 huit exécutés, un écarté par la mesure, un fusionné — plus un onzième lot
-d'après-coup, déclenché par une remontée de Bing. **62 pages**, 58 adresses au
-sitemap, **36 contrôles automatiques** verts.
+d'après-coup déclenché par une remontée de Bing, et un douzième le 13 septembre.
+**62 pages**, 58 adresses au sitemap, **37 contrôles automatiques** verts.
 
 ---
 
-## 1. Les onze lots
+## 1. Les douze lots
 
 | Lot | État | Ce qui a été fait |
 |---|---|---|
@@ -22,6 +22,7 @@ sitemap, **36 contrôles automatiques** verts.
 | **9** — `aria-current`, `address`, CSP | ✅ | 35 liens, 51 blocs, CSP **en mode bloquant** |
 | **10** — Rapport | ✅ | Ce document |
 | **11** — Prose sous les titres | ✅ | Après-coup, déclenché par Bing : 12 sections, 15 titres muets → **3** |
+| **12** — Communes desservies | ✅ | 344 communes en 16 microrégions, accordéons natifs sans JS |
 
 ---
 
@@ -139,7 +140,55 @@ propre section, qu'il cadre au lieu de les répéter.
 
 ---
 
-## 4. Les 36 contrôles
+## 3 ter. Lot 12 — le bloc « Communes desservies »
+
+**13 septembre 2026.** Bloc ajouté en bas de `zones-dintervention` : 16
+microrégions en accordéons `<details>` natifs, sans une ligne de JavaScript,
+chacune ouvrant sur une phrase de contexte puis ses communes.
+
+**Les noms ne sont pas écrits à la main.** Ils viennent de l'API Découpage
+administratif — 124 communes en Corse-du-Sud, 236 en Haute-Corse. Le
+rattachement s'appuie sur l'intercommunalité, qui épouse largement le découpage
+coutumier ; seules les six EPCI à cheval sur deux microrégions sont scindées
+commune par commune. **344 affichées, 16 exclues, somme vérifiée à 360.**
+
+Le Valinco n'est pas desservi, le Sartenais non plus — arbitré le 13 septembre,
+en cohérence avec une consigne donnée bien plus tôt et que le brief contredisait.
+
+### Ce qui a été refusé
+
+Le brief demandait de porter les 344 communes en `areaServed` dans le JSON-LD.
+**Le site avait déjà tranché l'inverse**, et le fichier de référence le
+documente : cet `areaServed` énumérait 99 communes, « 8,2 Ko sans rien apporter
+au classement », et il avait été retiré au profit des deux départements. Y
+réinjecter 344 objets `City` aurait annulé cette mesure pour environ 17 Ko sur
+l'accueil.
+
+La liste vit donc dans `tools/communes-desservies.json`, et le **contrôle 37**
+garantit l'exigence réelle du brief — que l'affiché et le déclaré soient
+identiques — **dans les deux sens**, en refusant aussi le retour d'une commune
+hors zone.
+
+Écrit avant la correction et vu rouge, ce contrôle a révélé un défaut que je
+n'avais pas vu : **7 entrées de la référence n'étaient pas des communes** mais
+des lieux-dits — Folelli relève de Penta-di-Casinca, Porticcio de
+Grosseto-Prugna, Solenzara de Sari-Solenzara. Ils ont désormais leur propre clé,
+et restent déclarables.
+
+### Arbitrages de rattachement
+
+Les microrégions corses n'ont pas de frontière officielle. Trois choix méritent
+d'être consignés, parce qu'ils s'écartent de l'intercommunalité :
+
+- le **Rostinu** (Morosaglia et six voisines) est mis en Castagniccia et non en
+  Centre Corse : l'usage du visiteur prime sur le découpage administratif ;
+- **Bastelicaccia** rejoint le Grand Ajaccio, dont il est une banlieue contiguë ;
+- le groupe 12 est renommé **« Gravona, Celavu, Prunelli & Cruzzini »**, le
+  libellé d'origine omettant le Prunelli.
+
+---
+
+## 4. Les 37 contrôles
 
 Sept ont été ajoutés pendant ce chantier, **chacun écrit et commité en échec
 avant la correction** — un contrôle écrit après coup décrit le résultat obtenu au
@@ -154,6 +203,7 @@ lieu de vérifier la règle :
 | `nav-courante` | Zéro ou deux « page courante » dans un menu |
 | `pas-de-js-en-ligne` | Le JavaScript qui casserait la CSP à la prochaine page |
 | `articles-lexique` | Une date affichée qui diverge de la date balisée |
+| `communes-affichees` | Un écart entre les communes affichées et les communes déclarées, dans les deux sens |
 
 Chacun a été **vérifié en cassant volontairement le site**, puis restauré.
 
