@@ -214,7 +214,7 @@ Chacun a été **vérifié en cassant volontairement le site**, puis restauré.
 | Action | Pourquoi elle vous revient |
 |---|---|
 | **1. SIREN / RCS aux mentions légales** | Obligation légale. Société en cours d'immatriculation — aucune donnée ne sera inventée |
-| **2. Search Console : resoumettre le sitemap** | 47 adresses. Puis demander l'indexation des pages neuves les plus rentables |
+| **2. Search Console : resoumettre le sitemap** | 58 adresses. Puis demander l'indexation des pages neuves les plus rentables |
 | **3. Racheter `dezinsect20.fr`** | **Libre à la vente**, vérifié à l'AFNIC. Premier résultat Google sur votre marque, et lien mort. Une dizaine d'euros par an |
 | **4. Fiche Google Business** | Renseigner les zones desservies commune par commune. Pour les petites communes, ça rapporte plus que des pages |
 | **5. Demander des avis** | Trois en août 2026 : bon rythme. C'est le geste le plus rentable de la liste |
