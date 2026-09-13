@@ -1068,7 +1068,7 @@ const CONTROLES = [
         path.join(__dirname, 'communes-desservies.json'), 'utf8'));
       const zonesEntite = new Set([].concat(completes[0].o.areaServed || [])
         .map(a => typeof a === 'string' ? a : a.name)
-        .concat(REF.departements, REF.communes));
+        .concat(REF.departements, REF.communes, REF.lieuxDits));
       const manquantes = new Map();
       const zones = (o, f, dansService) => {
         if (!o || typeof o !== 'object') return;
@@ -1340,6 +1340,53 @@ const CONTROLES = [
         if (a.dateModified !== reelle)
           pbs.push(f + ' : dateModified vaut ' + a.dateModified + ', le dernier commit de fond date du ' + reelle);
       } catch (e) { pbs.push('build-sitemap.js : ' + e.message.slice(0, 70)); }
+    }
+    return pbs;
+  }}
+
+,
+
+{ nom: 'communes-affichees', titre: 'Les communes affichees sont exactement les communes declarees',
+  run() {
+    // Le bloc « Communes desservies » de zones-dintervention affiche 344
+    // communes. La meme liste sert de reference au controle « entite » pour
+    // autoriser ce qu'une page a le droit de declarer en areaServed.
+    //
+    // Les deux doivent coincider, sinon le site affiche une couverture et en
+    // revendique une autre. Ce controle refuse cet ecart dans les deux sens :
+    // une commune affichee mais non declaree, et l'inverse.
+    const pbs = [];
+    const src = lire('zones-dintervention.html');
+    const affichees = new Set();
+    // La capture s'arrete au premier « < », donc la balise fermante n'a pas
+    // besoin d'etre decrite ici.
+    for (const m of src.matchAll(/<p class="commune-liste">([^<]*)/g))
+      for (const n of m[1].split(',')) {
+        const nom = n.replace(/&nbsp;/g, ' ').trim();
+        if (nom) affichees.add(nom);
+      }
+    if (!affichees.size) { pbs.push('aucune commune affichee trouvee dans zones-dintervention.html'); return pbs; }
+
+    const REF = new Set(JSON.parse(fs.readFileSync(
+      path.join(__dirname, 'communes-desservies.json'), 'utf8')).communes);
+
+    const enTrop = [...affichees].filter(n => !REF.has(n));
+    const manquantes = [...REF].filter(n => !affichees.has(n));
+    if (enTrop.length)
+      pbs.push(enTrop.length + ' commune(s) affichee(s) mais absente(s) de communes-desservies.json : '
+        + enTrop.slice(0, 6).join(', ') + (enTrop.length > 6 ? ' …' : ''));
+    if (manquantes.length)
+      pbs.push(manquantes.length + ' commune(s) declaree(s) dans communes-desservies.json mais non affichee(s) : '
+        + manquantes.slice(0, 6).join(', ') + (manquantes.length > 6 ? ' …' : ''));
+
+    // Le Valinco et le Sartenais ne sont pas desservis. Ils ne doivent
+    // reapparaitre ni a l'affichage, ni dans la reference.
+    const HORS = ['Propriano', 'Olmeto', 'Sollacaro', 'Casalabriva', 'Serra-di-Ferro',
+      'Belvédère-Campomoro', 'Viggianello', 'Fozzano', 'Arbellara', 'Santa-Maria-Figaniella',
+      'Sartène', 'Giuncheto', 'Granace', 'Bilia', 'Foce', 'Grossa'];
+    for (const n of HORS) {
+      if (affichees.has(n)) pbs.push('commune hors zone affichee : ' + n);
+      if (REF.has(n)) pbs.push('commune hors zone dans communes-desservies.json : ' + n);
     }
     return pbs;
   }}

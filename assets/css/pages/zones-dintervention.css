@@ -231,3 +231,115 @@
 .zone-heading-md { font-size: 1.2rem; margin-bottom: 16px; color: var(--primary); }
 .zone-text--spaced { margin-top: 8px; }
 .btn-phone.btn-phone--block { display: inline-block; }
+
+/* ------------------------------------------------------------------
+   Bloc « Communes desservies »
+   Accordeons natifs <details>/<summary>, sans JavaScript. Rien n'est
+   masque en CSS : le contenu replie reste dans le HTML rendu, c'est le
+   navigateur qui le replie.
+   ------------------------------------------------------------------ */
+.communes-block {
+  margin-top: 32px;
+  padding: clamp(16px, 4vw, 28px);
+  background: #FFFFFF;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+}
+
+.communes-intro {
+  margin: 0 0 20px;
+  max-width: 68ch;
+  font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+  line-height: 1.65;
+  color: var(--text-main);
+}
+
+.commune-groupe {
+  border-top: 1px solid var(--card-border);
+}
+.commune-groupe:last-of-type {
+  border-bottom: 1px solid var(--card-border);
+}
+
+.commune-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 4px;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--primary);
+}
+.commune-summary::-webkit-details-marker { display: none; }
+
+.commune-summary:hover { color: var(--accent-blue-hover); }
+
+/* Le focus clavier doit rester franchement visible : c'est la seule
+   indication dont dispose quelqu'un qui navigue a la tabulation. */
+.commune-summary:focus-visible {
+  outline: 3px solid var(--accent-blue);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.commune-nom {
+  flex: 1 1 auto;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1rem);
+}
+
+.commune-compte {
+  flex: 0 0 auto;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--blue-bg);
+  border: 1px solid var(--blue-border);
+  color: var(--accent-blue-hover);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.commune-chevron {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+  transition: transform 0.18s ease;
+}
+.commune-groupe[open] .commune-chevron { transform: rotate(180deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .commune-chevron { transition: none; }
+}
+
+.commune-corps {
+  padding: 0 4px 18px;
+}
+
+.commune-phrase {
+  margin: 0 0 10px;
+  max-width: 68ch;
+  font-size: clamp(0.9rem, 0.87rem + 0.2vw, 1rem);
+  line-height: 1.6;
+  color: var(--text-main);
+}
+
+/* Les noms de communes : texte simple separe par des virgules, jamais
+   une liste de liens. Le retour a la ligne doit pouvoir se faire entre
+   deux noms sans couper un nom compose. */
+.commune-liste {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  overflow-wrap: break-word;
+}
+
+.commune-lien { margin: 0; }
+.commune-lien .internal-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
