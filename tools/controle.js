@@ -672,8 +672,31 @@ const CONTROLES = [
         .replace(/<nav class="breadcrumb"[\s\S]*?<\/nav>/g, ' ')
         .replace(/<footer class="contact-footer"[\s\S]*?<\/footer>/g, ' ');
     };
-    const phrases = h => h.replace(/<[^>]+>/g, ' ')
+    // Les noms de lieux sont neutralises avant comparaison. Sans cela, une page
+    // de ville recopiee en changeant seulement « Bastia » en « Ghisonaccia »
+    // passait pour du contenu original : chaque phrase differait d'un mot. Or
+    // c'est exactement la page artificielle que le site s'interdit — une page
+    // locale doit dire quelque chose de local, pas porter un autre nom.
+    const REF = JSON.parse(fs.readFileSync(path.join(__dirname, 'communes-desservies.json'), 'utf8'));
+    const LIEUX = [...REF.communes, ...REF.lieuxDits, ...REF.departements,
+      'Balagne', 'Costa Verde', 'Plaine Orientale', 'Plaine orientale', 'Fiumorbo', 'Fiumorbu',
+      'Nebbio', 'Casinca', 'Castagniccia', 'Alta Rocca', 'Grand Bastia', 'Cap Corse',
+      'Centre Corse', 'Centre-Corse', 'Extrême-Sud', 'Taravo', 'Niolu', 'Corse',
+      // Noms d'usage qui ne sont ni une commune ni un lieu-dit de la reference :
+      // la commune de Moriani est San-Nicolao, mais le site dit « Moriani ».
+      'Moriani', 'Bavella']
+      .sort((a, b) => b.length - a.length)
+      .map(n => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/'/g, "[''\u2019]"));
+    const RE_LIEUX = new RegExp('(?<![\\p{L}-])(?:' + LIEUX.join('|') + ')(?![\\p{L}-])', 'gu');
+
+    // Un titre ou un paragraphe qui se ferme termine aussi une phrase. Sans ce
+    // point de coupe, un H2 sans ponctuation se collait a la phrase suivante :
+    // la meme phrase recopiee sous un autre titre ne correspondait plus, et le
+    // decalque passait.
+    const phrases = h => h.replace(/<\/(h[1-6]|p|li|summary|dt|dd|figcaption)>/g, '. ')
+      .replace(/<[^>]+>/g, ' ')
       .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&[a-z]+;/g, ' ')
+      .replace(RE_LIEUX, 'LIEU')
       .replace(/\s+/g, ' ').trim()
       .split(/(?<=[.!?])\s+/)
       .map(p => p.trim().toLowerCase().replace(/[«»"'\u2019,;:()–—-]/g, ' ').replace(/\s+/g, ' ').trim())
