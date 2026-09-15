@@ -3,11 +3,11 @@
 **Chantier du 4 septembre 2026**, prolongé le 12 septembre. Dix lots planifiés,
 huit exécutés, un écarté par la mesure, un fusionné — plus un onzième lot
 d'après-coup déclenché par une remontée de Bing, et un douzième le 13 septembre.
-**62 pages**, 58 adresses au sitemap, **38 contrôles automatiques** verts.
+**64 pages**, 60 adresses au sitemap, **38 contrôles automatiques** verts.
 
 ---
 
-## 1. Les douze lots
+## 1. Les treize lots
 
 | Lot | État | Ce qui a été fait |
 |---|---|---|
@@ -23,6 +23,7 @@ d'après-coup déclenché par une remontée de Bing, et un douzième le 13 septe
 | **10** — Rapport | ✅ | Ce document |
 | **11** — Prose sous les titres | ✅ | Après-coup, déclenché par Bing : 12 sections, 15 titres muets → **3** |
 | **12** — Communes desservies | ✅ | 344 communes en 16 microrégions, accordéons natifs sans JS |
+| **13** — Pages guêpes locales | ✅ | Ghisonaccia et Corte créées ; 4 doublons de ville évités ; angle frelon renforcé sur 3 pages |
 
 ---
 
@@ -188,6 +189,42 @@ d'être consignés, parce qu'ils s'écartent de l'intercommunalité :
 
 ---
 
+## 3 quater. Lot 13 — des pages locales, pas des pages de ville
+
+**15 septembre 2026.** Proposition de départ : six pages `destruction-nid-frelons-…`
+(Bastia, Moriani, Cervione, Ghisonaccia, Ajaccio, Porto-Vecchio), avec un contenu
+réellement localisé et non un nom de ville remplacé.
+
+**Quatre de ces six pages existaient déjà**, sous `destruction-nid-guepes-…`, avec
+un titre « Nid de Guêpes & Frelons à … ». Une seconde page sur la même ville et
+la même intervention aurait mis les deux en concurrence sur la même requête. Elles
+n'ont pas été créées. Les pages existantes n'étaient pas des décalques : 8 à 18 %
+de phrases communes seulement, noms de lieux neutralisés.
+
+**Créées** : Ghisonaccia et Corte, les deux vrais manques. **Écartée** : Cervione,
+dont une page dédiée exposerait le lieu du siège et concurrencerait Moriani.
+
+### Le contrôle qui devait empêcher le décalque ne l'empêchait pas
+
+`doublons` ne neutralisait pas les noms de lieux : une page recopiée en changeant
+« Bastia » en « Ghisonaccia » passait, chaque phrase différant d'un mot. Il ne
+coupait pas non plus les phrases aux titres, si bien qu'une phrase recopiée sous un
+autre H2 ne correspondait plus. Les deux défauts sont corrigés.
+
+Commité en échec, le contrôle renforcé a immédiatement trouvé **un doublon déjà en
+ligne** que l'ancienne version laissait passer : Balagne et Moriani partageaient une
+phrase et deux questions de FAQ. Puis il a **refusé les deux nouvelles pages** : le
+texte de service — badge, tarif, réponse sur le prix, phrase de maillage — avait
+été repris du modèle. Réécrit pour chaque page.
+
+### L'angle frelon
+
+Renforcé là où il était faible — Balagne, Moriani, Aléria —, chaque fois ancré dans
+le terrain de la page. Ajaccio et Bastia, qui ont déjà une section entière sur les
+trois espèces, n'ont pas été touchées.
+
+---
+
 ## 4. Les 38 contrôles
 
 Sept ont été ajoutés pendant ce chantier, **chacun écrit et commité en échec
@@ -215,7 +252,7 @@ Chacun a été **vérifié en cassant volontairement le site**, puis restauré.
 | Action | Pourquoi elle vous revient |
 |---|---|
 | **1. SIREN / RCS aux mentions légales** | Obligation légale. Société en cours d'immatriculation — aucune donnée ne sera inventée |
-| **2. Search Console : resoumettre le sitemap** | 58 adresses. Puis demander l'indexation des pages neuves les plus rentables |
+| **2. Search Console : resoumettre le sitemap** | 60 adresses. Puis demander l'indexation des pages neuves les plus rentables |
 | **3. Racheter `dezinsect20.fr`** | **Libre à la vente**, vérifié à l'AFNIC. Premier résultat Google sur votre marque, et lien mort. Une dizaine d'euros par an |
 | **4. Fiche Google Business** | Renseigner les zones desservies commune par commune. Pour les petites communes, ça rapporte plus que des pages |
 | **5. Demander des avis** | Trois en août 2026 : bon rythme. C'est le geste le plus rentable de la liste |
