@@ -1823,3 +1823,78 @@ li > .ico:first-child {
 @media (min-width: 768px) {
   .wa-float { right: 24px; bottom: 24px; }
 }
+
+
+/* ==========================================================================
+   ACTION ET REASSURANCE SOUS LE TITRE (septembre 2026)
+   --------------------------------------------------------------------------
+   Un bouton de devis visible sans defiler, et une rangee de coches. Motif pris
+   sur une publicite montree par le proprietaire, applique a l'accueil puis aux
+   pages de service, qui passaient du sous-titre au contenu sans rien proposer.
+
+   La couleur du bouton ne vient pas d'ici : il porte aussi .btn-devis, qui le
+   met au vert de conversion avec les autres boutons d'action du site. Ce bloc
+   ne regle que la forme et la disposition.
+   ========================================================================== */
+.page-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin: 22px auto 8px;
+}
+
+.page-action__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.98rem;
+  text-decoration: none;
+}
+
+.page-action__btn:focus-visible {
+  outline: 3px solid var(--primary-blue);
+  outline-offset: 3px;
+}
+
+/* Sur mobile, le bouton prend toute la largeur : une cible de pouce. */
+@media (max-width: 559px) {
+  .page-action { align-items: stretch; }
+}
+
+.garanties {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink, #0F172A);
+}
+
+.garanties li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Le vert est reserve a la confiance. */
+.garanties svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  padding: 3px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: var(--accent-green);
+  color: #fff;
+}

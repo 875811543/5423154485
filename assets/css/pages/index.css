@@ -395,35 +395,8 @@
   outline-offset: 3px;
 }
 
-.hero__garanties {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px 18px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.hero__garanties li {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.hero__garanties svg {
-  flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  padding: 3px;
-  border-radius: 50%;
-  background: var(--accent-green);
-  color: #fff;
-  box-sizing: border-box;
-}
+/* La rangee de coches utilise desormais le composant partage .garanties,
+   defini dans global.css. */
 
 @media (prefers-reduced-motion: reduce) {
   .hero__btn-primary,
