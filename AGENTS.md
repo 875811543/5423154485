@@ -565,13 +565,13 @@ Propager sur tous les assets d'un coup, puis contrôler :
 ```sh
 # propagation
 for c in assets/css/*.css assets/css/pages/*.css assets/js/*.js; do
-  n=197610basename ); h=197610md5sum  | cut -c1-8)
+  n=$(basename "$c"); h=$(md5sum "$c" | cut -c1-8)
   sed -i "s|$n?v=[a-zA-Z0-9]*|$n?v=$h|g" *.html
 done
 
 # controle : le hash reference doit egaler le md5 reel du fichier
 for c in assets/css/*.css assets/css/pages/*.css assets/js/*.js; do
-  n=197610basename ); r=197610md5sum  | cut -c1-8)
+  n=$(basename "$c"); r=$(md5sum "$c" | cut -c1-8)
   u=$(grep -oh "$n?v=[a-f0-9]*" *.html | sort -u | sed 's/.*v=//')
   [ "$r" = "$u" ] || echo "ECART $n : fichier=$r pages='$u'"
 done
