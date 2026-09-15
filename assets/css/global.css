@@ -1898,3 +1898,39 @@ li > .ico:first-child {
   background: var(--accent-green);
   color: #fff;
 }
+
+/* ==========================================================================
+   HALO BLEU-VIOLET-ROSE DES EN-TETES DE PAGE (septembre 2026)
+   --------------------------------------------------------------------------
+   Declinaison de la publicite prise en modele : un voile qui glisse du bleu
+   au violet et au rose, derriere le titre. Le bleu reste la couleur
+   d'identite, le vert celle de l'action ; le rose et le violet ne sont que des
+   halos a tres faible opacite, jamais une couleur de texte ou de bouton.
+
+   Les trois classes couvrent les en-tetes des pages de service, construites a
+   des epoques differentes. Le halo est un pseudo-element en z-index -1 dans un
+   contexte isole : il passe sous le texte sans le recouvrir ni capter les clics.
+   ========================================================================== */
+.hero-header,
+.derat-header,
+.termites-header {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(20px, 4vw, 32px) clamp(14px, 3vw, 28px);
+  border-radius: 28px;
+}
+
+.hero-header::before,
+.derat-header::before,
+.termites-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(90% 80% at 0% 0%, rgba(26, 77, 251, 0.14) 0%, rgba(26, 77, 251, 0) 60%),
+    radial-gradient(70% 60% at 95% 5%, rgba(139, 92, 246, 0.18) 0%, rgba(139, 92, 246, 0) 60%),
+    radial-gradient(90% 80% at 100% 100%, rgba(236, 72, 153, 0.22) 0%, rgba(236, 72, 153, 0) 60%);
+}

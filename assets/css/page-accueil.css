@@ -7,7 +7,11 @@
   .hero {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(180deg, #F5F8FF 0%, #FFFFFF 100%);
+    /* Voile bleu-violet vers le rose, sur le modele de la publicite fournie.
+       Le bleu reste dominant ; le rose et le violet ne sont que des halos. */
+    background:
+      radial-gradient(90% 70% at 100% 0%, rgba(139,92,246,0.18) 0%, rgba(139,92,246,0) 60%),
+      linear-gradient(180deg, #F4F5FF 0%, #FFFFFF 100%);
     padding: clamp(48px, 8vw, 96px) 20px clamp(24px, 4vw, 48px);
   }
 
@@ -29,7 +33,7 @@
 
   .hero::after {
     width: 320px; height: 320px;
-    background: radial-gradient(circle, rgba(46,99,204,0.10) 0%, rgba(46,99,204,0) 70%);
+    background: radial-gradient(circle, rgba(236,72,153,0.30) 0%, rgba(236,72,153,0) 70%);
     bottom: -100px; left: -80px;
   }
 
