@@ -404,3 +404,27 @@
   .hero__btn-primary:hover,
   .hero__btn-secondary:hover { transform: none; }
 }
+
+/* --------------------------------------------------------------------------
+   Bouton « Nid de guepes ou de frelons » en bleu plein (septembre 2026)
+   --------------------------------------------------------------------------
+   Demande du proprietaire : le bouton, blanc a bordure grise, s'effacait a cote
+   du vert du devis. Il passe au bleu d'identite plein.
+
+   Pas d'orange, pas de jaune « guepe » : une premiere version de ce lien en
+   orange a deja ete retiree, trois couleurs hors du systeme (voir plus haut).
+   Le bleu le distingue du vert d'action tout en restant dans la charte.
+   -------------------------------------------------------------------------- */
+.hero__inner--single .hero__btn-secondary {
+  background: var(--primary-blue);
+  border-color: var(--primary-blue);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(26, 77, 251, 0.28);
+}
+
+.hero__inner--single .hero__btn-secondary:hover,
+.hero__inner--single .hero__btn-secondary:focus-visible {
+  background: var(--primary-blue-hover);
+  border-color: var(--primary-blue-hover);
+  color: #fff;
+}
