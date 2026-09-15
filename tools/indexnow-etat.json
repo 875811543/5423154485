@@ -1,8 +1,8 @@
 {
-  "dernierEnvoi": "2026-09-13T10:34:23Z",
+  "dernierEnvoi": "2026-09-15T10:08:58Z",
   "adresses": {
     "https://dezinsect-corse.fr/actualites": "48dea259b11de0a7",
-    "https://dezinsect-corse.fr/anti-nuisible-corte": "6955cd4e39520e58",
+    "https://dezinsect-corse.fr/anti-nuisible-corte": "1c361dda333cfce0",
     "https://dezinsect-corse.fr/anti-nuisibles-costa-verde": "2d733072060d5cef",
     "https://dezinsect-corse.fr/anti-nuisibles-grand-ajaccio-porto-vecchio": "0cdae10181f0557d",
     "https://dezinsect-corse.fr/cafards": "fc22a243119c6c01",
@@ -21,16 +21,18 @@
     "https://dezinsect-corse.fr/desinsectisation-aleria": "92f43a5b039a594e",
     "https://dezinsect-corse.fr/desinsectisation": "07b5fc5eeabdea46",
     "https://dezinsect-corse.fr/destruction-nid-guepes-ajaccio": "84823ca7de8151a4",
-    "https://dezinsect-corse.fr/destruction-nid-guepes-aleria": "7af92c1eafd84004",
-    "https://dezinsect-corse.fr/destruction-nid-guepes-balagne": "18bcc068872953a3",
+    "https://dezinsect-corse.fr/destruction-nid-guepes-aleria": "d2220749132e4519",
+    "https://dezinsect-corse.fr/destruction-nid-guepes-balagne": "d572b3a5af7511bd",
     "https://dezinsect-corse.fr/destruction-nid-guepes-bastia": "b0dc4bfe4c673fd9",
-    "https://dezinsect-corse.fr/destruction-nid-guepes-moriani": "09fdfcacd7835db7",
+    "https://dezinsect-corse.fr/destruction-nid-guepes-corte": "c8587159ea626c37",
+    "https://dezinsect-corse.fr/destruction-nid-guepes-ghisonaccia": "a05f099a62d9cb37",
+    "https://dezinsect-corse.fr/destruction-nid-guepes-moriani": "2925b62b304235af",
     "https://dezinsect-corse.fr/destruction-nid-guepes-porto-vecchio": "e66e4c5297b6e598",
-    "https://dezinsect-corse.fr/destruction-nid-guepes-solenzara": "c4c7ac5782141b61",
+    "https://dezinsect-corse.fr/destruction-nid-guepes-solenzara": "caaafa004679a4b6",
     "https://dezinsect-corse.fr/etat-parasitaire-termites-corse": "183f9de9d6fa6f4e",
     "https://dezinsect-corse.fr/fourmis": "40a852ce495f0f99",
     "https://dezinsect-corse.fr/frelon-oriental-bastia": "622a4d5c530182c9",
-    "https://dezinsect-corse.fr/guepes-et-frelons": "2590fb008f552af4",
+    "https://dezinsect-corse.fr/guepes-et-frelons": "a36d213fa115b61e",
     "https://dezinsect-corse.fr/": "b459afa4ed61da50",
     "https://dezinsect-corse.fr/lexique-nuisibles": "c2a658503a9da816",
     "https://dezinsect-corse.fr/merule-champignons-bois": "4fec9b6919e1d520",
@@ -58,6 +60,6 @@
     "https://dezinsect-corse.fr/traitement-termites-bastia": "4d150c96c6b1ef73",
     "https://dezinsect-corse.fr/traitement-termites-costa-verde": "8fd892fdba436c30",
     "https://dezinsect-corse.fr/traitement-termites-porto-vecchio": "e2e0da9d51262906",
-    "https://dezinsect-corse.fr/zones-dintervention": "a618ae59b7c79e32"
+    "https://dezinsect-corse.fr/zones-dintervention": "10dcca891fe54ad7"
   }
 }
