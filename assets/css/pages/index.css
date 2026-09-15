@@ -354,3 +354,80 @@
 .hero__eyebrow--lien::before { background: #fff; }
 .hero__eyebrow--lien:hover,
 .hero__eyebrow--lien:focus-visible { background: var(--primary-blue-hover); }
+
+
+/* --------------------------------------------------------------------------
+   Hero centre, bouton d'action et reassurance (septembre 2026)
+   --------------------------------------------------------------------------
+   Sur le modele d'une publicite montree par le proprietaire : un seul badge,
+   un titre centre, un bouton d'action visible sans defiler, et une rangee de
+   reassurance a coches.
+
+   Le bouton reutilise .hero__btn-primary et .hero__btn-secondary, deja
+   definis dans page-accueil.css mais que plus aucun element n'employait : le
+   hero avait perdu son bouton d'action en route.
+
+   Le lien guepes et frelons, auparavant dans la rangee des badges, devient le
+   bouton secondaire. Il reste dans le hero pour la raison donnee plus haut :
+   c'est la seule entree vers cette page visible sans defiler.
+
+   Les coches sont vertes : le vert est reserve a la confiance.
+   -------------------------------------------------------------------------- */
+.hero__inner--single { text-align: center; }
+.hero__inner--single .hero__badges { justify-content: center; }
+.hero__inner--single .hero__lead { margin-left: auto; margin-right: auto; margin-bottom: 28px; }
+
+.hero__inner--single .hero__actions {
+  justify-content: center;
+  margin-bottom: 22px;
+}
+
+/* Sur mobile, les deux boutons prennent toute la largeur : une cible de pouce
+   pleine largeur, comme le bouton de la publicite. */
+@media (max-width: 559px) {
+  .hero__inner--single .hero__actions { flex-direction: column; align-items: stretch; }
+  .hero__inner--single .hero__actions a { justify-content: center; }
+}
+
+.hero__btn-primary:focus-visible,
+.hero__btn-secondary:focus-visible {
+  outline: 3px solid var(--primary-blue);
+  outline-offset: 3px;
+}
+
+.hero__garanties {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.hero__garanties li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero__garanties svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  padding: 3px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  color: #fff;
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__btn-primary,
+  .hero__btn-secondary { transition: none; }
+  .hero__btn-primary:hover,
+  .hero__btn-secondary:hover { transform: none; }
+}
