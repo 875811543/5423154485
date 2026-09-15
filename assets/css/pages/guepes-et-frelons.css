@@ -201,3 +201,46 @@
   margin-bottom: 20px;
 }
 .hero-subtitle.hero-subtitle--compact { text-align: left; font-size: 0.88rem; margin: 0; }
+
+/* --------------------------------------------------------------------------
+   Reassurance en coches compactes (septembre 2026)
+   --------------------------------------------------------------------------
+   Meme motif que le hero de l'accueil : une rangee de coches vertes plutot
+   que quatre cartes empilees. Sur mobile, les cartes occupaient pres de
+   220 px et repoussaient les especes sous la ligne de flottaison.
+
+   Les selecteurs sont prefixes par .main-section : cette feuille est chargee
+   AVANT pages-services.css, qui definit .reassurance-bar et .reassurance-item.
+   A specificite egale, la feuille partagee gagnerait et ces regles seraient
+   ignorees sans le moindre message.
+
+   Le vert est reserve a la confiance, comme sur le reste du site.
+   -------------------------------------------------------------------------- */
+.main-section .reassurance-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 20px;
+  margin-bottom: 32px;
+}
+
+.main-section .reassurance-item {
+  background: none;
+  border: 0;
+  padding: 0;
+  box-shadow: none;
+  gap: 7px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.main-section .reassurance-item svg {
+  width: 20px;
+  height: 20px;
+  padding: 4px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: var(--accent-green);
+  color: #fff;
+}
