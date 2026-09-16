@@ -85,6 +85,14 @@ DirectoryIndex index.html
   RewriteRule ^expert-nuisibles-corse/suivez-dezinsect-corse-sur-les-rseaux-sociaux/?$ /contact [R=301,L]
   RewriteRule ^dezinsect-corse/insectes-volants/?$ /guepes-et-frelons [R=301,L]
   RewriteRule ^dezinsect-corse/rongeurs/?$ /deratisation [R=301,L]
+  # Signalees par la Search Console le 16 septembre 2026 (« Exploree, non
+  # indexee ») : explorees au temps de l'ancien site, en 404 depuis. La page
+  # d'Aleria, geographiquement plus proche, est centree sur les mouches ; la
+  # page de service couvre la desinsectisation en general. Les termites passent
+  # avant les capricornes dans l'adresse, et la page termites couvre aussi les
+  # xylophages.
+  RewriteRule ^desinsectisation-corse-orientale/?$ /desinsectisation [R=301,L]
+  RewriteRule ^dezinsect-corse/traitement-termites-capricornes-corse/?$ /traitement-anti-termites [R=301,L]
   RewriteRule ^insectes-rampants/?$ /desinsectisation [R=301,L]
   RewriteRule ^traitement-charpente/?$ /traitement-anti-termites [R=301,L]
   RewriteRule ^charpentes/?$ /traitement-anti-termites [R=301,L]
