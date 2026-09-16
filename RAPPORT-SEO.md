@@ -247,6 +247,32 @@ Chacun a été **vérifié en cassant volontairement le site**, puis restauré.
 
 ---
 
+## 4 bis. Relevé Search Console du 16 septembre 2026
+
+Données au 14 septembre : **53 pages indexées** (4 le 5 juillet), **33 non
+indexées** pour 5 motifs. Chaque adresse signalée a été testée en ligne.
+
+| Motif | Pages | Constat | Suite |
+|---|---|---|---|
+| Page avec redirection | 3 | Anciennes adresses, 301 en un seul saut vers une page en 200 | Aucune : c'est le résultat voulu |
+| Exclue par « noindex » | 1 | Page de remerciement du formulaire | Aucune |
+| Introuvable (404) | 11 | **Déjà redirigées depuis le 7 septembre** ; dernières explorations entre le 28 mars et le 10 juin | « Valider la correction » côté propriétaire |
+| Explorée, non indexée | 6 | 2 anciennes adresses réellement en 404 sans redirection | **Deux 301 ajoutées** le 16 septembre |
+| Détectée, non indexée | 12 | Pages récentes, pas encore explorées | Attendre ; demandes d'indexation ciblées |
+
+Sur les 6 « explorées, non indexées » : `sitemap.xml` n'est pas une page, sans
+conséquence. `destruction-nid-guepes-corte` et `-ghisonaccia` ont été explorées
+le jour même de leur création. `/souris` est la seule page établie écartée :
+c'est la fiche la plus courte du lexique (662 mots), sur une requête que la page
+dératisation (2 841 mots) couvre aussi.
+
+**À revérifier début octobre 2026** : si Corte, Ghisonaccia ou `/souris` sont
+encore « explorées, non indexées », le délai ne suffit plus. Pour `/souris`, la
+piste est de la matière de terrain propre au propriétaire — secteurs, saisons,
+types de logement —, jamais un rallongement sans fait nouveau.
+
+---
+
 ## 5. Ce qui reste à faire — et que je ne peux pas faire
 
 | Action | Pourquoi elle vous revient |
