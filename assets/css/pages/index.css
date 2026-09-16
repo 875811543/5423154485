@@ -59,7 +59,7 @@
 }
 
 .card-category-tag {
-  font-size: 0.7rem;
+  font-size: 0.75rem;   /* 12 px minimum pour une etiquette (etait 11,2 px) */
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -93,9 +93,9 @@
   position: relative;
   padding-left: 20px;
   margin-bottom: 6px;
-  font-size: 0.85rem;
+  font-size: 0.94rem;   /* 15 px : du contenu, pas une mention (etait 13,6 px) */
   color: var(--text-main);
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .service-card li::before {
@@ -130,7 +130,7 @@
   color: var(--primary-blue-hover);
   padding: 2px 8px;
   border-radius: 4px;
-  font-size: 0.7rem;
+  font-size: 0.75rem;   /* 12 px minimum pour une etiquette (etait 11,2 px) */
   font-weight: 700;
   margin-bottom: 8px;
   text-transform: uppercase;

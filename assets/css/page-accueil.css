@@ -184,7 +184,7 @@
     min-width: 0;
   }
 
-  .trust-strip__visual h2 { font-family: var(--font-heading); font-weight: 700; font-size: 1.15rem; margin: 0 0 18px; }
+  .trust-strip__visual h3 { font-family: var(--font-heading); font-weight: 700; font-size: 1.15rem; margin: 0 0 18px; }
 
   .trust-strip__list { list-style: none; margin: 0 0 24px; padding: 0; display: grid; gap: 12px; }
 
@@ -244,8 +244,10 @@
 }
 
 
+/* Taille commune aux titres de section de l'accueil : clamp(1.5rem, 3vw, 2.1rem).
+   Ils en avaient trois differentes, et un sous-titre plus grand qu'eux. */
 .services-header h2 {
-  font-size: clamp(1.4rem, 5vw, 2.2rem);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
   color: var(--text-dark);
   margin: 0 0 10px 0;
   font-weight: 800;
@@ -260,6 +262,7 @@
   font-size: 0.9rem;
   color: var(--text-muted);
   line-height: 1.5;
+  max-width: 68ch;   /* au-dela de ~85 caracteres, l'oeil perd la ligne suivante */
   margin: 0 auto;
 }
 
@@ -350,7 +353,7 @@
 
 
 .why-title {
-  font-size: clamp(1.4rem, 6vw, 1.75rem);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
   font-weight: 800;
   color: var(--text-dark);
   line-height: 1.2;
