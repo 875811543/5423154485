@@ -428,3 +428,31 @@
   border-color: var(--primary-blue-hover);
   color: #fff;
 }
+
+/* --------------------------------------------------------------------------
+   Titre « Demandez votre devis gratuit » cliquable (septembre 2026)
+   --------------------------------------------------------------------------
+   Demande du proprietaire : le bouton vert du hero est retire, ce qui fait
+   remonter le formulaire, et le titre de la section devient le lien. Il mene
+   au premier champ (#nom) : le clic amene directement a la saisie.
+
+   Le titre garde son apparence de titre ; le soulignement au survol et le
+   contour au focus clavier signalent qu'il est cliquable.
+   -------------------------------------------------------------------------- */
+.devis-title__lien {
+  color: inherit;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.devis-title__lien:hover {
+  color: var(--primary-blue);
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+.devis-title__lien:focus-visible {
+  outline: 3px solid var(--primary-blue);
+  outline-offset: 4px;
+}
