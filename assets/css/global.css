@@ -1934,3 +1934,38 @@ li > .ico:first-child {
     radial-gradient(70% 60% at 95% 5%, rgba(139, 92, 246, 0.18) 0%, rgba(139, 92, 246, 0) 60%),
     radial-gradient(90% 80% at 100% 100%, rgba(236, 72, 153, 0.22) 0%, rgba(236, 72, 153, 0) 60%);
 }
+
+/* ==========================================================================
+   AVIS CLIENTS : RANGEE A FAIRE GLISSER SUR MOBILE (septembre 2026)
+   --------------------------------------------------------------------------
+   Les avis ont ete remontes juste apres le formulaire de l'accueil ; ils
+   etaient en toute derniere position, a 5 870 px du haut sur mobile.
+
+   Empiles, les six avis faisaient 1 867 px de haut : remontes tels quels, ils
+   auraient enterre le reste de la page. Sous 700 px, ils deviennent une rangee
+   qu'on fait glisser au doigt. L'avis suivant depasse du bord, ce qui montre
+   qu'il y en a d'autres. Defilement natif, sans JavaScript ; les six avis
+   restent dans la page. Au-dessus de 700 px, la grille d'origine est intacte.
+   ========================================================================== */
+@media (max-width: 699px) {
+  .reviews__grid {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    padding: 4px 2px 14px;
+    scrollbar-width: thin;
+  }
+
+  .reviews__grid .review-card {
+    flex: 0 0 86%;
+    scroll-snap-align: start;
+  }
+}
+
+.reviews__grid:focus-visible {
+  outline: 3px solid var(--primary-blue);
+  outline-offset: 4px;
+  border-radius: 16px;
+}
