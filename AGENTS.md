@@ -1105,3 +1105,25 @@ zone, `contact` (envoi du formulaire compris), en mobile et en desktop.
 - Le site a migré depuis un ancien builder : les 301 de `.htaccess` protègent
   l'historique de référencement. Ne jamais en supprimer une sans preuve qu'elle
   est devenue inutile.
+
+## Avis Google : tenus à la main
+
+Le site est statique : **rien ne met à jour les avis automatiquement**. La note
+et le nombre d'avis sont écrits en dur dans `index.html`, à **deux endroits** :
+
+- `<span class="reviews__score-meta">21 avis Google</span>`, à côté de la note ;
+- le lien « Lire les 21 avis sur Google ».
+
+La note (`5,0`) est dans `<span class="reviews__score-num">`. Quand le
+propriétaire signale un nouveau chiffre, mettre à jour **les deux** nombres,
+et **ne pas toucher la note sans qu'il la confirme** : un avis à moins de cinq
+étoiles la ferait passer à 4,9, et afficher une note fausse est pire
+qu'afficher un nombre en retard.
+
+Aucune donnée structurée ne porte la note : `aggregateRating` a été écarté,
+voir `AUDIT-SEO.md §3`.
+
+Une mise à jour automatique a été envisagée et écartée le 16 septembre 2026 :
+elle demanderait une clé API Google Places liée à un compte de facturation, et
+un script quotidien sur l'hébergement — une brique à maintenir sur un site qui
+n'en a aucune.
