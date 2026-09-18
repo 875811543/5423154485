@@ -599,6 +599,18 @@ Annoncer une date d’il y a une semaine sur une page réécrite le jour même
 retarde sa réindexation — précisément pour le travail le plus récent. Au
 premier passage, **29 des 34 dates étaient obsolètes**.
 
+`tools/build-sitemap.js` (fonction `dateGit`, partagée avec le contrôle des
+fiches du lexique) ne compte pas comme modification de contenu un commit qui,
+pour ce fichier, ne change que :
+
+- des hashes `?v=` de cache-busting ;
+- le `<header class="site-header">` ou le `<footer class="site-footer">`
+  partagés — le fichier est comparé avant et après, ces deux blocs retirés.
+
+Sans cette règle, une retouche du pied de page date les 65 pages du même jour
+et le hook `pre-push` refuse la publication. Ne pas la contourner par
+`--no-verify` : l'étendre si un autre bloc partagé apparaît.
+
 **Ce n’est volontairement pas un contrôle de `tools/controle.js`** : la date
 git d’un fichier change au moment même où on le commite, donc un contrôle
 comparant les deux échouerait après chaque commit, le sitemap ayant été

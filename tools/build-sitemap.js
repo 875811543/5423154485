@@ -38,6 +38,37 @@ const { execSync } = require('child_process');
 const RACINE = path.resolve(__dirname, '..');
 const SITE = 'https://dezinsect-corse.fr';
 
+/**
+ * Le fichier, tel qu'il etait a ce commit, reduit a son contenu propre : sans
+ * l'en-tete ni le pied de page partages, sans les hashes de cache. Deux
+ * versions egales sous cette forme ne different que par le gabarit commun.
+ */
+function contenuPropre(sha, fichier) {
+  const brut = execSync('git show "' + sha + ':' + fichier + '"',
+    { cwd: RACINE, encoding: 'utf8', maxBuffer: 32 * 1024 * 1024,
+      stdio: ['ignore', 'pipe', 'ignore'] });
+  return brut
+    .replace(/<header class="site-header"[\s\S]*?<\/header>/, '')
+    .replace(/<footer class="site-footer"[\s\S]*?<\/footer>/, '')
+    .replace(/\?v=[0-9a-f]{8}/g, '')
+    .replace(/\r\n/g, '\n')
+    .trimEnd();
+}
+
+/**
+ * Vrai si le commit ne touche, dans ce fichier, que l'en-tete ou le pied de
+ * page partages. Une refonte du pied modifie les 65 pages le meme jour sans
+ * changer le contenu d'aucune : la compter ferait mentir le sitemap et les
+ * dateModified, exactement comme un commit de hash de cache.
+ */
+function seulementGabarit(sha, fichier) {
+  try {
+    return contenuPropre(sha, fichier) === contenuPropre(sha + '^', fichier);
+  } catch (e) {
+    return false; // premier commit du fichier : c'est du contenu
+  }
+}
+
 /** Date du dernier commit touchant un fichier, au format AAAA-MM-JJ. */
 function dateGit(fichier) {
   try {
@@ -59,7 +90,9 @@ function dateGit(fichier) {
         .filter(l => /^[+-]/.test(l) && !/^(\+\+\+|---)/.test(l));
       const seulementHash = modifiees.length > 0
         && modifiees.every(l => /\?v=[0-9a-f]{8}/.test(l));
-      if (!seulementHash) return date;
+      if (seulementHash) continue;
+      if (seulementGabarit(sha, fichier)) continue;
+      return date;
     }
     if (journal.length) return journal[journal.length - 1].split('|')[1];
   } catch (e) { /* dépôt absent ou fichier jamais commité */ }
