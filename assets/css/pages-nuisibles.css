@@ -395,3 +395,140 @@
     margin: 4px 0 0;
     color: var(--text-main, #334155);
   }
+
+/* ==========================================================================
+   PAGE PILIER TERMITES (traitement-anti-termites.html, septembre 2026)
+   Composants propres a cette page : deux boutons sous le titre, bloc de
+   confiance, paragraphes d'introduction, listes et tuiles. Classes prefixees
+   termites- : inertes sur les autres fiches qui chargent cette feuille.
+   ========================================================================== */
+
+/* Deux boutons cote a cote sous le titre, empiles sous 560 px. */
+.page-action__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.page-action__btn--ghost {
+  background: #fff;
+  color: var(--primary-blue);
+  border: 2px solid var(--primary-blue);
+}
+.page-action__btn--ghost:hover { background: var(--surface-blue); }
+@media (max-width: 559px) {
+  .page-action__buttons { flex-direction: column; }
+}
+
+.trust-points {
+  list-style: none;
+  margin: 0 auto 28px;
+  padding: 0;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.trust-points li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+.trust-points svg {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  padding: 7px;
+  border-radius: 50%;
+  background: var(--accent-green-bg);
+  color: var(--accent-green);
+}
+@media (min-width: 768px) {
+  .trust-points { grid-template-columns: repeat(3, 1fr); }
+}
+
+.termites-intro,
+.termites-lead,
+.termites-section .termites-container > p,
+.termites-list {
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--body-text);
+  line-height: 1.7;
+}
+.termites-intro { margin-bottom: 40px; font-size: 1.02rem; }
+.termites-intro p { margin: 0 0 14px; }
+.termites-lead { margin-bottom: 20px; }
+
+.termites-note {
+  max-width: 820px;
+  margin: 20px auto;
+  padding: 14px 18px;
+  background: var(--surface-blue);
+  border-left: 4px solid var(--primary-blue);
+  border-radius: 10px;
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: var(--body-text);
+}
+
+.termites-card--wide { max-width: 820px; margin: 24px auto; }
+
+.termites-list { padding-left: 1.2em; margin-bottom: 18px; }
+.termites-list li { margin-bottom: 8px; }
+@media (min-width: 768px) {
+  .termites-list--cols { columns: 2; column-gap: 40px; }
+}
+
+/* Tuiles : une idee par carte, titre en gras puis precision. */
+.termites-tiles {
+  list-style: none;
+  margin: 0 auto 20px;
+  padding: 0;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.termites-tiles li {
+  padding: 16px 18px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--body-text);
+}
+.termites-tiles strong {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-heading);
+  font-size: 0.98rem;
+  color: var(--ink);
+}
+.termites-tiles--compact strong { margin-bottom: 0; }
+@media (min-width: 560px) {
+  .termites-tiles { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .termites-tiles { grid-template-columns: repeat(3, 1fr); }
+  .termites-tiles--compact { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Deux cartes seulement : la grille a trois colonnes laisserait un vide. */
+@media (min-width: 768px) {
+  .cards-grid.cards-grid--duo { grid-template-columns: repeat(2, 1fr); max-width: 1000px; margin: 0 auto; }
+}
+
+/* Quatre methodes : deux par ligne plutot que trois plus une orpheline. */
+@media (min-width: 768px) {
+  .methods-grid.methods-grid--quad { grid-template-columns: repeat(2, 1fr); max-width: 1000px; margin: 0 auto; }
+}
