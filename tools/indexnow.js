@@ -14,7 +14,7 @@
  *   celle du dernier envoi, mémorisée dans `tools/indexnow-etat.json`,
  *   versionné avec le dépôt. Le `lastmod` ne servait pas : sa granularité est
  *   la journée, donc une seconde modification le même jour passait inaperçue.
- * - N'envoie que ce qui a changé. Soumettre les 59 adresses à chaque fois
+ * - N'envoie que ce qui a changé. Soumettre les 61 adresses à chaque fois
  *   n'apporte rien et ressemble à du bruit.
  * - Poste le lot en une requête à `api.indexnow.org/indexnow`.
  *
@@ -31,7 +31,8 @@
  * -----
  *   node tools/indexnow.js            envoie ce qui a changé
  *   node tools/indexnow.js --essai    montre ce qui serait envoyé, sans rien poster
- *   node tools/indexnow.js --tout     force l'envoi des 59 adresses
+ *   node tools/indexnow.js --tout     force l'envoi des 61 adresses
+ *   node tools/indexnow.js --marque   enregistre l'etat sans rien poster
  *
  * À lancer APRÈS un `git push`, une fois le déploiement passé : notifier une
  * page que le serveur ne sert pas encore la ferait rejeter.
@@ -63,6 +64,27 @@ function cle() {
 }
 
 /**
+ * Empreinte de ce qui fait le contenu d'une page, et de rien d'autre.
+ *
+ * On écarte avant de hacher :
+ *  - les hashes `?v=` de cache-busting, qu'une simple retouche CSS propage sur
+ *    les 61 pages d'un coup. Sans cela, changer une couleur fait notifier le
+ *    site entier — précisément le bruit que ce script existe pour éviter ;
+ *  - l'en-tête et le pied partagés, identiques partout : y toucher ne change
+ *    ce qu'aucune page raconte.
+ *
+ * Même règle que `dateGit()` dans build-sitemap.js, qui ignore les commits ne
+ * portant que ces deux choses.
+ */
+function empreinte(html) {
+  const corps = html
+    .replace(/\?v=[0-9a-zA-Z]+/g, '')
+    .replace(/<header class="site-header"[\s\S]*?<\/header>/g, '')
+    .replace(/<footer class="site-footer"[\s\S]*?<\/footer>/g, '');
+  return crypto.createHash('sha256').update(corps, 'utf8').digest('hex').slice(0, 16);
+}
+
+/**
  * Les adresses du sitemap, avec une empreinte du fichier qu'elles servent.
  *
  * L'état ne retenait auparavant que le `lastmod`, qui n'a qu'une granularité
@@ -78,9 +100,7 @@ function adresses() {
     if (!loc) continue;
     const slug = loc.replace('https://' + HOTE + '/', '');
     const f = path.join(RACINE, (slug === '' ? 'index' : slug) + '.html');
-    out[loc] = fs.existsSync(f)
-      ? crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex').slice(0, 16)
-      : '';
+    out[loc] = fs.existsSync(f) ? empreinte(fs.readFileSync(f, 'utf8')) : '';
   }
   return out;
 }
@@ -124,6 +144,19 @@ function poster(corps) {
 
   if (!aEnvoyer.length) { console.log('\n  rien de nouveau depuis le dernier envoi'); return; }
   if (essai) { console.log('\n  --essai : rien n a ete poste'); return; }
+
+  // --marque : enregistre l'etat courant comme deja notifie, sans rien poster.
+  // Pour le cas ou ces adresses viennent d'etre envoyees autrement — ou, comme
+  // le jour ou ce drapeau est ne, apres un changement de methode d'empreinte
+  // qui fait paraitre neuf ce qui vient d'etre transmis.
+  if (process.argv.includes('--marque')) {
+    fs.writeFileSync(ETAT, JSON.stringify({
+      dernierEnvoi: new Date().toISOString().slice(0, 19) + 'Z',
+      adresses: actuel
+    }, null, 2) + '\n');
+    console.log('\n  --marque : etat enregistre sans envoi (' + aEnvoyer.length + ' adresses)');
+    return;
+  }
 
   const r = await poster({
     host: HOTE,
