@@ -10,7 +10,7 @@
     .section-heading { font-family: var(--font-heading); font-weight:800; font-size:clamp(1.3rem,2.4vw,1.7rem); color:var(--text-main); margin: 48px 0 16px; }
     .method-box .num { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; background:#EDF2FF; color:var(--primary-blue); font-weight:800; font-family:var(--font-heading); margin-bottom:12px; }
     .product-card .tag { align-self:flex-start; background:#EDF2FF; color:var(--primary-blue-hover); font-size:0.72rem; font-weight:700; text-transform:uppercase; padding:4px 10px; border-radius:999px; margin-bottom:10px; }
-    .product-card .tag.curatif { background:var(--accent-green-bg,#EAF7EC); color:#2F7A3C; }
+    .product-card .tag.curatif { background:var(--accent-green-bg,#EAF7EC); color:var(--accent-green); }
 
     .photo-gallery figure { margin:0; border-radius: 14px; overflow: hidden; border: 1px solid var(--border-color); }
     .photo-gallery figcaption { padding: 10px 14px; font-size: 0.85rem; color: var(--text-muted); }

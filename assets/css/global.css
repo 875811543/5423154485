@@ -667,13 +667,20 @@ li.feature-item::before {
   color: var(--accent-green) !important;
 }
 
+/* Le vert sombre des badges valait #2F7A3C ici et #0F7A38 dans le jeton
+   --accent-green : deux teintes a treize points d ecart pour le meme role.
+   Fusionnees sur le jeton, qui contraste un peu mieux sur --accent-green-bg
+   (4,87:1 contre 4,74:1). */
 .certi-badge,
 .card-category-tag[class*="certi"] {
   background: var(--accent-green-bg) !important;
-  color: #2F7A3C !important;
+  color: var(--accent-green) !important;
 }
 
-.hero__eyebrow::before { background: var(--accent-green); }
+/* Le point suit le vert d action, comme la surcharge de l accueil le fait
+   deja en dur : laisser deux valeurs differentes pour le meme element etait
+   une divergence en attente. */
+.hero__eyebrow::before { background: var(--cta-green); }
 
 /* ==========================================================================
    BARRE D'APPEL FLOTTANTE (mobile uniquement)

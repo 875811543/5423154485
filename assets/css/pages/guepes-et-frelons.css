@@ -241,6 +241,9 @@
   padding: 4px;
   box-sizing: border-box;
   border-radius: 50%;
-  background: var(--accent-green);
-  color: #fff;
+  /* Meme paire que les coches du hero et que tous les boutons du site :
+     fond --cta-green, marque --on-cta. Le blanc sur --cta-green ne donnerait
+     que 2,3:1, sous le seuil de 3:1 d un element graphique. */
+  background: var(--cta-green);
+  color: var(--on-cta);
 }
