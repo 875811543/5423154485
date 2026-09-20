@@ -1931,7 +1931,15 @@ li > .ico:first-child {
   gap: 6px;
 }
 
-/* Le vert est reserve a la confiance. */
+/* Le vert est reserve a la confiance.
+   Ces pastilles portaient --accent-green (#0F7A38) quand le point du badge,
+   le bouton WhatsApp et tous les CTA portent --cta-green (#22C55E) : deux
+   verts differents dans le meme ecran, ce qui se voyait.
+   Le simple echange etait impossible : la coche est claire, et du blanc sur
+   #22C55E ne donne que 2,3:1 — sous le seuil de 3:1 exige pour un element
+   graphique, la coche se serait effacee. On reprend donc la paire que le site
+   applique deja a chacun de ses boutons : fond --cta-green, marque --on-cta,
+   soit 7,4:1. Un seul vert, et un contraste meilleur qu avant. */
 .garanties svg {
   flex-shrink: 0;
   width: 18px;
@@ -1939,8 +1947,8 @@ li > .ico:first-child {
   padding: 3px;
   box-sizing: border-box;
   border-radius: 50%;
-  background: var(--accent-green);
-  color: #fff;
+  background: var(--cta-green);
+  color: var(--on-cta);
 }
 
 /* ==========================================================================
