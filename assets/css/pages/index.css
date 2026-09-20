@@ -456,3 +456,19 @@
   outline: 3px solid var(--primary-blue);
   outline-offset: 4px;
 }
+
+/* --- Bouton d'appel par bloc de zone ----------------------------------------
+   Remplace la bascule des seize noms de ville vers tel:. Ces noms rendent
+   l'acces aux trois pages de zone depuis l'accueil — la page qui porte le plus
+   d'autorite — et le texte d'un lien doit annoncer ou il mene : « Cervione »
+   ouvrant un composeur repondait a cote de la question du visiteur, qui lit
+   cette liste pour savoir si sa commune est couverte.
+   L'appel garde donc sa place, mais sous sa propre etiquette. .zones-btn-sm est
+   deja un bouton d'appel sur cette page : il herite du vert du systeme.
+   -------------------------------------------------------------------------- */
+.zone-block__appel {
+  margin-top: 12px;
+}
+@media (max-width: 640px) {
+  .zone-block__appel { width: 100%; }
+}
