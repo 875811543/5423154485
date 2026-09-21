@@ -29,9 +29,11 @@ est exactement ce qui est servi.
   fausse : il repondait 404 la ou Apache sert la page.
 
 - `tarifs-anti-nuisibles-corse` vise le groupe « prix / tarif / devis ».
-  **Un seul montant est publiable : « à partir de 100 € » pour un nid de guêpes
-  ou de frelons.** Ne jamais y ajouter de fourchette, d’ordre de grandeur ni de
-  prix « indicatif » pour la dératisation ou les termites — ce sont des
+  **Deux montants sont publiables, et deux seulement : « à partir de 100 € »
+  pour un nid de guêpes ou de frelons, et « 15 à 30 €/m² » pour la protection
+  préventive d’une charpente — ce dernier donné par le propriétaire le
+  21 septembre 2026.** Ne jamais y ajouter d’autre fourchette, d’ordre de
+  grandeur ni de prix « indicatif », en particulier pour la dératisation — ce sont des
   informations d’entreprise, voir règle 3. Le script de génération vérifie
   qu’aucun autre montant en euros n’apparaît sur la page.
   C’est la seule des pages récentes à avoir une entrée de menu, posée dans les
