@@ -607,3 +607,48 @@
   color: var(--primary-blue, #1A4DFB);
   border-bottom-color: var(--primary-blue, #1A4DFB);
 }
+
+/* --- Onglets du lexique -----------------------------------------------------
+   La barre est creee par main.js : sans JavaScript elle n existe pas, et les
+   quatre familles restent affichees les unes sous les autres. Rien n est donc
+   masque en CSS — un moteur qui n execute pas de script voit tout le contenu.
+   -------------------------------------------------------------------------- */
+.lex-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 1180px;
+  margin: 0 auto 22px;
+}
+.lex-tabs .lex-tabs__btn {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  border: 1px solid var(--border-color, #E2E8F0);
+  background: #fff;
+  color: var(--text-main, #0F172A);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-weight: 700;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  min-height: 42px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+.lex-tabs .lex-tabs__btn:hover {
+  border-color: var(--primary-blue, #1A4DFB);
+  color: var(--primary-blue, #1A4DFB);
+}
+.lex-tabs .lex-tabs__btn.is-active {
+  background: var(--primary-blue, #1A4DFB);
+  border-color: var(--primary-blue, #1A4DFB);
+  color: #fff;
+}
+
+/* Sans cette regle, masquer un panneau ne masque rien : l attribut hidden du
+   navigateur vaut « display: none », mais .lex-grid pose « display: grid » —
+   une regle d auteur, qui l emporte sur la feuille du navigateur quelle que
+   soit la specificite. Les panneaux replies restaient donc affiches. */
+.lex-grid[hidden],
+.section-heading[hidden] { display: none; }

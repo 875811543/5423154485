@@ -153,4 +153,79 @@
         });
     });
   }
+
+  // --- Onglets du lexique ---
+  // Le HTML livre les quatre familles les unes sous les autres. Sans ce bloc,
+  // la page reste exactement celle-la : rien n'est masque en CSS, donc un
+  // visiteur sans JavaScript — et un moteur qui n'execute rien — voit tout le
+  // contenu. Les onglets sont un enrichissement, jamais une condition d'acces.
+  //
+  // Chaque panneau est bati a partir d'un couple h2.section-heading + .lex-grid
+  // deja present. L'etiquette courte vient de data-onglet : « Insectes
+  // xylophages & champignons du bois » ne tient pas sur un onglet.
+  var titresLex = document.querySelectorAll(".lex-grid");
+  if (titresLex.length > 1) {
+    var familles = [];
+    Array.prototype.forEach.call(document.querySelectorAll("h2.section-heading"), function (h2) {
+      var grille = h2.nextElementSibling;
+      while (grille && grille.className.indexOf("lex-grid") === -1) grille = grille.nextElementSibling;
+      if (grille) familles.push({ titre: h2, grille: grille });
+    });
+
+    if (familles.length > 1) {
+      var liste = document.createElement("div");
+      liste.className = "lex-tabs";
+      liste.setAttribute("role", "tablist");
+      liste.setAttribute("aria-label", "Familles de nuisibles");
+      familles[0].titre.parentNode.insertBefore(liste, familles[0].titre);
+
+      var onglets = [];
+
+      var activer = function (index, donnerLeFocus) {
+        familles.forEach(function (f, i) {
+          var actif = i === index;
+          // Le titre reste dans le document : il porte le nom complet de la
+          // famille, que l'onglet abrege.
+          f.titre.hidden = !actif;
+          f.grille.hidden = !actif;
+          onglets[i].setAttribute("aria-selected", actif ? "true" : "false");
+          onglets[i].setAttribute("tabindex", actif ? "0" : "-1");
+          onglets[i].className = actif ? "lex-tabs__btn is-active" : "lex-tabs__btn";
+        });
+        if (donnerLeFocus) onglets[index].focus();
+      };
+
+      familles.forEach(function (f, i) {
+        var id = "lex-panneau-" + (i + 1);
+        f.grille.id = id;
+        f.grille.setAttribute("role", "tabpanel");
+
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "lex-tabs__btn";
+        btn.setAttribute("role", "tab");
+        btn.setAttribute("aria-controls", id);
+        btn.id = "lex-onglet-" + (i + 1);
+        btn.textContent = f.titre.getAttribute("data-onglet") || f.titre.textContent;
+        f.grille.setAttribute("aria-labelledby", btn.id);
+
+        btn.addEventListener("click", function () { activer(i, false); });
+        btn.addEventListener("keydown", function (e) {
+          var k = e.key;
+          var suivant = k === "ArrowRight" ? i + 1
+            : k === "ArrowLeft" ? i - 1
+            : k === "Home" ? 0
+            : k === "End" ? familles.length - 1 : null;
+          if (suivant === null) return;
+          e.preventDefault();
+          activer((suivant + familles.length) % familles.length, true);
+        });
+
+        onglets.push(btn);
+        liste.appendChild(btn);
+      });
+
+      activer(0, false);
+    }
+  }
 })();
