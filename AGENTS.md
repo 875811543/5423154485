@@ -1141,3 +1141,34 @@ Une mise à jour automatique a été envisagée et écartée le 16 septembre 202
 elle demanderait une clé API Google Places liée à un compte de facturation, et
 un script quotidien sur l'hébergement — une brique à maintenir sur un site qui
 n'en a aucune.
+
+## Champ « commune d'intervention » du formulaire
+
+Ajouté le 23 septembre 2026, dans les **deux** formulaires (`index`, `contact`),
+au-dessus du champ adresse, qui n'a pas été touché.
+
+**Deux temps, et c'est tout l'intérêt :** taper une commune, ou même cliquer une
+suggestion, ne vaut pas validation. Seul le clic sur « Confirmer cette commune »
+remplit les quatre champs cachés — `commune_selectionnee`, `secteur`,
+`commune_desservie`, `commune_validee`. « Modifier » les vide et rouvre la
+recherche. Ne pas « simplifier » en validant au clic sur la suggestion : c'est
+exactement ce que la demande écartait.
+
+- **Données** : `assets/data/communes.json`, **généré par `tools/build-communes.js`**
+  — ne pas l'éditer à la main, le contrôle `communes-genere` le refuse. 367
+  entrées : 360 communes, plus sept lieux-dits en alias (Folelli, Porticcio,
+  Solenzara…). Le Valinco et le Sartenais y sont avec `d: 0`, pour répondre
+  « hors zone » au lieu de ne rien dire.
+- **Comportement** : bloc « recherche de commune » de `main.js`. Le fichier est
+  chargé à la première frappe, pas au chargement de la page.
+- **Garde-fou à l'envoi** : `communeBloquante()` refuse l'envoi tant qu'aucune
+  commune n'est confirmée. **Si le fichier ne se charge pas, elle laisse
+  passer** : un incident réseau ne doit jamais empêcher une demande d'arriver.
+  Ce chemin dégradé a été éprouvé en coupant la requête.
+- **Recherche** : casse, accents, apostrophes typographiques et tirets ignorés ;
+  le nom privé de son article répond aussi (« ile rousse » trouve L'Île-Rousse) ;
+  recherche par code postal.
+
+Vérification : ces comportements ne se voient pas dans `tools/controle.js`. Les
+éprouver dans un navigateur, **en HTTP** — en `file://`, le `fetch` des données
+échoue et le champ part en mode dégradé.
