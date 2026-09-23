@@ -52,6 +52,20 @@ const { insecable } = require(path.join(__dirname, 'typo.js'));
 const SOURCE = path.join(__dirname, 'communes-source.json');
 const REFERENCE = path.join(__dirname, 'communes-desservies.json');
 const PAGE = path.join(RACINE, 'zones-dintervention.html');
+const DONNEES = path.join(RACINE, 'assets', 'data', 'communes.json');
+
+// Lieux-dits que les visiteurs cherchent, avec la commune dont ils relevent.
+// Ce ne sont pas des communes INSEE : ils servent d'alias de recherche, et
+// n'entrent pas dans la liste affichee ni dans la reference.
+const ALIAS = {
+  'Folelli': 'Penta-di-Casinca',
+  'Moriani-Plage': 'San-Nicolao',
+  'Ponte-Leccia': 'Morosaglia',
+  'Porticcio': 'Grosseto-Prugna',
+  'Querciolo': 'Sorbo-Ocagnano',
+  'Sainte-Lucie-de-Porto-Vecchio': 'Zonza',
+  'Solenzara': 'Sari-Solenzara'
+};
 
 /* ------------------------------------------------------------------ *
  *  Repartition
@@ -308,8 +322,45 @@ function attendu() {
   return {
     page: poser(bloc(groupes)),
     reference: JSON.stringify(reference, null, 1) + '\n',
+    donnees: donnees(groupes, source),
     total, exclus, source
   };
+}
+
+/**
+ * Le fichier que lit le champ de recherche de commune du formulaire.
+ *
+ * Une entree par commune : nom, codes postaux, secteur, et si elle est
+ * desservie. Le Valinco et le Sartenais y figurent avec « desservie : 0 » — le
+ * visiteur merite une reponse claire plutot qu'un silence, et cela evite un
+ * appel pour un deplacement que nous ne ferons pas.
+ *
+ * Les cles sont courtes parce que ce fichier est telecharge par le visiteur :
+ * n = nom, cp = codes postaux, s = secteur, d = desservie, r = rattachement
+ * pour les lieux-dits.
+ */
+function donnees(groupes, source) {
+  const cpPar = {};
+  for (const c of source.communes) cpPar[c.nom] = c.cp || [];
+  const secteurPar = {};
+  for (const m of MICRO)
+    for (const nom of groupes[m[0]] || []) secteurPar[nom] = m[1].replace(/&amp;/g, '&');
+
+  const liste = source.communes.map(c => {
+    const secteur = secteurPar[c.nom];
+    const exclue = EXCLU.valinco.includes(c.nom) ? 'Valinco'
+      : EXCLU.sartenais.includes(c.nom) ? 'Sartenais' : null;
+    return { n: c.nom, cp: c.cp || [], s: secteur || exclue, d: secteur ? 1 : 0 };
+  });
+  for (const lieu of Object.keys(ALIAS))
+    liste.push({ n: lieu, cp: cpPar[ALIAS[lieu]] || [], s: secteurPar[ALIAS[lieu]], d: 1, r: ALIAS[lieu] });
+
+  liste.sort((a, b) => a.n.localeCompare(b.n, 'fr'));
+  return JSON.stringify({
+    commentaire: 'Genere par tools/build-communes.js — ne pas editer a la main.',
+    releve: source.releve,
+    communes: liste
+  }) + '\n';
 }
 
 /** Ce qui diverge entre le depot et le generateur. Vide = conforme. */
@@ -320,6 +371,8 @@ function ecarts() {
     pbs.push('zones-dintervention.html differe de ce que produit tools/build-communes.js');
   if (fs.readFileSync(REFERENCE, 'utf8') !== a.reference)
     pbs.push('tools/communes-desservies.json differe de ce que produit tools/build-communes.js');
+  if (!fs.existsSync(DONNEES) || fs.readFileSync(DONNEES, 'utf8') !== a.donnees)
+    pbs.push('assets/data/communes.json differe de ce que produit tools/build-communes.js');
   return pbs;
 }
 
@@ -341,5 +394,8 @@ if (require.main === module) {
 
   fs.writeFileSync(PAGE, a.page);
   fs.writeFileSync(REFERENCE, a.reference);
-  console.log('  écrit     : zones-dintervention.html, tools/communes-desservies.json');
+  fs.mkdirSync(path.dirname(DONNEES), { recursive: true });
+  fs.writeFileSync(DONNEES, a.donnees);
+  console.log('  écrit     : zones-dintervention.html, tools/communes-desservies.json,');
+  console.log('              assets/data/communes.json (' + Math.round(a.donnees.length / 1024) + ' Ko)');
 }
