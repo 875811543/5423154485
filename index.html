@@ -221,7 +221,7 @@
   </script>
 
   <link rel="stylesheet" href="assets/css/page-accueil.css?v=d3be408a">
-  <link rel="stylesheet" href="assets/css/form.css?v=1c94fa4b">
+  <link rel="stylesheet" href="assets/css/form.css?v=2cbad96c">
   <link rel="stylesheet" href="assets/css/pages/index.css?v=62cd0a07">
 
 </head>
@@ -439,6 +439,21 @@
           <option value="Autre demande">Autre demande</option>
         </select>
       </div>
+    </div>
+
+    <div class="form-group form-group--commune" id="commune-widget" data-source="assets/data/communes.json">
+      <label for="commune-recherche">Commune d'intervention *</label>
+      <input type="text" id="commune-recherche" autocomplete="off" spellcheck="false"
+             role="combobox" aria-expanded="false" aria-autocomplete="list"
+             aria-controls="commune-suggestions" aria-describedby="commune-aide"
+             placeholder="Nom de la commune ou code postal">
+      <p class="commune-aide" id="commune-aide">Tapez votre commune ou son code postal, puis confirmez-la.</p>
+      <ul class="commune-suggestions" id="commune-suggestions" role="listbox" aria-label="Communes proposées" hidden></ul>
+      <div class="commune-fiche" id="commune-fiche" aria-live="polite" hidden></div>
+      <input type="hidden" name="commune_selectionnee" value="">
+      <input type="hidden" name="secteur" value="">
+      <input type="hidden" name="commune_desservie" value="">
+      <input type="hidden" name="commune_validee" value="non">
     </div>
 
     <div class="form-group">
@@ -971,6 +986,6 @@
   </div>
 </footer>
 
-  <script src="assets/js/main.js?v=29c55b05" defer></script>
+  <script src="assets/js/main.js?v=56da7c7c" defer></script>
 </body>
 </html>

@@ -179,3 +179,158 @@
   text-decoration: none;
   font-weight: 600;
 }
+
+/* ==========================================================================
+   CHAMP « COMMUNE D'INTERVENTION » (septembre 2026)
+   --------------------------------------------------------------------------
+   Deux temps, demandes par le proprietaire : le visiteur consulte sa commune,
+   puis la confirme explicitement. Tant qu'il n'a pas confirme, rien n'est
+   enregistre — c'est la difference entre « j'ai vu » et « c'est bien la mienne ».
+
+   Aucune dependance : la liste de suggestions, la fiche et les deux etats sont
+   construits par main.js a partir de assets/data/communes.json.
+   ========================================================================== */
+.form-group--commune {
+  position: relative;
+}
+
+.commune-aide {
+  margin: 6px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted, #64748B);
+}
+
+/* --- Suggestions ------------------------------------------------------- */
+.commune-suggestions {
+  position: absolute;
+  z-index: 20;
+  left: 0;
+  right: 0;
+  margin: 4px 0 0;
+  padding: 4px;
+  max-height: 260px;
+  overflow-y: auto;
+  list-style: none;
+  background: #FFFFFF;
+  border: 1px solid var(--border, #E2E8F0);
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+}
+
+.commune-suggestions li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.94rem;
+  color: var(--ink, #0F172A);
+}
+
+.commune-suggestions li[aria-selected="true"],
+.commune-suggestions li:hover {
+  background: var(--surface-blue, #EDF2FF);
+}
+
+.commune-suggestions .commune-secteur {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: var(--muted, #64748B);
+  white-space: nowrap;
+}
+
+/* --- Fiche : consultation, puis confirmation --------------------------- */
+.commune-fiche {
+  margin-top: 10px;
+  padding: 14px 16px;
+  border: 1px solid var(--border, #E2E8F0);
+  border-left: 4px solid var(--muted-light, #94A3B8);
+  border-radius: 12px;
+  background: var(--surface, #F8FAFC);
+}
+
+.commune-fiche--desservie { border-left-color: var(--accent-green, #0F7A38); }
+.commune-fiche--hors-zone { border-left-color: #B45309; }
+
+/* Confirmee : l'etat se voit d'un coup d'oeil, sans avoir a lire. */
+.commune-fiche--validee {
+  background: var(--accent-green-bg, #EAF7EC);
+  border-color: var(--accent-green, #0F7A38);
+  border-left-color: var(--accent-green, #0F7A38);
+}
+
+.commune-statut {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--accent-green, #0F7A38);
+}
+
+.commune-fiche--hors-zone .commune-statut { color: #B45309; }
+
+.commune-statut svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.commune-nom {
+  margin: 8px 0 2px;
+  font-family: var(--font-heading, inherit);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ink, #0F172A);
+}
+
+.commune-detail {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--body-text, #334155);
+}
+
+.commune-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.commune-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 999px;
+  font-family: var(--font-body, inherit);
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+
+.commune-btn--secondaire {
+  background: #FFFFFF;
+  border: 1px solid var(--border, #E2E8F0);
+  color: var(--ink, #0F172A);
+}
+
+.commune-btn:focus-visible,
+.commune-suggestions li:focus-visible {
+  outline: 3px solid var(--primary-blue, #1A4DFB);
+  outline-offset: 2px;
+}
+
+/* Message d'envoi bloque : le formulaire attend une confirmation. */
+.commune-erreur {
+  margin: 8px 0 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #B42318;
+}

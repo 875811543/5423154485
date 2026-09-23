@@ -94,7 +94,7 @@
        le plus. Les autres pages la declarent deja a l identique, meme @id. -->
 
 
-  <link rel="stylesheet" href="assets/css/form.css?v=1c94fa4b">
+  <link rel="stylesheet" href="assets/css/form.css?v=2cbad96c">
 </head>
 <body>
 <a href="#main-content" class="skip-link">Aller au contenu principal</a>
@@ -310,6 +310,21 @@
       </div>
     </div>
 
+    <div class="form-group form-group--commune" id="commune-widget" data-source="assets/data/communes.json">
+      <label for="commune-recherche">Commune d'intervention *</label>
+      <input type="text" id="commune-recherche" autocomplete="off" spellcheck="false"
+             role="combobox" aria-expanded="false" aria-autocomplete="list"
+             aria-controls="commune-suggestions" aria-describedby="commune-aide"
+             placeholder="Nom de la commune ou code postal">
+      <p class="commune-aide" id="commune-aide">Tapez votre commune ou son code postal, puis confirmez-la.</p>
+      <ul class="commune-suggestions" id="commune-suggestions" role="listbox" aria-label="Communes proposées" hidden></ul>
+      <div class="commune-fiche" id="commune-fiche" aria-live="polite" hidden></div>
+      <input type="hidden" name="commune_selectionnee" value="">
+      <input type="hidden" name="secteur" value="">
+      <input type="hidden" name="commune_desservie" value="">
+      <input type="hidden" name="commune_validee" value="non">
+    </div>
+
     <div class="form-group">
       <label for="adresse">Adresse de l'intervention (Commune / Lieu) *</label>
       <input type="text" id="adresse" name="adresse" required autocomplete="address-level2" placeholder="Ex: Bastia, Ajaccio, Corte...">
@@ -509,7 +524,7 @@
   </div>
 </footer>
 
-  <script src="assets/js/main.js?v=29c55b05" defer></script>
+  <script src="assets/js/main.js?v=56da7c7c" defer></script>
 
 </body>
 </html>
