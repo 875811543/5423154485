@@ -20,7 +20,6 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const cp = require('child_process');
 
 const RACINE = path.resolve(__dirname, '..');
 process.chdir(RACINE);
@@ -31,13 +30,18 @@ const F = 'sitemap.xml';
 let sm = fs.readFileSync(F, 'utf8');
 const eol = sm.includes('\r\n') ? '\r\n' : '\n';
 
-const dateGit = fichier => {
-  try {
-    const d = cp.execSync('git log -1 --format=%ad --date=short -- "' + fichier + '"',
-      { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
-    return /^\d{4}-\d{2}-\d{2}$/.test(d) ? d : null;
-  } catch (e) { return null; }
-};
+// La date vient de `build-sitemap.js`, et non plus d'un `git log -1` local.
+//
+// Les deux versions ne disaient pas la meme chose : celle d'ici retenait le
+// dernier commit touchant le fichier, quel qu'il soit. Une retouche du menu
+// partage redatait donc les 61 pages du jour, alors que `build-sitemap.js`
+// ignore precisement les commits qui ne changent que l'en-tete, le pied ou un
+// hash `?v=`. Ecrire ces dates ici faisait ensuite echouer le controle
+// « sitemap-genere », qui compare le sitemap a ce que produit le generateur.
+//
+// Un seul calcul de date pour les deux outils : c'est ce que le controle
+// verifie, donc c'est lui qui fait foi.
+const { dateGit } = require(path.join(__dirname, 'build-sitemap.js'));
 
 const motif = /(<loc>https:\/\/dezinsect-corse\.fr\/([^<]*)<\/loc>\s*<lastmod>)([^<]*)(<\/lastmod>)/g;
 
