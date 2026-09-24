@@ -338,11 +338,10 @@ a { color: inherit; }
 .site-nav__submenu a:hover { background: var(--surface-blue); color: var(--primary-blue); }
 
 
-/* Les deux lignes telephoniques dans le bandeau. Le second numero est empile
-   sous le bouton plutot que place a cote : cote a cote, marque + navigation +
-   deux boutons demandent 1349 px alors que le conteneur est plafonne a 1280,
-   ils ne tenaient a aucune largeur. Empile, la largeur ne bouge pas et il
-   reste 29 px de libre sous un bouton de 43 px dans un bandeau de 72. */
+/* La ligne telephonique du bandeau. Le bandeau n'en porte qu'une, la ligne
+   principale : deux boutons de meme poids cote a cote diluaient l'appel a
+   l'action, et le second numero reste joignable dans le menu mobile, la barre
+   d'appel mobile, le bloc d'appel de l'accueil et le pied de page. */
 .site-header__appel {
   display: none;
   flex-direction: row;
@@ -350,12 +349,7 @@ a { color: inherit; }
   gap: 6px;
 }
 
-/* Les deux lignes sont traitees a egalite : meme pastille, meme couleur, meme
-   poids. Elles tiennent cote a cote parce que le remplissage horizontal est
-   ramene de 18 a 14 px — mesure a 1280 px, la largeur ou le conteneur est
-   plafonne : 308 px pour les deux boutons, 323 px disponibles. */
-.site-header__cta,
-.site-header__cta2 {
+.site-header__cta {
   display: none;
   align-items: center;
   gap: 6px;
@@ -371,8 +365,7 @@ a { color: inherit; }
   opacity: 1;
   transition: background .15s ease, color .15s ease;
 }
-.site-header__cta:hover,
-.site-header__cta2:hover { background: #E9EEFF; text-decoration: none; }
+.site-header__cta:hover { background: #E9EEFF; text-decoration: none; }
 
 
 /* ==========================================================================
@@ -473,8 +466,7 @@ a { color: inherit; }
 @media (min-width: 1200px) {
   .site-nav { display: block; }
   .site-header__appel { display: flex; }
-  .site-header__cta,
-  .site-header__cta2 { display: flex; }
+  .site-header__cta { display: flex; }
   .site-header__burger { display: none; }
   .mobile-menu { display: none !important; }
 }
@@ -2027,4 +2019,54 @@ li > .ico:first-child {
   outline: 3px solid var(--primary-blue);
   outline-offset: 4px;
   border-radius: 16px;
+}
+
+/* ==========================================================================
+   MENU « ZONES D'INTERVENTION » — LIBELLÉS ET SOUS-TITRES (septembre 2026)
+   --------------------------------------------------------------------------
+   Chaque entrée porte le nom du secteur, puis les communes en petit. Le
+   sous-titre tient sur une seule ligne : au-delà, il est coupé plutôt que de
+   casser la largeur du menu déroulant.
+
+   « Vérifier ma commune » est la première entrée et mène au bloc des communes
+   desservies du hub. Sa loupe est décorative — le nom accessible reste le
+   texte du lien.
+   ========================================================================== */
+.site-nav__submenu--zones a {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.site-nav__submenu--zones small,
+.mobile-menu details a small {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 400;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* L'entrée de vérification : discrètement mise en avant, sans bouton plein. */
+.site-nav__verif,
+.mobile-menu__verif {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 700;
+  color: var(--primary-blue);
+}
+
+.site-nav__loupe {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+/* Sur mobile, le sous-titre passe sous le libellé sans le désaligner. */
+.mobile-menu details a {
+  display: block;
 }

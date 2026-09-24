@@ -12,6 +12,21 @@ DirectoryIndex index.html
   RewriteEngine On
   RewriteBase /
 
+  # Repertoires de travail : 403, avant toute autre regle.
+  #
+  # Le depot entier est deploye dans public_html a chaque push : ce qui est
+  # ici est servi. Ces repertoires n'ont rien a y faire.
+  #
+  # La regle est ici, et pas dans la section « fichiers de travail » plus
+  # bas, pour deux raisons. D'abord l'ordre : la regle « un vrai dossier
+  # devient une 404 » repondait 404 sur /tools/ et laissait passer
+  # /tools/controle.js, rattrape seulement par un RedirectMatch de
+  # mod_alias. Ensuite la robustesse : mod_alias peut manquer sans que le
+  # site cesse de fonctionner, et le garde-fou disparaissait alors en
+  # silence. mod_rewrite, lui, porte toute la navigation — s'il tombe, le
+  # site entier renvoie 404 et le probleme se voit immediatement.
+  RewriteRule ^(tools|node_modules|\.githooks|\.git|\.claude|\.vscode|\.idea)(/|$) - [F,L]
+
   # Supprimer le www ET forcer HTTPS en une seule redirection.
   # Cette regle passe AVANT celle qui force HTTPS : elle redirige deja vers
   # https, donc http://www/page arrive a destination en un seul saut. Dans
@@ -204,12 +219,24 @@ ErrorDocument 403 /404.html
 # de mod_headers et RedirectMatch depend de mod_alias. Un garde-fou place
 # sous <IfModule mod_headers.c> disparaitrait justement le jour ou la
 # configuration se degrade.
-<FilesMatch "\.(md|log|bak|orig|sh)$">
+# Par extension. « Require all denied » repond 403 et ne depend d'aucun
+# module optionnel : c'est le garde-fou qui survit a une configuration
+# degradee. Aucune extension servie par le site n'est dans cette liste.
+<FilesMatch "\.(md|log|bak|orig|sh|yml|yaml|lock|ini|toml|sql|zip|tar|gz)$">
   Require all denied
 </FilesMatch>
+
+# Par nom exact. Attention : ne PAS bloquer *.json en bloc — manifest.json
+# et assets/data/communes.json sont servis au visiteur, le second etant lu
+# par la recherche de commune du formulaire.
+<FilesMatch "^(package\.json|package-lock\.json|\.gitignore|\.gitattributes|\.env.*|.*\.code-workspace)$">
+  Require all denied
+</FilesMatch>
+
+# Repli si mod_rewrite venait a manquer. Le site serait alors deja casse
+# (toute la navigation en depend), mais un repertoire lisible le resterait.
 <IfModule mod_alias.c>
-  RedirectMatch 404 ^/tools/
-  RedirectMatch 404 ^/\.git
+  RedirectMatch 403 ^/(tools|node_modules|\.githooks|\.git|\.claude)(/|$)
 </IfModule>
 
 <IfModule mod_headers.c>
@@ -289,10 +316,7 @@ ErrorDocument 403 /404.html
   AddType font/woff2 .woff2
   AddCharset UTF-8 .html .css .js .json .xml
 </IfModule>
-# --------------------------------------------------
-#  Fichiers de travail non publics
-# --------------------------------------------------
-<FilesMatch "^(AGENTS\.md|\.gitignore|\.gitattributes)$">
-  Require all denied
-</FilesMatch>
-RedirectMatch 404 ^/tools/
+# Ce second bloc « fichiers de travail non publics » faisait double emploi
+# avec la section du meme nom plus haut, et son RedirectMatch etait pose
+# hors de tout <IfModule> — il faisait planter Apache en 500 si mod_alias
+# manquait. Tout est regroupe en une seule section, plus haut.

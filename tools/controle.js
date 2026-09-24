@@ -700,7 +700,11 @@ const CONTROLES = [
       .replace(/\s+/g, ' ').trim()
       .split(/(?<=[.!?])\s+/)
       .map(p => p.trim().toLowerCase().replace(/[«»"'\u2019,;:()–—-]/g, ' ').replace(/\s+/g, ' ').trim())
-      .filter(p => p.split(' ').length >= 12);
+      // On ne compte que les mots porteurs de sens. Sans ce filtre, un point
+      // detache par une balise — « au <a>06 85 75 30 40</a>. » donne
+      // « au 06 85 75 30 40 . » — ajoutait un mot fantome, faisait franchir le
+      // seuil a une phrase de 11 mots, et produisait une fausse alerte.
+      .filter(p => p.split(' ').filter(m => /[\p{L}\p{N}]/u.test(m)).length >= 12);
 
     const par = pages.map(f => [f, new Set(phrases(corps(f)))]);
 
@@ -946,7 +950,13 @@ const CONTROLES = [
     const pbs = [];
     const existe = new Set(pages);
     // servies autrement que par un lien : ErrorDocument, et la cible du formulaire
-    const SANS_LIEN = new Set(['404.html', 'merci.html']);
+    //
+    // traitement-odeurs y figure depuis le 24 septembre 2026 : le service n'est
+    // pas encore lance. La page et son URL restent en ligne — on ne casse pas
+    // une adresse — mais elle est en noindex, hors sitemap, hors menus et sans
+    // lien entrant. A retirer de cette liste le jour ou le proprietaire lance
+    // le service : elle devra alors etre citee comme les autres.
+    const SANS_LIEN = new Set(['404.html', 'merci.html', 'traitement-odeurs.html']);
     const liens = {}, entrants = {};
 
     for (const f of pages) {

@@ -162,7 +162,7 @@
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-latin-400-normal.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/poppins-latin-800-normal.woff2" crossorigin>
 
-  <link rel="stylesheet" href="assets/css/global.css?v=80fc7ee3">
+  <link rel="stylesheet" href="assets/css/global.css?v=bf0febe3">
 </head>
 <body>
 <a href="#main-content" class="skip-link">Aller au contenu principal</a>
@@ -194,7 +194,6 @@
             <li><a href="traitement-injection-bati-termites">Pulvérisation préventive &amp; pièges</a></li>
             <li><a href="guepes-et-frelons">Guêpes &amp; Frelons</a></li>
         <li><a href="moustiques-corse">Moustiques</a></li>
-        <li><a href="traitement-odeurs">Traitement des odeurs <span class="nav-soon">bientôt</span></a></li>
         <li><a href="tarifs-anti-nuisibles-corse">Tarifs &amp; devis</a></li>
           </ul>
         </li>
@@ -204,11 +203,12 @@
             Zones d'intervention
             <svg class="site-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
-          <ul class="site-nav__submenu">
+          <ul class="site-nav__submenu site-nav__submenu--zones">
+            <li><a href="zones-dintervention#communes-titre" class="site-nav__verif"><svg class="site-nav__loupe" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Vérifier ma commune</a></li>
+            <li><a href="anti-nuisibles-costa-verde" aria-current="page">Nord-Est &amp; Plaine Orientale<small>Bastia, Costa Verde, Aléria, Ghisonaccia…</small></a></li>
+            <li><a href="anti-nuisible-corte">Centre &amp; Balagne<small>Corte, Calvi, L'Île-Rousse…</small></a></li>
+            <li><a href="anti-nuisibles-grand-ajaccio-porto-vecchio">Sud de la Corse<small>Ajaccio, Porto-Vecchio, Bonifacio…</small></a></li>
             <li><a href="zones-dintervention">Toute la Corse</a></li>
-            <li><a href="anti-nuisibles-costa-verde" aria-current="page">Bastia &amp; Costa Verde</a></li>
-            <li><a href="anti-nuisible-corte">Corte, Calvi &amp; Balagne</a></li>
-            <li><a href="anti-nuisibles-grand-ajaccio-porto-vecchio">Ajaccio &amp; Porto-Vecchio</a></li>
           </ul>
         </li>
 
@@ -245,11 +245,6 @@
         <span>06 85 75 30 40</span>
       </a>
 
-      <a href="tel:+33629421638" class="site-header__cta2">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.8 21 3 13.2 3 3.7c0-.6.4-1 1-1H7.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.2 1L6.6 10.8z" fill="currentColor"/></svg>
-        <span>06 29 42 16 38</span>
-      </a>
-
     </div>
 
     <button class="site-header__burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -271,16 +266,16 @@
         <a href="traitement-injection-bati-termites">Pulvérisation préventive &amp; pièges</a>
         <a href="guepes-et-frelons">Guêpes &amp; Frelons</a>
         <a href="moustiques-corse">Moustiques</a>
-        <a href="traitement-odeurs">Traitement des odeurs <span class="nav-soon">bientôt</span></a>
         <a href="tarifs-anti-nuisibles-corse">Tarifs &amp; devis</a>
       </details>
 
       <details class="mobile-menu__group">
         <summary>Zones d'intervention</summary>
+        <a href="zones-dintervention#communes-titre" class="mobile-menu__verif"><svg class="site-nav__loupe" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Vérifier ma commune</a>
+        <a href="anti-nuisibles-costa-verde" aria-current="page">Nord-Est &amp; Plaine Orientale<small>Bastia, Costa Verde, Aléria, Ghisonaccia…</small></a>
+        <a href="anti-nuisible-corte">Centre &amp; Balagne<small>Corte, Calvi, L'Île-Rousse…</small></a>
+        <a href="anti-nuisibles-grand-ajaccio-porto-vecchio">Sud de la Corse<small>Ajaccio, Porto-Vecchio, Bonifacio…</small></a>
         <a href="zones-dintervention">Toute la Corse</a>
-        <a href="anti-nuisibles-costa-verde" aria-current="page">Bastia &amp; Costa Verde</a>
-        <a href="anti-nuisible-corte">Corte, Calvi &amp; Balagne</a>
-        <a href="anti-nuisibles-grand-ajaccio-porto-vecchio">Ajaccio &amp; Porto-Vecchio</a>
       </details>
 
       <details class="mobile-menu__group">
@@ -314,7 +309,7 @@
 
     <div class="zone-hero">
       <span class="zone-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-inline--tight"><path d="M12 21s-7-6.5-7-11.5A7 7 0 0119 9.5C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg>Siège social — Nord-Est de la Corse</span>
-      <h1 id="page-h1">Votre Expert Anti-Nuisibles à <span>Bastia &amp; en Costa Verde</span></h1>
+      <h1 id="page-h1">Votre Expert Anti-Nuisibles à <span>Bastia, en Costa Verde &amp; Plaine Orientale</span></h1>
       <p id="page-lead">DEZINSECT CORSE a son siège opérationnel en Costa Verde, au cœur du Nord-Est de la Haute-Corse. Cette implantation nous garantit une réactivité maximale sur le Grand Bastia, la Casinca et la Plaine Orientale.</p>
     </div>
 
@@ -351,7 +346,7 @@
     <div class="geo-section">
       <h2 class="geo-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="30" height="30"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Couverture Géographique Complète</h2>
       <p class="geo-text">Notre siège opérationnel situé en Costa Verde nous offre une mobilité optimale sur toute la façade Nord-Est de l'île. Retrouvez le détail de nos <a href="zones-dintervention">zones d'intervention</a> en Corse, dont nos secteurs <a href="anti-nuisible-corte">Corte, Calvi &amp; Balagne</a> et <a href="anti-nuisibles-grand-ajaccio-porto-vecchio">Ajaccio &amp; Porto-Vecchio</a>.</p>
-      <div class="zone-group"><div class="zone-title">Costa Verde (siège)</div><div class="commune-tags"><span class="tag highlight">Moriani-Plage</span><span class="tag">Cervione</span><span class="tag">San-Nicolao</span><span class="tag">Santa-Maria-Poggio</span><span class="tag">San-Giuliano</span><span class="tag">Valle-di-Campoloro</span></div></div><div class="zone-group"><div class="zone-title">Grand Bastia</div><div class="commune-tags"><span class="tag">Bastia</span><span class="tag">Biguglia</span><span class="tag">Borgo</span><span class="tag">Furiani</span><span class="tag">Lucciana</span><span class="tag">Ville-di-Pietrabugno</span><span class="tag">San-Martino-di-Lota</span><span class="tag">Santa-Maria-di-Lota</span></div></div><div class="zone-group"><div class="zone-title">Casinca</div><div class="commune-tags"><span class="tag">Folelli</span><span class="tag">Penta-di-Casinca</span><span class="tag">Vescovato</span><span class="tag">Querciolo</span><span class="tag">Venzolasca</span></div></div><div class="zone-group"><div class="zone-title">Plaine Orientale</div><div class="commune-tags"><span class="tag">Aléria</span><span class="tag">Ghisonaccia</span><span class="tag">Solenzara</span><span class="tag">Prunelli-di-Fiumorbo</span><span class="tag">Ventiseri</span></div></div>
+      <div class="zone-group"><div class="zone-title">Costa Verde (siège)</div><div class="commune-tags"><span class="tag highlight">Santa-Maria-Poggio</span><span class="tag">Moriani-Plage</span><span class="tag">Cervione</span><span class="tag">San-Nicolao</span><span class="tag">San-Giuliano</span><span class="tag">Valle-di-Campoloro</span></div></div><div class="zone-group"><div class="zone-title">Grand Bastia</div><div class="commune-tags"><span class="tag">Bastia</span><span class="tag">Biguglia</span><span class="tag">Borgo</span><span class="tag">Furiani</span><span class="tag">Lucciana</span><span class="tag">Ville-di-Pietrabugno</span><span class="tag">San-Martino-di-Lota</span><span class="tag">Santa-Maria-di-Lota</span></div></div><div class="zone-group"><div class="zone-title">Casinca</div><div class="commune-tags"><span class="tag">Folelli</span><span class="tag">Penta-di-Casinca</span><span class="tag">Vescovato</span><span class="tag">Querciolo</span><span class="tag">Venzolasca</span></div></div><div class="zone-group"><div class="zone-title">Plaine Orientale</div><div class="commune-tags"><span class="tag">Aléria</span><span class="tag">Ghisonaccia</span><span class="tag">Solenzara</span><span class="tag">Prunelli-di-Fiumorbo</span><span class="tag">Ventiseri</span></div></div>
     </div>
 
 

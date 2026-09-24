@@ -12,9 +12,17 @@ Site vitrine **statique** d'une entreprise de lutte anti-nuisibles en Corse.
 Aucun build, aucune dépendance npm, aucun framework. Ce qui est dans le dépôt
 est exactement ce qui est servi.
 
-- **38 pages HTML** à la racine (1 accueil, 8 services, 4 zones, 7 pages
-  « service + ville », 10 nuisibles, actualités, contact, merci, 2 pages
-  légales, lexique, FAQ, 404).
+- **65 pages HTML** à la racine, au 24 septembre 2026 : 1 accueil, 9 services et
+  pages piliers, 4 zones, **29 pages « service + ville »**, 10 fiches nuisibles
+  plus le lexique, 5 actualités, contact, merci, 2 pages légales, la FAQ et 404.
+  **60 sont au `sitemap.xml`** ; les cinq autres sont hors index par choix —
+  `404`, `merci`, les deux pages légales, et `traitement-odeurs` dont le service
+  n'est pas lancé.
+
+  **Les passages ci-dessous qui parlent de « 28 pages » décrivent des chantiers
+  menés quand le site en comptait 28.** Ils gardent ce chiffre parce qu'il dit ce
+  qui a été mesuré à l'époque — mais toute commande à relancer aujourd'hui porte
+  sur les 65, et un `sed` sur `*.html` en touche 65.
 - **Liens internes sans extension.** Les `href` internes s'ecrivent
   `deratisation`, pas `deratisation.html` ; l'accueil s'ecrit `./`. Le
   `.htaccess` sert `page.html` quand on demande `/page`, et redirige
@@ -46,9 +54,10 @@ est exactement ce qui est servi.
   retourner ce cadrage sans vérifier que l’entreprise détient cette
   certification — ce serait revendiquer une qualification qu’elle n’a peut-être
   pas, sur une page qui parle d’un document annexé à un acte de vente.
-- Les **7 pages service + ville** (dératisation à Bastia, Ajaccio et
-  Porto-Vecchio ; termites à Ajaccio et Bastia ; guêpes et frelons à
-  Porto-Vecchio et Bastia) visent
+- Les **29 pages service + ville** (dératisation, désinsectisation, cafards, termites,
+  moustiques, guêpes et frelons, traitement du bois, déclinés sur Bastia, Ajaccio,
+  Porto-Vecchio, Calvi, Corte, Aléria, Ghisonaccia, Folelli, Solenzara, la
+  Balagne, l'Alta Rocca, la Costa Verde, Moriani, Borgo-Biguglia) visent
   les requêtes « service + ville », que les pages de zones ne couvraient pas.
   Elles réutilisent `pages-zones.css` sans une règle nouvelle. **Ne pas en
   décliner mécaniquement pour les 53 communes** : le contenu doit être
@@ -58,7 +67,7 @@ est exactement ce qui est servi.
   il regroupe les anciens `fonts.css`, `components.css` et `footer.css` —, plus
   `form.css` et les feuilles `pages-*.css` par famille de pages), plus une
   feuille par page dans `assets/css/pages/`. **Aucun `<style>` ni attribut `style=""` dans le HTML.**
-- **1 fichier JS**, `assets/js/main.js` (125 l., ES5, IIFE, sans dépendance).
+- **1 fichier JS**, `assets/js/main.js` (480 l., ES5, IIFE, sans dépendance).
 - **Polices auto-hébergées** en woff2 (Inter + Poppins) — aucun appel à Google.
 - **Images** en doublons `.jpg` + `.webp` servis via `<picture>`.
 - **Aucun service tiers chargé au premier rendu.** La carte Google et toute vidéo
@@ -85,7 +94,7 @@ est exactement ce qui est servi.
   ni téléversement dans hPanel.
 
   Ce que cela change pour une session qui travaille ici : **pousser est un acte
-  public**, plus un enregistrement local. Les 29 contrôles doivent passer avant
+  public**, plus un enregistrement local. Les 37 contrôles doivent passer avant
   le push, pas après, et une page à moitié écrite ne se commite pas « pour la
   nuit ». Vérifier après coup se fait en interrogeant le site réel — les treize
   pages ajoutées le 2 septembre étaient en ligne avant même qu'on pense à les
@@ -359,10 +368,15 @@ la seconde est déclinée en contour via `.sticky-mobile-bar .sticky-call-btn--a
 spécificité seule ne suffisant pas puisqu'il est déclaré plus bas dans le
 fichier. Sous 360 px l'icône disparaît plutôt que de tronquer le numéro.
 
-En-tête : le second numéro apparaît à partir de **1320 px** seulement, et sans
-icône. Le conteneur est plafonné à 1280 px ; marque + navigation + deux boutons
-demandent 1209 px, il reste 31 px. Avec l'icône sur le second bouton, la marge
-tombait à 7 px.
+En-tête : **un seul numéro, la ligne principale (06 85 75 30 40)**, depuis le
+24 septembre 2026. Le second bouton (`.site-header__cta2`) a été retiré du
+bandeau et de `global.css` : deux boutons de même pastille et de même poids se
+concurrençaient au lieu de conduire à un appel. Le 06 29 reste joignable partout
+ailleurs — menu mobile, barre d'appel mobile, bloc d'appel de l'accueil, pied de
+page — et dans tous les cas en lien `tel:`. **Ne pas le remettre dans le bandeau**
+sans que le propriétaire le redemande : c'est un arbitrage, pas une contrainte
+de place. La note qui précédait décrivait un affichage à partir de 1320 px, qui
+n'existe plus.
 
 #### Mesurer une largeur de viewport réelle
 
@@ -620,7 +634,7 @@ comparant les deux échouerait après chaque commit, le sitemap ayant été
 permanent.
 
 ```sh
-node tools/controle.js            # les vingt-quatre contrôles
+node tools/controle.js            # les trente-sept contrôles
 node tools/controle.js --liste    # ce qu'ils vérifient
 node tools/controle.js alpha      # un seul, par son nom
 ```
@@ -1064,61 +1078,55 @@ balises et sont idempotents.
 - Le site a migré depuis un ancien builder : les 301 de `.htaccess` protègent
   l'historique de référencement. Ne jamais en supprimer une sans preuve qu'elle
   est devenue inutile.
- | sort -u \n  | while read f; do [ -e "" ] || echo "CIBLE MANQUANTE: "; done
 
-# images référencées absentes
-grep -oh 'src="/images/[^"]*"' *.html | sed 's|src="/||;s|"||' | sort -u \
-  | while read i; do [ -f "$i" ] || echo "IMAGE MANQUANTE: $i"; done
+## Prestations non proposées — ne jamais les vendre
 
-# un seul h1 par page
-for f in *.html; do n=$(grep -c "<h1" $f); [ "$n" = 1 ] || echo "H1=$n $f"; done
+Arbitrages du propriétaire, dont trois rendus le 24 septembre 2026. Aucun de ces
+services ne doit apparaître en offre sur le site : ni page, ni section, ni ligne
+de liste de services, ni valeur d'option des formulaires.
 
-# canonical présent (sauf 404 et merci)
-for f in *.html; do grep -q 'rel="canonical"' $f || echo "SANS CANONICAL: $f"; done
+| Prestation | Statut | Ce que le site peut dire |
+|---|---|---|
+| **Punaises de lit** | non proposée | rien |
+| **Puces** | non proposée | rien — retiré des deux formulaires et de 3 textes le 24/09 |
+| **Fioul, hydrocarbures** | non proposée | rien |
+| **Désinfection** | **non proposée** | rien. Ne pas rédiger de section, ne pas l'ajouter aux listes de services |
+| **Traitement des odeurs** | **à venir, pas lancé** | rien tant que le propriétaire ne l'active pas |
+| **Mérule et champignons lignivores** | **information seulement** | reconnaître, comprendre la cause d'humidité, dire quoi faire — jamais « notre traitement » |
+| **Diagnostic réglementaire état parasitaire** | non réalisé | le traitement curatif qui suit, oui ; le diagnostic, non (voir §1) |
 
-# divergence header / footer
-for f in *.html; do echo "$(sed -n '/<header class="site-header"/,/<\/header>/p' $f | md5sum | cut -c1-8) $f"; done | sort | uniq -c -w8
-for f in *.html; do echo "$(sed -n '/<footer class="site-footer"/,/<\/footer>/p' $f | md5sum | cut -c1-8) $f"; done | sort | uniq -c -w8
+Trois d'entre elles demandent une vigilance particulière :
 
-# cohérence des hashes de cache-busting
-grep -oh 'assets/[a-z]*/[a-z-]*\.[a-z]*?v=[a-f0-9]*' *.html | sort | uniq -c
-```
+- **Traitement des odeurs.** La page `traitement-odeurs.html` **reste en ligne**
+  — on ne casse pas une URL — mais elle est en `noindex`, hors `sitemap.xml`,
+  hors menus, hors listes de services, et sans aucun lien entrant. Le contrôle
+  `maillage` la porte pour cela dans sa liste `SANS_LIEN`, à côté de `404` et
+  `merci`. **Le jour où le propriétaire lance le service**, tout se défait dans
+  l'autre sens : retirer le `noindex`, remettre la page au sitemap et aux menus,
+  la citer depuis les pages voisines, et la sortir de `SANS_LIEN` — sinon le
+  contrôle laissera passer une page de service orpheline.
+- **Désinfection.** Elle avait été inscrite au plan de travail avant que le
+  propriétaire ne tranche. Ne pas la réintroduire au motif qu'elle « va de soi »
+  pour une entreprise de lutte anti-nuisibles.
+- **Mérule.** `merule-champignons-bois.html` a été requalifiée en page
+  informative le 24 septembre 2026 : nœud JSON-LD `Service` retiré, méthode
+  reformulée en étapes à suivre, et une question de la FAQ qui dit explicitement
+  « Traitez-vous la mérule ? Non ». Ne pas y remettre d'offre, de `serviceType`
+  ni d'appel au devis mérule.
 
-Le contrôle header/footer converge vers **une seule** ligne pour le header et
-**une seule** pour le footer depuis P1 : toute sortie à plusieurs lignes est une
-régression. Le motif du footer est bien `<footer class="site-footer"` — utiliser
-`<footer` tout court agrège les blocs de contenu des 5 pages listées en §3 et
-produit un faux positif.
+## Zones exclues — ne jamais les lister
 
-Vérifier aussi visuellement, a minima : accueil, une fiche nuisible, une page de
-zone, `contact` (envoi du formulaire compris), en mobile et en desktop.
+Ces communes et secteurs ne sont **pas desservis**. Ils ne doivent apparaître ni
+dans un texte visible, ni dans un `areaServed`, ni dans `assets/data/communes.json`,
+ni dans une suggestion de la recherche de commune :
 
----
+Propriano, Olmeto, Sollacaro, Casalabriva, Serra-di-Ferro, Porto-Pollo,
+Campomoro — **et le Sartenais, Sartène comprise**, tranché le 24 septembre 2026.
 
-## 7. Méthode de travail attendue
-
-- **Par lots homogènes, pas page par page.** Ces 28 fichiers sont des variations
-  d'un même gabarit : utiliser `sed`/scripts sur l'ensemble, puis vérifier avec §6.
-  Une correction appliquée à une seule page recrée exactement la divergence
-  qu'on cherche à supprimer.
-- **Un commit par nature de changement** (normalisation du footer, extraction du
-  CSS inline, recompression des images…), jamais un commit fourre-tout : en
-  statique, le diff HTML est le seul filet de sécurité.
-- **Annoncer avant d'agir** sur tout ce qui touche les URLs, le `.htaccess` ou
-  le `sitemap.xml` : l'impact porte sur le référencement en production, pas sur le code.
-- Messages de commit en français, à l'impératif
-  (`Normalise le footer sur les 28 pages`).
-
----
-
-## 8. Contexte de production
-
-- Domaine canonique : `https://dezinsect-corse.fr` (sans `www`, HTTPS forcé).
-- URLs servies **sans** `.html` — toujours écrire les liens internes en `/page`.
-- Hébergement Apache mutualisé ; `.htaccess` est la seule configuration serveur.
-- Le site a migré depuis un ancien builder : les 301 de `.htaccess` protègent
-  l'historique de référencement. Ne jamais en supprimer une sans preuve qu'elle
-  est devenue inutile.
+Le Valinco et le Sartenais figurent bien dans `communes.json`, mais avec `d: 0` :
+c'est volontaire, et ce n'est pas une contradiction. Cette valeur sert à répondre
+« hors zone » à qui tape le nom, plutôt qu'à ne rien répondre du tout. **Ne pas
+les basculer en zone desservie** pour faire disparaître une apparente incohérence.
 
 ## Avis Google : tenus à la main
 
