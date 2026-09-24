@@ -502,6 +502,49 @@ const CONTROLES = [
     return pbs;
   }},
 
+{ nom: 'lignes-tel', titre: 'Les deux lignes sont joignables partout, une seule dans le bandeau',
+  // Arbitrage du proprietaire, 24 septembre 2026 : le bandeau de bureau ne
+  // porte QUE la ligne principale — deux boutons de meme poids se
+  // concurrencaient au lieu de conduire a un appel. Mais le second numero
+  // doit rester joignable partout ailleurs, et en lien tel:.
+  //
+  // Le piege que ce controle evite : le menu mobile est imbrique DANS
+  // <header class="site-header">. Compter les numeros du header sans lui
+  // soustraire le menu fait croire que le bandeau porte les deux lignes, et
+  // un controle ecrit ainsi ne se declencherait jamais.
+  //
+  // Le menu est un <div class="mobile-menu">, pas un <nav>, et il court
+  // jusqu'a la fin de l'en-tete. On le decoupe donc par sa position et non
+  // par un </div> ferme : il en contient plusieurs, et une expression non
+  // gourmande s'arreterait au premier.
+  run() {
+    const PRINCIPAL = '+33685753040', SECOND = '+33629421638';
+    const cpt = (s, n) => s.split('tel:' + n).length - 1;
+    const pbs = [];
+    for (const f of pages) {
+      const s = lire(f);
+      const entete = (s.match(/<header class="site-header"[\s\S]*?<\/header>/) || [''])[0];
+      const i = entete.indexOf('<div class="mobile-menu"');
+      const menu = i < 0 ? '' : entete.slice(i);
+      const bandeau = i < 0 ? entete : entete.slice(0, i);
+      const pied = (s.match(/<footer class="site-footer"[\s\S]*?<\/footer>/) || [''])[0];
+
+      if (!entete) { pbs.push(f + ' : aucun <header class="site-header">'); continue; }
+      if (!menu) { pbs.push(f + ' : aucun <div class="mobile-menu"> dans l en-tete'); continue; }
+      if (!pied) { pbs.push(f + ' : aucun <footer class="site-footer">'); continue; }
+
+      if (cpt(bandeau, PRINCIPAL) !== 1)
+        pbs.push(f + ' : le bandeau porte ' + cpt(bandeau, PRINCIPAL) + ' fois la ligne principale, une seule est attendue');
+      if (cpt(bandeau, SECOND) !== 0)
+        pbs.push(f + ' : le second numero est revenu dans le bandeau (' + cpt(bandeau, SECOND) + ' fois)');
+      for (const [zone, txt] of [['menu mobile', menu], ['pied de page', pied]]) {
+        if (cpt(txt, PRINCIPAL) < 1) pbs.push(f + ' : ligne principale absente du ' + zone);
+        if (cpt(txt, SECOND) < 1) pbs.push(f + ' : second numero absent du ' + zone);
+      }
+    }
+    return pbs;
+  }},
+
 { nom: 'nap', titre: 'Nom, adresse et telephone coherents partout',
   run() {
     const champs = { name: new Map(), telephone: new Map(), streetAddress: new Map(), addressLocality: new Map(), postalCode: new Map() };

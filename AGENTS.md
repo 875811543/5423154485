@@ -94,7 +94,7 @@ est exactement ce qui est servi.
   ni téléversement dans hPanel.
 
   Ce que cela change pour une session qui travaille ici : **pousser est un acte
-  public**, plus un enregistrement local. Les 37 contrôles doivent passer avant
+  public**, plus un enregistrement local. Les 38 contrôles doivent passer avant
   le push, pas après, et une page à moitié écrite ne se commite pas « pour la
   nuit ». Vérifier après coup se fait en interrogeant le site réel — les treize
   pages ajoutées le 2 septembre étaient en ligne avant même qu'on pense à les
@@ -634,7 +634,7 @@ comparant les deux échouerait après chaque commit, le sitemap ayant été
 permanent.
 
 ```sh
-node tools/controle.js            # les trente-sept contrôles
+node tools/controle.js            # les trente-huit contrôles
 node tools/controle.js --liste    # ce qu'ils vérifient
 node tools/controle.js alpha      # un seul, par son nom
 ```
@@ -661,6 +661,7 @@ attrapé un défaut réel sur ce site :
 | `sitemap` | Deux pages créées et oubliées au sitemap, signalées dès la génération |
 | `doublons` | L'article de saisonnalité recopié depuis la page Costa Verde |
 | `entete-pied` | Les divergences d'en-tête et de pied, dont une introduite le jour même par une insertion mal ancrée |
+| `lignes-tel` | Garde-fou pose le 24 septembre 2026, apres que le retrait du second numero du bandeau a fait craindre sa disparition du site. Il verifie les trois emplacements d un coup : une seule ligne dans le bandeau, les deux dans le menu mobile et dans le pied. Eprouve sur les trois regressions possibles |
 | `paires`, `nap`, `orphelins`, `liens-externes`, `h1-canonical`, `cibles`, `styles-en-ligne` | Garde-fous : aucun défaut à ce jour, mais peu coûteux |
 
 Deux d'entre eux ont dû être repris après coup, ce qui vaut avertissement :
