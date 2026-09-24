@@ -140,6 +140,35 @@
   /* Accent vert du logo, reserve aux elements de confiance : coches, badges */
   --accent-green: #0F7A38;
   --accent-green-bg: #EAF7EC;
+
+  /* --- Palette de fond, septembre 2026 ------------------------------------
+     Les halos roses et violets des heros ont ete retires : ils venaient d'une
+     publicite prise en modele et ne tenaient a rien dans l'identite du site,
+     dont la couleur est le bleu. Ce qui les remplace passe par ces variables,
+     pour qu'aucune teinte de fond ne soit plus ecrite en dur.
+     --section-alt est le seul fond alterne ; --surface (#F8FAFC), plus ancien
+     et deja utilise par des dizaines de composants, n'est pas touche : deux
+     gris a un point d'ecart ne se distinguent pas a l'oeil et le churn serait
+     gratuit. */
+  --page-bg: #FFFFFF;
+  --section-alt: #F4F7FB;
+  --halo-blue: rgba(26, 77, 251, 0.10);
+  --halo-blue-fade: rgba(26, 77, 251, 0);
+
+  /* Geometrie partagee des cartes et des boutons d'action.
+     --card-radius existait deja, mais seulement dans pages/index.css, avec un
+     passage de 16 a 20 px au-dela de 768 px : les cartes de services de
+     l'accueil etaient donc plus arrondies que celles des pages de zone, sur
+     la meme grille et avec le meme contenu. La variable remonte ici, a une
+     seule valeur.
+     Ces deux tokens ne portent que la GEOMETRIE. Les couleurs des boutons de
+     conversion restent gouvernees par le bloc « boutons verts » plus bas, qui
+     les impose en !important — mesure faite, ces !important sont necessaires
+     (voir AGENTS.md) et rien ici ne les contredit. */
+  --card-radius: 16px;
+  --card-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+  --radius-btn: 999px;
+  --btn-height: 48px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -1999,10 +2028,12 @@ li > .ico:first-child {
   z-index: -1;
   border-radius: inherit;
   pointer-events: none;
+  /* Un seul halo, bleu, en haut a gauche. Il y en avait trois : bleu, violet
+     et rose. Le violet et le rose sont retires — teintes parasites, etrangeres
+     a l'identite du site. Touche les 15 pages qui portent .hero-header,
+     .derat-header ou .termites-header. */
   background:
-    radial-gradient(90% 80% at 0% 0%, rgba(26, 77, 251, 0.14) 0%, rgba(26, 77, 251, 0) 60%),
-    radial-gradient(70% 60% at 95% 5%, rgba(139, 92, 246, 0.18) 0%, rgba(139, 92, 246, 0) 60%),
-    radial-gradient(90% 80% at 100% 100%, rgba(236, 72, 153, 0.22) 0%, rgba(236, 72, 153, 0) 60%);
+    radial-gradient(90% 80% at 0% 0%, var(--halo-blue) 0%, var(--halo-blue-fade) 60%);
 }
 
 /* ==========================================================================

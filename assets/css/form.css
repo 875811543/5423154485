@@ -78,7 +78,8 @@
     font-size: 1rem;
     padding: 14px;
     border: none;
-    border-radius: 8px;
+    border-radius: var(--radius-btn);
+    min-height: var(--btn-height);
     cursor: pointer;
     transition: background-color 0.2s, transform 0.1s, opacity 0.2s;
     box-shadow: 0 4px 10px rgba(26, 77, 251, 0.25);

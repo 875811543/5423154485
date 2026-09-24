@@ -7,34 +7,27 @@
   .hero {
     position: relative;
     overflow: hidden;
-    /* Voile bleu-violet vers le rose, sur le modele de la publicite fournie.
-       Le bleu reste dominant ; le rose et le violet ne sont que des halos. */
-    background:
-      radial-gradient(90% 70% at 100% 0%, rgba(139,92,246,0.18) 0%, rgba(139,92,246,0) 60%),
-      linear-gradient(180deg, #F4F5FF 0%, #FFFFFF 100%);
+    /* Fond propre : un degrade vertical tres leger, du gris-bleu vers le
+       blanc. Le voile violet vers le rose, pris sur une publicite donnee en
+       modele, est retire — il ne tenait a rien dans l'identite du site. */
+    background: linear-gradient(180deg, var(--section-alt) 0%, var(--page-bg) 100%);
     padding: clamp(48px, 8vw, 96px) 20px clamp(24px, 4vw, 48px);
   }
 
-  .hero::before,
-  .hero::after {
+  /* Un seul halo, bleu, en haut a droite. Le second, rose, occupait le coin
+     bas-gauche : supprime avec sa regle, sans quoi il serait reste un
+     pseudo-element sans fond. Les deux regles qui decrivaient ce halo sont
+     fondues en une. */
+  .hero::before {
     content: "";
     position: absolute;
+    width: 420px; height: 420px;
     border-radius: 50%;
     filter: blur(60px);
     z-index: 0;
     pointer-events: none;
-  }
-
-  .hero::before {
-    width: 420px; height: 420px;
-    background: radial-gradient(circle, rgba(26,77,251,0.14) 0%, rgba(26,77,251,0) 70%);
+    background: radial-gradient(circle, var(--halo-blue) 0%, var(--halo-blue-fade) 70%);
     top: -140px; right: -120px;
-  }
-
-  .hero::after {
-    width: 320px; height: 320px;
-    background: radial-gradient(circle, rgba(236,72,153,0.30) 0%, rgba(236,72,153,0) 70%);
-    bottom: -100px; left: -80px;
   }
 
   .hero__inner { position: relative; z-index: 1; }
@@ -308,7 +301,7 @@
   justify-content: center;
   gap: 8px;
   width: 100%;
-  min-height: 44px;
+  min-height: var(--btn-height);
   padding: 10px 14px;
   background-color: #f1f5f9;
   color: var(--primary-dark);
