@@ -1142,8 +1142,13 @@ et **ne pas toucher la note sans qu'il la confirme** : un avis à moins de cinq
 étoiles la ferait passer à 4,9, et afficher une note fausse est pire
 qu'afficher un nombre en retard.
 
-Aucune donnée structurée ne porte la note : `aggregateRating` a été écarté,
-voir `AUDIT-SEO.md §3`.
+Aucune donnée structurée ne porte la note : `aggregateRating` a été écarté.
+Le détail était dans `AUDIT-SEO.md §3`, **document de travail retiré du dépôt le
+24 septembre 2026** — il n'est plus livré avec le site et un clone ne l'aura
+pas. La raison, en une ligne : Google n'accepte un `aggregateRating` que s'il
+porte sur l'entité de la page et s'appuie sur des avis vérifiables ; le
+revendiquer pour l'entreprise elle-même sur chaque page expose à une pénalité
+pour balisage trompeur.
 
 Une mise à jour automatique a été envisagée et écartée le 16 septembre 2026 :
 elle demanderait une clé API Google Places liée à un compte de facturation, et
