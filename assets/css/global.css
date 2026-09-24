@@ -169,6 +169,12 @@
   --card-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
   --radius-btn: 999px;
   --btn-height: 48px;
+
+  /* Fond des en-tetes de ligne des tableaux comparatifs. Meme valeur
+     qu avant, simplement nommee : c etait la derniere teinte de fond ecrite
+     en dur. Un blanc a 1 % pres — le passer a --page-bg effacerait la
+     distinction de la colonne, a --section-alt il deviendrait nettement gris. */
+  --table-head-bg: #FCFCFD;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -1790,7 +1796,7 @@ li > .ico:first-child {
   font-weight: 600;
   color: #475569;
   white-space: nowrap;
-  background: #FCFCFD;
+  background: var(--table-head-bg);
 }
 .compare-table tbody tr:hover td {
   background: #F8FAFC;
