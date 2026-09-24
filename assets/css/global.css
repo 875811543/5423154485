@@ -338,10 +338,13 @@ a { color: inherit; }
 .site-nav__submenu a:hover { background: var(--surface-blue); color: var(--primary-blue); }
 
 
-/* La ligne telephonique du bandeau. Le bandeau n'en porte qu'une, la ligne
-   principale : deux boutons de meme poids cote a cote diluaient l'appel a
-   l'action, et le second numero reste joignable dans le menu mobile, la barre
-   d'appel mobile, le bloc d'appel de l'accueil et le pied de page. */
+/* Les deux lignes telephoniques du bandeau, traitees a egalite : meme
+   pastille, meme couleur, meme poids, la principale en premier.
+   Elles tiennent cote a cote parce que le remplissage horizontal est ramene
+   de 18 a 14 px — mesure a 1280 px, la largeur ou le conteneur est plafonne :
+   308 px pour les deux boutons, 323 px disponibles.
+   Sous 1200 px le bloc entier disparait au profit du menu mobile : les deux
+   numeros y restent, ainsi que dans la barre d'appel mobile. */
 .site-header__appel {
   display: none;
   flex-direction: row;
@@ -349,7 +352,8 @@ a { color: inherit; }
   gap: 6px;
 }
 
-.site-header__cta {
+.site-header__cta,
+.site-header__cta2 {
   display: none;
   align-items: center;
   gap: 6px;
@@ -365,7 +369,8 @@ a { color: inherit; }
   opacity: 1;
   transition: background .15s ease, color .15s ease;
 }
-.site-header__cta:hover { background: #E9EEFF; text-decoration: none; }
+.site-header__cta:hover,
+.site-header__cta2:hover { background: #E9EEFF; text-decoration: none; }
 
 
 /* ==========================================================================
@@ -466,9 +471,23 @@ a { color: inherit; }
 @media (min-width: 1200px) {
   .site-nav { display: block; }
   .site-header__appel { display: flex; }
-  .site-header__cta { display: flex; }
+  .site-header__cta,
+  .site-header__cta2 { display: flex; }
   .site-header__burger { display: none; }
   .mobile-menu { display: none !important; }
+
+  /* Resserrement des espaces, et d'eux seuls — la taille du texte ne bouge
+     pas. Mesure en HTTP : avec les valeurs d'origine (24 px entre les blocs
+     de l'en-tete, 6 px entre les deux boutons, 12 px de remplissage
+     horizontal), le second bouton finissait a 1209 px pour une fenetre de
+     1200 : il etait rogne par le bord sur toute la bande 1200-1219 px,
+     juste au-dessus du seuil ou il apparait.
+     Les trois valeurs ci-dessous rendent 26 px, ce qui ramene le bouton a
+     1183 px et laisse 17 px de libre a la largeur la plus serree. */
+  .site-header__inner { gap: 16px; }
+  .site-header__appel { gap: 4px; }
+  .site-header__cta,
+  .site-header__cta2 { padding-left: 10px; padding-right: 10px; }
 }
 
 /* ==========================================================================

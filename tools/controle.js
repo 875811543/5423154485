@@ -502,11 +502,16 @@ const CONTROLES = [
     return pbs;
   }},
 
-{ nom: 'lignes-tel', titre: 'Les deux lignes sont joignables partout, une seule dans le bandeau',
-  // Arbitrage du proprietaire, 24 septembre 2026 : le bandeau de bureau ne
-  // porte QUE la ligne principale — deux boutons de meme poids se
-  // concurrencaient au lieu de conduire a un appel. Mais le second numero
-  // doit rester joignable partout ailleurs, et en lien tel:.
+{ nom: 'lignes-tel', titre: 'Les deux lignes telephoniques sont presentes aux quatre emplacements',
+  // Regle du proprietaire, 24 septembre 2026 : les DEUX lignes sont
+  // joignables dans le bandeau de bureau, dans le menu mobile, dans la barre
+  // d'appel mobile et dans le pied de page — toujours en lien tel:, et la
+  // principale en premier dans le bandeau.
+  //
+  // Cette regle a change deux fois dans la meme journee : le bandeau est
+  // d'abord passe a un seul numero, puis est revenu aux deux. Le controle
+  // existe pour que la version en vigueur ne se perde pas au prochain
+  // remaniement de l'en-tete.
   //
   // Le piege que ce controle evite : le menu mobile est imbrique DANS
   // <header class="site-header">. Compter les numeros du header sans lui
@@ -528,18 +533,29 @@ const CONTROLES = [
       const menu = i < 0 ? '' : entete.slice(i);
       const bandeau = i < 0 ? entete : entete.slice(0, i);
       const pied = (s.match(/<footer class="site-footer"[\s\S]*?<\/footer>/) || [''])[0];
+      // La barre d'appel mobile ne contient que deux <a>, aucun <div>
+      // imbrique : un decoupage non gourmand jusqu'au premier </div> suffit.
+      const barre = (s.match(/<div class="sticky-mobile-bar">[\s\S]*?<\/div>/) || [''])[0];
 
       if (!entete) { pbs.push(f + ' : aucun <header class="site-header">'); continue; }
       if (!menu) { pbs.push(f + ' : aucun <div class="mobile-menu"> dans l en-tete'); continue; }
       if (!pied) { pbs.push(f + ' : aucun <footer class="site-footer">'); continue; }
 
+      if (!barre) { pbs.push(f + ' : aucune <div class="sticky-mobile-bar">'); continue; }
+
+      // Le bandeau porte exactement une fois chacune des deux lignes : deux
+      // pastilles cote a cote, la principale en premier. Compter « au moins
+      // une » laisserait passer un doublon, qui se verrait a l'ecran.
       if (cpt(bandeau, PRINCIPAL) !== 1)
         pbs.push(f + ' : le bandeau porte ' + cpt(bandeau, PRINCIPAL) + ' fois la ligne principale, une seule est attendue');
-      if (cpt(bandeau, SECOND) !== 0)
-        pbs.push(f + ' : le second numero est revenu dans le bandeau (' + cpt(bandeau, SECOND) + ' fois)');
-      for (const [zone, txt] of [['menu mobile', menu], ['pied de page', pied]]) {
-        if (cpt(txt, PRINCIPAL) < 1) pbs.push(f + ' : ligne principale absente du ' + zone);
-        if (cpt(txt, SECOND) < 1) pbs.push(f + ' : second numero absent du ' + zone);
+      if (cpt(bandeau, SECOND) !== 1)
+        pbs.push(f + ' : le bandeau porte ' + cpt(bandeau, SECOND) + ' fois le second numero, une seule est attendue');
+      if (cpt(bandeau, SECOND) === 1 && bandeau.indexOf('tel:' + PRINCIPAL) > bandeau.indexOf('tel:' + SECOND))
+        pbs.push(f + ' : dans le bandeau, le second numero precede la ligne principale');
+
+      for (const [zone, txt] of [['du menu mobile', menu], ['de la barre d appel mobile', barre], ['du pied de page', pied]]) {
+        if (cpt(txt, PRINCIPAL) < 1) pbs.push(f + ' : ligne principale absente ' + zone);
+        if (cpt(txt, SECOND) < 1) pbs.push(f + ' : second numero absent ' + zone);
       }
     }
     return pbs;

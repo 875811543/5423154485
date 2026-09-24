@@ -368,15 +368,36 @@ la seconde est déclinée en contour via `.sticky-mobile-bar .sticky-call-btn--a
 spécificité seule ne suffisant pas puisqu'il est déclaré plus bas dans le
 fichier. Sous 360 px l'icône disparaît plutôt que de tronquer le numéro.
 
-En-tête : **un seul numéro, la ligne principale (06 85 75 30 40)**, depuis le
-24 septembre 2026. Le second bouton (`.site-header__cta2`) a été retiré du
-bandeau et de `global.css` : deux boutons de même pastille et de même poids se
-concurrençaient au lieu de conduire à un appel. Le 06 29 reste joignable partout
-ailleurs — menu mobile, barre d'appel mobile, bloc d'appel de l'accueil, pied de
-page — et dans tous les cas en lien `tel:`. **Ne pas le remettre dans le bandeau**
-sans que le propriétaire le redemande : c'est un arbitrage, pas une contrainte
-de place. La note qui précédait décrivait un affichage à partir de 1320 px, qui
-n'existe plus.
+### Les deux lignes téléphoniques : où elles doivent figurer
+
+**Règle en vigueur depuis le 24 septembre 2026 : les deux numéros, à quatre
+endroits.**
+
+| Emplacement | 06 85 75 30 40 | 06 29 42 16 38 |
+|---|---|---|
+| Bandeau de bureau (`.site-header__cta` / `.site-header__cta2`) | ✅ en premier | ✅ |
+| Menu mobile (`.tel-pair`) | ✅ | ✅ |
+| Barre d'appel mobile (`.sticky-mobile-bar`) | ✅ | ✅ |
+| Pied de page | ✅ | ✅ |
+
+Plus le bloc d'appel de l'accueil (`.btn-call`), qui porte les deux également.
+**Toujours en lien `tel:`**, jamais en texte brut.
+
+Les deux pastilles du bandeau sont traitées **à égalité** — même fond, même
+couleur, même poids — et tiennent côte à côte parce que leur remplissage
+horizontal est ramené de 18 à 14 px. Mesuré en HTTP : 148 + 146 px pour les deux
+boutons, et il reste 139 px de libre à 1280 px, 59 px à 1200 px. La navigation
+tient sur **une seule rangée** à toutes les largeurs où elle est visible.
+
+Sous 1200 px le bloc entier disparaît au profit du menu mobile : c'est voulu,
+la barre d'en-tête ne doit pas être surchargée sur petit écran. À 1024 et
+768 px il n'y a donc rien à faire tenir — le burger est seul.
+
+**Cette règle a changé deux fois le même jour** : le bandeau est d'abord passé
+à un seul numéro (le second diluait l'appel à l'action), puis est revenu aux
+deux sur décision du propriétaire. Ne pas « rationaliser » dans un sens ou dans
+l'autre sans le lui demander. Le contrôle `lignes-tel` fige la version en
+vigueur, y compris l'ordre des deux boutons.
 
 #### Mesurer une largeur de viewport réelle
 
@@ -661,7 +682,7 @@ attrapé un défaut réel sur ce site :
 | `sitemap` | Deux pages créées et oubliées au sitemap, signalées dès la génération |
 | `doublons` | L'article de saisonnalité recopié depuis la page Costa Verde |
 | `entete-pied` | Les divergences d'en-tête et de pied, dont une introduite le jour même par une insertion mal ancrée |
-| `lignes-tel` | Garde-fou pose le 24 septembre 2026, apres que le retrait du second numero du bandeau a fait craindre sa disparition du site. Il verifie les trois emplacements d un coup : une seule ligne dans le bandeau, les deux dans le menu mobile et dans le pied. Eprouve sur les trois regressions possibles |
+| `lignes-tel` | Garde-fou pose le 24 septembre 2026, le jour ou la regle du bandeau a change deux fois. Il verifie les quatre emplacements d un coup — bandeau, menu mobile, barre d appel mobile, pied — et l ordre des deux boutons du bandeau. Eprouve sur les quatre regressions possibles : numero retire de chacune des zones, et ordre inverse |
 | `paires`, `nap`, `orphelins`, `liens-externes`, `h1-canonical`, `cibles`, `styles-en-ligne` | Garde-fous : aucun défaut à ce jour, mais peu coûteux |
 
 Deux d'entre eux ont dû être repris après coup, ce qui vaut avertissement :
