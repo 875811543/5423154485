@@ -496,17 +496,12 @@
   .hero__inner--single .hero__actions { margin-bottom: 14px; }
   .hero-urgence { margin-bottom: 16px; }
 
-  /* La bulle WhatsApp masquait le texte du hero sur les petites largeurs.
-     Reduite et rapprochee du bord ; elle reste au-dessus de la barre d'appel,
-     haute de 71 px, d'ou le bottom de 84 px. */
-  .wa-float {
-    width: 48px;
-    height: 48px;
-    right: 12px;
-    bottom: 84px;
-  }
-
-  .wa-float svg { width: 26px; height: 26px; }
+  /* La regle de la bulle WhatsApp etait ici. Elle vit desormais dans
+     global.css : posee dans cette feuille, elle ne s'appliquait qu'a
+     l'accueil — la seule page qui charge pages/index.css — et la bulle
+     restait a 56 px sur les 64 autres. Mesure a 360 px avant le
+     deplacement : 48 px sur l'accueil, 56 px sur deratisation,
+     guepes-et-frelons et contact. */
 }
 
 /* « anti-termites » porte un trait d'union, et le navigateur y coupe

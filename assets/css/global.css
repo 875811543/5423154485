@@ -1916,6 +1916,24 @@ li > .ico:first-child {
 }
 .wa-float svg { width: 30px; height: 30px; fill: #fff; }
 
+/* Sur petit ecran la bulle masquait le texte : elle est reduite et
+   rapprochee du bord. Elle reste au-dessus de la barre d'appel, haute de
+   71 px, d'ou le bottom de 84 px.
+   Cette regle appartient a global.css et non a une feuille de page : la
+   bulle est sur les 65 pages, et posee dans pages/index.css elle ne
+   s'appliquait qu'a l'accueil — les 64 autres gardaient 56 px. C'est la
+   regle des composants partages : ce qui vaut pour toutes les pages se
+   declare dans la feuille que toutes les pages chargent. */
+@media (max-width: 559px) {
+  .wa-float {
+    width: 48px;
+    height: 48px;
+    right: 12px;
+    bottom: 84px;
+  }
+  .wa-float svg { width: 26px; height: 26px; }
+}
+
 /* Sur ordinateur la barre d'appel est masquee : le bouton descend. */
 @media (min-width: 768px) {
   .wa-float { right: 24px; bottom: 24px; }
