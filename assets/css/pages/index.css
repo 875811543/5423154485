@@ -509,6 +509,12 @@
   .wa-float svg { width: 26px; height: 26px; }
 }
 
+/* « anti-termites » porte un trait d'union, et le navigateur y coupe
+   volontiers : a 360 px le titre se lisait « anti- / termites » sur deux
+   lignes. Le <span> du titre est le seul element concerne — il n'entoure
+   que ce mot compose. */
+.hero h1 span { white-space: nowrap; }
+
 /* Deux paliers de plus pour le H1, mesures et non supposes.
    « Dératisation, désinsectisation & anti-termites en Corse » compte un mot
    de seize lettres : a 1,75 rem il tient en trois lignes des 390 px, mais en
