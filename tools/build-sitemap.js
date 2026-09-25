@@ -40,8 +40,15 @@ const SITE = 'https://dezinsect-corse.fr';
 
 /**
  * Le fichier, tel qu'il etait a ce commit, reduit a son contenu propre : sans
- * l'en-tete ni le pied de page partages, sans les hashes de cache. Deux
+ * les blocs partages par les 65 pages, sans les hashes de cache. Deux
  * versions egales sous cette forme ne different que par le gabarit commun.
+ *
+ * La barre d'appel mobile a rejoint la liste le 25 septembre 2026, quand
+ * l'ajout du prenom de l'interlocuteur sur les numeros a date 59 pages du
+ * meme jour : elle est sur les 65 pages, au meme titre que l'en-tete et le
+ * pied, et une retouche qui la concerne seule n'est pas une modification du
+ * contenu de chaque page. AGENTS.md prevoit explicitement d'etendre cette
+ * liste quand un autre bloc partage apparait.
  */
 function contenuPropre(sha, fichier) {
   const brut = execSync('git show "' + sha + ':' + fichier + '"',
@@ -50,6 +57,7 @@ function contenuPropre(sha, fichier) {
   return brut
     .replace(/<header class="site-header"[\s\S]*?<\/header>/, '')
     .replace(/<footer class="site-footer"[\s\S]*?<\/footer>/, '')
+    .replace(/<div class="sticky-mobile-bar">[\s\S]*?<\/div>/, '')
     .replace(/\?v=[0-9a-f]{8}/g, '')
     .replace(/\r\n/g, '\n')
     .trimEnd();
