@@ -506,8 +506,10 @@ a { color: inherit; }
 @media (min-width: 1200px) {
   .site-nav { display: block; }
   .site-header__appel { display: flex; }
+  /* grid et non flex : les deux pastilles empilent le prenom au-dessus du
+     numero, avec l'icone a cheval sur les deux lignes. */
   .site-header__cta,
-  .site-header__cta2 { display: flex; }
+  .site-header__cta2 { display: grid; }
   .site-header__burger { display: none; }
   .mobile-menu { display: none !important; }
 
@@ -777,10 +779,83 @@ li.feature-item::before {
   white-space: nowrap;
 }
 .sticky-call-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+/* --------------------------------------------------------------------------
+   PRENOM DE L'INTERLOCUTEUR SUR LES NUMEROS
+   --------------------------------------------------------------------------
+   Dume pour le 06 85, Antoine pour le 06 29. Deux mises en forme selon la
+   place : empilee la ou la largeur est comptee (barre d'appel, bandeau),
+   en ligne ailleurs (menu mobile, pied de page, bloc d'appel).
+   -------------------------------------------------------------------------- */
+
+/* Barre d'appel mobile : le prenom passe au-dessus du numero. La grille
+   remplace le flex pour que l'icone tienne sur les deux lignes sans qu'il
+   faille un conteneur supplementaire autour des deux spans.
+   Le remplissage vertical tombe de 13 a 10 px : la ligne du prenom ajoute
+   environ 13 px, et la barre ne doit pas grandir de plus de 8. Mesure : elle
+   passe de 71 a 78 px. */
+.sticky-call-btn {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-items: center;
+  column-gap: 8px;
+  padding: 8px 12px;
+}
+
+.sticky-call-btn svg { grid-row: 1 / 3; }
+
+.sticky-call-btn__nom {
+  grid-column: 2;
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0.8;
+  line-height: 1.1;
+}
+
+.sticky-call-btn__num {
+  grid-column: 2;
+  line-height: 1.25;
+}
+
+/* Bandeau de bureau : meme principe. La largeur ne bouge pas, c'est le
+   numero qui reste l'element le plus large, et la hauteur du bouton passe
+   de 43 a 48 px dans un bandeau de 72. */
+.site-header__cta,
+.site-header__cta2 {
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-items: center;
+  column-gap: 6px;
+}
+
+.site-header__cta svg,
+.site-header__cta2 svg { grid-row: 1 / 3; }
+
+.site-header__cta-nom,
+.site-header__cta2 .site-header__cta-nom {
+  grid-column: 2;
+  font-size: 0.7rem;
+  font-weight: 600;
+  opacity: 0.75;
+  line-height: 1.1;
+  text-align: left;
+}
+
+.site-header__cta-num { grid-column: 2; line-height: 1.2; }
+
+/* Menu mobile, pied de page et bloc d'appel : prenom devant le numero, sur
+   la meme ligne. Il y a la place, et empiler y couperait la lecture. */
+.tel-nom {
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.tel-num { font-weight: inherit; }
 /* Sous 360 px, l'icone saute plutot que de tronquer le numero. */
 @media (max-width: 359px) {
   .sticky-mobile-bar { padding: 10px 10px; gap: 6px; }
-  .sticky-call-btn { font-size: 0.88rem; padding: 13px 8px; }
+  .sticky-call-btn { font-size: 0.88rem; padding: 8px 8px; }
   .sticky-call-btn svg { display: none; }
 }
 @media (min-width: 768px) {
