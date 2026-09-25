@@ -510,6 +510,81 @@
    que ce mot compose. */
 .hero h1 span { white-space: nowrap; }
 
+/* --------------------------------------------------------------------------
+   LIGNE DE CONFIANCE DU HERO — note Google et Certibiocide
+   --------------------------------------------------------------------------
+   Remplace la liste .garanties, qui portait trois coches dont « Note Google
+   5/5 ». La note est desormais un lien vers la fiche Google, avec le logo,
+   et la certification reste a cote sur la meme ligne.
+   Le logo est un vrai fichier et non un SVG inline : c'est une marque
+   deposee, on ne la redessine pas.
+   -------------------------------------------------------------------------- */
+.hero-confiance {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 20px;
+  margin-bottom: 4px;
+}
+
+.hero-confiance__avis {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--body-text);
+  border-radius: 8px;
+}
+
+.hero-confiance__avis:hover { text-decoration: none; }
+.hero-confiance__avis:hover .hero-confiance__note { color: var(--primary-blue); }
+
+.hero-confiance__avis:focus-visible {
+  outline: 3px solid var(--primary-blue);
+  outline-offset: 3px;
+}
+
+/* height fixe et width auto : le rapport du fichier fait foi, quelles que
+   soient les dimensions declarees dans le HTML. display:block supprime
+   l'espace sous la ligne de base qui decalerait l'alignement vertical. */
+.hero-confiance__google {
+  display: block;
+  height: 36px;
+  width: auto;
+}
+
+.hero-confiance__note {
+  font-size: 0.9rem;
+  line-height: 1.3;
+  transition: color .15s ease;
+}
+
+.hero-confiance__note strong {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.hero-confiance__certi {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  color: var(--body-text);
+}
+
+/* La coche reprend le vert de confiance, comme dans l'ancienne liste. */
+.hero-confiance__certi svg {
+  flex-shrink: 0;
+  color: var(--accent-green);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-confiance__note { transition: none; }
+}
+
 /* Deux paliers de plus pour le H1, mesures et non supposes.
    « Dératisation, désinsectisation & anti-termites en Corse » compte un mot
    de seize lettres : a 1,75 rem il tient en trois lignes des 390 px, mais en
