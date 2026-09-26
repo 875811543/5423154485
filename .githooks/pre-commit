@@ -1,0 +1,25 @@
+#!/bin/sh
+# Refuse le commit si une page dont le contenu change n'a pas vu sa date de
+# mise a jour suivre.
+#
+# Pourquoi ce garde-fou existe
+# ----------------------------
+# Trois fois, une page a ete modifiee au fond sans que sa dateModified soit
+# touchee : merule et moustiques le 24 septembre 2026, capricorne le 26.
+# A chaque fois le hook de pre-push a refuse la publication — mais apres
+# coup, sur un commit deja ecrit, qu'il a fallu completer d'un second.
+#
+# Pourquoi il ne relance PAS tools/controle.js
+# --------------------------------------------
+# Le controle articles-lexique compare dateModified a la date du dernier
+# commit de fond, lue dans git log. Avant le commit, cette date est encore
+# celle du commit precedent : le controle passe. Verifie sur le cas reel —
+# un changement de fond mis en scene avec une date perimee ressort vert.
+# Relancer controle.js ici serait du code mort qui se donne l'air d'un
+# controle : il ne se declencherait jamais sur le defaut qu'il vise.
+#
+# tools/verifie-dates.js raisonne autrement : il compare la version HEAD du
+# fichier a celle de l'index, sans passer par git log.
+#
+# Pour outrepasser volontairement : git commit --no-verify
+node tools/verifie-dates.js || exit 1

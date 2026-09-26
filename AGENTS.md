@@ -115,6 +115,50 @@ est exactement ce qui est servi.
   `git push --no-verify` l'outrepasse. C'est pour les cas où l'on sait
   précisément pourquoi, pas pour se débarrasser d'un rouge gênant.
 
+  **Un second hook, `.githooks/pre-commit`, bloque plus tôt.** Il lance
+  `tools/verifie-dates.js`, qui applique la règle ci-dessous.
+
+### Toute modification de contenu impose de bouger la date, dans le même commit
+
+**Dès qu'on touche au contenu principal d'une page** — c'est-à-dire à autre
+chose que l'en-tête, le pied de page, la barre d'appel mobile ou les
+empreintes `?v=` —, il faut porter la date du jour **aux deux endroits** :
+
+- `"dateModified"` dans le JSON-LD ;
+- la mention visible `<time class="maj-date" datetime="…">…</time>`, dont le
+  texte lisible doit dire la même chose que l'attribut.
+
+Les deux vont ensemble et dans **le commit qui change le contenu**, pas dans
+un commit de rattrapage.
+
+**Pourquoi c'est mécanisé plutôt que laissé à la vigilance :** l'oubli s'est
+produit **trois fois** — `merule` et `moustiques-corse` le 24 septembre 2026,
+`capricorne-des-maisons` le 26. À chaque fois le hook de pre-push a refusé la
+publication, mais après coup, sur un commit déjà écrit qu'il a fallu compléter
+d'un second.
+
+**Et pourquoi `pre-commit` ne relance pas `tools/controle.js` :** son contrôle
+`articles-lexique` compare `dateModified` à la date du dernier commit de fond,
+lue dans `git log`. Avant le commit, cette date est encore celle du commit
+**précédent** — le contrôle passe. Vérifié sur le cas réel : un changement de
+fond mis en scène avec une date périmée ressort vert. Un pre-commit qui se
+contenterait de rejouer `controle.js` serait **du code mort qui se donne l'air
+d'un contrôle**, le pire cas, puisqu'il rassurerait.
+
+`tools/verifie-dates.js` raisonne autrement : il compare la version **HEAD** du
+fichier à celle de **l'index**, sans passer par `git log`. Éprouvé sur six cas —
+date périmée (refuse), date à jour (passe), `datetime` correct mais texte
+visible incohérent (refuse), changement limité à l'en-tête (passe), changement
+limité à une empreinte `?v=` (passe), page sans date modifiée (passe).
+
+Un piège rencontré en l'écrivant, et corrigé : `git show ":fichier"` désigne
+l'index, mais la révision passée au script était déjà `':'`, ce qui produisait
+`"::fichier"`. Git refusait, la lecture renvoyait `null`, et le script sautait
+**toutes** les pages en silence. Il ne se déclenchait jamais. C'est pour cela
+qu'il faut éprouver un contrôle avant de lui faire confiance.
+
+`git commit --no-verify` l'outrepasse.
+
   **La bascule a eu lieu le 2 septembre 2026 au matin.** Ce qui suit décrit la
   version qu'elle a remplacée, et reste utile pour comprendre d'où vient le
   travail fait ici :
