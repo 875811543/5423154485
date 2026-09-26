@@ -564,8 +564,20 @@ a { color: inherit; }
   z-index: 90;
 }
 .back-to-top.is-visible { display: flex; }
+
+/* Les deux boutons flottants se chevauchaient : mesure a 360 px, le rond
+   bleu du retour en haut (44 px, bottom 92) et la bulle WhatsApp (48 px,
+   bottom 84) se recouvraient sur 40 x 40 px. Le bleu passait derriere —
+   z-index 90 contre 998 — et depassait en couronne.
+   Ils sont desormais empiles, le retour en haut au-dessus de la bulle, avec
+   12 px entre les deux. La valeur de `bottom` se lit donc : position de la
+   bulle + sa hauteur + 12.
+   Le defaut existait a TOUTES les largeurs, pas seulement sur mobile : en
+   bureau la bulle est a bottom 24 et le bouton etait a bottom 20. */
+.back-to-top { bottom: 144px; }     /* bulle a 84 + 48 + 12 */
+
 @media (min-width: 768px) {
-  .back-to-top { bottom: 20px; }
+  .back-to-top { bottom: 92px; }   /* bulle a 24 + 56 + 12 */
 }
 
 /* ==========================================================================
@@ -1998,8 +2010,10 @@ li > .ico:first-child {
    bulle est sur les 65 pages, et posee dans pages/index.css elle ne
    s'appliquait qu'a l'accueil — les 64 autres gardaient 56 px. C'est la
    regle des composants partages : ce qui vaut pour toutes les pages se
-   declare dans la feuille que toutes les pages chargent. */
-@media (max-width: 559px) {
+   declare dans la feuille que toutes les pages chargent.
+   Seuil porte de 559 a 767 px le 26 septembre 2026 : entre les deux, un
+   telephone en paysage ou une tablette affichait encore la bulle a 56 px. */
+@media (max-width: 767px) {
   .wa-float {
     width: 48px;
     height: 48px;
