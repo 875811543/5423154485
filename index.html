@@ -219,7 +219,7 @@
 
   <link rel="stylesheet" href="assets/css/page-accueil.css?v=c370819a">
   <link rel="stylesheet" href="assets/css/form.css?v=2053c015">
-  <link rel="stylesheet" href="assets/css/pages/index.css?v=7231e6b9">
+  <link rel="stylesheet" href="assets/css/pages/index.css?v=0a281102">
 
 </head>
 <body>
@@ -252,6 +252,7 @@
             <li><a href="traitement-injection-bati-termites">Traitement préventif charpente</a></li>
             <li><a href="guepes-et-frelons">Guêpes &amp; Frelons</a></li>
         <li><a href="moustiques-corse">Moustiques</a></li>
+        <li><a href="conducteur-engins-caces">Conducteur d'engins CACES</a></li>
         <li><a href="tarifs-anti-nuisibles-corse">Tarifs &amp; devis</a></li>
           </ul>
         </li>
@@ -329,6 +330,7 @@
         <a href="traitement-injection-bati-termites">Traitement préventif charpente</a>
         <a href="guepes-et-frelons">Guêpes &amp; Frelons</a>
         <a href="moustiques-corse">Moustiques</a>
+        <a href="conducteur-engins-caces">Conducteur d'engins CACES</a>
         <a href="tarifs-anti-nuisibles-corse">Tarifs &amp; devis</a>
       </details>
 
@@ -448,6 +450,7 @@
           <option value="Termites / Bois">Traitement Termites & Bois</option>
           <option value="Désinsectisation (cafards, fourmis, mouches)">Désinsectisation Globale</option>
           <option value="Moustiques (tigre / commun)">Moustiques</option>
+          <option value="Conduite d'engins CACES">Conduite d'engins CACES</option>
           <option value="Autre demande">Autre demande</option>
         </select>
       </div>
@@ -612,6 +615,61 @@
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#1A4DFB" stroke-width="2"/></svg>
       <div><strong>Devis gratuit sous 24h</strong><span>Réponse rapide, sans engagement</span></div>
     </div>
+  </div>
+</section>
+
+<!-- Bandeau des qualifications : defilement continu en CSS seul.
+     La piste porte quatre fois la paire de badges pour couvrir les ecrans
+     larges sans vide ; seule la premiere paire est exposee aux lecteurs
+     d'ecran et au clavier, les copies sont aria-hidden et hors tabulation.
+     Ses deux moities sont identiques : la translation de -50 % recolle donc
+     exactement au point de depart, sans saut visible.
+     Sous prefers-reduced-motion, les copies disparaissent et les deux
+     badges restent fixes, centres. -->
+<section class="qualifs" aria-label="Nos qualifications">
+  <div class="qualifs__fenetre">
+    <ul class="qualifs__piste">
+      <li class="qualif qualif--certi">
+        <svg class="qualif__embleme" width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="16" class="qualif__fond"/><path d="M28 11l14 5.5v10.2c0 9.3-6 16.1-14 18.8-8-2.7-14-9.5-14-18.8V16.5z" class="qualif__trait"/><path d="M21.5 28.5l4.5 4.5 8.5-9" class="qualif__trait"/></svg>
+        <span class="qualif__texte"><strong class="qualif__titre">Certibiocide</strong><span class="qualif__detail">Applicateur certifié, catégorie Nuisibles, n° N079373</span></span>
+      </li>
+      <li class="qualif qualif--caces">
+        <a class="qualif__lien" href="conducteur-engins-caces">
+          <svg class="qualif__embleme" width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="16" class="qualif__fond"/><rect x="8" y="37" width="24" height="7" rx="3.5" class="qualif__trait"/><path d="M11 37v-7h17v7" class="qualif__trait"/><path d="M13 30v-6h7l3 6" class="qualif__trait"/><path d="M27 31l9-13 9 8" class="qualif__trait"/><path d="M45 26l1.5 7.5-6.5-1.5z" class="qualif__trait"/></svg>
+          <span class="qualif__texte"><strong class="qualif__titre">CACES R482</strong><span class="qualif__detail">Engins de chantier, catégories A, B1, B3, C1, C2, D, E et G</span></span>
+        </a>
+      </li>
+      <li class="qualif qualif--certi" aria-hidden="true">
+        <svg class="qualif__embleme" width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="16" class="qualif__fond"/><path d="M28 11l14 5.5v10.2c0 9.3-6 16.1-14 18.8-8-2.7-14-9.5-14-18.8V16.5z" class="qualif__trait"/><path d="M21.5 28.5l4.5 4.5 8.5-9" class="qualif__trait"/></svg>
+        <span class="qualif__texte"><strong class="qualif__titre">Certibiocide</strong><span class="qualif__detail">Applicateur certifié, catégorie Nuisibles, n° N079373</span></span>
+      </li>
+      <li class="qualif qualif--caces" aria-hidden="true">
+        <a class="qualif__lien" href="conducteur-engins-caces" tabindex="-1">
+          <svg class="qualif__embleme" width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="16" class="qualif__fond"/><rect x="8" y="37" width="24" height="7" rx="3.5" class="qualif__trait"/><path d="M11 37v-7h17v7" class="qualif__trait"/><path d="M13 30v-6h7l3 6" class="qualif__trait"/><path d="M27 31l9-13 9 8" class="qualif__trait"/><path d="M45 26l1.5 7.5-6.5-1.5z" class="qualif__trait"/></svg>
+          <span class="qualif__texte"><strong class="qualif__titre">CACES R482</strong><span class="qualif__detail">Engins de chantier, catégories A, B1, B3, C1, C2, D, E et G</span></span>
+        </a>
+      </li>
+      <li class="qualif qualif--certi" aria-hidden="true">
+        <svg class="qualif__embleme" width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="16" class="qualif__fond"/><path d="M28 11l14 5.5v10.2c0 9.3-6 16.1-14 18.8-8-2.7-14-9.5-14-18.8V16.5z" class="qualif__trait"/><path d="M21.5 28.5l4.5 4.5 8.5-9" class="qualif__trait"/></svg>
+        <span class="qualif__texte"><strong class="qualif__titre">Certibiocide</strong><span class="qualif__detail">Applicateur certifié, catégorie Nuisibles, n° N079373</span></span>
+      </li>
+      <li class="qualif qualif--caces" aria-hidden="true">
+        <a class="qualif__lien" href="conducteur-engins-caces" tabindex="-1">
+          <svg class="qualif__embleme" width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="16" class="qualif__fond"/><rect x="8" y="37" width="24" height="7" rx="3.5" class="qualif__trait"/><path d="M11 37v-7h17v7" class="qualif__trait"/><path d="M13 30v-6h7l3 6" class="qualif__trait"/><path d="M27 31l9-13 9 8" class="qualif__trait"/><path d="M45 26l1.5 7.5-6.5-1.5z" class="qualif__trait"/></svg>
+          <span class="qualif__texte"><strong class="qualif__titre">CACES R482</strong><span class="qualif__detail">Engins de chantier, catégories A, B1, B3, C1, C2, D, E et G</span></span>
+        </a>
+      </li>
+      <li class="qualif qualif--certi" aria-hidden="true">
+        <svg class="qualif__embleme" width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="16" class="qualif__fond"/><path d="M28 11l14 5.5v10.2c0 9.3-6 16.1-14 18.8-8-2.7-14-9.5-14-18.8V16.5z" class="qualif__trait"/><path d="M21.5 28.5l4.5 4.5 8.5-9" class="qualif__trait"/></svg>
+        <span class="qualif__texte"><strong class="qualif__titre">Certibiocide</strong><span class="qualif__detail">Applicateur certifié, catégorie Nuisibles, n° N079373</span></span>
+      </li>
+      <li class="qualif qualif--caces" aria-hidden="true">
+        <a class="qualif__lien" href="conducteur-engins-caces" tabindex="-1">
+          <svg class="qualif__embleme" width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="16" class="qualif__fond"/><rect x="8" y="37" width="24" height="7" rx="3.5" class="qualif__trait"/><path d="M11 37v-7h17v7" class="qualif__trait"/><path d="M13 30v-6h7l3 6" class="qualif__trait"/><path d="M27 31l9-13 9 8" class="qualif__trait"/><path d="M45 26l1.5 7.5-6.5-1.5z" class="qualif__trait"/></svg>
+          <span class="qualif__texte"><strong class="qualif__titre">CACES R482</strong><span class="qualif__detail">Engins de chantier, catégories A, B1, B3, C1, C2, D, E et G</span></span>
+        </a>
+      </li>
+    </ul>
   </div>
 </section>
 
@@ -951,6 +1009,7 @@
         <li><a href="moustiques-corse">Moustiques</a></li>
         <li><a href="traitement-anti-termites">Traitement anti-termites</a></li>
         <li><a href="traitement-injection-bati-termites">Traitement préventif charpente</a></li>
+        <li><a href="conducteur-engins-caces">Conducteur d'engins CACES</a></li>
         <li><a href="tarifs-anti-nuisibles-corse">Tarifs &amp; devis</a></li>
       </ul>
     </nav>

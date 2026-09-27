@@ -1,0 +1,65 @@
+/* ==========================================================================
+   Page « Conducteur d'engins CACES » — surcharges propres à la page.
+   Même socle que traitement-injection-bati-termites.css : la feuille charge
+   avant global.css et pages-services.css, comme sur les autres pages services.
+
+   Elle n'y redéfinit volontairement PAS --font-heading ni --font-body : huit
+   feuilles de page le faisaient avec une pile de repli plus courte, et
+   l'accueil rendait son texte dans une autre police que les 27 autres pages.
+   Les variables posées ci-dessous sont celles qui n'existent pas dans le
+   :root de global.css (--text-main, --text-muted, --border-color, --bg-soft),
+   plus deux alias locaux de couleurs déjà connues.
+   ========================================================================== */
+
+:root { --primary-blue:#1A4DFB; --primary-blue-hover:#0F37BE; --text-main:#0F172A; --text-muted:#64748B; --border-color:#E2E8F0; --bg-soft:#F8FAFC; --accent-green:#0F7A38; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: var(--font-body); color:#334155; }
+.container { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+.breadcrumb { font-size:0.82rem; color:var(--text-muted); padding: 16px 0 0; }
+.breadcrumb a { color:var(--text-muted); text-decoration:none; }
+.section-heading { font-family: var(--font-heading); font-weight:800; font-size:clamp(1.3rem,2.4vw,1.7rem); color:var(--text-main); margin: 48px 0 16px; }
+
+/* Grille des catégories CACES : quatre colonnes au large, une au téléphone.
+   Sélecteur à deux classes (0,2,0) : il doit passer devant la règle
+   .method-grid--wide de pages-services.css, qui charge après cette feuille. */
+.method-grid.method-grid--wide { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+/* Code de catégorie sous le nom de la famille d'engins. */
+.method-box .caces-cat {
+  margin: 0 0 8px;
+  color: var(--primary-blue-hover);
+  font-weight: 700;
+  font-size: 0.84rem;
+}
+
+/* Liste des travaux réalisés. */
+.engins-travaux {
+  max-width: 75ch;
+  margin: 0 0 8px;
+  padding-left: 1.2em;
+  color: var(--body-text, #334155);
+  line-height: 1.65;
+}
+.engins-travaux li { margin-bottom: 6px; }
+.engins-travaux strong { color: var(--text-main); }
+
+/* Accordéon de questions fréquentes, repris de la page traitement préventif. */
+.faq-panel {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 4px 20px;
+}
+.faq-panel__question {
+  padding: 16px 0;
+  font-weight: 700;
+  color: var(--text-main);
+  cursor: pointer;
+}
+.faq-panel__text {
+  margin: 0 0 16px;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.faq-stack { display: grid; gap: 12px; margin-bottom: 56px; }
