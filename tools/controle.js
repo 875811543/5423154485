@@ -156,7 +156,7 @@ const CONTROLES = [
       for (const m of lire(f).matchAll(/(?:href|src|srcset)="([^"]+)"/g))
         for (const u of m[1].split(',').map(x => x.trim().split(' ')[0])) {
           const c = u.replace(/[?#].*$/, '');
-          if (c && !/^(https?:|mailto:|tel:|data:|#)/.test(c)) cibles.add(c);
+          if (c && !/^(https?:|mailto:|tel:|sms:|data:|#)/.test(c)) cibles.add(c);
         }
     // Les liens internes sont sans extension (le .htaccess sert page.html
     // quand on demande /page) : une cible resout donc soit telle quelle,
@@ -276,7 +276,7 @@ const CONTROLES = [
       for (const m of lire(f).matchAll(/(?:href|src|srcset)="([^"]+)"/g))
         for (const brut of m[1].split(',').map(x => x.trim().split(' ')[0])) {
           const cible = brut.replace(/[?#].*$/, '');
-          if (!cible || /^(https?:|mailto:|tel:|data:|#|\/)/.test(cible)) continue;
+          if (!cible || /^(https?:|mailto:|tel:|sms:|data:|#|\/)/.test(cible)) continue;
           if (cible === './') continue;
           for (const cand of [cible, cible + '.html']) {
             if (reels.has(cand)) break;
@@ -1023,7 +1023,7 @@ const CONTROLES = [
       const s2 = new Set();
       for (const m of h.matchAll(/href="([^"#?:]+)"/g)) {
         let c = m[1].replace(/^[.][/]/, '');
-        if (/^(https?:|mailto:|tel:)/.test(m[1])) continue;
+        if (/^(https?:|mailto:|tel:|sms:)/.test(m[1])) continue;
         if (c === '' || c === 'index') c = 'index.html';   // le logo pointe « ./ »
         if (!c.endsWith('.html')) c += '.html';
         if (existe.has(c) && c !== f) s2.add(c);
