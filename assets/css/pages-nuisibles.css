@@ -577,3 +577,19 @@
    soit la specificite. Les panneaux replies restaient donc affiches. */
 .lex-grid[hidden],
 .section-heading[hidden] { display: none; }
+
+/* ==========================================================================
+   Renvoi vers l'outil d'identification, en tete du lexique.
+   ========================================================================== */
+.lex-outil {
+  max-width: 1100px;
+  margin: 0 auto 26px;
+  padding: 14px 18px;
+  background: var(--surface-blue);
+  border-left: 3px solid var(--primary-blue);
+  border-radius: 0 10px 10px 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--body-text);
+}
+.lex-outil a { font-weight: 700; color: var(--primary-blue-dark); }

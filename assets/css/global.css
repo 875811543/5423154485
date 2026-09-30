@@ -849,7 +849,8 @@ li.feature-item::before {
   grid-column: 2;
   font-size: 0.7rem;
   font-weight: 600;
-  opacity: 0.75;
+  /* Pas d opacite : elle faisait tomber le contraste a 3,77:1 sur blanc,
+     sous le seuil AA de 4,5. La taille suffit a distinguer le prenom. */
   line-height: 1.1;
   text-align: left;
 }
@@ -860,7 +861,7 @@ li.feature-item::before {
    la meme ligne. Il y a la place, et empiler y couperait la lecture. */
 .tel-nom {
   font-weight: 600;
-  opacity: 0.85;
+  /* Meme raison : 0.85 donnait 4,44:1 sur le fond du pied, juste sous AA. */
 }
 
 .tel-num { font-weight: inherit; }

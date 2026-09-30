@@ -610,8 +610,37 @@ indépendantes et restent à cette valeur.
 
 ### JavaScript
 
-`main.js` est le **seul** fichier JS et doit le rester — et le seul endroit
-où mettre un comportement partagé. Le gestionnaire du formulaire de devis y a
+`main.js` porte **tout le comportement partagé**, et c'est le seul endroit où
+en mettre.
+
+**Une seule exception, et elle est bornée : `assets/js/identifier-nuisible.js`.**
+Il ne sert qu'à `identifier-nuisible`, et n'est chargé que par elle. La raison
+est le poids : ce fichier porte l'arbre de décision de l'outil
+d'identification, qui ne concerne aucune autre page — le fondre dans `main.js`
+le ferait télécharger par les 66 autres, à chaque première visite, pour rien.
+Le contrôle `pas-de-js-en-ligne` l'autorise, puisqu'il n'interdit que les
+gestionnaires `on*=` et les `<script>` sans `src` ; la CSP aussi, son
+`script-src 'self'` couvrant un second fichier local.
+
+**Ne pas généraliser cette exception.** Elle vaut pour un comportement
+volumineux propre à une seule page. Un comportement partagé, même nouveau, va
+dans `main.js` : c'est la règle qui a évité de recopier le gestionnaire du
+formulaire et le chargeur de carte.
+
+`identifier-nuisible.js` ne porte d'ailleurs **que** l'arbre. Les quarante
+fiches vivent dans le HTML de la page, en `<details>` : sans JavaScript le
+contenu reste lisible et indexable, il n'existe qu'une fois, et le contrôle
+`doublons` n'a rien à comparer.
+
+**Un second fichier à la racine, `sw-identifier.js`**, est le service worker
+de cette même page. Il est enregistré depuis `identifier-nuisible.js` et par
+elle seule. Sa portée couvre le domaine — il est à la racine —, donc il
+commence par écarter tout ce qui n'est pas l'outil : pour ces requêtes il
+n'appelle pas `respondWith`, et le navigateur se comporte comme si aucun
+service worker n'existait. Stratégie **réseau d'abord, cache en secours** :
+une page en cache ne doit jamais masquer une version plus récente.
+
+Historiquement, donc : Le gestionnaire du formulaire de devis y a
 été rapatrié depuis `contact.html` et `index.html`, où il était recopié à
 l'identique, et le chargeur de carte depuis `contact.html` et
 `zones-dintervention.html`, même chose. Un correctif sur le formulaire demandait

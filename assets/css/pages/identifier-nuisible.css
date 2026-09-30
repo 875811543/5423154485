@@ -1,0 +1,506 @@
+/* ==========================================================================
+   Outil d'identification des nuisibles — feuille propre a la page.
+   Chargee avant global.css, comme les autres feuilles de assets/css/pages/ :
+   les egalites de specificite se perdent donc, et les regles de contenu
+   passent par un selecteur descendant reel plutot que par une classe seule.
+
+   Elle ne redefinit NI --font-heading NI --font-body : huit feuilles le
+   faisaient avec une pile de repli plus courte, et l'accueil rendait son
+   texte dans une autre police que les autres pages.
+
+   Les quatre couleurs de statut sont des tokens PROPRES a cette page : le
+   :root de global.css n'en porte pas d'equivalent, et une regle mutualisee
+   qui utiliserait une variable absente serait invalide en silence.
+   ========================================================================== */
+
+.ident {
+  --st-traite-bg: #EAF7EC;
+  --st-traite-tx: #0F7A38;
+  --st-appel-bg: #FFF7ED;
+  --st-appel-tx: #8A5200;
+  --st-proteger-bg: #EDF2FF;
+  --st-proteger-tx: #0F37BE;
+  --st-nontraite-bg: #F1F5F9;
+  --st-nontraite-tx: #334155;
+
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px 8px;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------
+   1. Interrupteur de profil
+   -------------------------------------------------------------- */
+.ident-profil {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 22px;
+}
+.ident-profil__label {
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+.ident-profil__groupe {
+  display: inline-flex;
+  padding: 3px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+.ident-profil__btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--body-text);
+  padding: 8px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  line-height: 1.4;
+}
+.ident-profil__btn[aria-checked="true"] {
+  background: var(--primary-blue);
+  color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------
+   2. Les six cartes de depart
+   -------------------------------------------------------------- */
+.ident-depart__titre {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+  color: var(--ink);
+  margin: 0 0 16px;
+}
+.ident-cartes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+  margin: 0 0 26px;
+  padding: 0;
+  list-style: none;
+}
+.ident-carte {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  text-align: left;
+  padding: 18px 18px;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.4;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.ident-carte:hover,
+.ident-carte:focus-visible {
+  border-color: var(--primary-blue);
+  box-shadow: 0 4px 14px rgba(26, 77, 251, .12);
+}
+.ident-carte__ico {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  color: var(--primary-blue);
+}
+.ident-carte__ico svg { width: 100%; height: 100%; display: block; }
+
+/* --------------------------------------------------------------
+   3. Une etape de la cle guidee
+   -------------------------------------------------------------- */
+.ident-barre {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin: 0 0 16px;
+}
+.ident-btn-plat {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--body-text);
+  cursor: pointer;
+  line-height: 1.4;
+}
+.ident-btn-plat:hover { border-color: var(--primary-blue); color: var(--primary-blue-dark); }
+.ident-btn-plat svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+.ident-fil {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.ident-fil__item { display: inline-flex; align-items: center; }
+.ident-fil__item + .ident-fil__item::before {
+  content: "\203A";
+  margin: 0 6px 0 0;
+  color: var(--muted-light);
+}
+
+.ident-etape__q {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.1rem, 2.1vw, 1.35rem);
+  color: var(--ink);
+  margin: 0 0 8px;
+  line-height: 1.35;
+}
+.ident-etape__q:focus-visible { outline: 2px solid var(--primary-blue); outline-offset: 3px; }
+.ident-etape__aide {
+  margin: 0 0 16px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.ident-choix {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+}
+.ident-choix__btn {
+  appearance: none;
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 15px 18px;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+.ident-choix__btn:hover,
+.ident-choix__btn:focus-visible {
+  border-color: var(--primary-blue);
+  background: var(--surface-blue);
+}
+.ident-choix__t {
+  display: block;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.ident-choix__d {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------
+   4. Gabarits de trous, a l'echelle reelle
+   1 mm = 3,7795 px a 96 ppp. Les diametres sont donc poses en mm, unite
+   que le navigateur convertit lui-meme : le rendu est a l'echelle a
+   l'impression, et proche a l'ecran.
+   -------------------------------------------------------------- */
+.ident-gabarits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: flex-end;
+  margin: 0 0 20px;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.ident-gabarit { text-align: center; font-size: 0.76rem; color: var(--muted); }
+.ident-gabarit svg { display: block; margin: 0 auto 6px; color: var(--ink); }
+.ident-gabarit__l { display: block; }
+
+/* --------------------------------------------------------------
+   5. Fiches
+   -------------------------------------------------------------- */
+.ident-liste {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 28px;
+  padding: 0;
+  list-style: none;
+}
+.ident-fiche {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2px 18px;
+}
+.ident-fiche > summary {
+  padding: 14px 0;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.45;
+}
+.ident-fiche > summary::marker { color: var(--muted-light); }
+.ident-fiche--resultat {
+  border-color: var(--primary-blue);
+  box-shadow: 0 4px 18px rgba(26, 77, 251, .10);
+}
+.ident-fiche--resultat > summary { list-style: none; }
+.ident-fiche--resultat > summary::-webkit-details-marker { display: none; }
+
+.ident-fiche__nom {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.1rem, 2.1vw, 1.35rem);
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.3;
+}
+.ident-fiche__nom:focus-visible { outline: 2px solid var(--primary-blue); outline-offset: 3px; }
+.ident-fiche__sci {
+  display: block;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+/* Rangs superieurs au genre : jamais en italique. */
+.ident-fiche__sci--rang { font-style: normal; }
+
+.ident-fiche__corps { padding: 0 0 18px; }
+.ident-fiche__corps h4 {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--primary-blue-dark);
+  margin: 18px 0 7px;
+}
+.ident-fiche__corps p { margin: 0 0 10px; color: var(--body-text); font-size: 0.95rem; }
+.ident-fiche__corps ul { margin: 0 0 10px; padding-left: 1.2em; color: var(--body-text); font-size: 0.95rem; }
+.ident-fiche__corps li { margin-bottom: 5px; }
+
+.ident-gravite {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 5px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.84rem;
+  color: var(--body-text);
+}
+.ident-gravite strong { color: var(--ink); }
+
+/* --------------------------------------------------------------
+   6. Bandeaux de statut
+   -------------------------------------------------------------- */
+.ident-statut {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 14px 0;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 0.93rem;
+  line-height: 1.5;
+}
+.ident-statut svg { flex-shrink: 0; width: 20px; height: 20px; margin-top: 1px; }
+.ident-statut strong { display: block; }
+.ident-statut[data-statut="TRAITE"]     { background: var(--st-traite-bg);     color: var(--st-traite-tx); }
+.ident-statut[data-statut="SUR APPEL"]  { background: var(--st-appel-bg);      color: var(--st-appel-tx); }
+.ident-statut[data-statut="A PROTEGER"] { background: var(--st-proteger-bg);   color: var(--st-proteger-tx); }
+.ident-statut[data-statut="NON TRAITE"] { background: var(--st-nontraite-bg);  color: var(--st-nontraite-tx); }
+
+.ident-fiche__lien {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--primary-blue-dark);
+}
+
+/* --------------------------------------------------------------
+   7. Fiche technique, mode Professionnel
+   Presente dans le HTML de toutes les fiches qui en ont une ; le script ne
+   fait que la masquer hors mode Pro.
+   -------------------------------------------------------------- */
+.ident[data-mode="particulier"] .ident-tech { display: none; }
+.ident-tech {
+  margin: 16px 0 4px;
+  padding: 14px 16px;
+  background: var(--surface-blue);
+  border-left: 3px solid var(--primary-blue);
+  border-radius: 0 10px 10px 0;
+}
+.ident-tech h4 { margin-top: 0; }
+.ident-tech p { font-size: 0.92rem; margin-bottom: 0; }
+
+/* --------------------------------------------------------------
+   8. Recherche A-Z, mode Professionnel
+   -------------------------------------------------------------- */
+.ident-recherche-bloc { margin: 0 0 22px; }
+.ident-recherche-bloc label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.ident-recherche-bloc input {
+  width: 100%;
+  max-width: 460px;
+  padding: 11px 14px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink);
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.ident-recherche-bloc input:focus-visible {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 1px;
+}
+
+/* --------------------------------------------------------------
+   9. Encart d'action
+   Le fond et la couleur du bouton principal ne sont pas poses ici : le bloc
+   « Boutons de conversion en vert » de global.css les impose en !important a
+   tous les CTA d'appel, et cette feuille charge avant lui.
+   -------------------------------------------------------------- */
+.ident-action {
+  margin: 20px 0 4px;
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+}
+.ident-action__t {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin: 0 0 4px;
+  line-height: 1.35;
+}
+.ident-action__d { margin: 0 0 14px; font-size: 0.9rem; color: var(--muted); }
+.ident-action__boutons { display: flex; flex-wrap: wrap; gap: 10px; }
+.ident-action__boutons .btn-phone,
+.ident-action__boutons .ident-btn-plat { min-height: var(--btn-height); }
+.ident-action__etat { display: block; margin-top: 8px; font-size: 0.84rem; color: var(--accent-green); }
+
+/* --------------------------------------------------------------
+   10. Bloc QR, a partir de 1024 px seulement
+   -------------------------------------------------------------- */
+.ident-qr { display: none; }
+@media (min-width: 1024px) {
+  .ident-qr {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    max-width: 1100px;
+    margin: 8px auto 40px;
+    padding: 18px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--card-radius);
+  }
+  /* Ni border-radius ni recadrage : les trois motifs de repere d un QR
+     sont dans les coins, et la zone de silence ne fait que 2 modules. Un
+     arrondi de 6 px les rognait et le code ne se decodait plus. Verifie en
+     capturant le rendu du navigateur et en le relisant avec un decodeur. */
+  .ident-qr__img { flex-shrink: 0; width: 132px; height: 132px; display: block; }
+  .ident-qr__t {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--ink);
+    margin: 0 0 4px;
+  }
+  .ident-qr__d { margin: 0; font-size: 0.89rem; color: var(--muted); }
+}
+
+/* --------------------------------------------------------------
+   11. Mentions et formulaire
+   -------------------------------------------------------------- */
+.ident-mentions {
+  max-width: 1100px;
+  margin: 26px auto 34px;
+  padding: 14px 18px;
+  background: var(--st-appel-bg);
+  border: 1px solid #F0D9B5;
+  border-radius: 12px;
+  font-size: 0.89rem;
+  color: var(--st-appel-tx);
+  line-height: 1.55;
+}
+.ident-mentions strong { color: #6E4100; }
+
+/* Le lien est isole dans son paragraphe, donc l'exception « inline » de
+   WCAG 2.5.8 ne le couvre pas : on lui donne 24 px de haut. */
+.ident-retour-lexique a {
+  display: inline-block;
+  padding: 4px 2px;
+  min-height: 24px;
+  line-height: 1.5;
+}
+.ident-retour-lexique {
+  display: block;
+  max-width: 1100px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  font-size: 0.9rem;
+}
+
+/* --------------------------------------------------------------
+   12. Sans JavaScript
+   Le script pose data-js="on" a la fin de son execution. Tant qu'il n'a pas
+   tourne, la cle guidee est masquee et les fiches sont deployees : le
+   contenu reste lisible et indexable, et le formulaire est visible.
+   -------------------------------------------------------------- */
+.ident:not([data-js="on"]) .ident-cle { display: none; }
+.ident:not([data-js="on"]) [data-partager] { display: none; }
+.ident[data-js="on"] .ident-sans-js { display: none; }
+
+/* --------------------------------------------------------------
+   13. Mouvement reduit
+   -------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .ident-carte,
+  .ident-choix__btn { transition: none !important; }
+}
+
+/* --------------------------------------------------------------
+   14. Telephone
+   -------------------------------------------------------------- */
+@media (max-width: 559px) {
+  .ident { padding-left: 16px; padding-right: 16px; }
+  .ident-cartes { grid-template-columns: 1fr; }
+  .ident-carte { padding: 15px 15px; }
+  .ident-action__boutons .btn-phone,
+  .ident-action__boutons .ident-btn-plat { width: 100%; justify-content: center; }
+}
