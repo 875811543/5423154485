@@ -44,8 +44,15 @@ est exactement ce qui est servi.
   grandeur ni de prix « indicatif », en particulier pour la dératisation — ce sont des
   informations d’entreprise, voir règle 3. Le script de génération vérifie
   qu’aucun autre montant en euros n’apparaît sur la page.
-  C’est la seule des pages récentes à avoir une entrée de menu, posée dans les
-  trois listes de services (nav de bureau, menu mobile, pied).
+  Elle a une entrée dans les trois listes de services — nav de bureau, menu
+  mobile, pied. **Une seule autre page récente a une entrée de menu :**
+  `identifier-nuisible`, placée au premier niveau de la nav de bureau et du
+  menu mobile, juste avant « Contact », et dans la colonne « Nuisibles
+  traités » du pied. Décision du propriétaire du 1er octobre 2026, qui revient
+  sur le « pas de menu principal » retenu la veille : un outil gratuit censé
+  servir n’a aucune raison d’être atteignable seulement par le pied.
+  Les entrées de premier niveau n’ont **pas** d’icône — les trois `<svg>`
+  qu’on y voit sont les chevrons des sous-menus.
 - `etat-parasitaire-termites-corse` vise le groupe réglementaire (« état
   parasitaire », « diagnostic termites obligatoire vente », « commune déclarée
   infestée »). **Elle dit explicitement que nous ne réalisons pas le diagnostic
@@ -628,7 +635,7 @@ dans `main.js` : c'est la règle qui a évité de recopier le gestionnaire du
 formulaire et le chargeur de carte.
 
 `identifier-nuisible.js` ne porte d'ailleurs **que** l'arbre. Les quarante
-fiches vivent dans le HTML de la page, en `<details>` : sans JavaScript le
+et une fiches vivent dans le HTML de la page, en `<details>` : sans JavaScript le
 contenu reste lisible et indexable, il n'existe qu'une fois, et le contrôle
 `doublons` n'a rien à comparer.
 

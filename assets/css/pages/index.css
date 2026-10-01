@@ -808,3 +808,28 @@
   .doute-insecte { padding: 20px 16px; margin-bottom: 36px; }
   .doute-insecte .btn-devis { width: 100%; justify-content: center; }
 }
+
+/* ==========================================================================
+   Lien discret vers l'outil d'identification, sous la ligne de confiance du
+   hero. Volontairement un lien texte et non un bouton ni une carte : le hero
+   porte deja un bouton de devis et la carte d'urgence, et le formulaire doit
+   rester dans le premier ecran. Le bloc « Un doute sur un insecte ? » plus bas
+   garde, lui, son appel appuye.
+   ========================================================================== */
+.hero-ident {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.hero-ident a {
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+.hero-ident a:hover { text-decoration: underline; }
+.hero-ident a:focus-visible {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}

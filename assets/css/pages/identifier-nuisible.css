@@ -409,8 +409,49 @@
 }
 .ident-action__d { margin: 0 0 14px; font-size: 0.9rem; color: var(--muted); }
 .ident-action__boutons { display: flex; flex-wrap: wrap; gap: 10px; }
-.ident-action__boutons .btn-phone,
-.ident-action__boutons .ident-btn-plat { min-height: var(--btn-height); }
+
+/* .btn-phone ne recoit de global.css QUE sa transition et le bloc vert en
+   !important : aucune mise en page. Son display, son arrondi, son padding et
+   son text-decoration vivent dans services-anti-nuisibles.css,
+   zones-dintervention.css et questions-frequentes-….css — trois feuilles que
+   cette page ne charge pas. D'ou un carre vert au texte souligne.
+
+   On reprend donc ici la mise en page de .sticky-call-btn, le bouton d'appel
+   partage qui, lui, est bien dans global.css. C'est la troisieme fois qu'une
+   regle de composant partage logee dans une feuille de page mord : voir
+   AGENTS.md. */
+.ident-action__boutons .btn-phone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--btn-height);
+  flex: 1 1 240px;
+  padding: 13px 14px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.6;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.ident-action__boutons .ident-btn-plat {
+  min-height: var(--btn-height);
+  justify-content: center;
+  flex: 1 1 240px;
+}
+
+/* Filet de securite : tout SVG de l'encart est borne a 20 px. Sans lui, un
+   SVG sans width/height et sans regle propre prend la taille par defaut d'un
+   element remplace — 300 x 150 px —, ce qui est exactement le defaut qui a
+   ete livre. La regle couvre aussi les icones ajoutees plus tard. */
+.ident-action svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
 .ident-action__etat { display: block; margin-top: 8px; font-size: 0.84rem; color: var(--accent-green); }
 
 /* --------------------------------------------------------------
@@ -503,4 +544,21 @@
   .ident-carte { padding: 15px 15px; }
   .ident-action__boutons .btn-phone,
   .ident-action__boutons .ident-btn-plat { width: 100%; justify-content: center; }
+}
+
+/* --------------------------------------------------------------
+   15. Note de distinction entre deux especes confondues
+   Posee sur les fiches « Mites » et « Anthrene des tapis », que l'on
+   confond parce que seule la larve de l'anthrene est visible : on voit
+   les degats sans jamais voir de papillon.
+   -------------------------------------------------------------- */
+.ident-note {
+  margin: 10px 0 14px;
+  padding: 10px 14px;
+  background: var(--st-proteger-bg);
+  border-left: 3px solid var(--primary-blue);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--body-text);
 }

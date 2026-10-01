@@ -39,7 +39,8 @@
         { t: "Petit, fin, pattes longues", d: "il pique et bourdonne", n: "vole-moustique" },
         { t: "Une mouche", d: "corps trapu, vol rapide", f: "mouche-domestique" },
         { t: "Beaucoup de petits insectes ailés, sortis d’un coup", d: "souvent au printemps, près d’une fenêtre", n: "vole-essaimage" },
-        { t: "Un petit papillon dans les placards", d: "ou dans une penderie", f: "mites" }
+        { t: "Un petit papillon dans les placards", d: "ou dans une penderie", f: "mites" },
+        { t: "Petit coléoptère rond de 2 à 3,5 mm, marbré blanc, brun et jaune", d: "sur les rebords de fenêtre ou les fleurs au printemps", f: "anthrene" }
       ]
     },
     "vole-raye": {
@@ -82,7 +83,8 @@
         { t: "Argenté, fuselé, dans la salle de bain", d: "", f: "poisson-d-argent" },
         { t: "Des chenilles en file indienne", d: "nids de soie blanche dans les pins", f: "processionnaire" },
         { t: "Beaucoup de pattes", d: "", n: "rampe-pattes" },
-        { t: "Une araignée", d: "", n: "rampe-araignee" }
+        { t: "Une araignée", d: "", n: "rampe-araignee" },
+        { t: "Petite larve brune très poilue, en bandes, 4 à 5 mm", d: "sous les tapis, dans les placards ou les penderies, petites peaux de mue vides", f: "anthrene" }
       ]
     },
     "rampe-blatte": {
