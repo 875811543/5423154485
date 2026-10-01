@@ -390,6 +390,48 @@ Pour le vérifier après une modification de `global.css`, relever les propriét
 calculées des composants partagés sur les 28 pages et comparer — la recette est
 en §6, « Mesurer dans un navigateur ».
 
+#### Et un composant partagé se style dans `global.css`, jamais dans une feuille de page
+
+**Règle absolue, et elle a mordu trois fois.** Dès qu'une classe sert sur
+**plus d'une page**, sa mise en page va dans `global.css`. Une feuille de
+`assets/css/pages/` ne décrit que ce qui est propre à **sa** page.
+
+Les trois fois :
+
+1. `.sticky-mobile-bar` était recopiée dans six feuilles, avec des divergences
+   de padding et de taille de police ;
+2. la règle de la bulle WhatsApp vivait dans `pages/index.css` : elle ne
+   s'appliquait donc qu'à l'accueil, et la bulle mesurait 48 px là et 56 px
+   sur les 64 autres pages ;
+3. **`.btn-phone`** — le cas le plus coûteux. Sa mise en page vivait dans
+   `services-anti-nuisibles.css`, `zones-dintervention.css` et
+   `questions-frequentes-….css`, donc **absente de la quatrième page** qui
+   utilise la classe. L'outil d'identification a livré en production des
+   boutons carrés au texte souligné, avec des icônes à 300 px.
+
+Deux pièges à connaître avant de centraliser :
+
+- **L'ordre de chargement décide.** Les quatre pages qui portent `.btn-phone`
+  chargent leur feuille **avant** `global.css` : à spécificité égale, c'est
+  `global.css` qui gagne. Monter dans `global.css` une propriété dont la valeur
+  **diffère** d'une page à l'autre ne la centralise pas, cela **écrase** les
+  écarts. Ne monter que les propriétés dont les valeurs mesurées sont
+  identiques ; laisser les autres dans la feuille de page, avec un commentaire
+  qui dit pourquoi.
+- **Beaucoup de ce qu'une feuille de page déclare est déjà mort.** Les trois
+  feuilles posaient `background-color: var(--accent-blue)`, `color: #FFFFFF`,
+  `box-shadow` et `transition` sur `.btn-phone` : le bloc des boutons verts de
+  `global.css` les impose en `!important`, donc rien de tout cela ne
+  s'appliquait. Mesuré : les quatre boutons rendent `rgb(34, 197, 94)`, pas du
+  bleu. Le relevé a permis d'en retirer **27 déclarations** sans toucher au
+  rendu.
+
+Le chantier de centralisation s'est vérifié ainsi : relevé de **7 569
+propriétés calculées** sur les quatre pages, à 360, 412 et 1280 px, avant et
+après. **Douze écarts, tous sur `align-items` et `justify-content` de
+`zones-dintervention`**, qui passent de `normal` à `center` — sans effet, son
+bouton étant en `display: block`, et les boîtes ne bougeant pas d'un pixel.
+
 #### Barre d'appel mobile — une seule, en HTML, sur les 28 pages
 
 Le site en portait **deux** superposées. `main.js` injectait un

@@ -659,6 +659,38 @@ a { color: inherit; }
   position: relative;
 }
 
+/* --------------------------------------------------------------------------
+   MISE EN PAGE COMMUNE DES BOUTONS D'APPEL
+   --------------------------------------------------------------------------
+   .btn-phone est utilise sur quatre pages, et sa mise en page vivait dans
+   TROIS feuilles de page — services-anti-nuisibles, zones-dintervention,
+   questions-frequentes — donc absente de la quatrieme. L'outil
+   d'identification a livre en production des boutons carres au texte
+   souligne, faute de les charger. Troisieme fois que ce defaut mord.
+
+   Ne sont montees ici que les proprietes dont les quatre valeurs MESUREES
+   sont identiques. Les quatre pages chargent leur feuille AVANT global.css :
+   a specificite egale c'est global qui gagne, donc monter une propriete qui
+   differe changerait le rendu de trois pages. Ce qui differe reellement —
+   display, gap, padding, width, text-align, taille d'icone — reste dans les
+   feuilles de page, documente a chaque fois.
+
+   align-items et justify-content sont montes malgre zones-dintervention, qui
+   rend « normal » : son bouton est en display:block, ou ces deux proprietes
+   n'ont aucun effet. Verifie par mesure apres coup.
+   -------------------------------------------------------------------------- */
+.btn-phone {
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 800;
+}
+/* Pas de taille ici : l'outil sert ses icones a 20 px, les trois autres pages
+   a 16 px via width="1em". Une valeur unique en changerait trois. */
+.btn-phone svg { flex-shrink: 0; }
+
 /* --- Boutons d'appel / CTA : profondeur + micro-interaction --- */
 .btn-phone,
 .btn-call,

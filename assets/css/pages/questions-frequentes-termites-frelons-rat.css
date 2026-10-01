@@ -153,20 +153,15 @@
     .cta-final h2 { font-size: 1.35rem; margin-bottom: 10px; }
     .cta-final p { color: #94A3B8; margin-bottom: 20px; }
 
+    /* Ecart volontaire : padding plus genereux que les autres pages, le
+       bouton etant isole en fin de section. Le reste de la mise en page est
+       dans global.css. Les background-color, color et transition qui se
+       trouvaient ici etaient MORTS : le bloc des boutons verts de global.css
+       les impose en !important. Mesure : le bouton rend vert, pas bleu. */
     .btn-phone {
       display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      background-color: var(--accent-blue);
-      color: #FFFFFF;
-      font-weight: 800;
       padding: 14px 26px;
-      border-radius: 12px;
-      text-decoration: none;
-      transition: background-color 0.2s;
     }
-    .btn-phone:hover { background-color: var(--accent-blue-hover); }
 
 
 

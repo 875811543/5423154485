@@ -71,24 +71,17 @@
       margin: 0 auto 24px auto;
     }
 
+    /* Ecarts volontaires : pleine largeur plafonnee a 380 px, et un gap de
+       8 px entre l'icone et le texte. Le reste est dans global.css. Les
+       background-color, color, box-shadow, transition et :hover qui etaient
+       ici etaient MORTS, ecrases par le bloc !important des boutons verts. */
     .btn-phone {
       display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background-color: var(--accent-blue);
-      color: #FFFFFF;
-      font-weight: 800;
+      gap: 8px;
       padding: 16px 24px;
-      border-radius: 12px;
-      text-decoration: none;
       width: 100%;
       max-width: 380px;
-      box-shadow: 0 4px 14px rgba(26, 77, 251, 0.3);
-      transition: background-color 0.2s;
-      min-height: 48px;
-      gap: 8px;
     }
-    .btn-phone:hover { background-color: var(--accent-blue-hover); }
 
     .services-grid {
       display: grid;

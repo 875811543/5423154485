@@ -425,16 +425,17 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: var(--btn-height);
+  /* Ecarts volontaires : flex 1 1 240px pour que les deux boutons se
+     mettent cote a cote des que la place existe, padding resserre parce
+     qu’ils sont deux, et line-height explicite. Le reste — align-items,
+     justify-content, min-height, arrondi, text-decoration, font-weight —
+     est dans global.css. */
   flex: 1 1 240px;
   padding: 13px 14px;
   border: 1px solid transparent;
-  border-radius: 12px;
   font-family: var(--font-body);
   font-size: 0.95rem;
-  font-weight: 800;
   line-height: 1.6;
-  text-decoration: none;
   white-space: nowrap;
 }
 .ident-action__boutons .ident-btn-plat {

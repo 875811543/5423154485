@@ -80,21 +80,17 @@
       margin: 0 auto 24px auto;
     }
 
+    /* Ecarts volontaires : pleine largeur plafonnee a 380 px, et text-align
+       plutot que justify-content — ce bouton rend en display:block, pas en
+       flex, et c'est ce qui le centre. Le reste est dans global.css. Les
+       background-color, color, box-shadow, transition et :hover qui etaient
+       ici etaient MORTS, ecrases par le bloc !important des boutons verts. */
     .btn-phone {
-      background-color: var(--accent-blue);
-      color: #FFFFFF;
-      font-weight: 800;
       padding: 16px 24px;
-      border-radius: 12px;
-      text-decoration: none;
       width: 100%;
       max-width: 380px;
-      box-shadow: 0 4px 14px rgba(26, 77, 251, 0.3);
-      transition: background-color 0.2s;
       text-align: center;
-      min-height: 48px;
     }
-    .btn-phone:hover { background-color: var(--accent-blue-hover); }
 
     .btn-devis {
       background-color: #FFFFFF;
