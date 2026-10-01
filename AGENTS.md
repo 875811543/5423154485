@@ -12,17 +12,18 @@ Site vitrine **statique** d'une entreprise de lutte anti-nuisibles en Corse.
 Aucun build, aucune dépendance npm, aucun framework. Ce qui est dans le dépôt
 est exactement ce qui est servi.
 
-- **65 pages HTML** à la racine, au 24 septembre 2026 : 1 accueil, 9 services et
+- **67 pages HTML** à la racine, au 1er octobre 2026 : 1 accueil, 10 services et
   pages piliers, 4 zones, **29 pages « service + ville »**, 10 fiches nuisibles
-  plus le lexique, 5 actualités, contact, merci, 2 pages légales, la FAQ et 404.
-  **60 sont au `sitemap.xml`** ; les cinq autres sont hors index par choix —
+  plus le lexique, 5 actualités, l’outil d’identification, contact, merci, 2 pages
+  légales, la FAQ et 404.
+  **62 sont au `sitemap.xml`** ; les cinq autres sont hors index par choix —
   `404`, `merci`, les deux pages légales, et `traitement-odeurs` dont le service
   n'est pas lancé.
 
   **Les passages ci-dessous qui parlent de « 28 pages » décrivent des chantiers
   menés quand le site en comptait 28.** Ils gardent ce chiffre parce qu'il dit ce
   qui a été mesuré à l'époque — mais toute commande à relancer aujourd'hui porte
-  sur les 65, et un `sed` sur `*.html` en touche 65.
+  sur les 67, et un `sed` sur `*.html` en touche 67.
 - **Liens internes sans extension.** Les `href` internes s'ecrivent
   `deratisation`, pas `deratisation.html` ; l'accueil s'ecrit `./`. Le
   `.htaccess` sert `page.html` quand on demande `/page`, et redirige
@@ -101,7 +102,7 @@ est exactement ce qui est servi.
   ni téléversement dans hPanel.
 
   Ce que cela change pour une session qui travaille ici : **pousser est un acte
-  public**, plus un enregistrement local. Les 38 contrôles doivent passer avant
+  public**, plus un enregistrement local. Les 39 contrôles doivent passer avant
   le push, pas après, et une page à moitié écrite ne se commite pas « pour la
   nuit ». Vérifier après coup se fait en interrogeant le site réel — les treize
   pages ajoutées le 2 septembre étaient en ligne avant même qu'on pense à les
@@ -766,7 +767,7 @@ pour ce fichier, ne change que :
 - le `<header class="site-header">` ou le `<footer class="site-footer">`
   partagés — le fichier est comparé avant et après, ces deux blocs retirés.
 
-Sans cette règle, une retouche du pied de page date les 65 pages du même jour
+Sans cette règle, une retouche du pied de page date les 67 pages du même jour
 et le hook `pre-push` refuse la publication. Ne pas la contourner par
 `--no-verify` : l'étendre si un autre bloc partagé apparaît.
 
@@ -777,7 +778,7 @@ comparant les deux échouerait après chaque commit, le sitemap ayant été
 permanent.
 
 ```sh
-node tools/controle.js            # les trente-huit contrôles
+node tools/controle.js            # les trente-neuf contrôles
 node tools/controle.js --liste    # ce qu'ils vérifient
 node tools/controle.js alpha      # un seul, par son nom
 ```
@@ -911,7 +912,7 @@ HTTPS**, pas avant.
 
 #### Remplacer une image : renommer le fichier
 
-La CSS et le JS portent une empreinte `?v=` propagée sur les 38 pages, et un
+La CSS et le JS portent une empreinte `?v=` propagée sur toutes les pages, et un
 contrôle la vérifie. **Les images et les polices n’en ont pas.** Elles sont
 servies avec `max-age=31536000` — un an.
 
@@ -1152,7 +1153,7 @@ zone, `contact` (envoi du formulaire compris), en mobile et en desktop.
 passé, jamais avant — lancer `node tools/indexnow.js`. Il compare les `lastmod`
 du sitemap à ceux du dernier envoi, mémorisés dans `tools/indexnow-etat.json`,
 et ne notifie que ce qui a changé. `--essai` montre sans poster, `--tout` force
-les 47 adresses.
+les 62 adresses.
 
 La clé n'est écrite dans aucun script : elle est **lue depuis le nom du fichier
 `<clé>.txt` à la racine**, dont le contenu doit être identique au nom, sans

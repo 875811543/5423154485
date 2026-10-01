@@ -1,5 +1,5 @@
 #!/bin/sh
-# Interdit de pousser tant que les 36 controles ne passent pas.
+# Interdit de pousser tant que les controles de tools/controle.js ne passent pas.
 #
 # Pourquoi ce garde-fou existe
 # ----------------------------
