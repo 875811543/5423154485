@@ -2234,3 +2234,50 @@ li > .ico:first-child {
 .mobile-menu details a {
   display: block;
 }
+
+/* --------------------------------------------------------------------------
+   BOUTON SECONDAIRE EN CONTOUR
+   --------------------------------------------------------------------------
+   Contour bleu sur fond blanc : une action reelle, mais qui ne concurrence
+   pas le CTA vert. Pose ICI et non dans une feuille de page parce qu'il peut
+   servir partout — c'est la regle des composants partages, apprise trois fois
+   sur .btn-phone, dont la mise en page vivait dans trois feuilles de page et
+   manquait donc a la quatrieme.
+
+   Il n'est PAS dans le bloc des boutons de conversion en vert : il doit
+   justement rester en contour.
+
+   line-height explicite : sans lui il suivrait le body de chaque page, et sa
+   hauteur varierait d'une page a l'autre.
+   -------------------------------------------------------------------------- */
+.btn-secondaire {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: auto;
+  padding: 10px 18px;
+  background: #FFFFFF;
+  border: 2px solid var(--primary-blue);
+  border-radius: 999px;
+  color: var(--primary-blue);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color .18s ease, color .18s ease;
+}
+.btn-secondaire svg { width: 18px; height: 18px; flex-shrink: 0; }
+.btn-secondaire:hover {
+  background: var(--primary-blue);
+  color: #FFFFFF;
+}
+.btn-secondaire:focus-visible {
+  outline: 3px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-secondaire { transition: none; }
+}

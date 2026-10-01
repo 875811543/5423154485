@@ -492,9 +492,17 @@
      vertical valait 48 px, soit le plancher du clamp. Mesure : ces trois
      reglages rendent 38 px, et le premier champ du devis passe de 883 a
      845 px du haut a 360 px — 23 px plus haut qu'avant ce chantier. */
-  .hero { padding-top: 24px; }
+  .hero { padding-top: 16px; }
   .hero__inner--single .hero__actions { margin-bottom: 14px; }
-  .hero-urgence { margin-bottom: 16px; }
+  .hero-urgence { margin-bottom: 10px; }
+
+  /* Second resserrement, pour absorber le bouton d'identification ajoute sous
+     la ligne de confiance : en contour et non en lien texte, il coute une
+     vingtaine de pixels de plus. Repris sur le haut du hero plutot que sur
+     la carte guepes, qui doit rester lisible. */
+  .hero__badges { margin-bottom: 10px; }
+  .hero h1 { margin-bottom: 12px; }
+  .hero__inner--single .hero__lead { margin-bottom: 14px; }
 
   /* La regle de la bulle WhatsApp etait ici. Elle vit desormais dans
      global.css : posee dans cette feuille, elle ne s'appliquait qu'a
@@ -810,26 +818,14 @@
 }
 
 /* ==========================================================================
-   Lien discret vers l'outil d'identification, sous la ligne de confiance du
-   hero. Volontairement un lien texte et non un bouton ni une carte : le hero
-   porte deja un bouton de devis et la carte d'urgence, et le formulaire doit
-   rester dans le premier ecran. Le bloc « Un doute sur un insecte ? » plus bas
-   garde, lui, son appel appuye.
+   Renvoi vers l’outil d’identification, sous la ligne de confiance du hero.
+   Le style du bouton lui-meme est dans global.css (.btn-secondaire) : ce
+   contour bleu peut servir ailleurs, et un composant partage ne se style pas
+   dans une feuille de page. Ici on ne garde que son placement.
+   Largeur auto et centrage : il ne doit pas concurrencer la carte guepes,
+   qui occupe toute la largeur juste au-dessus.
    ========================================================================== */
 .hero-ident {
-  margin: 12px 0 0;
+  margin: 14px 0 0;
   text-align: center;
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-.hero-ident a {
-  color: var(--primary-blue);
-  text-decoration: none;
-  font-weight: 600;
-}
-.hero-ident a:hover { text-decoration: underline; }
-.hero-ident a:focus-visible {
-  outline: 2px solid var(--primary-blue);
-  outline-offset: 3px;
-  border-radius: 4px;
 }
