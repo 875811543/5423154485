@@ -217,27 +217,6 @@
 }
 
 /* --------------------------------------------------------------
-   4. Gabarits de trous, a l'echelle reelle
-   1 mm = 3,7795 px a 96 ppp. Les diametres sont donc poses en mm, unite
-   que le navigateur convertit lui-meme : le rendu est a l'echelle a
-   l'impression, et proche a l'ecran.
-   -------------------------------------------------------------- */
-.ident-gabarits {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  align-items: flex-end;
-  margin: 0 0 20px;
-  padding: 16px 18px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-}
-.ident-gabarit { text-align: center; font-size: 0.76rem; color: var(--muted); }
-.ident-gabarit svg { display: block; margin: 0 auto 6px; color: var(--ink); }
-.ident-gabarit__l { display: block; }
-
-/* --------------------------------------------------------------
    5. Fiches
    -------------------------------------------------------------- */
 .ident-liste {
@@ -562,4 +541,75 @@
   font-size: 0.9rem;
   line-height: 1.55;
   color: var(--body-text);
+}
+
+/* --------------------------------------------------------------
+   16. Trous de sortie : une source, trois usages
+   Le sprite est hors flux et de taille nulle. Il n'est pas en
+   display:none : certains navigateurs refusent alors de resoudre un
+   <use> qui y renvoie.
+   -------------------------------------------------------------- */
+.ident-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+.ident-trou__svg { fill: currentColor; color: var(--ink); display: block; }
+.ident-repere__svg {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: .5;
+  stroke-linecap: round;
+  display: block;
+}
+
+/* Le visuel dans la carte de reponse, a gauche du libelle. */
+.ident-choix__btn:has(.ident-choix__vue) {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.ident-choix__vue { flex-shrink: 0; color: var(--primary-blue-dark); }
+
+/* Le bloc « trou de sortie » d'une fiche : forme, legende, repere de 1 cm
+   dessine a la MEME echelle — meme viewBox, meme taille de rendu. */
+.ident-trou {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 10px 0 14px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.ident-trou__vue { flex-shrink: 0; }
+.ident-trou__texte { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.ident-trou__leg { font-size: 0.92rem; color: var(--body-text); }
+.ident-trou__leg strong { color: var(--ink); }
+.ident-trou__echelle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* La colonne « Visuel » du tableau comparatif. */
+.ident-td-visuel { text-align: center; }
+.ident-td-visuel .ident-trou__svg { margin: 0 auto; }
+
+/* --------------------------------------------------------------
+   17. La liste A-Z n'existe qu'en mode Professionnel, ou sans JS
+   Le masquage passe par data-mode et data-js, et non par l'attribut
+   hidden : une declaration display d'auteur — ici
+   .ident-liste { display: grid } — bat le [hidden] du navigateur.
+   C'est ce qui faisait apparaitre la liste en mode Particulier, et le
+   bloc des gabarits sous l'etape 1.
+   -------------------------------------------------------------- */
+.ident[data-js="on"][data-mode="particulier"] .ident-az-bloc { display: none; }
+
+@media (max-width: 559px) {
+  .ident-trou { gap: 12px; padding: 10px 12px; }
 }

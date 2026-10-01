@@ -139,14 +139,13 @@
     },
     "bois-trous": {
       q: "Quelle forme et quelle taille ont les trous ?",
-      aide: "Les gabarits ci-dessous sont à l’échelle réelle.",
-      gabarits: true,
+      aide: "Les formes ci-dessous sont a la meme echelle les unes que les autres.",
       opts: [
-        { t: "Ovales, 6 à 10 mm", d: "", n: "bois-ovales" },
-        { t: "Ronds, 1 à 2 mm", d: "", n: "bois-ronds-petits" },
-        { t: "Ronds, 3 à 4 mm", d: "vieux chêne, souvent humide", f: "grosse-vrillette" },
-        { t: "Parfaitement ronds, 4 à 7 mm", d: "bois posé récemment", f: "sirex" },
-        { t: "Rond d’environ 1 cm, net", d: "dans une poutre ou un bois exposé, grosse abeille noire à reflets bleus", f: "xylocope" }
+        { t: "Ovales, 6 à 10 mm", d: "", sym: "ovale-6-10", n: "bois-ovales" },
+        { t: "Ronds, 1 à 2 mm", d: "", sym: "rond-1-2", n: "bois-ronds-petits" },
+        { t: "Ronds, 3 à 4 mm", d: "vieux chêne, souvent humide", sym: "rond-3-4", f: "grosse-vrillette" },
+        { t: "Parfaitement ronds, 4 à 7 mm", d: "bois posé récemment", sym: "rond-4-7", f: "sirex" },
+        { t: "Rond d’environ 1 cm, net", d: "dans une poutre ou un bois exposé, grosse abeille noire à reflets bleus", sym: "rond-10", f: "xylocope" }
       ]
     },
     "bois-ovales": {
@@ -256,7 +255,9 @@
     }
     if (blocRech) { blocRech.hidden = (profil !== "pro"); }
     if (noteHorsLigne) { noteHorsLigne.hidden = (profil !== "pro"); }
-    if (profil !== "pro" && zoneAZ) { zoneAZ.hidden = true; }
+    // Le masquage de la liste A-Z est fait par CSS, sur [data-mode] : poser
+    // hidden ici ne servait a rien, .ident-liste { display: grid } annulant
+    // l attribut, et le titre restait de toute facon visible.
   }
 
   for (var r = 0; r < radios.length; r++) {
@@ -339,15 +340,6 @@
       zoneEtape.appendChild(aide);
     }
 
-    if (noeud.gabarits) {
-      var g = document.getElementById("ident-gabarits");
-      if (g) {
-        var copie = g.cloneNode(true);
-        copie.removeAttribute("id");
-        copie.hidden = false;
-        zoneEtape.appendChild(copie);
-      }
-    }
 
     var liste = document.createElement("ul");
     liste.className = "ident-choix";
@@ -357,6 +349,15 @@
         var b = document.createElement("button");
         b.type = "button";
         b.className = "ident-choix__btn";
+        // Le visuel du trou, dans la carte de reponse elle-meme : il n a de
+        // sens qu a cote du libelle qu il illustre. insertAdjacentHTML plutot
+        // que createElement : un SVG demande createElementNS, et le gabarit
+        // est une chaine fixe, sans donnee d utilisateur.
+        if (opt.sym) {
+          b.insertAdjacentHTML("afterbegin", "<span class=\"ident-choix__vue\">"
+            + "<svg class=\"ident-trou__svg\" width=\"44\" height=\"44\" viewBox=\"0 0 12 12\""
+            + " aria-hidden=\"true\" focusable=\"false\"><use href=\"#trou-" + opt.sym + "\"/></svg></span>");
+        }
         var fort = document.createElement("span");
         fort.className = "ident-choix__t";
         fort.textContent = opt.t;
