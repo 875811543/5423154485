@@ -1496,7 +1496,84 @@ const CONTROLES = [
     } catch (e) {
       return ['le generateur des communes a leve une erreur : ' + e.message];
     }
-  }}
+  }},
+{ nom: 'svg-dimensionne', titre: 'Chaque SVG en ligne recoit une taille, par attribut ou par CSS',
+  run() {
+    // 1. Les selecteurs CSS qui donnent une largeur a un svg.
+    //    On retient la derniere classe du selecteur : « .a .b svg » -> « b svg »,
+    //    « .ident-carte__ico svg » -> « ident-carte__ico svg ».
+    const cssSvg = new Set();   // classes qui dimensionnent un svg descendant
+    const cssDirect = new Set(); // classes posees SUR le svg
+    for (const f of fs.readdirSync('assets/css').filter(x => x.endsWith('.css'))
+      .map(x => 'assets/css/' + x)
+      .concat(fs.existsSync('assets/css/pages')
+        ? fs.readdirSync('assets/css/pages').map(x => 'assets/css/pages/' + x) : [])) {
+      const css = lire(f).replace(/\/\*[\s\S]*?\*\//g, '');
+      for (const m of css.matchAll(/([^{}]+)\{([^}]*)\}/g)) {
+        if (!/\b(width|height)\s*:/.test(m[2])) continue;
+        for (const sel of m[1].split(',')) {
+          const s = sel.trim();
+          if (/\bsvg\s*$/.test(s)) {
+            const cls = [...s.matchAll(/\.([A-Za-z0-9_-]+)/g)].map(x => x[1]);
+            if (cls.length) cssSvg.add(cls[cls.length - 1]);
+          } else {
+            for (const c of s.matchAll(/\.([A-Za-z0-9_-]+)/g)) cssDirect.add(c[1]);
+          }
+        }
+      }
+    }
+
+    const pbs = [];
+
+    /** Les classes de la chaine d'ancetres ouverts au point i. */
+    const ancetres = (h, i) => {
+      const pile = [];
+      const re = /<(\/?)([a-zA-Z][\w-]*)([^>]*)>/g;
+      let m;
+      while ((m = re.exec(h)) !== null && m.index < i) {
+        const vide = /\/\s*$/.test(m[3]) ||
+          /^(br|img|input|meta|link|source|hr|path|circle|rect|use|stop)$/i.test(m[2]);
+        if (m[1]) { while (pile.length && pile.pop().t !== m[2]); }
+        else if (!vide) pile.push({ t: m[2], c: (m[3].match(/class="([^"]*)"/) || [])[1] || '' });
+      }
+      return pile.flatMap(e => e.c.split(/\s+/)).filter(Boolean);
+    };
+
+    for (const f of pages) {
+      const h = lire(f);
+      for (const m of h.matchAll(/<svg\b([^>]*)>/g)) {
+        const attrs = m[1];
+        if (/\bwidth=/.test(attrs) && /\bheight=/.test(attrs)) continue;
+        // taille posee en em sur la police : width="1em" compte aussi
+        const propres = ((attrs.match(/class="([^"]*)"/) || [])[1] || '').split(/\s+/).filter(Boolean);
+        if (propres.some(c => cssDirect.has(c) || cssSvg.has(c))) continue;
+        const chaine = ancetres(h, m.index);
+        if (chaine.some(c => cssSvg.has(c))) continue;
+        const ligne = h.slice(0, m.index).split('\n').length;
+        const ou = chaine.length ? chaine.slice(-3).join(' > ') : '(aucune classe englobante)';
+        pbs.push(f + ':' + ligne + ' : svg sans width/height et sans regle CSS — dans ' + ou
+          + ' — il rendra en 300x150 px');
+      }
+    }
+
+    // 2. Les SVG fabriques en chaine dans le JS : eux n'ont aucune CSS a
+    //    attendre si le selecteur ne les atteint pas, et le defaut y est
+    //    invisible a la relecture du HTML.
+    for (const f of (fs.existsSync('assets/js')
+      ? fs.readdirSync('assets/js').filter(x => x.endsWith('.js')).map(x => 'assets/js/' + x) : [])) {
+      const js = lire(f);
+      // Lire jusqu'au > de la balise, et non jusqu'au premier guillemet : la
+      // premiere version s'arretait avant les attributs et accusait
+      // main.js:67, qui porte pourtant width="18".
+      for (const m of js.matchAll(/<svg\b([^>]*)>/g)) {
+        if (/\bwidth=/.test(m[1]) && /\bheight=/.test(m[1])) continue;
+        const ligne = js.slice(0, m.index).split('\n').length;
+        pbs.push(f + ':' + ligne + ' : svg construit en JS sans width/height');
+      }
+    }
+
+    return pbs;
+  }},
 ];
 
 /* ------------------------------------------------------------------ *
