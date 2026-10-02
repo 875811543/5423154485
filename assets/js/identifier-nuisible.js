@@ -313,6 +313,15 @@
         if (ok) { vus++; }
       }
       zoneAZ.hidden = false;
+      // Quand la recherche ne laisse qu'une fiche, il n'y a plus rien a
+      // choisir : on l'ouvre. Au-dela d'une, et quand le champ est vide, on
+      // referme — sinon affiner puis elargir sa recherche laisse derriere soi
+      // une pile de fiches ouvertes.
+      for (var j = 0; j < lignes.length; j++) {
+        if (lignes[j].tagName === "DETAILS") {
+          lignes[j].open = (!!q && vus === 1 && !lignes[j].hidden);
+        }
+      }
       annoncer(q ? (vus + (vus > 1 ? " fiches correspondent." : " fiche correspond.")) : "");
     });
   }
