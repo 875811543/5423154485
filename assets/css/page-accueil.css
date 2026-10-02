@@ -166,6 +166,11 @@
 
   .trust-strip__stat-label { font-size: 0.82rem; color: #475569; margin-top: 2px; }
 
+  /* Les noms de departement ne doivent pas se couper sur leur propre trait
+     d'union : a 360 px « Corse-du-Sud » cassait en « Corse-du- » / « Sud ».
+     Le retour a la ligne ne reste possible qu'aux espaces. */
+  .trust-strip__stat-label span { white-space: nowrap; }
+
 
   .trust-strip__visual {
     position: relative;
