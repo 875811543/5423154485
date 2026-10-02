@@ -533,12 +533,27 @@ a { color: inherit; }
   text-decoration: none;
 }
 
-/* Bascule bureau a 1200 px. Mesure en HTTP, polices reellement chargees : la
-   marque, la navigation et le bouton d appel demandent 1190 px. Un premier
-   relevé en file:// avait donne 1096 px — les polices ne s y chargeaient pas et
-   tout rendait plus etroit, do'u un seuil trop bas et le numero coupe entre
-   1120 et 1189 px. Valeur a garder alignee sur le resize de main.js. */
-@media (min-width: 1200px) {
+/* Bascule bureau a 1280 px. Mesure en HTTP, polices reellement chargees : le
+   bord droit des deux boutons d appel tombe a 1276 px.
+   Le seuil valait 1200 px quand la navigation comptait quatre entrees de
+   premier niveau. Passee a cinq — « Guide des nuisibles » et « Infos
+   pratiques » remplacant « Ressources » —, elle s elargit de 534 a 738 px, et
+   le second numero se retrouve coupe en dessous de 1280.
+   Monter le seuil plutot que raccourcir un libelle ou resserrer les cibles de
+   clic : le menu mobile est le repli prevu, et il porte la meme navigation.
+
+   DEUX FACONS DE SE TROMPER SUR CE SEUIL, rencontrees toutes les deux ici :
+   - le mesurer en file:// : les @font-face ne s y chargent pas, tout rend en
+     police systeme donc plus etroit, et le seuil obtenu est trop bas ;
+   - additionner les largeurs de la marque, de la nav et des boutons, puis
+     comparer au conteneur. La mise en page laisse des ecarts entre les trois :
+     cette somme donnait 1223 px et annonçait 17 px de libre a 1240, alors que
+     le bord droit reel des boutons tombe a 1276 px et que le numero y etait
+     encore tronque.
+   Le seul critere qui vaille : le bord droit du dernier element, et le texte
+   du bouton entierement visible. Mesure en HTTP.
+   Valeur a garder alignee sur le resize de main.js. */
+@media (min-width: 1280px) {
   .site-nav { display: block; }
   .site-header__appel { display: flex; }
   /* grid et non flex : les deux pastilles empilent le prenom au-dessus du
