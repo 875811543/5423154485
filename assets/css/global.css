@@ -190,6 +190,24 @@
    element portant hidden n'etait rendu — elle ne masque donc rien de voulu. */
 [hidden] { display: none !important; }
 
+/* Texte reserve aux lecteurs d'ecran. Pas display: none ni visibility: hidden,
+   qui le retireraient aussi de l'arbre d'accessibilite : on le sort de l'ecran
+   en gardant une boite de 1 px, la recette qui survit a tous les moteurs.
+   Sert au complement « , accueil » du logo, depuis que l'entree « Accueil »
+   a quitte la navigation. */
+.visuellement-cachee {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-height);

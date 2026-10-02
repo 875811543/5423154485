@@ -214,7 +214,7 @@
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-latin-400-normal.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/poppins-latin-800-normal.woff2" crossorigin>
 
-  <link rel="stylesheet" href="assets/css/global.css?v=bc93a6ad">
+  <link rel="stylesheet" href="assets/css/global.css?v=e9793437">
 </head>
 <body>
 <a href="#main-content" class="skip-link">Aller au contenu principal</a>
@@ -226,12 +226,11 @@
 
     <a href="./" class="site-header__brand">
       <picture><source srcset="images/logo-icone.avif" type="image/avif"><source srcset="images/logo-icone.webp" type="image/webp"><img src="images/logo-icone.png" alt="Dezinsect Corse" width="96" height="96" class="site-header__logo"></picture>
-      <span class="site-header__brand-text">Dezinsect<span class="site-header__brand-accent">Corse</span></span>
+      <span class="site-header__brand-text">Dezinsect<span class="site-header__brand-accent">Corse</span></span><span class="visuellement-cachee">, accueil</span>
     </a>
 
     <nav class="site-nav" aria-label="Navigation principale">
       <ul class="site-nav__list">
-        <li><a href="./">Accueil</a></li>
 
         <li class="site-nav__has-submenu">
           <button class="site-nav__toplink" aria-haspopup="true" aria-expanded="false">
@@ -245,33 +244,36 @@
             <li><a href="traitement-anti-termites">Termites &amp; Xylophages</a></li>
             <li><a href="traitement-injection-bati-termites">Traitement préventif charpente</a></li>
             <li><a href="guepes-et-frelons">Guêpes &amp; Frelons</a></li>
-        <li><a href="moustiques-corse">Moustiques</a></li>
-        <li><a href="conducteur-engins-caces">Conducteur d'engins CACES</a></li>
-        <li><a href="tarifs-anti-nuisibles-corse">Tarifs &amp; devis</a></li>
+            <li><a href="moustiques-corse">Moustiques</a></li>
+            <li><a href="conducteur-engins-caces">Conducteur d’engins CACES</a></li>
+            <li><a href="tarifs-anti-nuisibles-corse">Tarifs &amp; devis</a></li>
           </ul>
         </li>
 
         <li class="site-nav__has-submenu">
           <button class="site-nav__toplink" aria-haspopup="true" aria-expanded="false">
-            Zones d'intervention
+            Zones d’intervention
             <svg class="site-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <ul class="site-nav__submenu site-nav__submenu--zones">
             <li><a href="zones-dintervention#communes-titre" class="site-nav__verif"><svg class="site-nav__loupe" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Vérifier ma commune</a></li>
             <li><a href="anti-nuisibles-costa-verde">Nord-Est &amp; Plaine Orientale<small>Bastia, Costa Verde, Aléria, Ghisonaccia…</small></a></li>
-            <li><a href="anti-nuisible-corte">Centre &amp; Balagne<small>Corte, Calvi, L'Île-Rousse…</small></a></li>
+            <li><a href="anti-nuisible-corte">Centre &amp; Balagne<small>Corte, Calvi, L’Île-Rousse…</small></a></li>
             <li><a href="anti-nuisibles-grand-ajaccio-porto-vecchio">Sud de la Corse<small>Ajaccio, Porto-Vecchio, Bonifacio…</small></a></li>
-            <li><a href="zones-dintervention">Toute la Corse</a></li>
+            <li><a href="zones-dintervention">Toutes nos zones</a></li>
           </ul>
         </li>
 
         <li class="site-nav__has-submenu">
           <button class="site-nav__toplink" aria-haspopup="true" aria-expanded="false">
-            Lexique
+            Ressources
             <svg class="site-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <ul class="site-nav__submenu site-nav__submenu--lexique">
-            <li><a href="lexique-nuisibles">Tout le lexique</a></li>
+            <li><a href="identifier-nuisible">Identifier un nuisible</a></li>
+            <li><a href="lexique-nuisibles">Lexique des nuisibles</a></li>
+            <li><a href="questions-frequentes-termites-frelons-rat">Questions fréquentes</a></li>
+            <li><a href="actualites">Actualités</a></li>
             <li><a href="fourmis">Fourmis</a></li>
             <li><a href="cafards">Cafards &amp; blattes</a></li>
             <li><a href="mouches">Mouches</a></li>
@@ -286,8 +288,6 @@
             <li><a href="souris">Souris</a></li>
           </ul>
         </li>
-        <li><a href="questions-frequentes-termites-frelons-rat">FAQ</a></li>
-        <li><a href="identifier-nuisible">Identifier un nuisible</a></li>
         <li><a href="contact">Contact</a></li>
       </ul>
     </nav>
@@ -314,7 +314,6 @@
   <!-- Menu mobile -->
   <div class="mobile-menu" id="mobileMenu">
     <nav aria-label="Navigation mobile">
-      <a href="./">Accueil</a>
 
       <details class="mobile-menu__group">
         <summary>Nos Services</summary>
@@ -325,22 +324,25 @@
         <a href="traitement-injection-bati-termites">Traitement préventif charpente</a>
         <a href="guepes-et-frelons">Guêpes &amp; Frelons</a>
         <a href="moustiques-corse">Moustiques</a>
-        <a href="conducteur-engins-caces">Conducteur d'engins CACES</a>
+        <a href="conducteur-engins-caces">Conducteur d’engins CACES</a>
         <a href="tarifs-anti-nuisibles-corse">Tarifs &amp; devis</a>
       </details>
 
       <details class="mobile-menu__group">
-        <summary>Zones d'intervention</summary>
+        <summary>Zones d’intervention</summary>
         <a href="zones-dintervention#communes-titre" class="mobile-menu__verif"><svg class="site-nav__loupe" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Vérifier ma commune</a>
         <a href="anti-nuisibles-costa-verde">Nord-Est &amp; Plaine Orientale<small>Bastia, Costa Verde, Aléria, Ghisonaccia…</small></a>
-        <a href="anti-nuisible-corte">Centre &amp; Balagne<small>Corte, Calvi, L'Île-Rousse…</small></a>
+        <a href="anti-nuisible-corte">Centre &amp; Balagne<small>Corte, Calvi, L’Île-Rousse…</small></a>
         <a href="anti-nuisibles-grand-ajaccio-porto-vecchio">Sud de la Corse<small>Ajaccio, Porto-Vecchio, Bonifacio…</small></a>
-        <a href="zones-dintervention">Toute la Corse</a>
+        <a href="zones-dintervention">Toutes nos zones</a>
       </details>
 
       <details class="mobile-menu__group">
-        <summary>Lexique</summary>
-        <a href="lexique-nuisibles">Tout le lexique</a>
+        <summary>Ressources</summary>
+        <a href="identifier-nuisible">Identifier un nuisible</a>
+        <a href="lexique-nuisibles">Lexique des nuisibles</a>
+        <a href="questions-frequentes-termites-frelons-rat">Questions fréquentes</a>
+        <a href="actualites">Actualités</a>
         <a href="fourmis">Fourmis</a>
         <a href="cafards">Cafards &amp; blattes</a>
         <a href="mouches">Mouches</a>
@@ -354,8 +356,6 @@
         <a href="rat-brun-surmulot">Rat brun (surmulot)</a>
         <a href="souris">Souris</a>
       </details>
-      <a href="questions-frequentes-termites-frelons-rat">FAQ</a>
-      <a href="identifier-nuisible">Identifier un nuisible</a>
       <a href="contact">Contact</a>
       <div class="tel-pair"><a href="tel:+33685753040" class="mobile-menu__cta"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> <span class="tel-nom">Dumé&nbsp;</span><span class="tel-num">06 85 75 30 40</span></a><a href="tel:+33629421638" class="mobile-menu__cta"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> <span class="tel-nom">Antoine&nbsp;</span><span class="tel-num">06 29 42 16 38</span></a></div>
     </nav>
@@ -527,7 +527,7 @@
     <nav class="footer-col" aria-label="Zones d'intervention">
       <h3>Zones d'intervention</h3>
       <ul>
-        <li><a href="zones-dintervention">Toute la Corse</a></li>
+        <li><a href="zones-dintervention">Toutes nos zones</a></li>
         <li><a href="anti-nuisibles-costa-verde">Bastia &amp; Costa Verde</a></li>
         <li><a href="traitement-termites-costa-verde">Termites en Costa Verde</a></li>
         <li><a href="anti-nuisible-corte">Corte, Calvi &amp; Balagne</a></li>

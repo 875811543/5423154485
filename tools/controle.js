@@ -1328,10 +1328,18 @@ const CONTROLES = [
       const cible = m => m.includes('href="' + slug + '"');
       for (const [nom, m] of menus) {
         if (!m) { pbs.push(f + ' : menu ' + nom + ' introuvable'); continue; }
-        const n = (m.match(/aria-current="page"/g) || []).length;
-        if (cible(m) && n === 0) pbs.push(f + ' : menu ' + nom + ' — la page y figure mais rien ne la signale comme active');
-        if (n > 1) pbs.push(f + ' : menu ' + nom + ' — ' + n + ' liens marques « page courante », il n en faut qu un');
-        if (!cible(m) && n > 0) pbs.push(f + ' : menu ' + nom + ' — un lien est marque actif alors que la page n y figure pas');
+        // Depuis que la navigation est a trois sous-menus, la page courante est
+        // signalee a DEUX endroits : le lien lui-meme, et le parent qui le
+        // contient (<button> en bureau, <summary> en mobile) — sans quoi, menu
+        // replie, rien n indique ou l on est. On compte donc les deux
+        // separement plutot qu en bloc.
+        const liens = (m.match(/<a [^>]*aria-current="page"/g) || []).length;
+        const parents = (m.match(/<(?:button|summary)[^>]*aria-current="page"/g) || []).length;
+        if (cible(m) && liens === 0) pbs.push(f + ' : menu ' + nom + ' — la page y figure mais aucun lien ne la signale comme active');
+        if (liens > 1) pbs.push(f + ' : menu ' + nom + ' — ' + liens + ' liens marques « page courante », il n en faut qu un');
+        if (!cible(m) && liens > 0) pbs.push(f + ' : menu ' + nom + ' — un lien est marque actif alors que la page n y figure pas');
+        if (parents > 1) pbs.push(f + ' : menu ' + nom + ' — ' + parents + ' parents marques, il n en faut au plus qu un');
+        if (parents === 1 && liens === 0) pbs.push(f + ' : menu ' + nom + ' — un parent est marque sans lien actif dedans');
       }
 
       // Le pied de page decrit des coordonnees : c'est ce que <address> designe.
