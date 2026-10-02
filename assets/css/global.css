@@ -496,6 +496,12 @@ a { color: inherit; }
   padding: 14px;
   border-radius: 12px;
   font-weight: 700;
+  /* Le text-decoration vient de `.mobile-menu nav > a`, et les deux boutons
+     d'appel sont sortis de ce selecteur le jour ou le second numero les a fait
+     envelopper dans `.tel-pair` : ils rendaient soulignes sur les 67 pages.
+     Pose ici plutot qu'en elargissant le selecteur parent — un bouton ne doit
+     pas dependre de sa profondeur dans le menu. */
+  text-decoration: none;
 }
 
 /* Bascule bureau a 1200 px. Mesure en HTTP, polices reellement chargees : la
