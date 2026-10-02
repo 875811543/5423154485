@@ -198,6 +198,7 @@ ErrorDocument 403 /404.html
   ExpiresByType image/jpeg           "access plus 1 year"
   ExpiresByType image/png            "access plus 1 year"
   ExpiresByType image/webp           "access plus 1 year"
+  ExpiresByType image/avif           "access plus 1 year"
   ExpiresByType image/svg+xml        "access plus 1 year"
   ExpiresByType image/x-icon         "access plus 1 year"
   ExpiresByType text/css             "access plus 1 month"
@@ -253,7 +254,7 @@ ErrorDocument 403 /404.html
   # REGLE : pour remplacer une image ou une police, RENOMMER le fichier.
   # Changer l'URL est le seul moyen fiable de forcer le renouvellement.
   # Le controle « orphelins » signalera l'ancien fichier reste inutilise.
-  <FilesMatch "\.(jpg|jpeg|png|webp|svg|ico|woff2)$">
+  <FilesMatch "\.(jpg|jpeg|png|webp|avif|svg|ico|woff2)$">
     Header set Cache-Control "public, max-age=31536000"
   </FilesMatch>
 
@@ -313,6 +314,12 @@ ErrorDocument 403 /404.html
     </Files>
   </IfModule>
   AddType image/webp .webp
+  # Sans cette ligne les .avif partaient en text/plain, mesure en ligne sur les
+  # sept photos de l'outil d'identification. Elles s'affichaient quand meme,
+  # Chrome reniflant le contenu, mais l'en-tete nosniff pose plus bas interdit
+  # justement de compter la-dessus — et elles tombaient aussi hors des deux
+  # regles de cache, qui visent le type MIME et l'extension.
+  AddType image/avif .avif
   AddType font/woff2 .woff2
   AddCharset UTF-8 .html .css .js .json .xml
 </IfModule>
