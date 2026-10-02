@@ -728,3 +728,32 @@
   font-size: 0.95rem;
 }
 .ident[data-js="on"] .ident-retour-haut { display: none; }
+
+/* ==========================================================================
+   21. Envoi d'une photo — au-dessus des six cartes, et dans chaque encart
+   Les deux boutons sont des .btn-secondaire : composant partage, deja mis en
+   page dans global.css. On ne pose ici que leur disposition.
+   Rien de tiers n'est charge : ce sont deux liens, comme un tel:.
+   ========================================================================== */
+.ident-envoi {
+  margin: 0 0 18px;
+}
+.ident-envoi__t {
+  margin: 0 0 10px;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 0.98rem;
+  line-height: 1.4;
+}
+.ident-envoi__btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+/* Cible tactile : .btn-secondaire tient deja 44 px de haut, on ne touche pas
+   a sa hauteur. Sous 420 px les deux boutons passent pleine largeur plutot
+   que de se serrer a deux par ligne. */
+@media (max-width: 419px) {
+  .ident-envoi__btns .btn-secondaire { flex: 1 1 100%; justify-content: center; }
+}
+.ident-action .ident-envoi { margin: 14px 0 0; }
