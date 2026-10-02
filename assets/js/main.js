@@ -42,10 +42,10 @@
 
     // Ferme le menu mobile si on repasse en desktop
     window.addEventListener("resize", function () {
-      // 1280 : meme seuil que la bascule bureau de global.css. Les deux
+      // 1220 : meme seuil que la bascule bureau de global.css. Les deux
       // valeurs doivent rester identiques, sinon le menu mobile reste ouvert
       // par-dessus une navigation de bureau deja affichee.
-      if (window.innerWidth >= 1280 && mobileMenu.classList.contains("is-open")) {
+      if (window.innerWidth >= 1220 && mobileMenu.classList.contains("is-open")) {
         mobileMenu.classList.remove("is-open");
         burger.setAttribute("aria-expanded", "false");
         document.body.style.overflow = "";
