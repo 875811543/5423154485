@@ -700,3 +700,31 @@
   .ident-photo { max-width: 100%; }
   .ident-confus { grid-template-columns: repeat(auto-fill, minmax(116px, 1fr)); gap: 10px; }
 }
+
+/* ==========================================================================
+   20. Lien direct vers une fiche, sans JavaScript
+   Un /identifier-nuisible#fiche-xxx doit ouvrir la fiche visee. Le navigateur
+   ne le fait pas : il deplie un <details> quand la cible du fragment est
+   DEDANS, pas quand elle est le <details> lui-meme. On force donc l'affichage
+   du contenu de la fiche ciblee.
+   Portee limitee a l'absence de JavaScript : avec JS, c'est le bloc 16 de
+   identifier-nuisible.js qui clone la fiche dans la zone de resultat, et
+   cette regle y ferait apparaitre la fiche deux fois.
+   ========================================================================== */
+.ident:not([data-js="on"]) .ident-fiche:target > *:not(summary) { display: block; }
+.ident:not([data-js="on"]) .ident-fiche:target {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 3px;
+}
+
+/* Retour au debut, pour le cas sans JavaScript uniquement.
+   La barre « Retour / Recommencer » est masquee sans JS (regle 506) : ce sont
+   des <button> que personne n'ecoute, et afficher un bouton mort serait le
+   defaut qu'on evite deja pour le burger du menu mobile. L'equivalent honnete
+   est un vrai lien, qui fonctionne sans script. Avec JS, c'est la barre qui
+   reprend ce role, donc on le retire. */
+.ident-retour-haut {
+  margin: 22px 0 0;
+  font-size: 0.95rem;
+}
+.ident[data-js="on"] .ident-retour-haut { display: none; }

@@ -654,4 +654,34 @@
   var toutesFiches = document.querySelectorAll(".ident-fiche");
   for (var t = 0; t < toutesFiches.length; t++) { toutesFiches[t].open = false; }
   racine.setAttribute("data-js", "on");
+
+  /* ------------------------------------------------------------------
+     16. Lien direct vers une fiche : /identifier-nuisible#fiche-xxx
+     Deux raisons pour lesquelles le navigateur n'y arrive pas seul :
+     il n'ouvre pas un <details> dont l'id EST la cible du fragment, et en
+     mode Particulier la liste A-Z qui les porte est masquee. Sans ce bloc
+     le lien n'affichait donc rien du tout.
+     On passe par afficherFiche, qui est deja le chemin normal : la fiche
+     est clonee dans la zone de resultat, ouverte, et le focus va a son
+     titre. Le cas sans JavaScript est traite en CSS, par .ident-fiche:target.
+     ------------------------------------------------------------------ */
+  function ouvrirDepuisAncre() {
+    var h = (window.location.hash || "").replace(/^#/, "");
+    if (h.indexOf("fiche-") !== 0) { return false; }
+    var id = h.slice(6);
+    if (!id || !document.getElementById("fiche-" + id)) { return false; }
+    parcours = ["Lien direct"];
+    pile = [];
+    afficherFiche(id);
+    // Les deux commandes doivent etre atteignables : on arrive sans etape
+    // precedente, mais il faut pouvoir repartir du debut.
+    if (btnRetour) { btnRetour.hidden = false; }
+    if (btnRecommencer) { btnRecommencer.hidden = false; }
+    var titre = zoneFiche.querySelector(".ident-fiche__nom");
+    if (titre && titre.scrollIntoView) { titre.scrollIntoView(); }
+    return true;
+  }
+
+  ouvrirDepuisAncre();
+  window.addEventListener("hashchange", ouvrirDepuisAncre);
 })();
