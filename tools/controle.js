@@ -916,12 +916,36 @@ const CONTROLES = [
 
       // 3. Pour un lecteur d'ecran, une image n'existe que par son alt. Un alt
       // absent fait lire le nom du fichier ; un alt generique ne dit rien.
+      // Un alt vide est correct — et meme preferable — quand l'image est DANS
+      // un lien ou un bouton qui porte deja un texte visible : elle y est
+      // decorative, et un alt redondant fait lire deux fois la meme chose.
+      // C'est le cas du logo, dans l'en-tete comme dans le pied.
+      const porteurAvecTexte = (pos) => {
+        const avant = s.slice(0, pos);
+        const ia = avant.lastIndexOf('<a ');
+        const ib = avant.lastIndexOf('<button ');
+        const io = Math.max(ia, ib);
+        if (io < 0) { return false; }
+        const nom = io === ia ? 'a' : 'button';
+        // Deja referme avant l'image : celle-ci n'est pas dedans.
+        if (avant.slice(io).includes('</' + nom + '>')) { return false; }
+        const fin = s.indexOf('</' + nom + '>', pos);
+        if (fin < 0) { return false; }
+        const texte = s.slice(io, fin).replace(/<[^>]*>/g, ' ')
+          .replace(/&[a-z]+;|&#\d+;/gi, ' ').replace(/\s+/g, ' ').trim();
+        return texte.length > 0;
+      };
+
       for (const m of s.matchAll(/<img\b[^>]*>/g)) {
         const src = (m[0].match(/src="([^"]*)"/) || [])[1] || '?';
         const alt = m[0].match(/\salt="([^"]*)"/);
         if (!alt) { pbs.push(f + ' : image sans alt — ' + src.split('/').pop()); continue; }
         const t = alt[1].trim();
-        if (!t) { pbs.push(f + ' : alt vide — ' + src.split('/').pop()); continue; }
+        if (!t) {
+          if (porteurAvecTexte(m.index)) { continue; }
+          pbs.push(f + ' : alt vide hors lien texte — ' + src.split('/').pop());
+          continue;
+        }
         if (/^(image|photo|illustration|img|visuel)\b/i.test(t))
           pbs.push(f + ' : alt generique « ' + t.slice(0, 40) + ' » — ' + src.split('/').pop());
       }
