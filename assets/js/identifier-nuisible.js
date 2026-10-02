@@ -240,7 +240,18 @@
   var depart = document.getElementById("ident-depart");
   var btnRetour = document.getElementById("ident-retour");
   var btnRecommencer = document.getElementById("ident-recommencer");
+  var tableauBois = document.getElementById("ident-compare-bois");
+  // Quelle carte de depart a ete choisie : sert a n'afficher le tableau
+  // comparatif du bois que dans sa branche.
+  var brancheCourante = null;
   var radios = racine.querySelectorAll("[data-profil]");
+
+  /* Le tableau comparatif du bois ne concerne que la branche « bois ». Sans
+     JavaScript il reste affiche — c'est du contenu indexable, et il n'y a
+     alors aucune branche. */
+  function majTableauBois() {
+    if (tableauBois) { tableauBois.hidden = (brancheCourante !== "bois"); }
+  }
   var noteHorsLigne = document.getElementById("ident-hors-ligne");
   var formulaire = document.getElementById("dezinsectContactForm");
   var blocFormulaire = document.getElementById("ident-formulaire");
@@ -336,6 +347,8 @@
     zoneEtape.innerHTML = "";
     if (zoneFiche) { zoneFiche.hidden = true; }
     if (depart) { depart.hidden = true; }
+    if (btnRecommencer) { btnRecommencer.hidden = false; }
+    majTableauBois();
 
     var titre = document.createElement("h3");
     titre.className = "ident-etape__q";
@@ -409,6 +422,8 @@
     ficheCourante = source;
     zoneEtape.hidden = true;
     if (depart) { depart.hidden = true; }
+    if (btnRecommencer) { btnRecommencer.hidden = false; }
+    majTableauBois();
 
     zoneFiche.innerHTML = "";
     var copie = source.cloneNode(true);
@@ -471,6 +486,9 @@
     if (zoneFiche) { zoneFiche.hidden = true; }
     if (depart) { depart.hidden = false; }
     if (btnRetour) { btnRetour.hidden = true; }
+    if (btnRecommencer) { btnRecommencer.hidden = true; }
+    brancheCourante = null;
+    majTableauBois();
     majFil();
     annoncer("Retour au début.");
     if (depart) {
@@ -491,6 +509,7 @@
     (function (carte) {
       carte.addEventListener("click", function () {
         var b = carte.getAttribute("data-branche");
+        brancheCourante = b;
         parcours = [carte.getAttribute("data-libelle") || b];
         pile = [];
         afficherEtape(b);
@@ -656,6 +675,8 @@
   if (zoneEtape) { zoneEtape.hidden = true; }
   if (zoneFiche) { zoneFiche.hidden = true; }
   if (btnRetour) { btnRetour.hidden = true; }
+  if (btnRecommencer) { btnRecommencer.hidden = true; }
+  majTableauBois();
   if (fil) { fil.hidden = true; }
 
   // Les fiches en <details> servent de contenu indexable sans JS ; avec JS,
