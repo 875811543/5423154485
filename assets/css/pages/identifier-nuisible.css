@@ -613,3 +613,90 @@
 @media (max-width: 559px) {
   .ident-trou { gap: 12px; padding: 10px 12px; }
 }
+
+/* --------------------------------------------------------------
+   18. Photo d'identification et credit
+   Toutes les photos viennent de Wikimedia Commons, en domaine public,
+   CC0, CC BY ou CC BY-SA. Le credit est obligatoire pour les licences
+   CC BY et CC BY-SA, et il est affiche pour toutes par honnetete.
+   Le registre complet est dans credits-photos.md, que le .htaccess
+   refuse de servir.
+   -------------------------------------------------------------- */
+.ident-photo {
+  margin: 0 0 16px;
+  max-width: 320px;
+}
+.ident-photo__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  background: var(--surface);
+}
+.ident-photo__credit {
+  margin: 6px 0 0;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.ident-photo__credit a { color: var(--muted); }
+.ident-photo__credit a:hover { color: var(--primary-blue-dark); }
+
+/* --------------------------------------------------------------
+   19. « Souvent confondu avec »
+   Les vignettes sont de vraies ancres vers la fiche visee : elles
+   fonctionnent sans JavaScript, ou la liste A-Z est affichee. Avec
+   JavaScript, le script ouvre la fiche dans la zone de resultat, la
+   liste A-Z etant alors masquee en mode Particulier.
+   -------------------------------------------------------------- */
+.ident-confus {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  gap: 12px;
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+}
+.ident-confus__item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 8px;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  line-height: 1.4;
+}
+.ident-confus__item:hover,
+.ident-confus__item:focus-visible {
+  border-color: var(--primary-blue);
+  background: var(--surface-blue);
+}
+.ident-confus__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 7px;
+  background: var(--surface);
+}
+.ident-confus__nom {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.ident-confus__diff {
+  margin-top: 3px;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+@media (max-width: 559px) {
+  .ident-photo { max-width: 100%; }
+  .ident-confus { grid-template-columns: repeat(auto-fill, minmax(116px, 1fr)); gap: 10px; }
+}

@@ -84,7 +84,9 @@
         { t: "Des chenilles en file indienne", d: "nids de soie blanche dans les pins", f: "processionnaire" },
         { t: "Beaucoup de pattes", d: "", n: "rampe-pattes" },
         { t: "Une araignée", d: "", n: "rampe-araignee" },
-        { t: "Petite larve brune très poilue, en bandes, 4 à 5 mm", d: "sous les tapis, dans les placards ou les penderies, petites peaux de mue vides", f: "anthrene" }
+        { t: "Petite larve brune très poilue, en bandes, 4 à 5 mm", d: "sous les tapis, dans les placards ou les penderies, petites peaux de mue vides", f: "anthrene" },
+        { t: "Huit pattes, fixée dans la peau", d: "venue de l’extérieur : herbes hautes, broussailles, animaux", f: "tique" },
+        { t: "Minuscule, 1 à 2 mm, pâle", d: "sur les livres, les papiers, les murs humides", f: "psoque" }
       ]
     },
     "rampe-blatte": {
@@ -564,6 +566,24 @@
     if (msg) { msg.selectionStart = msg.selectionEnd = msg.value.length; }
     annoncer("Formulaire pré-rempli pour " + nom + ".");
   }
+
+  /* ------------------------------------------------------------------
+     12 bis. Vignettes « souvent confondu avec »
+     Ce sont de vraies ancres vers #fiche-<id> : sans JavaScript elles
+     fonctionnent, la liste A-Z etant affichee. Avec JavaScript on intercepte,
+     parce qu en mode Particulier cette liste est masquee et qu une ancre y
+     menerait dans le vide.
+     ------------------------------------------------------------------ */
+  racine.addEventListener("click", function (ev) {
+    var a = ev.target.closest ? ev.target.closest("[data-fiche]") : null;
+    if (!a) { return; }
+    ev.preventDefault();
+    parcours.push("Confondu avec");
+    afficherFiche(a.getAttribute("data-fiche"));
+    if (zoneFiche && zoneFiche.scrollIntoView) {
+      zoneFiche.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
 
   /* ------------------------------------------------------------------
      13. Partage : Web Share API si elle existe, sinon copie du lien
