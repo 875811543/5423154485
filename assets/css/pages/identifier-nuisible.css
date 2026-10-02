@@ -757,14 +757,3 @@
   .ident-envoi__btns .btn-secondaire { flex: 1 1 100%; justify-content: center; }
 }
 .ident-action .ident-envoi { margin: 14px 0 0; }
-
-/* ==========================================================================
-   22. Garde-fou : dans cet outil, [hidden] doit vraiment masquer
-   Un display pose par l'auteur bat la regle [hidden] du navigateur. Le defaut
-   s'est produit trois fois ici : .ident-statut (display: flex) et .ident-fil
-   (display: flex) restaient affiches alors que le script les declarait
-   hidden — d'ou une barre bleu pale vide sous le selecteur de profil.
-   Specificite (0,1,1), donc cette regle passe devant les .ident-xxx (0,1,0)
-   sans recourir a !important.
-   ========================================================================== */
-.ident [hidden] { display: none; }

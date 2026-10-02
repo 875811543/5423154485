@@ -544,11 +544,40 @@ sélecteurs du bloc (`.btn-phone`, `.sticky-call-btn`, `.btn-devis`,
 dans `form.css` ou dans une feuille de `assets/css/pages/` chargée après
 `global.css`. Ne pas retenter sans un plan qui traite ces redéfinitions.
 
-Répartition actuelle :
+Répartition actuelle dans `global.css` (26 ; le dépôt en compte 34 en tout,
+les 8 autres étant dans des feuilles de page) :
 
 - 4 relèvent de `prefers-reduced-motion` — légitimes ;
 - 1 masque le menu mobile au-dessus de 1024px — non tranché ;
-- 26 protègent le bloc des boutons verts — nécessaires, cf. ci-dessus.
+- 1 est `[hidden] { display: none !important }` — **exception assumée**, voir
+  ci-dessous ;
+- le reste protège le bloc des boutons verts — nécessaires, cf. ci-dessus.
+
+#### `[hidden]` : l'exception assumée
+
+```css
+[hidden] { display: none !important; }
+```
+
+C'est le seul `!important` que ce dépôt pose **par principe** et non pour
+sortir d'une bataille de spécificité précise. L'usage est reconnu : la règle du
+navigateur est `[hidden] { display: none }`, de spécificité (0,1,0), et
+**n'importe quelle classe d'auteur la bat**. Un composant qui déclare
+`display: flex` reste donc affiché alors que le script vient de poser `hidden`
+dessus — et rien ne le signale.
+
+Le défaut s'est produit **trois fois** ici, toujours de la même façon. Le cas
+qui a décidé de la règle : `.ident-statut` et `.ident-fil` portent
+`display: flex`, et laissaient une barre bleu pâle vide de 328 × 24 px sous le
+sélecteur de profil de l'outil d'identification, à l'étape 1, dans les deux
+profils.
+
+**Vérifié avant d'être posée**, et c'est la condition à reproduire si on y
+touche : relevé sur les 67 pages, à 390 et 1280 px, des éléments portant
+`hidden` et pourtant rendus. **Aucun.** La règle ne masque donc rien de
+volontairement visible. Une version locale à l'outil, sans `!important`,
+existait d'abord ; elle a été retirée en posant celle-ci, pour ne pas laisser
+deux garde-fous dont un seul sert.
 
 Un seul a pu être retiré : `color: #fff !important` sur `.mobile-menu__cta`,
 qui se battait contre une règle du **même fichier** (le bloc des boutons, plus

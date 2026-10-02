@@ -179,6 +179,17 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+/* L'attribut hidden doit masquer, quoi qu'on ait pose par ailleurs.
+   La regle du navigateur est [hidden] { display: none }, et n'importe quelle
+   declaration display d'auteur la bat, meme une classe de specificite (0,1,0).
+   Le defaut s'est produit trois fois sur ce projet, dont une barre bleu pale
+   vide sous le selecteur de profil de l'outil d'identification.
+   C'est l'exception assumee a l'interdiction de !important : l'usage est
+   reconnu pour cet attribut, et sans lui la regle ne protege de rien.
+   Verifie avant d'etre posee : sur les 67 pages, a 390 et 1280 px, aucun
+   element portant hidden n'etait rendu — elle ne masque donc rien de voulu. */
+[hidden] { display: none !important; }
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-height);
