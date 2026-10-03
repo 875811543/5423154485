@@ -141,17 +141,7 @@
     }
     .faq-answer a:hover { text-decoration: underline; }
 
-    .cta-final {
-      text-align: center;
-      background: var(--primary);
-      color: #FFFFFF;
-      padding: 36px 20px;
-      border-radius: 20px;
-      margin-top: 44px;
-    }
 
-    .cta-final h2 { font-size: 1.35rem; margin-bottom: 10px; }
-    .cta-final p { color: #94A3B8; margin-bottom: 20px; }
 
     /* Ecart volontaire : padding plus genereux que les autres pages, le
        bouton etant isole en fin de section. Le reste de la mise en page est

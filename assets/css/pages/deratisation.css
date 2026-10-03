@@ -235,33 +235,8 @@
     }
 
     /* Bouton d'action dans le flux */
-    .inline-call-wrapper {
-      margin-top: 32px;
-      text-align: center;
-    }
 
-    .phone-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      max-width: 400px;
-      min-height: 44px;
-      background-color: var(--accent-blue);
-      color: #FFFFFF;
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 14px 20px;
-      border-radius: 14px;
-      text-decoration: none;
-      box-shadow: 0 8px 20px -4px rgba(26, 77, 251, 0.3);
-      transition: background-color 0.2s;
-    }
 
-    .phone-button:hover {
-      background-color: var(--accent-blue-hover);
-    }
 
     /* Barre fixe pour Smartphone */
 

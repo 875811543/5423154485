@@ -620,12 +620,15 @@ a { color: inherit; }
   border-radius: 50%;
   background: var(--primary-blue);
   color: #fff;
-  border: none;
+  /* Un liseré blanc : depuis que le pied est au bleu de l'en-tete, ce bouton
+     flotte au-dessus d'un fond de sa propre couleur et y disparaissait. Le
+     liseré le detache des deux fonds, clair comme bleu. */
+  border: 2px solid #FFFFFF;
   display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(26, 77, 251, 0.35);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.28);
   z-index: 90;
 }
 .back-to-top.is-visible { display: flex; }
@@ -1724,6 +1727,89 @@ li > .ico:first-child {
 .note-centered { text-align: center; margin-top: 16px; font-size: 0.86rem; color: var(--text-muted); }
 
 
+/* ------------------------------------------------------------
+   Blocs d'appel — un seul composant pour tout le site
+   Quatre blocs encadres (.cta-final sur trois pages, .action-cta-box sur
+   guepes-et-frelons) et treize appels en ligne (.inline-call-wrapper) avaient
+   chacun leur style, recopie dans six feuilles de page : .cta-final trois
+   fois, .phone-button trois fois. C'est l'anti-motif deja paye sur
+   .btn-phone — une classe qui sert sur plus d'une page se style ici.
+
+   Le fond passe du bleu nuit (#0F172A) au bleu tres clair : le sombre jurait
+   avec le vert des boutons de conversion. Les contrastes sont mesures sur le
+   rendu, pas sur le papier.
+   ------------------------------------------------------------ */
+.cta-final,
+.action-cta-box {
+  background: #EAF0FF;
+  border: 1px solid #D6E0FF;
+  color: var(--ink);
+  border-radius: 20px;
+  padding: 28px 20px;
+  margin-top: 40px;
+  text-align: center;
+  box-shadow: none;
+}
+.cta-final h2,
+.action-cta-box h2 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  color: var(--ink);
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+.cta-final p,
+.action-cta-box p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0 0 20px;
+  max-width: 54ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* La paire de boutons d'appel. Elle sert dans les blocs encadres ET dans les
+   appels en ligne : cote a cote des que la place le permet, empiles sinon.
+   Le fond vert et la couleur du texte viennent du bloc des boutons de
+   conversion, plus bas dans ce fichier, qui les impose en !important a
+   .btn-phone. On ne pose donc ici que la disposition. */
+.appel-paire {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.appel-paire .btn-phone {
+  flex: 1 1 230px;
+  max-width: 320px;
+  /* .btn-phone ne pose pas de gap : ses icones sont collees au texte sans
+     cela, mesure sur le rendu. */
+  gap: 8px;
+}
+.appel-paire .tel-nom { font-weight: 700; }
+.appel-paire .tel-num { font-weight: 800; }
+
+/* Appel en ligne dans le flux de texte : meme paire, sans cadre ni titre.
+   Plus compacte, pour ne pas couper la lecture. */
+.inline-call-wrapper {
+  margin: 28px 0;
+}
+.inline-call-wrapper .appel-paire {
+  justify-content: flex-start;
+}
+.inline-call-wrapper .btn-phone {
+  flex: 1 1 210px;
+  max-width: 290px;
+  min-height: 44px;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 519px) {
+  .appel-paire .btn-phone { flex: 1 1 100%; max-width: none; }
+}
+
 /* ===== Pied de page ===== */
 
 /* Le pied de page est un composant partage : il ne depend ni du reset ni du
@@ -1742,15 +1828,18 @@ li > .ico:first-child {
      #FFFFFF  17,4:1   titres et libelles forts
      #E2E8F0  14,1:1   liens et texte courant
      #94A3B8   6,6:1   mentions secondaires (AA exige 4,5:1) */
+/* Fond : le bleu de l'en-tete. Le bleu nuit (--ink) essaye d'abord jurait avec
+   le vert des boutons de conversion. Blanc sur ce bleu donne 8,0:1, bien
+   au-dela du seuil AA, ce qui laisse de la marge aux textes secondaires. */
 .site-footer {
   line-height: 1.6;
   font-family: var(--font-body);
-  background: var(--ink);
-  color: #E2E8F0;
+  background: var(--primary-blue);
+  color: #FFFFFF;
   border-top: 3px solid var(--cta-green);
 }
 
-.site-footer a { color: #E2E8F0; text-decoration: none; }
+.site-footer a { color: #FFFFFF; text-decoration: none; }
 .site-footer a:hover { text-decoration: underline; }
 .site-footer a:focus-visible {
   outline: 2px solid var(--cta-green);
@@ -1766,8 +1855,8 @@ li > .ico:first-child {
   gap: 16px;
   text-align: center;
   padding: 26px 20px;
-  background: rgba(255, 255, 255, .05);
-  border-bottom: 1px solid rgba(255, 255, 255, .10);
+  background: rgba(255, 255, 255, .10);
+  border-bottom: 1px solid rgba(255, 255, 255, .22);
 }
 .footer-cta__t {
   font-family: var(--font-heading);
@@ -1775,7 +1864,7 @@ li > .ico:first-child {
   font-size: 1.18rem;
   color: #FFFFFF;
 }
-.footer-cta__d { color: #CBD5E1; font-size: 0.95rem; }
+.footer-cta__d { color: #FFFFFF; font-size: 0.95rem; }
 
 /* Le bouton ne porte pas .btn-devis : le bloc des boutons verts de ce fichier
    impose fond et couleur en !important a cette classe, mais aucune mise en
@@ -1824,7 +1913,7 @@ li > .ico:first-child {
   color: #FFFFFF;
 }
 .footer-brand__phrase {
-  color: #CBD5E1;
+  color: #E8EEFF;
   font-size: 0.93rem;
   margin-bottom: 16px;
   max-width: 46ch;
@@ -1837,8 +1926,29 @@ li > .ico:first-child {
   font-size: 0.95rem;
 }
 .footer-coordonnees a { display: inline-block; }
-.footer-coordonnees .tel-nom { color: #94A3B8; }
+/* Le prenom est DANS la pastille blanche : il doit etre bleu comme le numero.`n   Un .footer-coordonnees .tel-nom clair y tombait a 1,31:1. */`n.footer-coordonnees a[href^="tel:"] .tel-nom { color: var(--primary-blue); }
 .footer-coordonnees .tel-num { font-weight: 700; color: #FFFFFF; }
+
+
+/* Les deux lignes telephoniques en pastilles blanches a texte bleu, comme les
+   boutons de l'en-tete. Le selecteur vise l'attribut href : il n'y a pas de
+   classe a poser dans le HTML, qui reste le meme sur les 67 pages. */
+.footer-coordonnees a[href^="tel:"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #FFFFFF;
+  color: var(--primary-blue);
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  justify-self: start;
+}
+.footer-coordonnees a[href^="tel:"]:hover {
+  background: #EAF0FF;
+  text-decoration: none;
+}
+.footer-coordonnees a[href^="tel:"] .tel-num { color: var(--primary-blue); }
 
 /* --- Pastilles de confiance --- */
 .footer-pastilles {
@@ -1854,20 +1964,20 @@ li > .ico:first-child {
   border-radius: 999px;
   font-size: 0.85rem;
   font-weight: 700;
-  background: rgba(255, 255, 255, .08);
-  border: 1px solid rgba(255, 255, 255, .14);
+  background: rgba(255, 255, 255, .22);
+  border: 1px solid rgba(255, 255, 255, .28);
   color: #FFFFFF;
 }
 .footer-pastille svg { flex-shrink: 0; }
 .footer-pastille--avis svg { color: #FBBF24; }
 .footer-pastille--certif svg { color: var(--cta-green); }
-a.footer-pastille:hover { background: rgba(255, 255, 255, .14); text-decoration: none; }
+a.footer-pastille:hover { background: rgba(255, 255, 255, .22); text-decoration: none; }
 
 /* --- Colonnes de liens ---
    En <details> pour que le mobile puisse les replier. Le resume porte un h3,
    qui existe ainsi dans le plan du document : la navigation par titres d'un
    lecteur d'ecran ne voit pas un <summary> seul. */
-.footer-col__bloc { border-bottom: 1px solid rgba(255, 255, 255, .10); }
+.footer-col__bloc { border-bottom: 1px solid rgba(255, 255, 255, .22); }
 .footer-col__resume {
   display: flex;
   align-items: center;
@@ -1885,7 +1995,7 @@ a.footer-pastille:hover { background: rgba(255, 255, 255, .14); text-decoration:
   font-size: 1rem;
   color: #FFFFFF;
 }
-.footer-col__chevron { transition: transform .2s ease; flex-shrink: 0; color: #94A3B8; }
+.footer-col__chevron { transition: transform .2s ease; flex-shrink: 0; color: #D7E0FF; }
 .footer-col__bloc[open] .footer-col__chevron { transform: rotate(180deg); }
 /* Le <ul> n'est mis en page que lorsque le bloc est ouvert. Il l'est par
    defaut dans le HTML : c'est main.js qui replie les colonnes sous 768 px.
@@ -1912,10 +2022,10 @@ a.footer-pastille:hover { background: rgba(255, 255, 255, .14); text-decoration:
   max-width: 1280px;
   margin: 0 auto;
   padding: 18px 20px 24px;
-  border-top: 1px solid rgba(255, 255, 255, .10);
+  border-top: 1px solid rgba(255, 255, 255, .22);
 }
-.footer-copy { font-size: 0.85rem; color: #94A3B8; }
-.footer-copy a { color: #CBD5E1; }
+.footer-copy { font-size: 0.85rem; color: #D7E0FF; }
+.footer-copy a { color: #E8EEFF; }
 
 .footer-social { display: flex; gap: 10px; }
 .footer-social__link {
@@ -1925,11 +2035,11 @@ a.footer-pastille:hover { background: rgba(255, 255, 255, .14); text-decoration:
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, .08);
-  border: 1px solid rgba(255, 255, 255, .14);
+  background: rgba(255, 255, 255, .22);
+  border: 1px solid rgba(255, 255, 255, .28);
   color: #FFFFFF;
 }
-.footer-social__link:hover { background: rgba(255, 255, 255, .18); }
+.footer-social__link:hover { background: rgba(255, 255, 255, .26); }
 
 /* Trois elements flottent au-dessus du bas de page : la barre d'appel mobile,
    le bouton « retour en haut » et la bulle WhatsApp. Sans ces reserves ils
