@@ -133,7 +133,13 @@ const CONTROLES = [
         // differer d'une page a l'autre, c'est sa raison d'etre. On le retire
         // avant de comparer, sinon la regle « mobilier identique » interdirait
         // de signaler la page active — deux exigences justes qui s'annulent.
-        const normalise = m[0].replace(/ aria-current="page"/g, '');
+        // Meme raison pour la cible du bouton de devis du pied : sur les trois
+        // pages qui portent deja le formulaire, il y descend par une ancre
+        // locale au lieu de recharger contact. C'est une difference voulue,
+        // et la seule.
+        const normalise = m[0]
+          .replace(/ aria-current="page"/g, '')
+          .replace(/href="(?:contact)?#dezinsectContactForm"/g, 'href="#devis"');
         const k = crypto.createHash('md5').update(normalise).digest('hex').slice(0, 8);
         if (!vus.has(k)) vus.set(k, []);
         vus.get(k).push(f);
@@ -1346,7 +1352,18 @@ const CONTROLES = [
       // Les deux menus, isoles chacun de leur cote.
       const menus = [
         ['entete', (h.match(/<nav class="site-nav"[\s\S]*?<\/nav>/) || [''])[0]],
-        ['mobile', (h.match(/<div class="mobile-menu"[\s\S]*?<\/div>\s*<\/div>/) || [''])[0]]
+        // Le menu mobile se termine par </div></nav></div> — le <div> de la
+        // paire de telephones, puis la nav, puis le menu. L'ancien motif
+        // cherchait </div> suivi de </div> : il ne correspondait jamais a cette
+        // structure et attrapait, plus bas dans la page, la premiere paire de
+        // </div> venue. Il a cesse de trouver quoi que ce soit le jour ou le
+        // pied a change, sur les neuf pages qui n'en offraient plus.
+        // On decoupe donc par position, comme le fait lignes-tel.
+        ['mobile', (() => {
+          const e = (h.match(/<header class="site-header"[\s\S]*?<\/header>/) || [''])[0];
+          const i = e.indexOf('<div class="mobile-menu"');
+          return i < 0 ? '' : e.slice(i);
+        })()]
       ];
 
       const cible = m => m.includes('href="' + slug + '"');
