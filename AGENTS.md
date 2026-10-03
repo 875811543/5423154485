@@ -45,15 +45,70 @@ est exactement ce qui est servi.
   grandeur ni de prix « indicatif », en particulier pour la dératisation — ce sont des
   informations d’entreprise, voir règle 3. Le script de génération vérifie
   qu’aucun autre montant en euros n’apparaît sur la page.
-  Elle a une entrée dans les trois listes de services — nav de bureau, menu
-  mobile, pied. **Une seule autre page récente a une entrée de menu :**
-  `identifier-nuisible`, placée au premier niveau de la nav de bureau et du
-  menu mobile, juste avant « Contact », et dans la colonne « Nuisibles
-  traités » du pied. Décision du propriétaire du 1er octobre 2026, qui revient
-  sur le « pas de menu principal » retenu la veille : un outil gratuit censé
-  servir n’a aucune raison d’être atteignable seulement par le pied.
-  Les entrées de premier niveau n’ont **pas** d’icône — les trois `<svg>`
-  qu’on y voit sont les chevrons des sous-menus.
+  Elle est citée dans le sous-menu « Nos services » et dans la colonne « Infos
+  pratiques » du pied.
+
+### La navigation, au 3 octobre 2026
+
+Premier niveau, dans cet ordre, puis les deux boutons d’appel :
+
+> **Nos services ▾ · Nos zones ▾ · Guide des nuisibles ▾ · Infos pratiques ▾ ·
+> Contact**
+
+- « Accueil » n’y figure plus : le logo y mène, et porte pour cela un
+  complément « , accueil » réservé aux lecteurs d’écran
+  (`.visuellement-cachee`). Pas d’`aria-label` : les trois de l’en-tête ont été
+  retirés à dessein, et un `aria-label` ne contenant pas le texte visible
+  « DezinsectCorse » casserait le critère « label dans le nom ».
+- « Guide des nuisibles » porte `identifier-nuisible`, `lexique-nuisibles` et
+  les douze fiches ; « Infos pratiques » porte la FAQ, les actualités et le
+  calendrier. Les deux remplacent l’ancien « Ressources », lui-même issu de
+  « Lexique ».
+- `aria-current="page"` est posé **à deux endroits** : le lien, et son parent
+  (`<button>` en bureau, `<summary>` en mobile) — sans quoi, menu replié, rien
+  n’indique où l’on est. Le contrôle `nav-courante` compte les deux séparément.
+- Les entrées de premier niveau n’ont **pas** d’icône — les `<svg>` qu’on y voit
+  sont les chevrons des sous-menus.
+
+**Le seuil de bascule bureau vaut 1220 px**, et c’est un minimum mesuré : 17 px
+de marge, 1216 px ne passe plus. Il est posé **aux deux endroits**, la media
+query de `global.css` et le `resize` de `main.js`, qui doivent rester
+identiques. Le commentaire qui l’accompagne dans `global.css` décrit les trois
+façons de se tromper en le mesurant, rencontrées toutes les trois ici — à lire
+avant d’y toucher.
+
+### Le pied de page, au 3 octobre 2026
+
+Fond bleu nuit (`--ink`), texte clair, **toutes les combinaisons au niveau AA**
+mesurées sur le fond *effectif* — les pastilles et le bandeau sont en `rgba`,
+lire la couleur déclarée ne suffit pas. Quatre blocs : bandeau d’appel, bloc
+d’identité, quatre colonnes de liens, barre finale.
+
+**Les quatre colonnes sont des `<details>` OUVERTS dans le HTML, et c’est
+`main.js` qui les replie sous 768 px.** L’inverse — fermés dans le HTML,
+rouverts en CSS au-dessus de 768 px — ne fonctionne pas, et c’est le piège à
+retenir :
+
+> Chrome masque le contenu d’un `<details>` fermé par `content-visibility` sur
+> un slot interne. **Aucune déclaration `display` d’auteur ne le lève.** Quatre
+> parades ont été mesurées ; seul `::details-content` y parvient, et il est trop
+> récent pour qu’on en dépende.
+
+Conséquence assumée : **sans JavaScript, le mobile voit les quatre colonnes
+dépliées.** C’est plus long, mais tout reste atteignable — l’inverse aurait
+rendu quarante liens invisibles.
+
+Deux autres choses à savoir :
+
+- le bouton du bandeau **ne porte pas `.btn-devis`**. Cette classe ne reçoit du
+  bloc des boutons verts que le fond et la couleur, en `!important`, et aucune
+  mise en page : c’est elle qui avait livré un lien souligné sur fond vert à
+  l’accueil. Le bouton du pied pose donc sa mise en page en entier ;
+- sa cible **diffère sur trois pages**. Sur `contact`, `index` et
+  `identifier-nuisible`, qui portent déjà le formulaire, il y descend par une
+  ancre locale au lieu de recharger `contact`. C’est la seule différence entre
+  les 67 pieds, et le contrôle `entete-pied` la normalise avant de comparer,
+  comme il le fait d’`aria-current`.
 - `etat-parasitaire-termites-corse` vise le groupe réglementaire (« état
   parasitaire », « diagnostic termites obligatoire vente », « commune déclarée
   infestée »). **Elle dit explicitement que nous ne réalisons pas le diagnostic
@@ -1304,17 +1359,32 @@ les basculer en zone desservie** pour faire disparaître une apparente incohére
 
 ## Avis Google : tenus à la main
 
-Le site est statique : **rien ne met à jour les avis automatiquement**. La note
-et le nombre d'avis sont écrits en dur dans `index.html`, à **deux endroits** :
+Le site est statique : **rien ne met à jour les avis automatiquement**. Le
+nombre est **23** au 3 octobre 2026, et il est écrit en dur à **quatre
+endroits**, dont un sur les 67 pages :
 
-- `<span class="reviews__score-meta">21 avis Google</span>`, à côté de la note ;
-- le lien « Lire les 21 avis sur Google ».
+| Où | Quoi |
+|---|---|
+| `index.html`, hero | l'`aria-label` de `.hero-confiance__avis` — « 5,0 · 23 avis » |
+| `index.html`, bloc avis | `<span class="reviews__score-meta">23 avis Google</span>` |
+| `index.html`, bloc avis | le lien « Lire les 23 avis sur Google » |
+| **pied de page, 67 pages** | la pastille `.footer-pastille--avis` — « Google 5,0 · 23 avis » |
 
 La note (`5,0`) est dans `<span class="reviews__score-num">`. Quand le
-propriétaire signale un nouveau chiffre, mettre à jour **les deux** nombres,
-et **ne pas toucher la note sans qu'il la confirme** : un avis à moins de cinq
-étoiles la ferait passer à 4,9, et afficher une note fausse est pire
-qu'afficher un nombre en retard.
+propriétaire signale un nouveau chiffre, mettre à jour **les quatre** nombres —
+un `sed` sur `*.html` pour le dernier —, et **ne pas toucher la note sans qu'il
+la confirme** : un avis à moins de cinq étoiles la ferait passer à 4,9, et
+afficher une note fausse est pire qu'afficher un nombre en retard.
+
+**Cette liste a déjà été fausse.** Elle annonçait « deux endroits » et le
+chiffre 21, alors que le site en portait trois et affichait 23 : l'occurrence du
+hero n'y avait jamais été inscrite, et la mise à jour de 21 vers 23 n'a pas été
+reportée ici. Un décompte écrit à la main se périme — le vérifier avant de s'y
+fier :
+
+```sh
+grep -c 'avis' index.html && grep -l 'Google 5,0 &middot; .* avis' *.html | wc -l
+```
 
 Aucune donnée structurée ne porte la note : `aggregateRating` a été écarté.
 Le détail était dans `AUDIT-SEO.md §3`, **document de travail retiré du dépôt le
