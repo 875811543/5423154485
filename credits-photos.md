@@ -68,6 +68,38 @@ domaine public et en CC0, par honnêteté.
 sur la virgule, comme pour un `srcset`, et prenaient `_Cimex_lectularius.jpg`
 pour un fichier manquant. L'URL encodée résout bien sur Commons, vérifié en 200.
 
+## Les six photos de fond des cartes — 3 octobre 2026
+
+Fonds des six cartes de l'étape 1, sous un voile blanc à 78 %. Elles ne sont pas
+des `<picture>` mais des fonds CSS, servis par `image-set()` : AVIF d'abord,
+WebP ensuite, JPEG pour les navigateurs qui ignorent `image-set`.
+
+| Carte | Sujet | Auteur | Licence | AVIF | Page Commons |
+|---|---|---|---|---|---|
+| Ça vole | Reine de frelon européen (*Vespa crabro*) en vol | Rolf Dietrich Brecher | CC BY-SA 2.0 | 28,1 Ko | [Hornissenkönigin - Queen Hornet (17979314053).jpg](https://commons.wikimedia.org/wiki/File:Hornissenk%C3%B6nigin_-_Queen_Hornet_(17979314053).jpg) |
+| Ça rampe | Blatte germanique (*Blattella germanica*) | David Monniaux | CC BY-SA 3.0 | 27,9 Ko | [Blatella germanica p1160197.jpg](https://commons.wikimedia.org/wiki/File:Blatella_germanica_p1160197.jpg) |
+| Un rongeur | Rat brun ou surmulot (*Rattus norvegicus*) | Salix | CC BY-SA 3.0 | 24,8 Ko | [Rattus norvegicus-Rochefort.JPG](https://commons.wikimedia.org/wiki/File:Rattus_norvegicus-Rochefort.JPG) |
+| Dégâts sur le bois | Trous de sortie de vrillette dans du bois | Kai-Martin Knaak | CC BY-SA 3.0 | 22,5 Ko | [Holzwurm loecher.jpg](https://commons.wikimedia.org/wiki/File:Holzwurm_loecher.jpg) |
+| Des piqûres | Moustique tigre (*Aedes albopictus*) sur une peau | James Gathany / CDC | Domaine public | 23,1 Ko | [Aedes albopictus on human skin.jpg](https://commons.wikimedia.org/wiki/File:Aedes_albopictus_on_human_skin.jpg) |
+| Un nid | Nid de frelons européens (*Vespa crabro*) | Gomera-b | CC0 | 27,8 Ko | [Hornissennest Konzell.JPG](https://commons.wikimedia.org/wiki/File:Hornissennest_Konzell.JPG) |
+
+Poids AVIF cumulé : **154,1 Ko** pour six fonds, soit 25,7 Ko en moyenne —
+chacun sous la cible de 30 Ko.
+
+### Deux pièges de recherche, à connaître avant d'en chercher d'autres
+
+- **`Category:Rattus norvegicus` contient des photos de couleuvres**, classées là
+  parce qu'elles mangent des rats. Une catégorie de taxon dit le *rapport* au
+  taxon, pas le sujet de l'image. Vérifier chaque fichier, pas la catégorie.
+- **`Category:Anobium punctatum` contient l'insecte, pas ses trous.** Le sujet
+  demandé pour la carte « bois » est un *dégât*, pas une espèce : il a fallu
+  chercher « woodworm holes » en plein texte.
+
+Le recadrage est fait par saillance (`sharp.strategy.attention`) et non au
+centre : le cadrage centré donnait une marguerite pour la carte « ça vole ».
+Le gain reste modeste — sous un voile à 78 %, ces fonds apportent une texture,
+ils ne montrent pas une espèce identifiable.
+
 ## Reste à faire
 
 36 fiches sur 43 sont encore sans photo. Le lot pilote sert à valider le format,

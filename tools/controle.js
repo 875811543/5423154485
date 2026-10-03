@@ -813,8 +813,21 @@ const CONTROLES = [
   }},
 
 { nom: 'orphelins', titre: 'Aucune image inutilisee dans le depot',
+  // Les feuilles de style sont lues elles aussi : une image peut n'etre
+  // referencee que par un url() de CSS, comme les six fonds des cartes de
+  // l'outil d'identification. Sans cela le controle les declarait orphelines
+  // alors qu'elles sont servies a chaque chargement.
   run() {
-    const tout = pages.map(lire).join('\n') + (fs.existsSync('manifest.json') ? lire('manifest.json') : '');
+    let css = '';
+    for (const d of ['assets/css', 'assets/css/pages']) {
+      const dir = path.join(RACINE, d);
+      if (!fs.existsSync(dir)) continue;
+      for (const n of fs.readdirSync(dir).filter(x => x.endsWith('.css'))) {
+        css += '\n' + fs.readFileSync(path.join(dir, n), 'utf8');
+      }
+    }
+    const tout = pages.map(lire).join('\n') + css
+      + (fs.existsSync('manifest.json') ? lire('manifest.json') : '');
     return toutesLesImages()
       .filter(f => !tout.includes(path.basename(f)) && !/favicon|icon-512/.test(f))
       .map(f => 'jamais referencee : ' + f);

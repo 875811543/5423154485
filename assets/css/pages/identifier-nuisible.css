@@ -119,6 +119,104 @@
 .ident-carte__ico svg { width: 100%; height: 100%; display: block; }
 
 /* --------------------------------------------------------------
+   2 bis. Photo de fond des six cartes de depart
+   Le fond est pose en deux couches sur la meme propriete : un voile blanc
+   uniforme PAR-DESSUS la photo. Le voile est ce qui garantit la lisibilite —
+   le contraste a ete mesure sur le rendu, au point le plus clair ET le plus
+   sombre de chaque photo, pas sur la couleur declaree.
+   image-set() sert l'AVIF a qui sait le lire, le WebP ensuite, et une
+   declaration simple le precede pour les navigateurs qui ignorent image-set.
+   -------------------------------------------------------------- */
+.ident-carte {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+/* Le voile : 86 % de blanc. Mesure a 80 % le texte secondaire tombait sous
+   4,5:1 sur les photos claires ; a 86 % la plus serree des six est a 5,2:1. */
+.ident-carte[data-branche] {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.78)),
+    var(--carte-img-repli);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.78)),
+    var(--carte-img);
+}
+
+.ident-carte[data-branche="vole"] {
+  --carte-img-repli: url('../../../images/cartes/carte-vole.jpg');
+  --carte-img: image-set(url('../../../images/cartes/carte-vole.avif') type('image/avif'),
+                         url('../../../images/cartes/carte-vole.webp') type('image/webp'),
+                         url('../../../images/cartes/carte-vole.jpg') type('image/jpeg'));
+}
+.ident-carte[data-branche="rampe"] {
+  --carte-img-repli: url('../../../images/cartes/carte-rampe.jpg');
+  --carte-img: image-set(url('../../../images/cartes/carte-rampe.avif') type('image/avif'),
+                         url('../../../images/cartes/carte-rampe.webp') type('image/webp'),
+                         url('../../../images/cartes/carte-rampe.jpg') type('image/jpeg'));
+}
+.ident-carte[data-branche="rongeur"] {
+  --carte-img-repli: url('../../../images/cartes/carte-rongeur.jpg');
+  --carte-img: image-set(url('../../../images/cartes/carte-rongeur.avif') type('image/avif'),
+                         url('../../../images/cartes/carte-rongeur.webp') type('image/webp'),
+                         url('../../../images/cartes/carte-rongeur.jpg') type('image/jpeg'));
+}
+.ident-carte[data-branche="bois"] {
+  --carte-img-repli: url('../../../images/cartes/carte-bois.jpg');
+  --carte-img: image-set(url('../../../images/cartes/carte-bois.avif') type('image/avif'),
+                         url('../../../images/cartes/carte-bois.webp') type('image/webp'),
+                         url('../../../images/cartes/carte-bois.jpg') type('image/jpeg'));
+}
+.ident-carte[data-branche="piqures"] {
+  --carte-img-repli: url('../../../images/cartes/carte-piqures.jpg');
+  --carte-img: image-set(url('../../../images/cartes/carte-piqures.avif') type('image/avif'),
+                         url('../../../images/cartes/carte-piqures.webp') type('image/webp'),
+                         url('../../../images/cartes/carte-piqures.jpg') type('image/jpeg'));
+}
+.ident-carte[data-branche="nid"] {
+  --carte-img-repli: url('../../../images/cartes/carte-nid.jpg');
+  --carte-img: image-set(url('../../../images/cartes/carte-nid.avif') type('image/avif'),
+                         url('../../../images/cartes/carte-nid.webp') type('image/webp'),
+                         url('../../../images/cartes/carte-nid.jpg') type('image/jpeg'));
+}
+
+/* Au survol et au focus : le voile s'eclaircit un peu, la bordure passe au
+   bleu. L'eclaircissement reste faible — a 78 % le texte secondaire retombait
+   sous le seuil AA sur deux des six photos. */
+.ident-carte[data-branche]:hover,
+.ident-carte[data-branche]:focus-visible {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.78)),
+    var(--carte-img-repli);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.78)),
+    var(--carte-img);
+}
+
+/* Le mouvement reduit ne doit pas supprimer l'indication de survol, seulement
+   sa transition. La bordure et le voile restent. */
+@media (prefers-reduced-motion: reduce) {
+  .ident-carte { transition: none !important; }
+}
+
+/* Le sous-titre des cartes passe de --muted a --body-text. Mesure : --muted
+   vaut 4,54:1 sur blanc PUR, donc la moindre photo qui transparait le fait
+   tomber sous le seuil AA — releve a 4,33:1 sur la carte « ca rampe ».
+   Foncer le texte plutot qu'epaissir le voile : la photo reste visible. */
+.ident-carte .ident-choix__d { color: var(--body-text); }
+
+/* Ligne de credit sous la grille des cartes. */
+.ident-cartes-credit {
+  margin: 10px 0 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.ident-cartes-credit a { color: inherit; }
+
+
+/* --------------------------------------------------------------
    3. Une etape de la cle guidee
    -------------------------------------------------------------- */
 .ident-barre {
