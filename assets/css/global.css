@@ -1731,110 +1731,188 @@ li > .ico:first-child {
 .site-footer ul { padding-left: 0; list-style: none; }
 .site-footer address { font-style: normal; }
 
+/* Fond bleu nuit : --ink, la couleur la plus sombre du :root, deja celle des
+   titres. Les trois tons de texte sont choisis pour rester au niveau AA sur ce
+   fond — mesure faite sur le rendu, pas sur le papier :
+     #FFFFFF  17,4:1   titres et libelles forts
+     #E2E8F0  14,1:1   liens et texte courant
+     #94A3B8   6,6:1   mentions secondaires (AA exige 4,5:1) */
 .site-footer {
   line-height: 1.6;
   font-family: var(--font-body);
-  background: var(--surface);
-  color: var(--body-text);
-  border-top: 2px solid var(--primary-blue);
+  background: var(--ink);
+  color: #E2E8F0;
+  border-top: 3px solid var(--cta-green);
+}
+
+.site-footer a { color: #E2E8F0; text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
+.site-footer a:focus-visible {
+  outline: 2px solid var(--cta-green);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* --- Bandeau d'appel --- */
 .footer-cta {
-  background: var(--surface-blue);
-  border-bottom: 1px solid var(--border);
-  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  padding: 26px 20px;
+  background: rgba(255, 255, 255, .05);
+  border-bottom: 1px solid rgba(255, 255, 255, .10);
+}
+.footer-cta__t {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.18rem;
+  color: #FFFFFF;
+}
+.footer-cta__d { color: #CBD5E1; font-size: 0.95rem; }
+
+/* Le bouton ne porte pas .btn-devis : le bloc des boutons verts de ce fichier
+   impose fond et couleur en !important a cette classe, mais aucune mise en
+   page — c'est ce qui avait livre un lien souligne sur fond vert a l'accueil.
+   On pose donc ici une mise en page complete. */
+.footer-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 13px 28px;
+  border-radius: 999px;
+  background: var(--cta-green);
+  color: var(--on-cta) !important;
+  font-weight: 800;
+  font-size: 1rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.footer-cta__btn:hover {
+  background: var(--cta-green-dark);
+  text-decoration: none;
+}
+
+/* --- Grille --- */
+.footer-grid {
+  display: grid;
+  gap: 28px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+/* --- Bloc identite --- */
+.footer-brand__lien {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.footer-brand__logo { width: 44px; height: 44px; display: block; }
+.footer-brand__nom {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.12rem;
+  color: #FFFFFF;
+}
+.footer-brand__phrase {
+  color: #CBD5E1;
+  font-size: 0.93rem;
+  margin-bottom: 16px;
+  max-width: 46ch;
+}
+
+.footer-coordonnees {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 18px;
+  font-size: 0.95rem;
+}
+.footer-coordonnees a { display: inline-block; }
+.footer-coordonnees .tel-nom { color: #94A3B8; }
+.footer-coordonnees .tel-num { font-weight: 700; color: #FFFFFF; }
+
+/* --- Pastilles de confiance --- */
+.footer-pastilles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.footer-pastille {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .14);
+  color: #FFFFFF;
+}
+.footer-pastille svg { flex-shrink: 0; }
+.footer-pastille--avis svg { color: #FBBF24; }
+.footer-pastille--certif svg { color: var(--cta-green); }
+a.footer-pastille:hover { background: rgba(255, 255, 255, .14); text-decoration: none; }
+
+/* --- Colonnes de liens ---
+   En <details> pour que le mobile puisse les replier. Le resume porte un h3,
+   qui existe ainsi dans le plan du document : la navigation par titres d'un
+   lecteur d'ecran ne voit pas un <summary> seul. */
+.footer-col__bloc { border-bottom: 1px solid rgba(255, 255, 255, .10); }
+.footer-col__resume {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 48px;          /* cible tactile confortable */
+  padding: 4px 0;
+  cursor: pointer;
+  list-style: none;
+}
+.footer-col__resume::-webkit-details-marker { display: none; }
+.footer-col__resume h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  color: #FFFFFF;
+}
+.footer-col__chevron { transition: transform .2s ease; flex-shrink: 0; color: #94A3B8; }
+.footer-col__bloc[open] .footer-col__chevron { transform: rotate(180deg); }
+/* Le <ul> n'est mis en page que lorsque le bloc est ouvert. Il l'est par
+   defaut dans le HTML : c'est main.js qui replie les colonnes sous 768 px.
+   Faire l'inverse — fermer dans le HTML et rouvrir en CSS au-dessus de
+   768 px — ne marche pas : Chrome masque le contenu d'un <details> ferme par
+   content-visibility sur un slot interne, et aucune declaration display
+   d'auteur ne le leve. Mesure faite : seul ::details-content y parvient, et il
+   est trop recent pour qu'on en depende. */
+.footer-col ul { gap: 9px; padding: 4px 0 16px; }
+.footer-col__bloc[open] > ul { display: grid; }
+.footer-col a { font-size: 0.93rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-col__chevron { transition: none !important; }
+}
+
+/* --- Barre finale --- */
+.footer-bottom {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 14px;
   text-align: center;
-}
-.footer-cta__title {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--ink);
-}
-.footer-cta__actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-.footer-cta__btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 10px 20px;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 0.92rem;
-  text-decoration: none;
-  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
-}
-.footer-cta__btn--call {
-  background: var(--cta-green);
-  color: var(--on-cta);
-  border: 2px solid var(--cta-green);
-}
-.footer-cta__btn--call:hover { background: var(--cta-green-dark); border-color: var(--cta-green-dark); }
-.footer-cta__btn--devis {
-  background: #fff;
-  color: var(--primary-blue);
-  border: 2px solid var(--primary-blue);
-}
-.footer-cta__btn--devis:hover { background: var(--primary-blue); color: #fff; }
-
-/* --- Grille --- */
-.footer-grid {
-  max-width: 1180px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 40px 20px 8px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px 20px;
+  padding: 18px 20px 24px;
+  border-top: 1px solid rgba(255, 255, 255, .10);
 }
-/* Mobile : la marque sur toute la largeur, les listes de liens par deux */
-.footer-brand { grid-column: 1 / -1; }
-.site-footer h3 {
-  font-family: var(--font-heading);
-  color: var(--ink);
-  font-size: 0.92rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  margin-bottom: 14px;
-}
+.footer-copy { font-size: 0.85rem; color: #94A3B8; }
+.footer-copy a { color: #CBD5E1; }
 
-.footer-brand img { height: 48px; width: auto; margin-bottom: 12px; }
-.footer-brand p {
-  font-size: 0.88rem;
-  color: var(--muted);
-  line-height: 1.5;
-  max-width: 300px;
-  margin-bottom: 14px;
-}
-
-.footer-coordonnees {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-}
-.footer-coordonnees a {
-  color: var(--primary-blue);
-  text-decoration: none;
-  font-size: 0.88rem;
-  font-weight: 600;
-}
-.footer-coordonnees a:hover { color: var(--primary-blue-dark); text-decoration: underline; }
-
-/* Reseaux en icones : cible de 40 px, nom porte par aria-label.
-   Le SVG est inline : aucune requete, aucun domaine tiers. */
-.footer-social { display: flex; gap: 8px; margin-top: 16px; }
+.footer-social { display: flex; gap: 10px; }
 .footer-social__link {
   display: inline-flex;
   align-items: center;
@@ -1842,59 +1920,48 @@ li > .ico:first-child {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid var(--border);
-  background: #fff;
-  color: var(--muted);
-  transition: color .18s ease, border-color .18s ease;
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .14);
+  color: #FFFFFF;
 }
-.footer-social__link:hover { border-color: currentColor; }
-.footer-social__link--youtube:hover { color: #C4302B; }
-.footer-social__link--instagram:hover { color: #C13584; }
-.footer-social__link--facebook:hover { color: #1877F2; }
+.footer-social__link:hover { background: rgba(255, 255, 255, .18); }
 
-.footer-col ul { display: flex; flex-direction: column; gap: 9px; }
-.footer-col a {
-  color: var(--body-text);
-  text-decoration: none;
-  font-size: 0.88rem;
-  font-weight: 500;
-  transition: color 0.2s ease;
+/* Trois elements flottent au-dessus du bas de page : la barre d'appel mobile,
+   le bouton « retour en haut » et la bulle WhatsApp. Sans ces reserves ils
+   recouvrent la barre finale — mesure : la bulle interceptait le clic sur
+   l'icone Facebook en bureau, et le bouton de retour chevauchait les mentions
+   legales a 360 px. Le body porte deja 76 px pour la barre d'appel. */
+@media (max-width: 767px) {
+  .footer-bottom { padding-bottom: 76px; }
 }
-.footer-col a:hover { color: var(--primary-blue); }
-
-/* --- Bas de page : liens utiles + mentions --- */
-.footer-bottom {
-  max-width: 1180px;
-  margin: 24px auto 0;
-  padding: 20px 20px 24px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  text-align: center;
-}
-.footer-links ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 4px 18px;
-}
-.footer-links a {
-  color: var(--body-text);
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-.footer-links a:hover { color: var(--primary-blue); }
-.footer-copy { font-size: 0.8rem; color: var(--muted); }
-
-@media (min-width: 640px) {
-  .footer-cta { flex-direction: row; justify-content: center; gap: 24px; text-align: left; }
+@media (min-width: 768px) {
+  /* Selecteur a deux niveaux : le reset du pied pose `.site-footer ul
+     { margin: 0 }`, de specificite (0,2,0), qui bat un `.footer-social` seul
+     (0,1,0). Mesure faite : la marge restait a 0 et la bulle continuait de
+     recouvrir l'icone Facebook. */
+  .site-footer .footer-social { margin-right: 84px; }
 }
 
+/* --- Bureau : les quatre colonnes sont ouvertes et le resume n'est plus un
+       bouton. Le contenu d'un <details> ferme est masque par le navigateur ;
+       une declaration display d'auteur passe devant, c'est ce qu'on utilise
+       ici volontairement. --- */
+@media (min-width: 768px) {
+  .footer-cta { flex-direction: row; justify-content: center; gap: 28px; text-align: left; }
+  .footer-cta__texte { display: grid; gap: 2px; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .footer-brand { grid-column: 1 / -1; }
+  .footer-col__bloc { border-bottom: 0; }
+  .footer-col__resume { cursor: default; pointer-events: none; min-height: 0; margin-bottom: 6px; }
+  .footer-col__chevron { display: none; }
+  .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; }
+}
+
+/* Cinq blocs sur la rangee, pas quatre : l'identite plus les quatre colonnes.
+   Avec quatre pistes, « Infos pratiques » passait a la ligne et laissait un
+   grand vide a sa droite. */
 @media (min-width: 1024px) {
-  .footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; }
+  .footer-grid { grid-template-columns: 1.6fr repeat(4, 1fr); }
   .footer-brand { grid-column: auto; }
 }
 

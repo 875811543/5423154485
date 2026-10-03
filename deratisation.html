@@ -225,7 +225,7 @@
 
   <link rel="preload" as="image" media="(max-width: 767px)" href="images/interventions/pieges-appats-rongeurs-deratisation-760.avif" type="image/avif">
   <link rel="preload" as="image" media="(min-width: 768px)" href="images/interventions/pieges-appats-rongeurs-deratisation.avif" type="image/avif">
-  <link rel="stylesheet" href="assets/css/global.css?v=98a538ef">
+  <link rel="stylesheet" href="assets/css/global.css?v=ace681fc">
   <link rel="stylesheet" href="assets/css/pages-services.css?v=9a8392ef">
 </head>
 <body>
@@ -919,94 +919,117 @@
 
 <footer class="site-footer">
 
-  <!-- Bandeau d'appel : le chemin de conversion, visible avant les listes de liens -->
+  <!-- Bandeau d'appel : le chemin de conversion, avant les listes de liens.
+       Sur les trois pages qui portent deja le formulaire, le bouton y descend
+       au lieu de recharger contact. -->
   <div class="footer-cta">
-    <p class="footer-cta__title">Un nuisible&nbsp;? Intervention 7j/7 en Corse</p>
-    <div class="footer-cta__actions">
-      <a href="tel:+33685753040" class="footer-cta__btn footer-cta__btn--call" aria-label="Appeler Dumé 06 85 75 30 40"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel-nom">Dumé</span> <span class="tel-num">06 85 75 30 40</span></a>
-      <a href="contact" class="footer-cta__btn footer-cta__btn--devis">Demander un devis gratuit</a>
+    <div class="footer-cta__texte">
+      <p class="footer-cta__t">Un nuisible chez vous&nbsp;?</p>
+      <p class="footer-cta__d">Devis gratuit, réponse sous 24&nbsp;h.</p>
     </div>
+    <a class="footer-cta__btn" href="contact#dezinsectContactForm">Demander un devis</a>
   </div>
 
   <div class="footer-grid">
 
-    <!-- Marque, coordonnees et reseaux -->
+    <!-- Identite, coordonnees et pastilles de confiance -->
     <div class="footer-brand">
-      <picture><source srcset="images/logo-icone.avif" type="image/avif"><source srcset="images/logo-icone.webp" type="image/webp"><img src="images/logo-icone.png" alt="Dezinsect Corse" width="96" height="96" loading="lazy" decoding="async"></picture>
-      <p>Dératisation, désinsectisation, guêpes &amp; frelons et traitement anti-termites en Haute-Corse et Corse-du-Sud.</p>
+      <a class="footer-brand__lien" href="./">
+        <picture><source srcset="images/logo-icone.avif" type="image/avif"><source srcset="images/logo-icone.webp" type="image/webp"><img src="images/logo-icone.png" alt="" width="96" height="96" loading="lazy" decoding="async" class="footer-brand__logo"></picture>
+        <span class="footer-brand__nom">Dezinsect Corse</span>
+      </a>
+      <p class="footer-brand__phrase">Dératisation, désinsectisation, guêpes et frelons, anti-termites en Haute-Corse et en Corse-du-Sud.</p>
       <address class="footer-coordonnees">
         <a href="tel:+33685753040"><span class="tel-nom">Dumé&nbsp;:&nbsp;</span><span class="tel-num">06 85 75 30 40</span></a>
         <a href="tel:+33629421638"><span class="tel-nom">Antoine&nbsp;:&nbsp;</span><span class="tel-num">06 29 42 16 38</span></a>
         <a href="https://wa.me/33685753040?text=Bonjour%2C%20je%20vous%20contacte%20depuis%20votre%20site%20Dezinsect%20Corse." target="_blank" rel="noopener">WhatsApp&nbsp;: 06 85 75 30 40</a>
+        <a href="mailto:dezinsect20@gmail.com">dezinsect20@gmail.com</a>
         <a href="https://www.google.com/maps/search/?api=1&query=Lieu-dit+Acqua+Calda+20221+Santa-Maria-Poggio" target="_blank" rel="noopener">Lieu-dit Acqua Calda,<br>20221 Santa-Maria-Poggio</a>
       </address>
-      <ul class="footer-social" aria-label="Réseaux sociaux">
-        <li><a href="https://www.youtube.com/@Dezinsect-corse-DM" target="_blank" rel="noopener" class="footer-social__link footer-social__link--youtube" aria-label="Notre chaîne YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a></li>
-        <li><a href="https://www.instagram.com/dezinsectcorse/" target="_blank" rel="noopener" class="footer-social__link footer-social__link--instagram" aria-label="Notre compte Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.9-.1zm0 2.2c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.7a6.1 6.1 0 1 1 0 12.2 6.1 6.1 0 0 1 0-12.2zm0 2.2a3.9 3.9 0 1 0 0 7.8 3.9 3.9 0 0 0 0-7.8zm6.4-3.9a1.4 1.4 0 1 1 0 2.9 1.4 1.4 0 0 1 0-2.9z"/></svg></a></li>
-        <li><a href="https://www.facebook.com/dezinsect20/" target="_blank" rel="noopener" class="footer-social__link footer-social__link--facebook" aria-label="Notre page Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a></li>
+      <ul class="footer-pastilles">
+        <li><a class="footer-pastille footer-pastille--avis" href="https://www.google.com/maps/place/?cid=6330082989377733098" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>Google 5,0 &middot; 23 avis</a></li>
+        <li><span class="footer-pastille footer-pastille--certif"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V7z"/><path d="m9 12 2 2 4-4"/></svg>Certifié Certibiocide</span></li>
       </ul>
     </div>
 
-    <!-- Nos services -->
+    <!-- Quatre colonnes de liens, en <details> OUVERT par defaut.
+         C est main.js qui les replie sous 768 px, et non la CSS. Chrome masque
+         le contenu d un <details> ferme par content-visibility sur un slot
+         interne, qu aucune declaration display d auteur ne leve. Seul
+         ::details-content y parvient, et il est trop recent pour qu on en
+         depende. Consequence assumee, sans JavaScript le mobile voit les
+         quatre colonnes depliees — plus long, mais tout reste atteignable. -->
     <nav class="footer-col" aria-label="Nos services">
-      <h3>Nos services</h3>
-      <ul>
-        <li><a href="services-anti-nuisibles">Tous nos services</a></li>
-        <li><a href="deratisation">Dératisation</a></li>
-        <li><a href="desinsectisation">Désinsectisation</a></li>
-        <li><a href="guepes-et-frelons">Guêpes &amp; frelons</a></li>
-        <li><a href="moustiques-corse">Moustiques</a></li>
-        <li><a href="traitement-anti-termites">Traitement anti-termites</a></li>
-        <li><a href="traitement-injection-bati-termites">Traitement préventif charpente</a></li>
-        <li><a href="conducteur-engins-caces">Conducteur d'engins CACES</a></li>
-        <li><a href="tarifs-anti-nuisibles-corse">Tarifs &amp; devis</a></li>
-      </ul>
+      <details class="footer-col__bloc" open>
+        <summary class="footer-col__resume"><h3>Nos services</h3><svg class="footer-col__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <ul>
+          <li><a href="services-anti-nuisibles">Tous nos services</a></li>
+          <li><a href="deratisation">Dératisation</a></li>
+          <li><a href="desinsectisation">Désinsectisation</a></li>
+          <li><a href="guepes-et-frelons">Guêpes &amp; frelons</a></li>
+          <li><a href="moustiques-corse">Moustiques</a></li>
+          <li><a href="traitement-anti-termites">Traitement anti-termites</a></li>
+          <li><a href="traitement-injection-bati-termites">Traitement préventif charpente</a></li>
+          <li><a href="conducteur-engins-caces">Conducteur d’engins CACES</a></li>
+        </ul>
+      </details>
     </nav>
 
-    <!-- Nuisibles traites : les fiches, jusqu'ici absentes du pied de page -->
     <nav class="footer-col" aria-label="Nuisibles traités">
-      <h3>Nuisibles traités</h3>
-      <ul>
-        <li><a href="identifier-nuisible">Identifier un nuisible</a></li>
-        <li><a href="rat-brun-surmulot">Rat brun (surmulot)</a></li>
-        <li><a href="rat-noir">Rat noir</a></li>
-        <li><a href="souris">Souris</a></li>
-        <li><a href="cafards">Cafards &amp; blattes</a></li>
-        <li><a href="fourmis">Fourmis</a></li>
-        <li><a href="mouches">Mouches</a></li>
-        <li><a href="capricorne-des-maisons">Capricorne &amp; xylophages</a></li>
-        <li><a href="merule-champignons-bois">Mérule</a></li>
-      </ul>
+      <details class="footer-col__bloc" open>
+        <summary class="footer-col__resume"><h3>Nuisibles traités</h3><svg class="footer-col__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <ul>
+          <li><a href="rat-brun-surmulot">Rat brun (surmulot)</a></li>
+          <li><a href="rat-noir">Rat noir</a></li>
+          <li><a href="souris">Souris</a></li>
+          <li><a href="cafards">Cafards &amp; blattes</a></li>
+          <li><a href="fourmis">Fourmis</a></li>
+          <li><a href="mouches">Mouches</a></li>
+          <li><a href="capricorne-des-maisons">Capricorne &amp; xylophages</a></li>
+          <li><a href="merule-champignons-bois">Mérule</a></li>
+        </ul>
+      </details>
     </nav>
 
-    <!-- Zones d'intervention -->
-    <nav class="footer-col" aria-label="Zones d'intervention">
-      <h3>Zones d'intervention</h3>
-      <ul>
-        <li><a href="zones-dintervention">Toutes nos zones</a></li>
-        <li><a href="anti-nuisibles-costa-verde">Bastia &amp; Costa Verde</a></li>
-        <li><a href="traitement-termites-costa-verde">Termites en Costa Verde</a></li>
-        <li><a href="anti-nuisible-corte">Corte, Calvi &amp; Balagne</a></li>
-        <li><a href="anti-nuisibles-grand-ajaccio-porto-vecchio">Ajaccio &amp; Porto-Vecchio</a></li>
-      </ul>
+    <nav class="footer-col" aria-label="Zones d’intervention">
+      <details class="footer-col__bloc" open>
+        <summary class="footer-col__resume"><h3>Zones d’intervention</h3><svg class="footer-col__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <ul>
+          <li><a href="zones-dintervention">Toutes nos zones</a></li>
+          <li><a href="anti-nuisibles-costa-verde">Bastia &amp; Costa Verde</a></li>
+          <li><a href="traitement-termites-costa-verde">Termites en Costa Verde</a></li>
+          <li><a href="anti-nuisible-corte">Corte, Calvi &amp; Balagne</a></li>
+          <li><a href="anti-nuisibles-grand-ajaccio-porto-vecchio">Ajaccio &amp; Porto-Vecchio</a></li>
+        </ul>
+      </details>
+    </nav>
+
+    <nav class="footer-col" aria-label="Infos pratiques">
+      <details class="footer-col__bloc" open>
+        <summary class="footer-col__resume"><h3>Infos pratiques</h3><svg class="footer-col__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <ul>
+          <li><a href="identifier-nuisible">Identifier un nuisible</a></li>
+          <li><a href="lexique-nuisibles">Lexique des nuisibles</a></li>
+          <li><a href="tarifs-anti-nuisibles-corse">Tarifs &amp; devis</a></li>
+          <li><a href="questions-frequentes-termites-frelons-rat">Questions fréquentes</a></li>
+          <li><a href="actualites">Actualités</a></li>
+          <li><a href="contact">Contact</a></li>
+        </ul>
+      </details>
     </nav>
 
   </div>
 
   <div class="footer-bottom">
-    <nav class="footer-links" aria-label="Liens utiles">
-      <ul>
-        <li><a href="./">Accueil</a></li>
-        <li><a href="questions-frequentes-termites-frelons-rat">Questions fréquentes</a></li>
-        <li><a href="actualites">Actualités</a></li>
-        <li><a href="lexique-nuisibles">Lexique nuisibles</a></li>
-        <li><a href="contact">Contact</a></li>
-      </ul>
-    </nav>
-    <p class="footer-copy">© 2026 Dezinsect Corse. <a href="mentions-legales" class="link-plain">Mentions légales</a> · <a href="politique-confidentialite" class="link-plain">Politique de confidentialité</a></p>
+    <p class="footer-copy">&copy; 2026 Dezinsect Corse <span aria-hidden="true">&middot;</span> <a href="mentions-legales">Mentions légales</a> <span aria-hidden="true">&middot;</span> <a href="politique-confidentialite">Politique de confidentialité</a></p>
+    <ul class="footer-social" aria-label="Réseaux sociaux">
+      <li><a href="https://www.youtube.com/@Dezinsect-corse-DM" target="_blank" rel="noopener" class="footer-social__link footer-social__link--youtube" aria-label="Notre chaîne YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a></li>
+      <li><a href="https://www.instagram.com/dezinsectcorse/" target="_blank" rel="noopener" class="footer-social__link footer-social__link--instagram" aria-label="Notre compte Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.9-.1zm0 2.2c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.7a6.1 6.1 0 1 1 0 12.2 6.1 6.1 0 0 1 0-12.2zm0 2.2a3.9 3.9 0 1 0 0 7.8 3.9 3.9 0 0 0 0-7.8zm6.4-3.9a1.4 1.4 0 1 1 0 2.9 1.4 1.4 0 0 1 0-2.9z"/></svg></a></li>
+      <li><a href="https://www.facebook.com/dezinsect20/" target="_blank" rel="noopener" class="footer-social__link footer-social__link--facebook" aria-label="Notre page Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a></li>
+    </ul>
   </div>
 </footer>
 
-  <script src="assets/js/main.js?v=21b0fbde" defer></script>
+  <script src="assets/js/main.js?v=a4ae130d" defer></script>
 </body>
 </html>

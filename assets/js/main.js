@@ -480,4 +480,25 @@
     };
   }
 
+  /* ------------------------------------------------------------
+     Colonnes du pied de page : repliees sous 768 px
+     Les quatre <details> sont OUVERTS dans le HTML, et c'est ici qu'ils se
+     referment sur petit ecran. L'inverse — fermes dans le HTML, rouverts en
+     CSS au-dessus de 768 px — ne fonctionne pas : Chrome masque le contenu
+     d'un <details> ferme par content-visibility sur un slot interne, qu'aucune
+     declaration display d'auteur ne leve. Mesure faite : seul
+     ::details-content y parvient, et il est trop recent pour qu'on en depende.
+     Sans JavaScript, le mobile voit donc les colonnes depliees. C'est plus
+     long, mais tout reste atteignable — l'inverse aurait rendu les liens
+     invisibles, ce qui serait un vrai defaut.
+     On ne replie qu'au chargement : si le visiteur ouvre une colonne puis
+     tourne son telephone, on ne la lui referme pas au nez.
+     ------------------------------------------------------------ */
+  var colonnesPied = document.querySelectorAll(".footer-col__bloc");
+  if (colonnesPied.length && window.innerWidth < 768) {
+    for (var cp = 0; cp < colonnesPied.length; cp++) {
+      colonnesPied[cp].open = false;
+    }
+  }
+
 })();
