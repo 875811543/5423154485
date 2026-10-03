@@ -1623,6 +1623,82 @@ const CONTROLES = [
 
     return pbs;
   }},
+
+{ nom: 'btn-devis', titre: 'Tout .btn-devis recoit une mise en page, pas seulement sa couleur',
+  // Pose apres le defaut livre en production : le bloc des boutons verts de
+  // global.css donne a .btn-devis un fond et une couleur en !important, mais
+  // AUCUNE mise en page. Ecrite seule sur l'accueil, la classe rendait un lien
+  // souligne sur fond vert, haut de 19 px. Les autres emplois s'en tiraient
+  // parce qu'ils portent en plus .page-action__btn, ou parce que leur feuille
+  // de page decrit .btn-devis — mais rien ne le garantissait.
+  //
+  // On exige donc, pour chaque element portant la classe, que sa mise en page
+  // soit couverte : soit par une regle .btn-devis dans une feuille que LA page
+  // charge, soit par une autre classe qui la porte.
+  //
+  // `display` est volontairement HORS de la liste. Mesure faite sur
+  // zones-dintervention : son bouton ne recoit de display d'aucune regle et
+  // rend pourtant en block, parce que son parent est un conteneur flex, qui
+  // blockifie ses enfants. L'exiger accusait donc une page correcte. Les trois
+  // proprietes retenues sont celles qui distinguent un bouton d'un lien nu, et
+  // elles manquaient toutes les trois dans le defaut reel.
+  run() {
+    const PROPS = ['padding', 'border-radius', 'text-decoration'];
+    const feuilles = {};
+    for (const d of ['assets/css', 'assets/css/pages']) {
+      for (const n of fs.readdirSync(path.join(RACINE, d)).filter(x => x.endsWith('.css'))) {
+        feuilles[d + '/' + n] = fs.readFileSync(path.join(RACINE, d, n), 'utf8')
+          .replace(/\/\*[\s\S]*?\*\//g, ' ');
+      }
+    }
+
+    // Quelles proprietes de mise en page une feuille donne-t-elle a une classe ?
+    const donne = (css, classe) => {
+      const vus = new Set();
+      const re = new RegExp('\\.' + classe + '(?![\\w-])');
+      let i = 0;
+      while (i < css.length) {
+        const o = css.indexOf('{', i); if (o < 0) break;
+        const sel = css.slice(i, o).trim();
+        const f = css.indexOf('}', o); if (f < 0) break;
+        if (re.test(sel) && !/^@/.test(sel) && !/:hover|:focus|:active/.test(sel)) {
+          for (const d of css.slice(o + 1, f).split(';')) {
+            const p = d.split(':')[0].trim();
+            for (const m of PROPS) { if (p === m || p.startsWith(m + '-')) vus.add(m); }
+          }
+        }
+        i = f + 1;
+      }
+      return vus;
+    };
+
+    const pbs = [];
+    for (const f of pages) {
+      const h = lire(f);
+      if (!/class="[^"]*\bbtn-devis\b/.test(h)) continue;
+      const chargees = [...h.matchAll(/href="(assets\/css\/[^"?]+)/g)].map(m => m[1]);
+
+      const couvert = new Set();
+      for (const c of chargees) { if (feuilles[c]) for (const p of donne(feuilles[c], 'btn-devis')) couvert.add(p); }
+      const manque = PROPS.filter(p => !couvert.has(p));
+      if (!manque.length) continue;   // la page decrit .btn-devis en entier
+
+      // Sinon, chaque element doit porter une autre classe qui le fait.
+      for (const m of h.matchAll(/class="([^"]*\bbtn-devis\b[^"]*)"/g)) {
+        const autres = m[1].split(/\s+/).filter(c => c && c !== 'btn-devis');
+        const parAutre = new Set();
+        for (const a of autres) {
+          for (const c of chargees) { if (feuilles[c]) for (const p of donne(feuilles[c], a)) parAutre.add(p); }
+        }
+        const reste = manque.filter(p => !parAutre.has(p));
+        if (reste.length) {
+          pbs.push(f + ' : class="' + m[1] + '" — sans ' + reste.join(', ')
+            + ' ; .btn-devis seule ne donne que la couleur');
+        }
+      }
+    }
+    return pbs;
+  }},
 ];
 
 /* ------------------------------------------------------------------ *
