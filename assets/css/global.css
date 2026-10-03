@@ -195,6 +195,11 @@
    en gardant une boite de 1 px, la recette qui survit a tous les moteurs.
    Sert au complement « , accueil » du logo, depuis que l'entree « Accueil »
    a quitte la navigation. */
+/* Un nom qui ne doit pas se couper. Sert aux deux departements : « Haute-Corse »
+   et « Corse-du-Sud » cassent sur leur propre trait d'union, et se retrouvent
+   a cheval sur deux lignes en colonne etroite. */
+.insecable { white-space: nowrap; }
+
 .visuellement-cachee {
   position: absolute;
   width: 1px;

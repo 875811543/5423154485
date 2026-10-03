@@ -268,7 +268,12 @@ function bloc(groupes) {
 `;
   }
 
-  const intro = insecable('Nous intervenons sur toute la Corse sous 24 à 48 heures, y compris dans les '
+  // « toute la Corse » a ete retire : le Valinco et le Sartenais ne sont pas
+  // desservis. Les deux departements sont rendus insecables, ils cassent sinon
+  // sur leur propre trait d'union.
+  const DEPTS = '<span class="insecable">Haute-Corse</span> et en '
+    + '<span class="insecable">Corse-du-Sud</span>';
+  const intro = insecable('Nous intervenons en ' + DEPTS + ' sous 24 à 48 heures, y compris dans les '
     + 'secteurs les plus éloignés de nos deux bases. Les nids de guêpes et de frelons sont traités '
     + 'en urgence, sous 24 heures. Les ' + total + ' communes ci-dessous sont regroupées par microrégion : '
     + "ouvrez la vôtre pour vérifier qu'elle y figure.");
