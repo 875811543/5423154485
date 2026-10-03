@@ -567,6 +567,32 @@ const CONTROLES = [
     return pbs;
   }},
 
+{ nom: 'avis', titre: 'Le nombre d avis Google est le meme a tous ses emplacements',
+  // Le nombre est ecrit en dur a cinq endroits, dont la pastille du pied sur
+  // toutes les pages, et rien ne le met a jour seul. La liste de ces
+  // emplacements vit dans tools/maj-avis.js, qui les ecrit : le controle
+  // l'importe au lieu de la recopier, pour qu'un emplacement ajoute au script
+  // soit verifie d'office.
+  //
+  // Deux defauts attrapes : un emplacement introuvable (la page a ete
+  // remaniee et le script n'ecrirait plus rien la) et deux nombres qui
+  // coexistent (une mise a jour faite a la main, a moitie).
+  run() {
+    const { relever } = require('./maj-avis');
+    const { releves, problemes } = relever();
+    const vus = new Map();
+    for (const r of releves) for (const n of r.nombres) {
+      if (!vus.has(n)) vus.set(n, []);
+      vus.get(n).push(r.fichier + ' (' + r.emplacement + ')');
+    }
+    if (vus.size > 1) {
+      for (const [n, ou] of vus)
+        problemes.push(n + ' avis : ' + ou.slice(0, 3).join(', ') + (ou.length > 3 ? ' et ' + (ou.length - 3) + ' autre(s)' : ''));
+      problemes.push('corriger par : node tools/maj-avis.js <nombre>');
+    }
+    return problemes;
+  }},
+
 { nom: 'nap', titre: 'Nom, adresse et telephone coherents partout',
   run() {
     const champs = { name: new Map(), telephone: new Map(), streetAddress: new Map(), addressLocality: new Map(), postalCode: new Map() };

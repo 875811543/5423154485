@@ -157,7 +157,7 @@ Deux autres choses à savoir :
   ni téléversement dans hPanel.
 
   Ce que cela change pour une session qui travaille ici : **pousser est un acte
-  public**, plus un enregistrement local. Les 39 contrôles doivent passer avant
+  public**, plus un enregistrement local. Les 41 contrôles doivent passer avant
   le push, pas après, et une page à moitié écrite ne se commite pas « pour la
   nuit ». Vérifier après coup se fait en interrogeant le site réel — les treize
   pages ajoutées le 2 septembre étaient en ligne avant même qu'on pense à les
@@ -862,7 +862,7 @@ comparant les deux échouerait après chaque commit, le sitemap ayant été
 permanent.
 
 ```sh
-node tools/controle.js            # les trente-neuf contrôles
+node tools/controle.js            # les quarante et un contrôles
 node tools/controle.js --liste    # ce qu'ils vérifient
 node tools/controle.js alpha      # un seul, par son nom
 ```
@@ -1357,34 +1357,36 @@ c'est volontaire, et ce n'est pas une contradiction. Cette valeur sert à répon
 « hors zone » à qui tape le nom, plutôt qu'à ne rien répondre du tout. **Ne pas
 les basculer en zone desservie** pour faire disparaître une apparente incohérence.
 
-## Avis Google : tenus à la main
+## Avis Google : tenus à la main, écrits par un script
 
-Le site est statique : **rien ne met à jour les avis automatiquement**. Le
-nombre est **23** au 3 octobre 2026, et il est écrit en dur à **quatre
-endroits**, dont un sur les 67 pages :
+Le site est statique : **rien ne lit les avis chez Google**. Le nombre est
+**23** au 3 octobre 2026, écrit en dur à **cinq endroits** — quatre sur
+l'accueil (l'`aria-label` et le texte visible du hero, la mention sous la note,
+le lien « Lire les … avis ») et la pastille `.footer-pastille--avis` du pied,
+sur les 67 pages.
 
-| Où | Quoi |
-|---|---|
-| `index.html`, hero | l'`aria-label` de `.hero-confiance__avis` — « 5,0 · 23 avis » |
-| `index.html`, bloc avis | `<span class="reviews__score-meta">23 avis Google</span>` |
-| `index.html`, bloc avis | le lien « Lire les 23 avis sur Google » |
-| **pied de page, 67 pages** | la pastille `.footer-pastille--avis` — « Google 5,0 · 23 avis » |
-
-La note (`5,0`) est dans `<span class="reviews__score-num">`. Quand le
-propriétaire signale un nouveau chiffre, mettre à jour **les quatre** nombres —
-un `sed` sur `*.html` pour le dernier —, et **ne pas toucher la note sans qu'il
-la confirme** : un avis à moins de cinq étoiles la ferait passer à 4,9, et
-afficher une note fausse est pire qu'afficher un nombre en retard.
-
-**Cette liste a déjà été fausse.** Elle annonçait « deux endroits » et le
-chiffre 21, alors que le site en portait trois et affichait 23 : l'occurrence du
-hero n'y avait jamais été inscrite, et la mise à jour de 21 vers 23 n'a pas été
-reportée ici. Un décompte écrit à la main se périme — le vérifier avant de s'y
-fier :
+Quand le propriétaire signale un nouveau chiffre :
 
 ```sh
-grep -c 'avis' index.html && grep -l 'Google 5,0 &middot; .* avis' *.html | wc -l
+node tools/maj-avis.js        # nombre actuel, emplacement par emplacement
+node tools/maj-avis.js 25     # le porte à 25 partout
 ```
+
+**La liste des emplacements vit dans `tools/maj-avis.js`, et nulle part
+ailleurs** — pas même ici. Le contrôle `avis` l'importe : il échoue si deux
+nombres coexistent, ou si un emplacement est introuvable après un remaniement
+de page, et le script refuse alors d'écrire. Éprouvé sur ces deux cas, plus un
+aller-retour 23 → 25 → 23 qui rend des fichiers identiques à l'octet.
+
+Pourquoi un script plutôt qu'un `sed` : la liste tenue à la main dans ce
+fichier s'est trompée deux fois — « deux endroits » puis « quatre », alors
+qu'il y en avait cinq. Le texte visible du hero n'y a jamais figuré.
+
+**Le script ne touche jamais la note** (`5,0`, dans
+`<span class="reviews__score-num">` et dans les motifs du hero et du pied).
+Ne pas la changer sans que le propriétaire la confirme : un avis à moins de
+cinq étoiles la ferait passer à 4,9, et afficher une note fausse est pire
+qu'afficher un nombre en retard.
 
 Aucune donnée structurée ne porte la note : `aggregateRating` a été écarté.
 Le détail était dans `AUDIT-SEO.md §3`, **document de travail retiré du dépôt le

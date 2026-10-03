@@ -7,8 +7,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **La référence complète est `AGENTS.md`, importée ci-dessous.** Ce fichier n'en
 est que l'aide-mémoire : en cas d'écart, `AGENTS.md` fait foi. Les chiffres qu'il
 cite (« 28 pages », « 38 contrôles ») datent de chantiers passés — compter sur le
-dépôt plutôt que de s'y fier (au 1er octobre 2026 : 67 pages HTML, 62 URL au
-sitemap, 39 contrôles).
+dépôt plutôt que de s'y fier (au 3 octobre 2026 : 67 pages HTML, 62 URL au
+sitemap, 41 contrôles).
 
 @AGENTS.md
 
@@ -40,6 +40,7 @@ node tools/build-sitemap.js [--verifier]  # régénère sitemap.xml (ne jamais l
 node tools/sitemap-dates.js [--ecrire]    # aligne les <lastmod> sur git, avant de pousser
 node tools/build-communes.js [--verifie]  # régénère communes.json et le bloc de zones-dintervention
 node tools/indexnow.js [--essai]          # après un push déployé seulement
+node tools/maj-avis.js [nombre]          # nombre d'avis Google, aux cinq emplacements
 ```
 
 Après toute modification d'un fichier de `assets/css/` ou `assets/js/` : recalculer
