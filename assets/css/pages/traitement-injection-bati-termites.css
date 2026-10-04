@@ -84,3 +84,19 @@
 @media (max-width: 519px) {
   div.cta-block { padding: 28px 16px; }
 }
+
+/* Lien de texte du paragraphe du bloc d'appel. .cta-block a le rendait en
+   pastille blanche au milieu de la phrase : il redevient un lien en ligne,
+   blanc souligne comme le texte qui l'entoure. .cta-block p a passe devant
+   .cta-block a, cette feuille chargeant avant pages-services.css. */
+.cta-block p a {
+  display: inline;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.cta-block p a:hover { text-decoration-thickness: 2px; }
