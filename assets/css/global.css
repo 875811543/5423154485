@@ -1926,7 +1926,9 @@ li > .ico:first-child {
   font-size: 0.95rem;
 }
 .footer-coordonnees a { display: inline-block; }
-/* Le prenom est DANS la pastille blanche : il doit etre bleu comme le numero.`n   Un .footer-coordonnees .tel-nom clair y tombait a 1,31:1. */`n.footer-coordonnees a[href^="tel:"] .tel-nom { color: var(--primary-blue); }
+/* Le prenom est DANS la pastille blanche : il doit etre bleu comme le numero.
+   Un .footer-coordonnees .tel-nom clair y tombait a 1,31:1. */
+.footer-coordonnees a[href^="tel:"] .tel-nom { color: var(--primary-blue); }
 .footer-coordonnees .tel-num { font-weight: 700; color: #FFFFFF; }
 
 
