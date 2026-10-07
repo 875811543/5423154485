@@ -59,7 +59,19 @@ function contenuPropre(texte) {
     .replace(/<footer class="site-footer"[\s\S]*?<\/footer>/, '')
     .replace(/<div class="sticky-mobile-bar">[\s\S]*?<\/div>/, '')
     .replace(/\?v=[0-9a-f]{8}/g, '')
+    // La date de mise a jour elle-meme n'est pas du contenu : c'est ce qu'on
+    // DIT du contenu. Sans cette ligne, poser la date sur une page la daterait
+    // du jour ou on l'a posee, et non du jour ou son texte a change — le
+    // signal s'auto-detruirait. Meme raison que pour l'en-tete et les hashes.
+    // Un oubli reste attrape : si le texte a change ailleurs, le reste du
+    // contenu propre differe quand meme.
+    .replace(/[ \t]*<p class="maj-page">[\s\S]*?<\/p>[ \t]*\r?\n?/g, '')
+    .replace(/\s*"dateModified"\s*:\s*"\d{4}-\d{2}-\d{2}",?/g, '')
     .replace(/\r\n/g, '\n')
+    // Les lignes vides ne sont pas du contenu. Poser la mention de date en
+    // cree ou en supprime autour d elle : sans cette normalisation, retirer le
+    // paragraphe ne suffit pas, il reste son empreinte en blanc.
+    .replace(/\n{2,}/g, '\n')
     .trimEnd();
 }
 
