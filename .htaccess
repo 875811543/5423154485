@@ -107,6 +107,19 @@ DirectoryIndex index.html
   # avant les capricornes dans l'adresse, et la page termites couvre aussi les
   # xylophages.
   RewriteRule ^desinsectisation-corse-orientale/?$ /desinsectisation [R=301,L]
+  # Les deux suivantes ne viennent pas du sitemap de l'ancien site, mais de
+  # l'export Search Console du 7 octobre 2026 : elles avaient ete indexees et
+  # recevaient encore des clics (69 et 16 impressions, 3 clics) tout en
+  # renvoyant 404. C'est la seule methode qui les aurait trouvees — le sitemap
+  # du builder ne les listait pas.
+  # « Corse orientale » designe la Plaine Orientale : la page de la Costa Verde
+  # est plus proche que la page de service generale, contrairement au choix
+  # fait juste au-dessus pour la desinsectisation. Arbitrage du proprietaire.
+  # L'ancre /?$ est indispensable sur la FAQ : sans elle, la regle capterait
+  # aussi questions-frequentes-termites-frelons-rat, sa propre cible, et
+  # produirait une boucle de redirection.
+  RewriteRule ^deratisation-corse-orientale/?$ /deratisation-costa-verde [R=301,L]
+  RewriteRule ^questions-frequentes-termites/?$ /questions-frequentes-termites-frelons-rat [R=301,L]
   RewriteRule ^dezinsect-corse/traitement-termites-capricornes-corse/?$ /traitement-anti-termites [R=301,L]
   RewriteRule ^insectes-rampants/?$ /desinsectisation [R=301,L]
   RewriteRule ^traitement-charpente/?$ /traitement-anti-termites [R=301,L]
