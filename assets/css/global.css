@@ -1761,7 +1761,13 @@ li > .ico:first-child {
 }
 .cta-final p,
 .action-cta-box p {
-  color: var(--muted);
+  /* --body-text et non --muted : sur le fond #EAF0FF de ce bloc, --muted
+     (#64748B) ne donne que 4,17:1, en dessous des 4,5 exiges. Le piege est
+     que --muted vaut 4,54:1 sur du blanc PUR — il passe donc partout ailleurs
+     et echoue ici, ou le fond est legerement teinte. Meme cause que les
+     sous-titres de cartes corriges plus tot. --body-text donne 9,08:1.
+     Mesure : axe sur les 67 pages, et calcul WCAG independant. */
+  color: var(--body-text);
   font-size: 0.95rem;
   margin: 0 0 20px;
   max-width: 54ch;
@@ -1966,14 +1972,20 @@ li > .ico:first-child {
   border-radius: 999px;
   font-size: 0.85rem;
   font-weight: 700;
-  background: rgba(255, 255, 255, .22);
-  border: 1px solid rgba(255, 255, 255, .28);
+  /* .12 et pas davantage : le texte est blanc, en gras de 13,6 px, donc pas du
+     « grand texte » au sens WCAG — il lui faut 4,5:1. Le blanc translucide
+     eclaircit le bleu du pied et fait CHUTER le contraste : a .22 le fond
+     effectif valait #4c74fc, soit 4,02:1, en echec sur les 67 pages. Le seuil
+     de bascule est .16 (4,52:1) ; .12 donne 4,87:1 et garde de la marge.
+     Mesure : axe via Lighthouse, et calcul WCAG independant — memes valeurs. */
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .40);
   color: #FFFFFF;
 }
 .footer-pastille svg { flex-shrink: 0; }
 .footer-pastille--avis svg { color: #FBBF24; }
 .footer-pastille--certif svg { color: var(--cta-green); }
-a.footer-pastille:hover { background: rgba(255, 255, 255, .22); text-decoration: none; }
+a.footer-pastille:hover { background: rgba(255, 255, 255, .16); text-decoration: none; }
 
 /* --- Colonnes de liens ---
    En <details> pour que le mobile puisse les replier. Le resume porte un h3,
