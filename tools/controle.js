@@ -497,7 +497,7 @@ const CONTROLES = [
                 pbs.push(f + ' : reponse absente du texte visible — ' + String(n.name).slice(0, 45));
             }
           }
-          if (n['@type'] === 'PestControlService' || n['@type'] === 'LocalBusiness')
+          if (['LocalBusiness', 'HomeAndConstructionBusiness'].includes(n['@type']))
             for (const champ of ['name', 'address', 'telephone'])
               if (!n[champ]) pbs.push(f + ' : ' + n['@type'] + ' sans ' + champ);
           Object.values(n).forEach(parcours);
@@ -602,7 +602,7 @@ const CONTROLES = [
         (function parcours(n) {
           if (Array.isArray(n)) return n.forEach(parcours);
           if (!n || typeof n !== 'object') return;
-          if (n['@type'] === 'PestControlService' || n['@type'] === 'LocalBusiness') {
+          if (['LocalBusiness', 'HomeAndConstructionBusiness'].includes(n['@type'])) {
             const v = { name: n.name, telephone: JSON.stringify(n.telephone) };
             if (n.address) Object.assign(v, {
               streetAddress: n.address.streetAddress,
@@ -1171,7 +1171,7 @@ const CONTROLES = [
 { nom: 'entite-entreprise', titre: 'L entreprise est declaree une seule fois et en entier',
   run() {
     const pbs = [];
-    const TYPES = ['PestControlService', 'LocalBusiness', 'Organization', 'HomeAndConstructionBusiness'];
+    const TYPES = ['LocalBusiness', 'Organization', 'HomeAndConstructionBusiness'];
     const ID = 'https://dezinsect-corse.fr/#organisation';
     // Ce qui caracterise l'entreprise. Une declaration qui n'en porte qu'une
     // partie decrit une entreprise plus pauvre que la vraie.
