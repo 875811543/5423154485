@@ -1357,6 +1357,27 @@ c'est volontaire, et ce n'est pas une contradiction. Cette valeur sert à répon
 « hors zone » à qui tape le nom, plutôt qu'à ne rien répondre du tout. **Ne pas
 les basculer en zone desservie** pour faire disparaître une apparente incohérence.
 
+### Le secteur s'appelle « Costa Verde » — mais Cervione reste une commune
+
+Règle tranchée le 7 octobre 2026, après qu'un audit l'eut signalée à tort comme
+un écart. Elle ne porte que sur **le nom du secteur** : en texte visible, la
+zone s'appelle toujours « Costa Verde », jamais « Cervione ». Les titres, les
+`h1`, les intitulés de menu et les noms de zone suivent cette règle, et c'est
+déjà le cas partout.
+
+**Cervione n'est pas pour autant un mot interdit.** C'est une commune
+desservie comme les autres, et elle apparaît légitimement :
+
+- dans les listes de communes (`commune-tags`, bloc « Communes desservies ») ;
+- dans `communes.json` et les `areaServed` ;
+- en prose, comme repère géographique — « de Cervione à Talasani » dans la
+  description de `deratisation-costa-verde`.
+
+Au 7 octobre 2026 : 33 occurrences hors JSON-LD, sur 27 pages, toutes de ce
+type. **Ne pas les retirer.** Avant de signaler une occurrence, vérifier
+qu'elle sert de nom de **secteur** et non de nom de **commune** — c'est la
+seule chose que la règle interdit.
+
 ## Avis Google : tenus à la main, écrits par un script
 
 Le site est statique : **rien ne lit les avis chez Google**. Le nombre est
