@@ -1738,6 +1738,51 @@ const CONTROLES = [
     }
     return pbs;
   }},
+{ nom: 'appels-mobile', titre: 'Sous 768 px la barre du bas est le seul appel : seuils alignes, chaque paire a son bouton devis',
+  // Regle posee le 8 octobre 2026 : sous 768 px, les paires d appel Dume /
+  // Antoine du contenu disparaissent au profit de la barre du bas, et un bouton
+  // vert « Demander un devis » les remplace. Trois choses peuvent se defaire en
+  // silence, et ce controle les garde :
+  //
+  // 1. LES DEUX SEUILS. La barre se masque a min-width: 768px, les paires a
+  //    max-width: 767px — deux media queries distinctes, parce qu une media query
+  //    ne lit pas de variable CSS. Si l une bouge sans l autre, il existe une
+  //    bande de largeurs ou la barre ET les paires coexistent, ou ou aucun appel
+  //    n est visible. Le second cas est le pire : un visiteur sans moyen d appeler.
+  // 2. LE BOUTON DE REMPLACEMENT. Une paire sans .appel-devis a cote laisse, sous
+  //    768 px, un bloc d appel vide avec son titre.
+  // 3. LA CIBLE. Sur les trois pages qui portent le formulaire l ancre est
+  //    locale ; ailleurs elle passe par contact. Un lien vers contact#... depuis
+  //    contact rechargerait la page.
+  run() {
+    const pbs = [];
+    const css = fs.readFileSync(path.join(RACINE, 'assets/css/global.css'), 'utf8')
+      .replace(/\/\*[\s\S]*?\*\//g, ' ');
+
+    const bar = css.match(/@media \(min-width: (\d+)px\)\s*\{\s*\.sticky-mobile-bar\s*\{\s*display:\s*none;?\s*\}/);
+    const appels = css.match(/@media \(max-width: (\d+)px\)\s*\{\s*body \.appel-paire,/);
+    if (!bar) pbs.push('global.css : le seuil de masquage de .sticky-mobile-bar est introuvable');
+    if (!appels) pbs.push('global.css : le bloc de masquage des paires (body .appel-paire, …) est introuvable');
+    if (bar && appels && Number(appels[1]) !== Number(bar[1]) - 1) {
+      pbs.push('seuils desalignes : la barre se masque a min-width ' + bar[1] + 'px, les paires a max-width '
+        + appels[1] + 'px (attendu ' + (Number(bar[1]) - 1) + 'px)');
+    }
+
+    for (const f of pages) {
+      const h = lire(f);
+      const d = h.indexOf('<main'), e = h.lastIndexOf('</main>');
+      if (d < 0 || e < 0) continue;
+      const main = h.slice(d, e);
+      const attendu = h.includes('id="dezinsectContactForm"') ? '#dezinsectContactForm' : 'contact#dezinsectContactForm';
+      const re = /<div class="(appel-paire|tel-pair)">[\s\S]*?<\/div>(\s*)(<a class="appel-devis" href="([^"]*)">Demander un devis<\/a>)?/g;
+      let m;
+      while ((m = re.exec(main))) {
+        if (!m[3]) pbs.push(f + ' : une paire .' + m[1] + ' n a pas de bouton .appel-devis juste apres');
+        else if (m[4] !== attendu) pbs.push(f + ' : .appel-devis pointe vers « ' + m[4] + ' », attendu « ' + attendu + ' »');
+      }
+    }
+    return pbs;
+  }}
 ];
 
 /* ------------------------------------------------------------------ *

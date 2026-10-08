@@ -2580,3 +2580,63 @@ a.footer-pastille:hover { background: rgba(255, 255, 255, .16); text-decoration:
 @media (prefers-reduced-motion: reduce) {
   .btn-secondaire { transition: none; }
 }
+
+/* ------------------------------------------------------------
+   Regle mobile : la barre d'appel du bas est le SEUL appel.
+
+   Sous 768 px — le seuil exact auquel .sticky-mobile-bar s'affiche, voir plus
+   haut, « @media (min-width: 768px) { .sticky-mobile-bar { display: none } } » —
+   toutes les paires d'appel Dume / Antoine du CONTENU disparaissent : blocs
+   d'appel, appels en ligne, hero, pastilles du pied, boutons des fiches
+   d'identification. Au-dessus, rien ne change.
+
+   Les deux seuils doivent rester identiques. Le controle « appels-mobile »
+   les compare ; ce commentaire dit pourquoi ils ne sont pas fondus en un seul :
+   une media query ne lit pas de variable CSS, et inverser la barre (cachee par
+   defaut, montree sous 768 px) toucherait un composant qui marche.
+
+   Un bloc d'appel ne reste pas vide : il garde son titre, et .appel-devis —
+   un bouton vert « Demander un devis », ecrit dans le HTML a cote de chaque
+   paire — prend la place. Invisible en bureau.
+
+   Le prefixe « body » donne la specificite qu'il faut pour passer devant les
+   regles des feuilles de page (.ident-action__boutons .btn-phone, 0,2,0)
+   quel que soit l'ordre de chargement, sans !important.
+   ------------------------------------------------------------ */
+body a.appel-devis {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 320px;
+  min-height: 50px;
+  margin: 0 auto;
+  padding: 13px 24px;
+  border-radius: 10px;
+  background: var(--cta-green);
+  color: var(--on-cta);
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1.2;
+  text-decoration: none;
+  text-align: center;
+}
+body a.appel-devis:hover {
+  background: var(--cta-green-dark);
+  text-decoration: none;
+}
+body a.appel-devis:focus-visible {
+  outline: 3px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+@media (max-width: 767px) {
+  body .appel-paire,
+  body .cta-mobile .tel-pair,
+  body .odour-hero .tel-pair,
+  body .ident-action__boutons .btn-phone,
+  body .footer-coordonnees a[href^="tel:"] {
+    display: none;
+  }
+  body a.appel-devis { display: flex; }
+}

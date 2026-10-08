@@ -530,6 +530,42 @@ la seconde est déclinée en contour via `.sticky-mobile-bar .sticky-call-btn--a
 spécificité seule ne suffisant pas puisqu'il est déclaré plus bas dans le
 fichier. Sous 360 px l'icône disparaît plutôt que de tronquer le numéro.
 
+### Sous 768 px, la barre du bas est le seul appel — règle du 8 octobre 2026
+
+Là où la barre d'appel du bas est visible (sous 768 px), **toutes les paires
+d'appel Dumé / Antoine du contenu sont masquées** : blocs d'appel (`.cta-final`,
+`.action-cta-box`, `.cta-block`, `.cta-mobile`), appels en ligne
+(`.inline-call-wrapper`), hero, pastilles d'appel du pied et boutons des fiches
+d'identification. **Au-dessus, rien ne change.** Les quatre emplacements du
+tableau ci-dessous restent vrais : en bureau il n'y a pas de barre du bas, donc
+les paires y sont nécessaires.
+
+- **Les seuils** : la barre se masque à `min-width: 768px`, les paires à
+  `max-width: 767px`. Deux media queries, parce qu'une media query ne lit pas de
+  variable CSS — et inverser la barre (cachée par défaut) toucherait un
+  composant qui marche. Elles sont **dans `global.css`, côte à côte dans le
+  fichier**, et le contrôle `appels-mobile` les compare. Mesuré au bord : à
+  767 px la barre est visible et les paires masquées, à 768 px l'inverse.
+- **Un bloc d'appel ne reste jamais vide** : à côté de chaque paire, le HTML porte
+  `<a class="appel-devis" href="…">Demander un devis</a>`, invisible en bureau,
+  vert sous 768 px. L'ancre est `#dezinsectContactForm` sur `index`, `contact`
+  et `identifier-nuisible` (qui portent le formulaire), `contact#dezinsectContactForm`
+  ailleurs — la même règle que le bouton du pied.
+- **Spécificité** : le masquage et `.appel-devis` sont écrits `body …` /
+  `body a.appel-devis`. Sans cela, `.cta-block a` (feuille `pages-services.css`)
+  imposait son propre `display` au bouton et le rendait visible en bureau —
+  constaté sur `traitement-injection-bati-termites`, en mesure, pas en lecture.
+- **Ce qui reste volontairement** : les liens `tel:` en prose (« appelez-nous au… »),
+  la ligne du bloc `.contact-footer`, la barre « URGENCE NID » de
+  `guepes-et-frelons`, les boutons uniques des pages 404 et merci, la liste de
+  `contact`. Ce sont des liens isolés, pas des paires Dumé / Antoine.
+- **Fiches d'identification** : seules les deux pastilles `.btn-phone` de chaque
+  encart sont masquées ; « Remplir la fiche » et l'envoi de photo restent, donc
+  l'encart garde une action.
+- **Piège de mesure** : sur `identifier-nuisible`, mesurer la **visibilité** des
+  boutons des fiches conclut qu'ils sont masqués en bureau aussi — l'outil cache
+  les fiches non choisies. Mesurer le `display` calculé.
+
 ### Les deux lignes téléphoniques : où elles doivent figurer
 
 **Règle en vigueur depuis le 24 septembre 2026 : les deux numéros, à quatre
