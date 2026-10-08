@@ -76,9 +76,12 @@
   line-height: 1.9;
 }
 
+/* --body-text et non --muted : --muted vaut 4,54:1 sur du blanc pur mais
+   4,24:1 sur le fond teinte --surface-blue de ce bloc, sous les 4,5 exiges.
+   Le meme piege a deja touche les blocs d appel et les sous-titres de cartes. */
 .fiche-entreprise dt {
   font-weight: 600;
-  color: var(--muted);
+  color: var(--body-text);
   font-size: 0.86rem;
 }
 
