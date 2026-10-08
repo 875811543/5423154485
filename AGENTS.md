@@ -551,8 +551,8 @@ boutons `.btn-phone` de chaque fiche) et **la page `conducteur-engins-caces`**
   service + ville). `.appel-paire`, `.inline-call-wrapper`, `.contact-info` et leurs
   règles n'existent plus.
 - **Ce qui reste, et qui est volontairement du texte** : les numéros écrits dans une
-  phrase (« appelez le 06 85 75 30 40 »), la barre « URGENCE NID » de
-  `guepes-et-frelons`, les boutons uniques des pages 404 et merci, la liste de
+  phrase (« appelez le 06 85 75 30 40 »), le bandeau d'urgence de
+  `guepes-et-frelons` (message seul, sans numéro ni bouton : « Urgence nid de guêpes ou de frelons : intervention sous 24 h »), les boutons uniques des pages 404 et merci, la liste de
   `contact`, la présentation de l'équipe de `a-propos`, les mentions légales. Ce
   sont des mentions, pas des encarts ; en retirer une demande de réécrire sa phrase.
 - **Le pied de page** : ses deux numéros sont des lignes de **texte simple**
@@ -579,19 +579,40 @@ boutons `.btn-phone` de chaque fiche) et **la page `conducteur-engins-caces`**
 
 ### Les deux lignes téléphoniques : où elles doivent figurer
 
-**Règle en vigueur depuis le 24 septembre 2026 : les deux numéros, à quatre
-endroits.**
+**Règle en vigueur depuis le 24 septembre 2026, amendée le 8 octobre : les deux
+numéros, à trois endroits — et plus aucun bouton d'appel dans le menu mobile.**
 
 | Emplacement | 06 85 75 30 40 | 06 29 42 16 38 |
 |---|---|---|
 | Bandeau de bureau (`.site-header__cta` / `.site-header__cta2`) | ✅ en premier | ✅ |
-| Menu mobile (`.tel-pair`) | ✅ | ✅ |
 | Barre d'appel mobile (`.sticky-mobile-bar`) | ✅ | ✅ |
 | Pied de page | ✅ | ✅ |
 
-Le contenu des pages n'en porte plus en bouton (voir « Dans le contenu, aucun
-numéro d'appel en bouton »).
-**Toujours en lien `tel:`**, jamais en texte brut.
+**Toujours en lien `tel:`**, jamais en texte brut. Le contenu des pages n'en porte
+plus en bouton (voir « Dans le contenu, aucun numéro d'appel en bouton »).
+
+**Le menu mobile ne porte plus aucun bouton d'appel** (décision du 8 octobre 2026) :
+la barre du bas (`.sticky-mobile-bar`) reste visible menu ouvert et elle suffit.
+Le menu a donc une **marge basse** qui lui réserve la place de la barre
+(`calc(77px + 24px + env(safe-area-inset-bottom))`, mesuré : 24 px entre la
+dernière entrée et la barre, à 360 px de large et à 560 et 740 px de haut), et la
+bulle WhatsApp et le retour en haut sont masqués menu ouvert`body:has(.mobile-menu.is-open)`,
+sans JavaScript). Le contrôle `lignes-tel` refuse un lien `tel:` dans le menu.
+
+### « Conducteur d'engins CACES » : hors des services anti-nuisibles
+
+Décision du 8 octobre 2026. L'activité n'est pas de la lutte anti-nuisibles, donc :
+
+- **Menu mobile** : dernière entrée du premier niveau, après « Contact », sous le
+  libellé « Engins & terrassement » (`.mobile-menu__etiquette`). Plus dans le groupe
+  « Nos services ». Sur la page CACES, seul le lien porte `aria-current` : le
+  `<summary>` « Nos services » ne le porte plus, sinon le contrôle `nav-courante`
+  refuse (« parent marqué sans lien actif dedans »).
+- **Menu bureau** : pas de nouvelle entrée de premier niveau (la barre est au
+  maximum, seuil 1220 px). Dernière ligne du sous-menu « Nos services », séparée par
+  un trait, avec le même libellé (`.site-nav__apart` / `.site-nav__etiquette`).
+  Là le parent « Nos services » garde son `aria-current` sur la page CACES.
+- **Pied de page** : sorti de la colonne « Nos services », rangé dans « Infos pratiques ».
 
 Les deux pastilles du bandeau sont traitées **à égalité** — même fond, même
 couleur, même poids — et tiennent côte à côte parce que leur remplissage
@@ -992,7 +1013,7 @@ attrapé un défaut réel sur ce site :
 | `sitemap` | Deux pages créées et oubliées au sitemap, signalées dès la génération |
 | `doublons` | L'article de saisonnalité recopié depuis la page Costa Verde |
 | `entete-pied` | Les divergences d'en-tête et de pied, dont une introduite le jour même par une insertion mal ancrée |
-| `lignes-tel` | Garde-fou pose le 24 septembre 2026, le jour ou la regle du bandeau a change deux fois. Il verifie les quatre emplacements d un coup — bandeau, menu mobile, barre d appel mobile, pied — et l ordre des deux boutons du bandeau. Eprouve sur les quatre regressions possibles : numero retire de chacune des zones, et ordre inverse |
+| `lignes-tel` | Garde-fou pose le 24 septembre 2026, le jour ou la regle du bandeau a change deux fois. Il verifie les trois emplacements d un coup — bandeau, barre d appel mobile, pied — l ordre des deux boutons du bandeau, et l absence de lien tel: dans le menu mobile. Eprouve sur les quatre regressions possibles : numero retire de chacune des zones, et ordre inverse |
 | `paires`, `nap`, `orphelins`, `liens-externes`, `h1-canonical`, `cibles`, `styles-en-ligne` | Garde-fous : aucun défaut à ce jour, mais peu coûteux |
 
 Deux d'entre eux ont dû être repris après coup, ce qui vaut avertissement :

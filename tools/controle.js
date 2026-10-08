@@ -508,10 +508,11 @@ const CONTROLES = [
     return pbs;
   }},
 
-{ nom: 'lignes-tel', titre: 'Les deux lignes telephoniques sont presentes aux quatre emplacements',
-  // Regle du proprietaire, 24 septembre 2026 : les DEUX lignes sont
-  // joignables dans le bandeau de bureau, dans le menu mobile, dans la barre
-  // d'appel mobile et dans le pied de page — toujours en lien tel:, et la
+{ nom: 'lignes-tel', titre: 'Les deux lignes telephoniques sont presentes aux trois emplacements, et absentes du menu mobile',
+  // Regle du proprietaire, 24 septembre 2026, amendee le 8 octobre : les DEUX
+  // lignes sont joignables dans le bandeau de bureau, dans la barre d'appel
+  // mobile et dans le pied de page. Le menu mobile n'en porte plus : la barre
+  // du bas reste visible menu ouvert, elle suffit — toujours en lien tel:, et la
   // principale en premier dans le bandeau.
   //
   // Cette regle a change deux fois dans la meme journee : le bandeau est
@@ -559,7 +560,8 @@ const CONTROLES = [
       if (cpt(bandeau, SECOND) === 1 && bandeau.indexOf('tel:' + PRINCIPAL) > bandeau.indexOf('tel:' + SECOND))
         pbs.push(f + ' : dans le bandeau, le second numero precede la ligne principale');
 
-      for (const [zone, txt] of [['du menu mobile', menu], ['de la barre d appel mobile', barre], ['du pied de page', pied]]) {
+      if (/href="tel:/.test(menu)) pbs.push(f + ' : le menu mobile porte un lien tel: — la barre du bas suffit');
+      for (const [zone, txt] of [['de la barre d appel mobile', barre], ['du pied de page', pied]]) {
         if (cpt(txt, PRINCIPAL) < 1) pbs.push(f + ' : ligne principale absente ' + zone);
         if (cpt(txt, SECOND) < 1) pbs.push(f + ' : second numero absent ' + zone);
       }

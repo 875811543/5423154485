@@ -38,22 +38,7 @@
       letter-spacing: 0.02em;
     }
 
-
-    .top-contact-bar a {
-      color: #FFF;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 44px;
-      padding: 4px 0;
-    }
-
-
-    .top-contact-bar a:hover {
-      text-decoration: underline;
-    }
+    .top-contact-bar p { margin: 0; }
 
 
     .main-section { padding: 28px 16px 48px 16px; }

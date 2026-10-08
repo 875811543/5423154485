@@ -415,6 +415,21 @@ a { color: inherit; }
   text-decoration: none;
 }
 .site-nav__submenu a:hover { background: var(--surface-blue); color: var(--primary-blue); }
+/* Derniere ligne de « Nos services » : un trait, puis le libelle et le lien. */
+.site-nav__apart {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+}
+.site-nav__etiquette {
+  display: block;
+  padding: 4px 12px 2px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 
 
 /* Les deux lignes telephoniques du bandeau, traitees a egalite : meme
@@ -500,9 +515,15 @@ a { color: inherit; }
   background: #fff;
   z-index: 99;
   overflow-y: auto;
-  padding: 8px 20px 32px;
+  /* En bas, la place de la barre d'appel (77 px a 360 px), qui reste visible menu ouvert :
+     sans elle, la derniere entree passe dessous. */
+  padding: 8px 20px calc(77px + 24px + env(safe-area-inset-bottom, 0px));
 }
 .mobile-menu.is-open { display: block; }
+/* Menu ouvert : la bulle WhatsApp et le retour en haut flottent par-dessus la
+   derniere entree. Sans JS : :has() lit l'etat pose par main.js. */
+body:has(.mobile-menu.is-open) .wa-float,
+body:has(.mobile-menu.is-open) .back-to-top { display: none; }
 .mobile-menu nav { display: flex; flex-direction: column; }
 .mobile-menu nav > a,
 .mobile-menu__group summary {
@@ -518,6 +539,16 @@ a { color: inherit; }
 }
 .mobile-menu__group summary::-webkit-details-marker { display: none; }
 .mobile-menu__group[open] summary { color: var(--primary-blue); }
+/* Libelle d'une entree de premier niveau hors groupe (« Engins & terrassement »). */
+.mobile-menu__etiquette {
+  margin: 18px 0 0;
+  padding: 0 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 .mobile-menu__group a {
   display: block;
   padding: 11px 4px 11px 16px;
@@ -526,21 +557,6 @@ a { color: inherit; }
   color: var(--body-text);
   text-decoration: none;
   border-bottom: 1px solid var(--border);
-}
-.mobile-menu__cta {
-  margin-top: 16px;
-  text-align: center;
-  background: var(--primary-blue);
-  color: #fff;
-  padding: 14px;
-  border-radius: 12px;
-  font-weight: 700;
-  /* Le text-decoration vient de `.mobile-menu nav > a`, et les deux boutons
-     d'appel sont sortis de ce selecteur le jour ou le second numero les a fait
-     envelopper dans `.tel-pair` : ils rendaient soulignes sur les 67 pages.
-     Pose ici plutot qu'en elargissant le selecteur parent — un bouton ne doit
-     pas dependre de sa profondeur dans le menu. */
-  text-decoration: none;
 }
 
 /* Bascule bureau a 1220 px — seuil MINIMAL mesure, 17 px de marge a droite.
@@ -1261,7 +1277,6 @@ li > .ico:first-child {
 .sticky-call-btn,
 .form-submit-btn,
 .cta-call,
-.mobile-menu__cta,
 .ty-btn--primary,
 .err-btn--primary,
 .actu-fin__cta {
@@ -1279,7 +1294,6 @@ li > .ico:first-child {
 .sticky-call-btn:hover,
 .form-submit-btn:hover,
 .cta-call:hover,
-.mobile-menu__cta:hover,
 .ty-btn--primary:hover,
 .err-btn--primary:hover,
 .actu-fin__cta:hover {
@@ -1292,32 +1306,6 @@ li > .ico:first-child {
   background: #94A3B8 !important;
   background-color: #94A3B8 !important;
   box-shadow: none !important;
-}
-
-/* ------------------------------------------------------------
-   Double numéro : les deux lignes actives côte à côte
-   ------------------------------------------------------------ */
-.tel-pair {
-  display: flex;
-  gap: 8px;
-  align-items: stretch;
-  flex-wrap: nowrap;
-}
-.tel-pair > a {
-  flex: 1 1 0;
-  min-width: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  white-space: nowrap;
-}
-.tel-pair .ico { flex: 0 0 auto; }
-
-/* Sous 420 px, on empile pour éviter les numéros tronqués */
-@media (max-width: 420px) {
-  .tel-pair { flex-wrap: wrap; }
-  .tel-pair > a { flex: 1 1 100%; }
 }
 
 /* ------------------------------------------------------------
