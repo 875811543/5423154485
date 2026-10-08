@@ -1378,6 +1378,30 @@ type. **Ne pas les retirer.** Avant de signaler une occurrence, vérifier
 qu'elle sert de nom de **secteur** et non de nom de **commune** — c'est la
 seule chose que la règle interdit.
 
+## Identifiants de l'entreprise : où chacun a le droit de figurer
+
+La SARL est immatriculée depuis le 6 octobre 2026 (greffe de Bastia). Règle
+fixée par le propriétaire le 7, assouplie le 8 :
+
+| Donnée | Où elle figure | Nulle part ailleurs |
+|---|---|---|
+| SIREN, RCS | `mentions-legales` seulement | ni pied, ni JSON-LD, ni meta, ni autre page |
+| SIRET du siège | `mentions-legales` **et** `a-propos` | idem |
+| Code APE `8129A` | `mentions-legales` et `a-propos`, **sans libellé** | — |
+| Numéro de TVA intracommunautaire | **aucune page** | ne pas en ajouter |
+| RC Pro (Abeille Assurances, contrat n° 79958468, couverture Corse) | `mentions-legales` et `a-propos` | ni montant de garantie, ni décennale |
+
+**Le code APE reste sans intitulé, définitivement.** L'intitulé officiel de
+8129A mentionne la désinfection, prestation que l'entreprise ne propose pas
+(voir « Prestations non proposées »). L'écrire reviendrait à l'annoncer.
+
+Le JSON-LD ne porte que `legalName` (« DEZINSECT CORSE ») : aucun identifiant.
+Les trois associés y sont des `Person` en `employee`, chacun avec son
+`jobTitle` exact — Hugo Renucci, gérant ; Dominique Martinetti dit « Dumé »,
+technicien applicateur certifié Certibiocide ; Antoine Renucci,
+technico-commercial. **Pas de `founder`** : la qualité d'associé n'est pas
+celle de fondateur.
+
 ## Avis Google : tenus à la main, écrits par un script
 
 Le site est statique : **rien ne lit les avis chez Google**. Le nombre est

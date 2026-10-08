@@ -57,8 +57,11 @@ DirectoryIndex index.html
   #  Format : RewriteRule ^ancienne-url/?$ /nouvelle-url [R=301,L]
   # ----------------------------------------------------------
 
-  # Page supprimée du site
-  RewriteRule ^a-propos/?$ /services-anti-nuisibles [R=301,L]
+  # /a-propos n'est plus redirigee : la page « Qui sommes-nous » y est publiee
+  # depuis le 8 octobre 2026. L'ancienne page du builder, supprimee, envoyait
+  # vers /services-anti-nuisibles ; la Search Console la classait pourtant
+  # deuxieme du site (222 impressions, position 7). La redirection a ete retiree
+  # dans le commit meme qui publie la page, pour ne jamais exposer de 404.
 
   # Anciennes pages de zones, fusionnées en 3 pages régionales
   RewriteRule ^anti-nuisibles-costa-verde-plaine-orientale/?$ /anti-nuisibles-costa-verde [R=301,L]
