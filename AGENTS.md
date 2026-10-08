@@ -535,8 +535,11 @@ fichier. Sous 360 px l'icône disparaît plutôt que de tronquer le numéro.
 Là où la barre d'appel du bas est visible (sous 768 px), **toutes les paires
 d'appel Dumé / Antoine du contenu sont masquées** : blocs d'appel (`.cta-final`,
 `.action-cta-box`, `.cta-block`, `.cta-mobile`), appels en ligne
-(`.inline-call-wrapper`), hero, pastilles d'appel du pied et boutons des fiches
-d'identification. **Au-dessus, rien ne change.** Les quatre emplacements du
+(`.inline-call-wrapper`), hero et boutons des fiches d'identification.
+**Le pied de page est hors règle** : depuis le 8 octobre 2026 ses deux numéros
+sont des lignes de **texte simple** (« Dumé : … », « Antoine : … »), comme la
+ligne WhatsApp — ni pastille, ni fond blanc, ni gras —, et elles restent
+visibles à toutes les largeurs. **Au-dessus, rien ne change.** Les quatre emplacements du
 tableau ci-dessous restent vrais : en bureau il n'y a pas de barre du bas, donc
 les paires y sont nécessaires.
 

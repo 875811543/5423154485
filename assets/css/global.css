@@ -774,16 +774,14 @@ a { color: inherit; }
 .btn-call,
 .btn-devis,
 .sticky-call-btn,
-.form-submit-btn,
-.zones-btn-sm {
+.form-submit-btn {
   transition: transform .18s ease, box-shadow .18s ease, filter .18s ease !important;
 }
 .btn-phone:hover,
 .btn-call:hover,
 .btn-devis:hover,
 .sticky-call-btn:hover,
-.form-submit-btn:hover,
-.zones-btn-sm:hover {
+.form-submit-btn:hover {
   transform: translateY(-2px);
   filter: brightness(1.04);
 }
@@ -1267,7 +1265,6 @@ li > .ico:first-child {
 .btn-devis,
 .sticky-call-btn,
 .form-submit-btn,
-.zones-btn-sm,
 .cta-call,
 .mobile-menu__cta,
 .ty-btn--primary,
@@ -1286,7 +1283,6 @@ li > .ico:first-child {
 .btn-devis:hover,
 .sticky-call-btn:hover,
 .form-submit-btn:hover,
-.zones-btn-sm:hover,
 .cta-call:hover,
 .mobile-menu__cta:hover,
 .ty-btn--primary:hover,
@@ -1581,11 +1577,7 @@ li > .ico:first-child {
   padding-block: 2px;
 }
 
-.tag-sm {
-  min-height: 24px;
-  display: inline-flex;
-  align-items: center;
-}
+
 
 .breadcrumb a {
   display: inline-flex;
@@ -1953,31 +1945,17 @@ li > .ico:first-child {
   font-size: 0.95rem;
 }
 .footer-coordonnees a { display: inline-block; }
-/* Le prenom est DANS la pastille blanche : il doit etre bleu comme le numero.
-   Un .footer-coordonnees .tel-nom clair y tombait a 1,31:1. */
-.footer-coordonnees a[href^="tel:"] .tel-nom { color: var(--primary-blue); }
-.footer-coordonnees .tel-num { font-weight: 700; color: #FFFFFF; }
+.footer-coordonnees .tel-nom,
+.footer-coordonnees .tel-num { font-weight: inherit; }
 
-
-/* Les deux lignes telephoniques en pastilles blanches a texte bleu, comme les
-   boutons de l'en-tete. Le selecteur vise l'attribut href : il n'y a pas de
-   classe a poser dans le HTML, qui reste le meme sur les 67 pages. */
-.footer-coordonnees a[href^="tel:"] {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #FFFFFF;
-  color: var(--primary-blue);
-  padding: 9px 16px;
-  border-radius: 999px;
-  font-weight: 700;
-  justify-self: start;
-}
-.footer-coordonnees a[href^="tel:"]:hover {
-  background: #EAF0FF;
-  text-decoration: none;
-}
-.footer-coordonnees a[href^="tel:"] .tel-num { color: var(--primary-blue); }
+/* Les deux lignes telephoniques sont du TEXTE SIMPLE, comme la ligne WhatsApp :
+   ni pastille, ni fond blanc, ni gras. Elles ont ete des pastilles blanches a
+   texte bleu, ce qui obligeait a colorer le prenom en bleu pour qu'il ne tombe
+   pas a 1,31:1 sur le blanc ; plus de fond, plus de cette contrainte. Le HTML,
+   lui, n'a pas bouge : « Dume : 06 85 75 30 40 » et « Antoine : 06 29 42 16 38 »
+   etaient deja des liens tel: sur les 68 pages, seule leur CSS les habillait.
+   C'est la regle generale du pied (.site-footer a : blanc, souligne au survol)
+   qui s'applique. */
 
 /* --- Pastilles de confiance --- */
 .footer-pastilles {
@@ -2597,8 +2575,10 @@ a.footer-pastille:hover { background: rgba(255, 255, 255, .16); text-decoration:
    Sous 768 px — le seuil exact auquel .sticky-mobile-bar s'affiche, voir plus
    haut, « @media (min-width: 768px) { .sticky-mobile-bar { display: none } } » —
    toutes les paires d'appel Dume / Antoine du CONTENU disparaissent : blocs
-   d'appel, appels en ligne, hero, pastilles du pied, boutons des fiches
-   d'identification. Au-dessus, rien ne change.
+   d'appel, appels en ligne, hero, boutons des fiches d'identification.
+   Au-dessus, rien ne change. Le PIED n'en fait plus partie depuis le 8 octobre
+   2026 : ses deux lignes « Dume : 06 85 75 30 40 » et « Antoine : ... » sont du
+   texte simple, comme la ligne WhatsApp, et restent visibles a toutes les largeurs.
 
    Les deux seuils doivent rester identiques. Le controle « appels-mobile »
    les compare ; ce commentaire dit pourquoi ils ne sont pas fondus en un seul :
@@ -2644,8 +2624,7 @@ body a.appel-devis:focus-visible {
   body .appel-paire,
   body .cta-mobile .tel-pair,
   body .odour-hero .tel-pair,
-  body .ident-action__boutons .btn-phone,
-  body .footer-coordonnees a[href^="tel:"] {
+  body .ident-action__boutons .btn-phone {
     display: none;
   }
   body a.appel-devis { display: flex; }
