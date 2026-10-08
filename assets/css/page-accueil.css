@@ -64,7 +64,7 @@
   .hero__lead {
     font-size: clamp(1.02rem, 1.4vw, 1.15rem);
     line-height: 1.6;
-    color: var(--muted);
+    color: var(--muted-teinte);
     max-width: 52ch;
     margin: 0 0 32px;
   }
@@ -393,7 +393,7 @@
 
 .why-card .card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
 
-.why-card .card-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.45; }
+.why-card .card-desc { font-size: 0.875rem; color: var(--muted-teinte); line-height: 1.45; }
 
 
 .card-link-hint {
@@ -489,7 +489,7 @@
 
   .zones-clients-inline {
     font-size: 0.82rem;
-    color: #64748b;
+    color: var(--muted-teinte);
     display: flex;
     align-items: center;
     gap: 12px;

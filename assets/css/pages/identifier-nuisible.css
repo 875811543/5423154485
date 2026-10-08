@@ -560,7 +560,7 @@
     color: var(--ink);
     margin: 0 0 4px;
   }
-  .ident-qr__d { margin: 0; font-size: 0.89rem; color: var(--muted); }
+  .ident-qr__d { margin: 0; font-size: 0.89rem; color: var(--muted-teinte); }
 }
 
 /* --------------------------------------------------------------
@@ -691,7 +691,7 @@
   align-items: center;
   gap: 8px;
   font-size: 0.8rem;
-  color: var(--muted);
+  color: var(--muted-teinte);
 }
 
 /* La colonne « Visuel » du tableau comparatif. */

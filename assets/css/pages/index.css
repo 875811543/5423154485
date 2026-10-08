@@ -313,7 +313,7 @@
   color: var(--ink);
   margin: 0 0 10px;
 }
-.devis-subtitle { color: var(--muted); font-size: 1rem; margin: 0; }
+.devis-subtitle { color: var(--muted-teinte); font-size: 1rem; margin: 0; }
 
 /* Section des cartes "pourquoi nous choisir". */
 .why-section { padding: 8px 20px 56px; max-width: 1180px; margin: 0 auto; }

@@ -129,7 +129,17 @@
   --primary-blue-dark: #0F37BE;
   --ink: #0F172A;
   --body-text: #334155;
+  /* --muted : le gris secondaire, UNIQUEMENT sur blanc pur (4,76:1).
+     Des qu'un fond est teinte ou en degrade, --muted passe sous les 4,5 exiges :
+     4,55 sur --surface (a 0,05 point pres), 4,34 sur #F1F5F9, 4,25 sur
+     --surface-blue, 3,86 sur --border. Le piege a mordu quatre fois ici — les
+     blocs d'appel, les sous-titres de cartes, la fiche entreprise de /a-propos,
+     puis des textes sur degrade, que axe classe « incomplet » et ne signale pas.
+     --muted-teinte est le meme role, assombri : 4,79:1 sur --border, le plus
+     sombre fond jamais pose en aplat, donc au-dessus de 4,5 sur tous les autres.
+     Le controle « gris-teinte » refuse --muted sur un fond non blanc. */
   --muted: #64748B;
+  --muted-teinte: #56657D;
   --muted-light: #94A3B8;
   --border: #E2E8F0;
   --surface: #F8FAFC;
@@ -1618,7 +1628,7 @@ li > .ico:first-child {
 .media-figure__caption {
   padding: 10px 14px;
   font-size: 0.85rem;
-  color: var(--muted);
+  color: var(--muted-teinte);
 }
 
 /* Image d une figure : pleine largeur, recadree, hauteur selon la variante.

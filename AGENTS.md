@@ -751,7 +751,8 @@ Design tokens dans `:root` de `global.css` — **toujours** passer par les varia
 --primary-blue #1A4DFB   --primary-blue-dark #0F37BE
 --cta-green #22C55E      --cta-green-dark #12AE4C   --on-cta #06231A
 --accent-green #0F7A38   --accent-green-bg #EAF7EC
---ink #0F172A   --body-text #334155   --muted #64748B   --muted-light #94A3B8
+--ink #0F172A   --body-text #334155   --muted #64748B   --muted-teinte #56657D
+--muted-light #94A3B8
 --border #E2E8F0   --surface #F8FAFC   --surface-blue #EDF2FF
 --font-heading Poppins   --font-body Inter   --header-height 72px
 ```
@@ -767,6 +768,47 @@ Rôle des fichiers :
 | `pages-services.css` | pages de services (6 pages) |
 | `pages-legales.css` | `mentions-legales`, `politique-confidentialite`, `merci`, `404` ; porte aussi les surcharges de `404` et `merci`, fusionnées depuis `pages/` |
 | `page-accueil.css` | `index` uniquement |
+
+#### Le gris secondaire : `--muted` sur blanc, `--muted-teinte` partout ailleurs
+
+**`--muted` (`#64748B`) ne se pose que sur du blanc pur.** Sur blanc il vaut
+4,76:1 ; dès que le fond est teinté ou en dégradé il passe sous les 4,5 exigés :
+
+| Fond | `--muted` | `--muted-teinte` |
+|---|---:|---:|
+| blanc | 4,76 | 5,91 |
+| `--surface` `#F8FAFC` | **4,55** (à 0,05 près) | 5,65 |
+| `#F1F5F9` (fin des dégradés) | **4,34** | 5,39 |
+| `--surface-blue` `#EDF2FF` | **4,25** | 5,28 |
+| `#EAF0FF` (blocs d'appel) | **4,17** | 5,18 |
+| `--border` `#E2E8F0`, le plus sombre aplat posé | **3,86** | 4,79 |
+
+`--muted-teinte` (`#56657D`) est le même rôle, assombri. Choisi pour passer sur
+le fond le **plus sombre** jamais posé, `--border` : s'il y passe, il passe sur
+tous les autres. Le contrôle `gris-teinte` refuse `--muted`, `--text-muted` et
+`#64748B` en dur sur tout fond autre que blanc.
+
+**Le piège a mordu quatre fois**, et chaque fois on a corrigé le cas sans
+traiter la cause : les blocs d'appel, les sous-titres de cartes, la fiche
+entreprise de `/a-propos`, puis des textes sur **dégradé** — les pires, parce
+que **axe les classe « incomplet » au lieu de les signaler** : six familles de
+sous-titres sous 4,5 en production, sans qu'aucun outil n'en parle.
+
+Trois formes du même gris coexistent, et il faut les chercher toutes :
+`var(--muted)`, `var(--text-muted)` (une **seconde définition**, recopiée dans huit
+feuilles de page) et `#64748B` en dur. **Une mesure navigateur ne reconnaît pas
+le troisième** : le CSSOM renormalise `#64748b` en `rgb(100, 116, 139)`, et un
+motif écrit pour le hex ne le voit pas — c'est ce qui a fait passer
+`.zones-clients-inline` pour une règle « inconnue ».
+
+Le contrôle lit le HTML **et** les feuilles (`tools/gris-teinte.js`) : le fond
+vient presque toujours d'un ancêtre, jamais de la règle du texte. Il approxime
+la cascade (spécificité, ordre, héritage de `color`, variables, dégradés) sans
+être un moteur de rendu ; ses limites sont dans son en-tête. Éprouvé contre la
+mesure navigateur : sur l'état d'avant correction il retrouve les 14 règles que
+le navigateur désignait, **plus une que la mesure avait manquée** (le schéma du
+trou de sortie, dans un état masqué de l'outil d'identification) — un contrôle
+statique attrape ce qu'un instantané ne montre pas.
 
 Les `<link>` se posent dans cet ordre : `global` → fichier
 de portée de la page. Le fichier de portée charge en dernier, donc il l'emporte

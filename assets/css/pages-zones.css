@@ -21,7 +21,7 @@
     .service-desc a { color: var(--primary-blue); font-weight:600; text-decoration:none; }
     .geo-section { background:var(--bg-soft); border-radius:20px; padding:32px; margin-bottom:48px; }
     .geo-title { display:flex; align-items:center; gap:10px; font-family: var(--font-heading); font-size:1.3rem; color:var(--text-main); margin:0 0 14px; }
-    .geo-text { color:var(--text-muted); font-size:0.95rem; line-height:1.6; margin:0 0 24px; }
+    .geo-text { color:var(--muted-teinte); font-size:0.95rem; line-height:1.6; margin:0 0 24px; }
     .geo-text a { color:var(--primary-blue); font-weight:600; text-decoration:none; }
     .zone-group { margin-bottom:20px; }
     .zone-title { font-family: var(--font-heading); font-weight:700; font-size:0.95rem; color:var(--text-main); margin-bottom:10px; }

@@ -164,7 +164,7 @@
 
     .species-desc {
       font-size: 0.88rem;
-      color: var(--text-muted);
+      color: var(--muted-teinte);
       line-height: 1.55;
       margin-bottom: 14px;
     }
@@ -459,6 +459,6 @@
 
     .derat-subtitle {
       font-size: 0.92rem;
-      color: var(--text-muted);
+      color: var(--muted-teinte);
       line-height: 1.6;
     }

@@ -1783,6 +1783,29 @@ const CONTROLES = [
     }
     return pbs;
   }}
+,
+{ nom: 'gris-teinte', titre: 'Le gris secondaire --muted n est jamais pose sur un fond non blanc',
+  // Le piege a mordu QUATRE fois : --muted (#64748B) vaut 4,76:1 sur du blanc
+  // pur et passe sous 4,5 des qu un fond est teinte — 4,55 sur --surface, 4,34
+  // sur #F1F5F9, 4,25 sur --surface-blue. Les trois premieres fois, des blocs
+  // d appel, des sous-titres de cartes et la fiche entreprise de /a-propos.
+  // La quatrieme est la pire : des textes sur DEGRADE, que axe classe
+  // « incomplet » au lieu de les signaler, donc invisibles a tout outil.
+  //
+  // Chercher « --muted » dans les feuilles ne dit rien : le fond vient presque
+  // toujours d un ANCETRE. tools/gris-teinte.js reconstruit donc, pour chaque
+  // element portant du texte, sa couleur effective et son fond effectif
+  // (cascade, specificite, heritage, variables, degrades) — voir son en-tete
+  // pour ce qu il approxime. Il refuse --muted, --text-muted et #64748B en dur
+  // sur tout fond autre que blanc ; la parade est --muted-teinte.
+  //
+  // Eprouve contre la mesure navigateur : sur l etat d avant correction il
+  // retrouve les 14 regles que le navigateur designait, plus une que la mesure
+  // avait manquee (un etat masque de l outil d identification) ; apres
+  // correction, zero.
+  run() {
+    return require(path.join(__dirname, 'gris-teinte.js')).verifier();
+  }}
 ];
 
 /* ------------------------------------------------------------------ *
