@@ -1753,53 +1753,62 @@ const CONTROLES = [
     }
     return pbs;
   }},
-{ nom: 'appels-mobile', titre: 'Sous 768 px la barre du bas est le seul appel : seuils alignes, chaque paire a son bouton devis',
-  // Regle posee le 8 octobre 2026 : sous 768 px, les paires d appel Dume /
-  // Antoine du contenu disparaissent au profit de la barre du bas, et un bouton
-  // vert « Demander un devis » les remplace. Trois choses peuvent se defaire en
-  // silence, et ce controle les garde :
+{ nom: 'appels-contenu', titre: 'Le contenu ne porte aucune paire d appel (hors identification et CACES) ; seuils de la barre alignes ; bouton devis bien cible',
+  // Regle du 8 octobre 2026 : les numeros vivent dans l en-tete, la barre du bas
+  // et le pied. Le CONTENU des pages n a plus ni paire Dume / Antoine, ni appel en
+  // ligne, ni bloc « Contactez... ». Un bloc d appel garde son titre et UN bouton
+  // vert « Demander un devis ». Exceptions voulues : l outil d identification
+  // (boutons des fiches) et la page CACES (numero d Hugo). Les numeros ecrits dans
+  // une phrase restent permis : ce sont des mentions, pas des encarts.
+  // Ce que le controle garde :
   //
-  // 1. LES DEUX SEUILS. La barre se masque a min-width: 768px, les paires a
-  //    max-width: 767px — deux media queries distinctes, parce qu une media query
-  //    ne lit pas de variable CSS. Si l une bouge sans l autre, il existe une
-  //    bande de largeurs ou la barre ET les paires coexistent, ou ou aucun appel
-  //    n est visible. Le second cas est le pire : un visiteur sans moyen d appeler.
-  // 2. LE BOUTON DE REMPLACEMENT. Une paire sans .appel-devis a cote laisse, sous
-  //    768 px, un bloc d appel vide avec son titre.
-  // 3. LA CIBLE. Sur les trois pages qui portent le formulaire l ancre est
-  //    locale ; ailleurs elle passe par contact. Un lien vers contact#... depuis
-  //    contact rechargerait la page.
+  // 1. LES CLASSES D APPEL ONT DISPARU du contenu : appel-paire, inline-call-wrapper,
+  //    contact-footer, btn-phone, btn-call. Une page generee depuis un ancien
+  //    gabarit les ramenerait en silence.
+  // 2. LE SEUIL de masquage des boutons des fiches (max-width) vaut celui de la
+  //    barre (min-width) moins un : sinon une bande de largeurs sans aucun appel.
+  // 3. LA CIBLE du bouton devis : ancre locale sur les trois pages qui portent le
+  //    formulaire, contact#... ailleurs.
   run() {
     const pbs = [];
     const css = fs.readFileSync(path.join(RACINE, 'assets/css/global.css'), 'utf8')
       .replace(/\/\*[\s\S]*?\*\//g, ' ');
 
     const bar = css.match(/@media \(min-width: (\d+)px\)\s*\{\s*\.sticky-mobile-bar\s*\{\s*display:\s*none;?\s*\}/);
-    const appels = css.match(/@media \(max-width: (\d+)px\)\s*\{\s*body \.appel-paire,/);
+    const fiches = css.match(/@media \(max-width: (\d+)px\)\s*\{\s*body \.ident-action__boutons \.btn-phone/);
     if (!bar) pbs.push('global.css : le seuil de masquage de .sticky-mobile-bar est introuvable');
-    if (!appels) pbs.push('global.css : le bloc de masquage des paires (body .appel-paire, …) est introuvable');
-    if (bar && appels && Number(appels[1]) !== Number(bar[1]) - 1) {
-      pbs.push('seuils desalignes : la barre se masque a min-width ' + bar[1] + 'px, les paires a max-width '
-        + appels[1] + 'px (attendu ' + (Number(bar[1]) - 1) + 'px)');
+    if (!fiches) pbs.push('global.css : le masquage des boutons des fiches (body .ident-action__boutons .btn-phone) est introuvable');
+    if (bar && fiches && Number(fiches[1]) !== Number(bar[1]) - 1) {
+      pbs.push('seuils desalignes : la barre se masque a min-width ' + bar[1] + 'px, les boutons des fiches a max-width '
+        + fiches[1] + 'px (attendu ' + (Number(bar[1]) - 1) + 'px)');
+    }
+    if (/body a\.appel-devis\s*\{\s*display:\s*none/.test(css)) {
+      pbs.push('global.css : .appel-devis est masque par defaut ; il doit etre visible a toutes les largeurs');
     }
 
+    const EXCEPTIONS = ['identifier-nuisible.html', 'conducteur-engins-caces.html'];
     for (const f of pages) {
       const h = lire(f);
       const d = h.indexOf('<main'), e = h.lastIndexOf('</main>');
       if (d < 0 || e < 0) continue;
       const main = h.slice(d, e);
+      if (!EXCEPTIONS.includes(f)) {
+        const re0 = /class="[^"]*\b(appel-paire|inline-call-wrapper|contact-footer|btn-phone|btn-call)\b/g;
+        let n;
+        const vus = new Set();
+        while ((n = re0.exec(main))) vus.add(n[1]);
+        if (vus.size) pbs.push(f + ' : le contenu porte encore ' + [...vus].map(x => '.' + x).join(', '));
+      }
       const attendu = h.includes('id="dezinsectContactForm"') ? '#dezinsectContactForm' : 'contact#dezinsectContactForm';
-      const re = /<div class="(appel-paire|tel-pair)">[\s\S]*?<\/div>(\s*)(<a class="appel-devis" href="([^"]*)">Demander un devis<\/a>)?/g;
+      const re = /<a class="appel-devis" href="([^"]*)">/g;
       let m;
       while ((m = re.exec(main))) {
-        if (!m[3]) pbs.push(f + ' : une paire .' + m[1] + ' n a pas de bouton .appel-devis juste apres');
-        else if (m[4] !== attendu) pbs.push(f + ' : .appel-devis pointe vers « ' + m[4] + ' », attendu « ' + attendu + ' »');
+        if (m[1] !== attendu) pbs.push(f + ' : .appel-devis pointe vers « ' + m[1] + ' », attendu « ' + attendu + ' »');
       }
     }
     return pbs;
   }}
-,
-{ nom: 'gris-teinte', titre: 'Le gris secondaire --muted n est jamais pose sur un fond non blanc',
+,{ nom: 'gris-teinte', titre: 'Le gris secondaire --muted n est jamais pose sur un fond non blanc',
   // Le piege a mordu QUATRE fois : --muted (#64748B) vaut 4,76:1 sur du blanc
   // pur et passe sous 4,5 des qu un fond est teinte — 4,55 sur --surface, 4,34
   // sur #F1F5F9, 4,25 sur --surface-blue. Les trois premieres fois, des blocs

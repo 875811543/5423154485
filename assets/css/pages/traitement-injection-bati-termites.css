@@ -75,8 +75,6 @@
    pose 28 px de remplissage lateral a tout lien du bloc : a 360 px, le numero
    se coupait en deux lignes. Trois classes pour passer devant cette regle,
    cette feuille chargeant avant pages-services.css. */
-.cta-block .appel-paire .btn-phone { padding-left: 16px; padding-right: 16px; flex-wrap: wrap; }
-.cta-block .appel-paire .tel-num { white-space: nowrap; }
 /* Sous 520 px les deux boutons s'empilent en pleine largeur : les 36 px
    lateraux du bloc ne laissaient pas la place au numero d'Antoine. Si elle
    manque encore (320 px), le numero passe sous le prenom, entier.

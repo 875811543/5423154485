@@ -467,11 +467,6 @@ a { color: inherit; }
   padding: 2px 4px;
   margin: -2px -4px;
 }
-.contact-info a[href^="tel:"] {
-  display: inline-block;
-  padding: 2px 4px;
-  margin: -2px -4px;
-}
 
 .site-header__burger {
   margin-left: auto;
@@ -1492,7 +1487,6 @@ li > .ico:first-child {
   margin: 0 auto 20px;
   max-width: 52ch;
 }
-.cta-mobile .tel-pair { max-width: 520px; margin: 0 auto; }
 
 /* ------------------------------------------------------------
    Schéma technique illustré (pose des stations, etc.)
@@ -1732,10 +1726,10 @@ li > .ico:first-child {
 /* ------------------------------------------------------------
    Blocs d'appel — un seul composant pour tout le site
    Quatre blocs encadres (.cta-final sur trois pages, .action-cta-box sur
-   guepes-et-frelons) et treize appels en ligne (.inline-call-wrapper) avaient
-   chacun leur style, recopie dans six feuilles de page : .cta-final trois
-   fois, .phone-button trois fois. C'est l'anti-motif deja paye sur
-   .btn-phone — une classe qui sert sur plus d'une page se style ici.
+   guepes-et-frelons) avaient chacun leur style, recopie dans six feuilles de
+   page : .cta-final trois fois, .phone-button trois fois. C'est l'anti-motif
+   deja paye sur .btn-phone — une classe qui sert sur plus d'une page se
+   style ici. (Les appels en ligne, .inline-call-wrapper, ont ete supprimes.)
 
    Le fond passe du bleu nuit (#0F172A) au bleu tres clair : le sombre jurait
    avec le vert des boutons de conversion. Les contrastes sont mesures sur le
@@ -1777,46 +1771,9 @@ li > .ico:first-child {
   margin-right: auto;
 }
 
-/* La paire de boutons d'appel. Elle sert dans les blocs encadres ET dans les
-   appels en ligne : cote a cote des que la place le permet, empiles sinon.
-   Le fond vert et la couleur du texte viennent du bloc des boutons de
-   conversion, plus bas dans ce fichier, qui les impose en !important a
-   .btn-phone. On ne pose donc ici que la disposition. */
-.appel-paire {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-}
-.appel-paire .btn-phone {
-  flex: 1 1 230px;
-  max-width: 320px;
-  /* .btn-phone ne pose pas de gap : ses icones sont collees au texte sans
-     cela, mesure sur le rendu. */
-  gap: 8px;
-}
-.appel-paire .tel-nom { font-weight: 700; }
-.appel-paire .tel-num { font-weight: 800; }
-
-/* Appel en ligne dans le flux de texte : meme paire, sans cadre ni titre.
-   Plus compacte, pour ne pas couper la lecture. */
-.inline-call-wrapper {
-  margin: 28px 0;
-}
-.inline-call-wrapper .appel-paire {
-  justify-content: flex-start;
-}
-.inline-call-wrapper .btn-phone {
-  flex: 1 1 210px;
-  max-width: 290px;
-  min-height: 44px;
-  padding: 10px 16px;
-  font-size: 0.95rem;
-}
-
-@media (max-width: 519px) {
-  .appel-paire .btn-phone { flex: 1 1 100%; max-width: none; }
-}
+/* Plus de paire d'appel dans ces blocs depuis le 8 octobre 2026 : ils portent
+   un titre, une phrase et UN bouton vert « Demander un devis » (.appel-devis,
+   plus bas). Les numeros vivent dans l'en-tete, la barre mobile et le pied. */
 
 /* ===== Pied de page ===== */
 
@@ -2572,29 +2529,27 @@ a.footer-pastille:hover { background: rgba(255, 255, 255, .16); text-decoration:
 /* ------------------------------------------------------------
    Regle mobile : la barre d'appel du bas est le SEUL appel.
 
-   Sous 768 px — le seuil exact auquel .sticky-mobile-bar s'affiche, voir plus
-   haut, « @media (min-width: 768px) { .sticky-mobile-bar { display: none } } » —
-   toutes les paires d'appel Dume / Antoine du CONTENU disparaissent : blocs
-   d'appel, appels en ligne, hero, boutons des fiches d'identification.
-   Au-dessus, rien ne change. Le PIED n'en fait plus partie depuis le 8 octobre
-   2026 : ses deux lignes « Dume : 06 85 75 30 40 » et « Antoine : ... » sont du
-   texte simple, comme la ligne WhatsApp, et restent visibles a toutes les largeurs.
+   Depuis le 8 octobre 2026 le CONTENU ne porte plus aucune paire d'appel
+   Dume / Antoine, a aucune largeur : les numeros vivent dans l'en-tete, la
+   barre du bas (sous 768 px, voir plus haut, « @media (min-width: 768px)
+   { .sticky-mobile-bar { display: none } } ») et le pied. Exceptions : l'outil
+   d'identification, dont les boutons des fiches se masquent encore sous
+   768 px, et la page CACES (numero d'Hugo).
 
    Les deux seuils doivent rester identiques. Le controle « appels-mobile »
    les compare ; ce commentaire dit pourquoi ils ne sont pas fondus en un seul :
    une media query ne lit pas de variable CSS, et inverser la barre (cachee par
    defaut, montree sous 768 px) toucherait un composant qui marche.
 
-   Un bloc d'appel ne reste pas vide : il garde son titre, et .appel-devis —
-   un bouton vert « Demander un devis », ecrit dans le HTML a cote de chaque
-   paire — prend la place. Invisible en bureau.
+   Un bloc d'appel garde son titre et UN bouton vert, .appel-devis
+   « Demander un devis », visible a toutes les largeurs.
 
    Le prefixe « body » donne la specificite qu'il faut pour passer devant les
    regles des feuilles de page (.ident-action__boutons .btn-phone, 0,2,0)
    quel que soit l'ordre de chargement, sans !important.
    ------------------------------------------------------------ */
 body a.appel-devis {
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -2621,13 +2576,9 @@ body a.appel-devis:focus-visible {
   outline-offset: 2px;
 }
 @media (max-width: 767px) {
-  body .appel-paire,
-  body .cta-mobile .tel-pair,
-  body .odour-hero .tel-pair,
   body .ident-action__boutons .btn-phone {
     display: none;
   }
-  body a.appel-devis { display: flex; }
 }
 
 /* ------------------------------------------------------------

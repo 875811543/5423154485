@@ -376,13 +376,10 @@ SEO et le rendu initial.
 
 #### Blocs `<footer>` de contenu — à ne pas confondre avec le footer de site
 
-Cinq pages portent un bloc `<footer>` **avant** `<footer class="site-footer">`.
-C'est du contenu de page, volontaire et visuel : ne pas l'uniformiser.
-
-| Bloc | Pages |
-|---|---|
-| `<footer class="contact-footer">` | `anti-nuisible-corte`, `anti-nuisibles-costa-verde`, `anti-nuisibles-grand-ajaccio-porto-vecchio`, `traitement-injection-bati-termites` |
-| `<footer class="zones-bottom-bar">` | `index` |
+Une page (`index`) porte un bloc `<footer class="zones-bottom-bar">` **avant**
+`<footer class="site-footer">`. C'est du contenu de page, volontaire et visuel :
+ne pas l'uniformiser. Les `<footer class="contact-footer">` (28 pages) ont été
+**supprimés le 8 octobre 2026**, voir « Dans le contenu, aucun numéro d'appel ».
 
 C'est pourquoi le contrôle §6 cible `<footer class="site-footer"` et non `<footer`.
 
@@ -530,41 +527,52 @@ la seconde est déclinée en contour via `.sticky-mobile-bar .sticky-call-btn--a
 spécificité seule ne suffisant pas puisqu'il est déclaré plus bas dans le
 fichier. Sous 360 px l'icône disparaît plutôt que de tronquer le numéro.
 
-### Sous 768 px, la barre du bas est le seul appel — règle du 8 octobre 2026
+### Dans le contenu, aucun numéro d'appel en bouton — règle du 8 octobre 2026
 
-Là où la barre d'appel du bas est visible (sous 768 px), **toutes les paires
-d'appel Dumé / Antoine du contenu sont masquées** : blocs d'appel (`.cta-final`,
-`.action-cta-box`, `.cta-block`, `.cta-mobile`), appels en ligne
-(`.inline-call-wrapper`), hero et boutons des fiches d'identification.
-**Le pied de page est hors règle** : depuis le 8 octobre 2026 ses deux numéros
-sont des lignes de **texte simple** (« Dumé : … », « Antoine : … »), comme la
-ligne WhatsApp — ni pastille, ni fond blanc, ni gras —, et elles restent
-visibles à toutes les largeurs. **Au-dessus, rien ne change.** Les quatre emplacements du
-tableau ci-dessous restent vrais : en bureau il n'y a pas de barre du bas, donc
-les paires y sont nécessaires.
+**Les numéros vivent à trois endroits : l'en-tête, la barre d'appel du bas
+(sous 768 px) et le pied de page.** Le **contenu** des pages ne porte plus ni
+paire Dumé / Antoine, ni appel en ligne, ni bloc « Contactez… », **à aucune
+largeur**. Deux exceptions, voulues : **l'outil d'identification** (les deux
+boutons `.btn-phone` de chaque fiche) et **la page `conducteur-engins-caces`**
+(numéro d'Hugo, 07 88 89 15 09, qui n'apparaît nulle part ailleurs).
 
-- **Les seuils** : la barre se masque à `min-width: 768px`, les paires à
-  `max-width: 767px`. Deux media queries, parce qu'une media query ne lit pas de
-  variable CSS — et inverser la barre (cachée par défaut) toucherait un
-  composant qui marche. Elles sont **dans `global.css`, côte à côte dans le
-  fichier**, et le contrôle `appels-mobile` les compare. Mesuré au bord : à
-  767 px la barre est visible et les paires masquées, à 768 px l'inverse.
-- **Un bloc d'appel ne reste jamais vide** : à côté de chaque paire, le HTML porte
-  `<a class="appel-devis" href="…">Demander un devis</a>`, invisible en bureau,
-  vert sous 768 px. L'ancre est `#dezinsectContactForm` sur `index`, `contact`
-  et `identifier-nuisible` (qui portent le formulaire), `contact#dezinsectContactForm`
+- **Un bloc d'appel garde son titre, sa phrase et UN bouton vert.** `.cta-final`,
+  `.action-cta-box`, `.cta-block` et `.cta-mobile` portent
+  `<a class="appel-devis" href="…">Demander un devis</a>`, **visible à toutes les
+  largeurs** (avant : bureau masqué, mobile visible — il n'y a plus de différence).
+  L'ancre est `#dezinsectContactForm` sur `index`, `contact` et
+  `identifier-nuisible` (qui portent le formulaire), `contact#dezinsectContactForm`
   ailleurs — la même règle que le bouton du pied.
-- **Spécificité** : le masquage et `.appel-devis` sont écrits `body …` /
-  `body a.appel-devis`. Sans cela, `.cta-block a` (feuille `pages-services.css`)
-  imposait son propre `display` au bouton et le rendait visible en bureau —
-  constaté sur `traitement-injection-bati-termites`, en mesure, pas en lecture.
-- **Ce qui reste volontairement** : les liens `tel:` en prose (« appelez-nous au… »),
-  la ligne du bloc `.contact-footer`, la barre « URGENCE NID » de
+- **Supprimés** : les treize appels en ligne `.inline-call-wrapper` (HTML et CSS,
+  sans phrase orpheline : aucun n'était introduit par un texte), les paires des
+  blocs ci-dessus, celle du hero de `services-anti-nuisibles`, et les **28** blocs
+  `<footer class="contact-footer">` — **28 pages et non 4** (l'ancien tableau de la
+  section P1 en annonçait quatre ; les 24 autres venaient des pages
+  service + ville). `.appel-paire`, `.inline-call-wrapper`, `.contact-info` et leurs
+  règles n'existent plus.
+- **Ce qui reste, et qui est volontairement du texte** : les numéros écrits dans une
+  phrase (« appelez le 06 85 75 30 40 »), la barre « URGENCE NID » de
   `guepes-et-frelons`, les boutons uniques des pages 404 et merci, la liste de
-  `contact`. Ce sont des liens isolés, pas des paires Dumé / Antoine.
+  `contact`, la présentation de l'équipe de `a-propos`, les mentions légales. Ce
+  sont des mentions, pas des encarts ; en retirer une demande de réécrire sa phrase.
+- **Le pied de page** : ses deux numéros sont des lignes de **texte simple**
+  (« Dumé : … », « Antoine : … »), comme la ligne WhatsApp — ni pastille, ni fond
+  blanc, ni gras — et restent visibles à toutes les largeurs.
+- **Le contrôle `appels-contenu`** garde la règle : aucune des classes
+  `appel-paire`, `inline-call-wrapper`, `contact-footer`, `btn-phone`, `btn-call`
+  dans `<main>` (sauf les deux pages d'exception), `.appel-devis` jamais masqué
+  par défaut, bonne cible, et seuils alignés. Éprouvé en réintroduisant une paire
+  dans `cafards` : il échoue. Il remplace `appels-mobile`.
+- **Les seuils** : la barre du bas se masque à `min-width: 768px`, les boutons des
+  fiches d'identification à `max-width: 767px` (deux media queries : une media
+  query ne lit pas de variable CSS). Ils sont dans `global.css`, côte à côte.
+- **Spécificité** : `.appel-devis` est écrit `body a.appel-devis`. Sans cela,
+  `.cta-block a` (feuille `pages-services.css`) imposait son propre `display`.
 - **Fiches d'identification** : seules les deux pastilles `.btn-phone` de chaque
-  encart sont masquées ; « Remplir la fiche » et l'envoi de photo restent, donc
-  l'encart garde une action.
+  encart se masquent sous 768 px ; « Remplir la fiche » et l'envoi de photo
+  restent. **Piège de mesure** : mesurer la *visibilité* de ces boutons conclut
+  qu'ils sont masqués en bureau aussi — l'outil cache les fiches non choisies.
+  Mesurer le `display` calculé.
 - **Piège de mesure** : sur `identifier-nuisible`, mesurer la **visibilité** des
   boutons des fiches conclut qu'ils sont masqués en bureau aussi — l'outil cache
   les fiches non choisies. Mesurer le `display` calculé.
@@ -581,7 +589,8 @@ endroits.**
 | Barre d'appel mobile (`.sticky-mobile-bar`) | ✅ | ✅ |
 | Pied de page | ✅ | ✅ |
 
-Plus le bloc d'appel de l'accueil (`.btn-call`), qui porte les deux également.
+Le contenu des pages n'en porte plus en bouton (voir « Dans le contenu, aucun
+numéro d'appel en bouton »).
 **Toujours en lien `tel:`**, jamais en texte brut.
 
 Les deux pastilles du bandeau sont traitées **à égalité** — même fond, même
@@ -1028,8 +1037,7 @@ grep -oh 'class="[^"]*"' *.html | sed 's/class="//;s/"//' | tr ' ' '\n' \
       [ -z "$c" ] || grep -rqF ".$c" assets/css/ || echo "CLASSE NON DEFINIE: .$c"
     done
 
-# Seule sortie attendue : .contact-footer, pose sur les blocs <footer> de
-# contenu de 4 pages. Sans CSS ni JS associe, c'est un simple repere semantique.
+# Sortie attendue : aucune.
 
 # un seul h1 par page
 for f in *.html; do n=$(grep -c "<h1" $f); [ "$n" = 1 ] || echo "H1=$n $f"; done
