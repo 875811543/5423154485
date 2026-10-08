@@ -98,6 +98,19 @@ Conséquence assumée : **sans JavaScript, le mobile voit les quatre colonnes
 dépliées.** C’est plus long, mais tout reste atteignable — l’inverse aurait
 rendu quarante liens invisibles.
 
+**Le soulignement des liens du pied ne s'applique qu'avec un pointeur qui
+survole** : `@media (hover: hover) { .site-footer a:hover { … } }`. Sur écran
+tactile, `:hover` reste collé au dernier élément touché — un lien restait
+souligné après un tap, « contrairement aux autres ». Reproduit en tactile
+émulé (`none` → `underline`) avant d'être corrigé, éprouvé dans les deux sens
+après : le tap ne souligne plus, la souris souligne toujours.
+
+Les groupes du pied portent leurs liens de **contenu** seulement. Une page de
+service n'a pas sa place dans « Zones d'intervention » (c'était le cas de
+« Termites en Costa Verde »), ni une page d'information dans « Nuisibles
+traités » : la mérule est sous « Infos pratiques », libellée « Mérule
+(information) ».
+
 Deux autres choses à savoir :
 
 - le bouton du bandeau **ne porte pas `.btn-devis`**. Cette classe ne reçoit du

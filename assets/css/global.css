@@ -1846,7 +1846,14 @@ li > .ico:first-child {
 }
 
 .site-footer a { color: #FFFFFF; text-decoration: none; }
-.site-footer a:hover { text-decoration: underline; }
+/* Le soulignement au survol n'a de sens qu'avec un pointeur qui survole.
+   Sur ecran tactile, :hover reste COLLE au dernier element touche : un lien du
+   pied restait souligne apres un tap, « contrairement aux autres ». Reproduit en
+   tactile emule (le lien touche passait de none a underline, les 27 autres
+   restaient a none) avant d'etre corrige. (hover: hover) est faux en tactile. */
+@media (hover: hover) {
+  .site-footer a:hover { text-decoration: underline; }
+}
 .site-footer a:focus-visible {
   outline: 2px solid var(--cta-green);
   outline-offset: 3px;
@@ -1890,7 +1897,11 @@ li > .ico:first-child {
   text-decoration: none;
   white-space: nowrap;
 }
-.footer-cta__btn:hover {
+/* « .site-footer » devant : sans lui, .site-footer a:hover (0,2,1) l'emporte sur
+   ce selecteur (0,2,0) et le bouton se soulignait au survol malgre ce « none ».
+   Constate sur le site en ligne en cherchant pourquoi un autre lien du pied
+   se soulignait — meme famille de defaut, cause differente. */
+.site-footer .footer-cta__btn:hover {
   background: var(--cta-green-dark);
   text-decoration: none;
 }
