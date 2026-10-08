@@ -1568,6 +1568,21 @@ const CONTROLES = [
       if (affichees.has(n)) pbs.push('commune hors zone affichee : ' + n);
       if (REF.has(n)) pbs.push('commune hors zone dans communes-desservies.json : ' + n);
     }
+
+    // Les titres de secteur de la liste (generee) et ceux des cartes (ecrites a
+    // la main, sur zones-dintervention ET sur l accueil) doivent etre les memes :
+    // un visiteur qui passe de la carte a la liste doit retrouver le meme mot.
+    // Une carte renommee d un cote seulement se verrait sinon trop tard.
+    const { SECTEURS } = require(path.join(__dirname, 'build-communes.js'));
+    const nu = s => s.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+    for (const f of ['zones-dintervention.html', 'index.html']) {
+      const titres = [...lire(f).matchAll(/class="secteur__titre"[^>]*>([\s\S]*?)<\/h3>/g)].map(m => nu(m[1]));
+      for (const s of Object.values(SECTEURS)) {
+        const t = nu(s.titre);
+        if (!titres.some(x => x === t || x.startsWith(t + ' ')))
+          pbs.push(f + ' : aucune carte .secteur ne porte le titre « ' + t + ' » (titres presents : ' + titres.join(' | ') + ')');
+      }
+    }
     return pbs;
   }}
 

@@ -251,6 +251,12 @@
   //
   // « Modifier » efface la validation et remet le champ en consultation.
   //
+  // MODE CONSULTATION SEULE : sur zones-dintervention, le meme widget porte
+  // l'attribut data-consultation. Il n'y a pas de formulaire : la fiche ne
+  // propose ni « Confirmer » ni champs caches, et renvoie vers la page du
+  // secteur (table « pages » de communes.json). Les chemins de confirmation
+  // (confirmer, modifier, communeBloquante) n'y sont jamais atteints.
+  //
   // Le fichier des communes est charge a la premiere frappe, pas au chargement
   // de la page : 22 Ko que ne telecharge jamais un visiteur qui ne remplit pas
   // le formulaire. S'il echoue, le champ le dit et cesse de bloquer l'envoi.
@@ -260,6 +266,7 @@
     var listeCommune = document.getElementById("commune-suggestions");
     var ficheCommune = document.getElementById("commune-fiche");
     var cacheCommune = null;
+    var cachePages = {};   // secteur -> page, pour le mode consultation
     var demandeCommune = null;
     var degradeCommune = false;
     var consultee = null;
@@ -291,10 +298,12 @@
       if (demandeCommune) return demandeCommune;
       demandeCommune = fetch(widgetCommune.getAttribute("data-source"))
         .then(function (r) { return r.json(); })
-        .then(function (d) { cacheCommune = d.communes; return cacheCommune; })
+        .then(function (d) { cacheCommune = d.communes; cachePages = d.pages || {}; return cacheCommune; })
         .catch(function () {
           degradeCommune = true;
-          message("La recherche de commune est momentanement indisponible. Indiquez-la dans le champ adresse ci-dessous.");
+          message(widgetCommune.hasAttribute("data-consultation")
+            ? "La recherche de commune est momentanement indisponible. Consultez la liste des communes ci-dessous."
+            : "La recherche de commune est momentanement indisponible. Indiquez-la dans le champ adresse ci-dessous.");
           return [];
         });
       return demandeCommune;
@@ -390,11 +399,22 @@
       fermerListe();
       message("");
       ficheCommune.className = "commune-fiche " + (c.d ? "commune-fiche--desservie" : "commune-fiche--hors-zone");
+      // Mode consultation (data-consultation, page zones-dintervention) : il n'y a
+      // pas de formulaire, donc rien a confirmer. La fiche dit si la commune est
+      // desservie et, si oui, renvoie vers la page de son secteur. L'adresse vient
+      // de communes.json (cle « pages »), posee par le generateur ; on la pose en
+      // attribut plutot que dans innerHTML.
+      var consultation = widgetCommune.hasAttribute("data-consultation");
+      var pageSecteur = consultation && c.d ? cachePages[c.s] : null;
+      var actions = consultation
+        ? (pageSecteur ? '<div class="commune-actions"><a class="commune-lien-secteur">Voir le secteur →</a></div>' : "")
+        : '<div class="commune-actions"><button type="button" class="commune-btn btn-devis" data-action="confirmer">Confirmer cette commune</button></div>';
       ficheCommune.innerHTML =
         '<p class="commune-statut">' + (c.d ? coche + "Commune desservie" : alerte + "Commune hors de notre zone") + "</p>"
         + '<p class="commune-nom"></p>'
         + '<p class="commune-detail"></p>'
-        + '<div class="commune-actions"><button type="button" class="commune-btn btn-devis" data-action="confirmer">Confirmer cette commune</button></div>';
+        + actions;
+      if (pageSecteur) ficheCommune.querySelector(".commune-lien-secteur").setAttribute("href", pageSecteur);
       ficheCommune.querySelector(".commune-nom").textContent = c.n;
       ficheCommune.querySelector(".commune-detail").textContent = c.r
         ? "Secteur : " + c.s + " — rattaché à " + c.r

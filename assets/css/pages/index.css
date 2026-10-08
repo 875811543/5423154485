@@ -255,44 +255,17 @@
   }
   .zone-block-title a:hover { text-decoration: underline; }
 
-  .tag-sm {
-    display: inline-block;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    color: #475569;
-    font-size: 0.76rem;
-    padding: 2px 7px;
-    border-radius: 4px;
-    text-decoration: none;
-  }
+  
 
-  a.tag-sm.featured {
-    background: #eff6ff;
-    border-color: #bfdbfe;
-    color: #2563eb;
-    font-weight: 600;
-  }
-  a.tag-sm.featured:hover { background: #2563eb; color: #ffffff; border-color: #2563eb; }
+  
+  
 
-  .zones-btn-sm {
-    display: inline-flex;
-    align-items: center;
-    min-height: 40px;
-    background: #1A4DFB;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 0.82rem;
-    white-space: nowrap;
-    transition: background 0.2s;
-  }
-  .zones-btn-sm:hover { background: #2557d6; }
+  
+  
 
   @media (max-width: 640px) {
-    .zones-top-bar, .zones-bottom-bar { flex-direction: column; align-items: flex-start; gap: 8px; }
-    .zones-btn-sm { width: 100%; text-align: center; justify-content: center; box-sizing: border-box; }
+    .zones-top-bar { flex-direction: column; align-items: flex-start; gap: 8px; }
+    
   }
 
 /* ==========================================================================
@@ -675,21 +648,8 @@
   outline-offset: 4px;
 }
 
-/* --- Bouton d'appel par bloc de zone ----------------------------------------
-   Remplace la bascule des seize noms de ville vers tel:. Ces noms rendent
-   l'acces aux trois pages de zone depuis l'accueil — la page qui porte le plus
-   d'autorite — et le texte d'un lien doit annoncer ou il mene : « Cervione »
-   ouvrant un composeur repondait a cote de la question du visiteur, qui lit
-   cette liste pour savoir si sa commune est couverte.
-   L'appel garde donc sa place, mais sous sa propre etiquette. .zones-btn-sm est
-   deja un bouton d'appel sur cette page : il herite du vert du systeme.
-   -------------------------------------------------------------------------- */
-.zone-block__appel {
-  margin-top: 12px;
-}
-@media (max-width: 640px) {
-  .zone-block__appel { width: 100%; }
-}
+
+
 
 /* ==========================================================================
    Bandeau des qualifications (Certibiocide, CACES) — défilement continu.

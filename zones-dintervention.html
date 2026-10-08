@@ -98,14 +98,15 @@
 
   <!-- Schema.org : HomeAndConstructionBusiness -->
 
-  <link rel="stylesheet" href="assets/css/pages/zones-dintervention.css?v=f4a2ceff">
+  <link rel="stylesheet" href="assets/css/pages/zones-dintervention.css?v=618362e7">
 
   <!-- Polices auto-hébergées : aucun appel à Google, aucune IP transmise -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-latin-400-normal.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/poppins-latin-800-normal.woff2" crossorigin>
 
-  <link rel="stylesheet" href="assets/css/global.css?v=79d11bb9">
-  <link rel="stylesheet" href="assets/css/pages-zones.css?v=40dcdb38">
+  <link rel="stylesheet" href="assets/css/global.css?v=f658d41e">
+  <link rel="stylesheet" href="assets/css/form.css?v=76ccacb0">
+  <link rel="stylesheet" href="assets/css/pages-zones.css?v=de2d11d5">
 </head>
 <body>
 <a href="#main-content" class="skip-link">Aller au contenu principal</a>
@@ -282,68 +283,42 @@
 
   <!-- HERO SECTION : UN SEUL H1 POUR TOUTE LA PAGE -->
   <section class="hero-seo">
-    <span class="hero-tag">Haute-Corse & Corse-du-Sud — 2B & 2A</span>
     <h1 id="page-h1">Anti-nuisibles en Corse&nbsp;: Ajaccio, Bastia, Porto-Vecchio, Calvi &amp; Corte</h1>
-    <p class="subtitle" id="page-lead">Applicateur certifié Certibiocide, basé en Costa Verde. Intervention 7j/7 pour particuliers, professionnels et collectivités, en Haute-Corse (2B) comme en Corse-du-Sud (2A). Les deux départements étant classés zone à risque par arrêté préfectoral, nous assurons le <a href="traitement-anti-termites">traitement des termites</a> sur l'ensemble de ces secteurs.</p>
-    <div class="cta-group">
-      <a href="tel:+33685753040" class="btn-phone"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> Urgence directe&nbsp;: 06 85 75 30 40</a>
-      <a href="#devis" class="btn-devis"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ico"><path d="M11 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><path d="M18.4 2.6a2 2 0 0 1 2.8 2.8L12 14.6l-3.8 1 1-3.8z"/></svg> Demander un devis gratuit</a>
+    <p class="subtitle" id="page-lead">Nous intervenons en <span class="insecable">Haute-Corse</span> et en <span class="insecable">Corse-du-Sud</span>, sous 24 à 48&nbsp;h.</p>
+    <div class="verif-commune form-group--commune" id="commune-widget" data-consultation data-source="assets/data/communes.json">
+      <label class="verif-commune__label" for="commune-recherche">Vérifier ma commune</label>
+      <input type="text" id="commune-recherche" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="commune-suggestions" aria-describedby="commune-aide" placeholder="Nom de la commune ou code postal">
+      <p class="commune-aide" id="commune-aide">Tapez votre commune ou son code postal&nbsp;: nous vous disons si nous y intervenons.</p>
+      <ul class="commune-suggestions" id="commune-suggestions" role="listbox" aria-label="Communes proposées" hidden></ul>
+      <div class="commune-fiche" id="commune-fiche" aria-live="polite" hidden></div>
     </div>
   </section>
 
-  <!-- ================= HAUTE-CORSE ================= -->
+  <!-- SECTEURS : une carte par secteur, composant .secteur de global.css -->
   <section>
     <h2 class="section-title">Zones d'intervention</h2>
-
-    <div class="dept-heading">
-      <h3>Haute-Corse</h3>
-      <span class="dept-badge-lg">2B</span>
-    </div>
-    <p>Grâce à notre siège opérationnel basé en <a href="anti-nuisibles-costa-verde" class="internal-link">Costa Verde</a>, nous garantissons un délai d'intervention ultra-rapide sur l'ensemble du département&nbsp;:</p>
-
-    <div class="grid-zones triple">
-
-      <article class="zone-card linked">
-        <h4>Nord-Est &amp; Costa Verde</h4>
-        <a href="anti-nuisibles-costa-verde" class="zone-link">Voir la page dédiée →</a>
-        <p>Notre siège opérationnel — Costa Verde, Grand Bastia, Casinca et son piémont, Plaine Orientale.</p>
-        <ul>
-          <li><a href="anti-nuisibles-costa-verde" class="city-tag">Cervione</a> <a href="anti-nuisibles-costa-verde" class="city-tag">Bastia</a></li>
-          <li><a href="anti-nuisibles-costa-verde" class="city-tag">Folelli</a> <a href="anti-nuisibles-costa-verde" class="city-tag">Aléria</a></li>
-        </ul>
+    <div class="secteurs">
+      <article class="secteur">
+        <h3 class="secteur__titre">Nord-Est &amp; Costa Verde <span class="secteur__siege">siège</span></h3>
+        <p class="secteur__dept"><span class="insecable">Haute-Corse</span> (2B)</p>
+        <p class="secteur__phrase">Notre siège opérationnel&nbsp;: Costa Verde, Grand Bastia, Casinca et son piémont, Plaine Orientale.</p>
+        <p class="secteur__villes">Cervione, Bastia, Folelli, Aléria</p>
+        <a class="secteur__lien" href="anti-nuisibles-costa-verde">Voir le secteur →</a>
       </article>
-
-      <article class="zone-card linked">
-        <h4>Centre Corse &amp; Balagne</h4>
-        <a href="anti-nuisible-corte" class="zone-link">Voir la page dédiée →</a>
-        <p>Cortenais, vallée du Golo, Calvi, L'Île-Rousse, Saint-Florent.</p>
-        <ul>
-          <li><a href="anti-nuisible-corte" class="city-tag">Corte</a> <a href="anti-nuisible-corte" class="city-tag">Venaco</a></li>
-          <li><a href="anti-nuisible-corte" class="city-tag">Calvi</a> <a href="anti-nuisible-corte" class="city-tag">Saint-Florent</a></li>
-        </ul>
+      <article class="secteur">
+        <h3 class="secteur__titre">Centre Corse &amp; Balagne</h3>
+        <p class="secteur__dept"><span class="insecable">Haute-Corse</span> (2B)</p>
+        <p class="secteur__phrase">Cortenais, vallée du Golo, Calvi, L'Île-Rousse, Saint-Florent.</p>
+        <p class="secteur__villes">Corte, Venaco, Calvi, Saint-Florent</p>
+        <a class="secteur__lien" href="anti-nuisible-corte">Voir le secteur →</a>
       </article>
-
-    </div>
-
-    <!-- ================= CORSE-DU-SUD ================= -->
-    <div class="dept-heading">
-      <h3>Corse-du-Sud</h3>
-      <span class="dept-badge-lg">2A</span>
-    </div>
-    <p>Nos équipes mobiles interviennent rapidement sur l'ensemble du sud de l'île&nbsp;:</p>
-
-    <div class="grid-zones">
-
-      <article class="zone-card linked">
-        <h4>Sud de la Corse</h4>
-        <a href="anti-nuisibles-grand-ajaccio-porto-vecchio" class="zone-link">Voir la page dédiée →</a>
-        <p>Grand Ajaccio, Pays Ajaccien et Gravona, Porto-Vecchio, Bonifacio, Extrême-Sud.</p>
-        <ul>
-          <li><a href="anti-nuisibles-grand-ajaccio-porto-vecchio" class="city-tag">Ajaccio</a> <a href="anti-nuisibles-grand-ajaccio-porto-vecchio" class="city-tag">Porticcio</a></li>
-          <li><a href="anti-nuisibles-grand-ajaccio-porto-vecchio" class="city-tag">Porto-Vecchio</a> <a href="anti-nuisibles-grand-ajaccio-porto-vecchio" class="city-tag">Bonifacio</a></li>
-        </ul>
+      <article class="secteur">
+        <h3 class="secteur__titre">Sud de la Corse</h3>
+        <p class="secteur__dept"><span class="insecable">Corse-du-Sud</span> (2A)</p>
+        <p class="secteur__phrase">Grand Ajaccio, Pays Ajaccien et Gravona, Porto-Vecchio, Bonifacio, Extrême-Sud.</p>
+        <p class="secteur__villes">Ajaccio, Porticcio, Porto-Vecchio, Bonifacio</p>
+        <a class="secteur__lien" href="anti-nuisibles-grand-ajaccio-porto-vecchio">Voir le secteur →</a>
       </article>
-
     </div>
   </section>
 
@@ -419,19 +394,7 @@
     </ul>
   </section>
 
-  <!-- CTA FINAL -->
-  <section id="devis" class="cta-final">
-    <h2>Besoin d'une intervention rapide en Corse&nbsp;?</h2>
-    <p>Contactez immédiatement un technicien certifié pour un diagnostic gratuit.</p>
-    <div class="appel-paire">
-      <a class="btn-phone" href="tel:+33685753040"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel-nom">Dumé</span>&nbsp;<span class="tel-num">06 85 75 30 40</span></a>
-      <a class="btn-phone" href="tel:+33629421638"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel-nom">Antoine</span>&nbsp;<span class="tel-num">06 29 42 16 38</span></a>
-    </div>
-    <a class="appel-devis" href="contact#dezinsectContactForm">Demander un devis</a>
-  </section>
-
-
-<section class="map-block" aria-labelledby="carte-titre">
+  <section class="map-block" aria-labelledby="carte-titre">
   <h2 id="carte-titre">Nous situer &amp; nous rejoindre</h2>
   <p>Notre base est à Santa-Maria-Poggio, en Costa Verde. Nous nous déplaçons en <span class="insecable">Haute-Corse</span> et en <span class="insecable">Corse-du-Sud</span>, de Bastia à Bonifacio.</p>
 
@@ -519,216 +482,106 @@
 
 <section class="communes-block" aria-labelledby="communes-titre">
   <h2 class="zone-heading-md" id="communes-titre">Communes desservies</h2>
-  <p class="communes-intro">Nous intervenons en <span class="insecable">Haute-Corse</span> et en <span class="insecable">Corse-du-Sud</span> sous 24 à 48 heures, y compris dans les secteurs les plus éloignés de nos deux bases. Les nids de guêpes et de frelons sont traités en urgence, sous 24 heures. Les 344 communes ci-dessous sont regroupées par microrégion : ouvrez la vôtre pour vérifier qu'elle y figure.</p>
-
-  <details class="commune-groupe">
-    <summary class="commune-summary" aria-label="Communes desservies en Bastia et Cap Corse — 26 communes">
-      <span class="commune-nom">Bastia &amp; Cap Corse</span>
-      <span class="commune-compte">26 communes</span>
-      <svg class="commune-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="commune-corps">
-      <p class="commune-phrase">La ville, sa périphérie de la Marana et les villages du Cap. Deux terrains opposés : un tissu urbain dense où les réseaux d'immeubles font circuler rongeurs et blattes, et des villages de bord de mer où l'accès se fait par des routes étroites.</p>
-      <p class="commune-liste">Barrettali, Bastia, Biguglia, Borgo, Brando, Cagnano, Canari, Centuri, Ersa, Furiani, Lucciana, Luri, Meria, Morsiglia, Nonza, Ogliastro, Olcani, Olmeta-di-Capocorso, Pietracorbara, Pino, Rogliano, San-Martino-di-Lota, Santa-Maria-di-Lota, Sisco, Tomino, Ville-di-Pietrabugno</p>
-      <p class="commune-lien"><a class="internal-link" href="anti-nuisibles-costa-verde">Voir la page Bastia &amp; Costa Verde</a></p>
-    </div>
-  </details>
-
-  <details class="commune-groupe">
-    <summary class="commune-summary" aria-label="Communes desservies en Nebbio — 15 communes">
-      <span class="commune-nom">Nebbio</span>
-      <span class="commune-compte">15 communes</span>
-      <svg class="commune-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="commune-corps">
-      <p class="commune-phrase">Le bassin de Saint-Florent et la Conca d'Oro. Zone de vignobles et de maquis, avec un habitat dispersé où les nids de guêpes et de frelons en dépendance sont fréquents.</p>
-      <p class="commune-liste">Barbaggio, Farinole, Murato, Oletta, Olmeta-di-Tuda, Patrimonio, Piève, Poggio-d'Oletta, Rapale, Rutali, Saint-Florent, San-Gavino-di-Tenda, Santo-Pietro-di-Tenda, Sorio, Vallecalle</p>
-      <p class="commune-lien"><a class="internal-link" href="anti-nuisibles-costa-verde">Voir la page Bastia &amp; Costa Verde</a></p>
-    </div>
-  </details>
-
-  <details class="commune-groupe">
-    <summary class="commune-summary" aria-label="Communes desservies en Casinca — 8 communes">
-      <span class="commune-nom">Casinca</span>
-      <span class="commune-compte">8 communes</span>
-      <svg class="commune-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="commune-corps">
-      <p class="commune-phrase">La plaine et les villages de balcon au-dessus de Vescovato. Proximité immédiate de notre secteur de base, entre cultures maraîchères et habitat de village ancien.</p>
-      <p class="commune-liste">Castellare-di-Casinca, Loreto-di-Casinca, Penta-di-Casinca, Porri, Silvareccio, Sorbo-Ocagnano, Venzolasca, Vescovato</p>
-      <p class="commune-lien"><a class="internal-link" href="anti-nuisibles-costa-verde">Voir la page Bastia &amp; Costa Verde</a></p>
-    </div>
-  </details>
-
-  <details class="commune-groupe">
-    <summary class="commune-summary" aria-label="Communes desservies en Castagniccia — 41 communes">
-      <span class="commune-nom">Castagniccia</span>
-      <span class="commune-compte">41 communes</span>
-      <svg class="commune-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="commune-corps">
-      <p class="commune-phrase">Le pays de la châtaigneraie, en bâti de pierre ancien et charpentes de châtaignier. C'est le terrain type des insectes à larves xylophages et des rongeurs installés dans des combles peu fréquentés.</p>
-      <p class="commune-liste">Bisinchi, Campana, Campile, Canavaggia, Carcheto-Brustico, Carpineto, Casabianca, Casalta, Castello-di-Rostino, Croce, Crocicchia, Ficaja, Gavignano, Giocatojo, La Porta, Monacia-d'Orezza, Morosaglia, Nocario, Ortiporio, Parata, Penta-Acquatella, Piano, Piazzole, Pie-d'Orezza, Piedicroce, Piedipartino, Poggio-Marinaccio, Polveroso, Prunelli-di-Casacconi, Pruno, Quercitello, Rapaggio, Saliceto, San-Damiano, San-Gavino-d'Ampugnani, Scata, Stazzona, Valle-d'Orezza, Valle-di-Rostino, Verdèse, Volpajola</p>
-      <p class="commune-lien"><a class="internal-link" href="anti-nuisibles-costa-verde">Voir la page Bastia &amp; Costa Verde</a></p>
-    </div>
-  </details>
-
-  <details class="commune-groupe">
-    <summary class="commune-summary" aria-label="Communes desservies en Costa Verde — 23 communes">
-      <span class="commune-nom">Costa Verde</span>
-      <span class="commune-compte">23 communes</span>
-      <svg class="commune-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="commune-corps">
-      <p class="commune-phrase">Notre secteur de base, de Moriani à Folelli. Littoral touristique à forte pression estivale, où les résidences et les locations saisonnières concentrent les demandes de juin à septembre.</p>
-      <p class="commune-liste">Cervione, Felce, Novale, Ortale, Perelli, Pero-Casevecchie, Piazzali, Pietricaggio, Piobetta, Poggio-Mezzana, San-Giovanni-di-Moriani, San-Giuliano, San-Nicolao, Sant'Andréa-di-Cotone, Santa-Lucia-di-Moriani, Santa-Maria-Poggio, Santa-Reparata-di-Moriani, Taglio-Isolaccio, Talasani, Tarrano, Valle-d'Alesani, Valle-di-Campoloro, Velone-Orneto</p>
-      <p class="commune-lien"><a class="internal-link" href="anti-nuisibles-costa-verde">Voir la page Bastia &amp; Costa Verde</a></p>
-    </div>
-  </details>
-
-  <details class="commune-groupe">
-    <summary class="commune-summary" aria-label="Communes desservies en Plaine Orientale — 22 communes">
-      <span class="commune-nom">Plaine Orientale</span>
-      <span class="commune-compte">22 communes</span>
-      <svg class="commune-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="commune-corps">
-      <p class="commune-phrase">La plaine agricole d'Aléria et son arrière-pays. Des exploitations et des stockages qui attirent durablement les rongeurs, et des zones humides propices aux moustiques.</p>
-      <p class="commune-liste">Aghione, Aléria, Altiani, Ampriani, Antisanti, Campi, Canale-di-Verde, Casevecchie, Chiatra, Giuncaggio, Linguizzetta, Matra, Moïta, Pancheraccia, Pianello, Piedicorte-di-Gaggio, Pietra-di-Verde, Pietraserena, Tallone, Tox, Zalana, Zuani</p>
-      <p class="commune-lien"><a class="internal-link" href="anti-nuisibles-costa-verde">Voir la page Bastia &amp; Costa Verde</a></p>
-    </div>
-  </details>
-
-  <details class="commune-groupe">
-    <summary class="commune-summary" aria-label="Communes desservies en Fiumorbu — 14 communes">
-      <span class="commune-nom">Fiumorbu</span>
-      <span class="commune-compte">14 communes</span>
-      <svg class="commune-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="commune-corps">
-      <p class="commune-phrase">De Ghisonaccia à Solenzara, littoral et vallées. Secteur de campings et de résidences de vacances, avec la même saisonnalité marquée que la Costa Verde.</p>
-      <p class="commune-liste">Chisa, Ghisonaccia, Ghisoni, Isolaccio-di-Fiumorbo, Lugo-di-Nazza, Pietroso, Poggio-di-Nazza, Prunelli-di-Fiumorbo, San-Gavino-di-Fiumorbo, Sari-Solenzara, Serra-di-Fiumorbo, Solaro, Ventiseri, Vezzani</p>
-      <p class="commune-lien"><a class="internal-link" href="anti-nuisibles-costa-verde">Voir la page Bastia &amp; Costa Verde</a></p>
-    </div>
-  </details>
-
-  <details class="commune-groupe">
-    <summary class="commune-summary" aria-label="Communes desservies en Centre Corse / Corte — 47 communes">
-      <span class="commune-nom">Centre Corse / Corte</span>
-      <span class="commune-compte">47 communes</span>
-      <svg class="commune-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="commune-corps">
-      <p class="commune-phrase">Corte, le Boziu, le Talcini et la vallée du Golo. Altitude et bâti ancien : les nuisibles y arrivent plus tard en saison, et les charpentes anciennes y sont le motif principal d'intervention.</p>
-      <p class="commune-liste">Aiti, Alando, Alzi, Asco, Bigorno, Bustanico, Cambia, Campitello, Carticasi, Casanova, Castellare-di-Mercurio, Castifao, Castiglione, Castineta, Castirla, Corte, Erbajolo, Érone, Favalello, Focicchia, Lano, Lento, Mazzola, Moltifao, Monte, Muracciole, Noceta, Olmo, Omessa, Piedigriggio, Poggio-di-Venaco, Popolasca, Prato-di-Giovellina, Riventosa, Rospigliani, Rusio, San-Lorenzo, Sant'Andréa-di-Bozio, Santa-Lucia-di-Mercurio, Santo-Pietro-di-Venaco, Scolca, Sermano, Soveria, Tralonca, Venaco, Vignale, Vivario</p>
-      <p class="commune-lien"><a class="internal-link" href="anti-nuisible-corte">Voir la page Corte, Calvi &amp; Balagne</a></p>
-    </div>
-  </details>
-
-  <details class="commune-groupe">
-    <summary class="commune-summary" aria-label="Communes desservies en Balagne — 36 communes">
-      <span class="commune-nom">Balagne</span>
-      <span class="commune-compte">36 communes</span>
-      <svg class="commune-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="commune-corps">
-      <p class="commune-phrase">De Calvi à L'Île-Rousse, avec l'Ostriconi et le Ghjunsani. Forte densité touristique sur le littoral, villages perchés à l'intérieur, et une pression estivale comparable à celle de la côte orientale.</p>
-      <p class="commune-liste">Algajola, Aregno, Avapessa, Belgodère, Calenzana, Calvi, Cateri, Corbara, Costa, Feliceto, Galéria, L'Île-Rousse, Lama, Lavatoggio, Lumio, Manso, Mausoléo, Moncale, Montegrosso, Monticello, Muro, Nessa, Novella, Occhiatana, Olmi-Cappella, Palasca, Pietralba, Pigna, Pioggiola, Sant'Antonino, Santa-Reparata-di-Balagna, Speloncato, Urtaca, Vallica, Ville-di-Paraso, Zilia</p>
-      <p class="commune-lien"><a class="internal-link" href="anti-nuisible-corte">Voir la page Corte, Calvi &amp; Balagne</a></p>
-    </div>
-  </details>
-
-  <details class="commune-groupe">
-    <summary class="commune-summary" aria-label="Communes desservies en Niolu — 5 communes">
-      <span class="commune-nom">Niolu</span>
-      <span class="commune-compte">5 communes</span>
-      <svg class="commune-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="commune-corps">
-      <p class="commune-phrase">Le bassin de Calacuccia, en haute altitude. Secteur isolé par le Scala di Santa Regina, où nous groupons les interventions faute de pouvoir y passer souvent.</p>
-      <p class="commune-liste">Albertacce, Calacuccia, Casamaccioli, Corscia, Lozzi</p>
-      <p class="commune-lien"><a class="internal-link" href="anti-nuisible-corte">Voir la page Corte, Calvi &amp; Balagne</a></p>
-    </div>
-  </details>
-
-  <details class="commune-groupe">
-    <summary class="commune-summary" aria-label="Communes desservies en Grand Ajaccio — 19 communes">
-      <span class="commune-nom">Grand Ajaccio</span>
-      <span class="commune-compte">19 communes</span>
-      <svg class="commune-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="commune-corps">
-      <p class="commune-phrase">Ajaccio, sa première couronne et la rive sud jusqu'à Porticcio. Agglomération dense, copropriétés et restauration : les traitements y demandent une coordination entre logements voisins.</p>
-      <p class="commune-liste">Afa, Ajaccio, Alata, Albitreccia, Appietto, Bastelicaccia, Campo, Cardo-Torgia, Cauro, Coti-Chiavari, Cuttoli-Corticchiato, Grosseto-Prugna, Guargualé, Peri, Pietrosella, Sarrola-Carcopino, Tavaco, Valle-di-Mezzana, Villanova</p>
-      <p class="commune-lien"><a class="internal-link" href="anti-nuisibles-grand-ajaccio-porto-vecchio">Voir la page Ajaccio &amp; Porto-Vecchio</a></p>
-    </div>
-  </details>
-
-  <details class="commune-groupe">
-    <summary class="commune-summary" aria-label="Communes desservies en Gravona, Celavu, Prunelli et Cruzzini — 15 communes">
-      <span class="commune-nom">Gravona, Celavu, Prunelli &amp; Cruzzini</span>
-      <span class="commune-compte">15 communes</span>
-      <svg class="commune-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="commune-corps">
-      <p class="commune-phrase">Les vallées qui remontent depuis Ajaccio vers Bocognano et Bastelica. Habitat de fond de vallée, souvent en lisière de forêt, où les frelons et les rongeurs de combles dominent.</p>
-      <p class="commune-liste">Azzana, Bastelica, Bocognano, Carbuccia, Eccica-Suarella, Lopigna, Ocana, Pastricciola, Rezza, Rosazia, Salice, Tavera, Tolla, Ucciani, Vero</p>
-      <p class="commune-lien"><a class="internal-link" href="anti-nuisibles-grand-ajaccio-porto-vecchio">Voir la page Ajaccio &amp; Porto-Vecchio</a></p>
-    </div>
-  </details>
-
-  <details class="commune-groupe">
-    <summary class="commune-summary" aria-label="Communes desservies en Deux-Sorru / Deux-Sevi — 27 communes">
-      <span class="commune-nom">Deux-Sorru / Deux-Sevi</span>
-      <span class="commune-compte">27 communes</span>
-      <svg class="commune-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="commune-corps">
-      <p class="commune-phrase">De Cargèse et Sagone jusqu'à Évisa, Ota et Piana. Secteur de montagne et de gorges, éloigné de nos deux bases, sur lequel nous regroupons les déplacements.</p>
-      <p class="commune-liste">Ambiegna, Arbori, Arro, Balogna, Calcatoggio, Cannelle, Cargèse, Casaglione, Coggia, Cristinacce, Évisa, Guagno, Letia, Marignana, Murzo, Orto, Osani, Ota, Partinello, Piana, Poggiolo, Renno, Sant'Andréa-d'Orcino, Sari-d'Orcino, Serriera, Soccia, Vico</p>
-      <p class="commune-lien"><a class="internal-link" href="anti-nuisibles-grand-ajaccio-porto-vecchio">Voir la page Ajaccio &amp; Porto-Vecchio</a></p>
-    </div>
-  </details>
-
-  <details class="commune-groupe">
-    <summary class="commune-summary" aria-label="Communes desservies en Taravo — 22 communes">
-      <span class="commune-nom">Taravo</span>
-      <span class="commune-compte">22 communes</span>
-      <svg class="commune-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="commune-corps">
-      <p class="commune-phrase">La vallée, de Petreto-Bicchisano jusqu'à Zicavo. Villages d'altitude et bâti ancien, avec des charpentes qui relèvent souvent du diagnostic avant traitement.</p>
-      <p class="commune-liste">Argiusta-Moriccio, Azilone-Ampaza, Ciamannacce, Cognocoli-Monticchi, Corrano, Cozzano, Forciolo, Frasseto, Guitera-les-Bains, Moca-Croce, Olivese, Palneca, Petreto-Bicchisano, Pila-Canale, Quasquara, Sampolo, Santa-Maria-Siché, Tasso, Urbalacone, Zévaco, Zicavo, Zigliara</p>
-      <p class="commune-lien"><a class="internal-link" href="anti-nuisibles-grand-ajaccio-porto-vecchio">Voir la page Ajaccio &amp; Porto-Vecchio</a></p>
-    </div>
-  </details>
-
-  <details class="commune-groupe">
-    <summary class="commune-summary" aria-label="Communes desservies en Alta Rocca — 16 communes">
-      <span class="commune-nom">Alta Rocca</span>
-      <span class="commune-compte">16 communes</span>
-      <svg class="commune-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="commune-corps">
-      <p class="commune-phrase">Levie, Zonza, Sainte-Lucie-de-Tallano et les villages alentour. Altitude, forêts de pins laricio et habitat en pierre : les nids de frelons en toiture y sont fréquents.</p>
-      <p class="commune-liste">Altagène, Aullène, Carbini, Cargiaca, Levie, Loreto-di-Tallano, Mela, Olmiccia, Quenza, Sainte-Lucie-de-Tallano, San-Gavino-di-Carbini, Serra-di-Scopamène, Sorbollano, Zérubia, Zonza, Zoza</p>
-      <p class="commune-lien"><a class="internal-link" href="anti-nuisibles-grand-ajaccio-porto-vecchio">Voir la page Ajaccio &amp; Porto-Vecchio</a></p>
-    </div>
-  </details>
-
-  <details class="commune-groupe">
-    <summary class="commune-summary" aria-label="Communes desservies en Extrême-Sud — 8 communes">
-      <span class="commune-nom">Extrême-Sud</span>
-      <span class="commune-compte">8 communes</span>
-      <svg class="commune-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="commune-corps">
-      <p class="commune-phrase">Porto-Vecchio, Bonifacio, Figari et Lecci. La plus forte saisonnalité de l'île, avec des résidences et des structures d'accueil qui demandent des passages répétés en été.</p>
-      <p class="commune-liste">Bonifacio, Conca, Figari, Lecci, Monacia-d'Aullène, Pianottoli-Caldarello, Porto-Vecchio, Sotta</p>
-      <p class="commune-lien"><a class="internal-link" href="anti-nuisibles-grand-ajaccio-porto-vecchio">Voir la page Ajaccio &amp; Porto-Vecchio</a></p>
+  <p class="communes-intro">Les nids de guêpes et de frelons sont traités en urgence, sous 24 heures. Ouvrez la liste ci-dessous pour vérifier qu'une commune y figure : elles sont regroupées par secteur, puis par microrégion.</p>
+  <details class="communes-tout">
+    <summary class="communes-tout__resume"><span>Toutes les communes desservies (344)</span><svg class="communes-tout__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="communes-tout__corps">
+    <section class="communes-secteur" aria-labelledby="communes-nord">
+      <h3 class="communes-secteur__titre" id="communes-nord">Nord-Est &amp; Costa Verde<span class="commune-micro__compte">149 communes</span></h3>
+      <p class="communes-secteur__lien"><a class="internal-link" href="anti-nuisibles-costa-verde">Voir le secteur →</a></p>
+      <div class="commune-micro">
+        <h4 class="commune-micro__titre">Bastia &amp; Cap Corse<span class="commune-micro__compte">26 communes</span></h4>
+        <p class="commune-phrase">La ville, sa périphérie de la Marana et les villages du Cap. Deux terrains opposés : un tissu urbain dense où les réseaux d'immeubles font circuler rongeurs et blattes, et des villages de bord de mer où l'accès se fait par des routes étroites.</p>
+        <p class="commune-liste">Barrettali, Bastia, Biguglia, Borgo, Brando, Cagnano, Canari, Centuri, Ersa, Furiani, Lucciana, Luri, Meria, Morsiglia, Nonza, Ogliastro, Olcani, Olmeta-di-Capocorso, Pietracorbara, Pino, Rogliano, San-Martino-di-Lota, Santa-Maria-di-Lota, Sisco, Tomino, Ville-di-Pietrabugno</p>
+      </div>
+      <div class="commune-micro">
+        <h4 class="commune-micro__titre">Nebbio<span class="commune-micro__compte">15 communes</span></h4>
+        <p class="commune-phrase">Le bassin de Saint-Florent et la Conca d'Oro. Zone de vignobles et de maquis, avec un habitat dispersé où les nids de guêpes et de frelons en dépendance sont fréquents.</p>
+        <p class="commune-liste">Barbaggio, Farinole, Murato, Oletta, Olmeta-di-Tuda, Patrimonio, Piève, Poggio-d'Oletta, Rapale, Rutali, Saint-Florent, San-Gavino-di-Tenda, Santo-Pietro-di-Tenda, Sorio, Vallecalle</p>
+      </div>
+      <div class="commune-micro">
+        <h4 class="commune-micro__titre">Casinca<span class="commune-micro__compte">8 communes</span></h4>
+        <p class="commune-phrase">La plaine et les villages de balcon au-dessus de Vescovato. Proximité immédiate de notre secteur de base, entre cultures maraîchères et habitat de village ancien.</p>
+        <p class="commune-liste">Castellare-di-Casinca, Loreto-di-Casinca, Penta-di-Casinca, Porri, Silvareccio, Sorbo-Ocagnano, Venzolasca, Vescovato</p>
+      </div>
+      <div class="commune-micro">
+        <h4 class="commune-micro__titre">Castagniccia<span class="commune-micro__compte">41 communes</span></h4>
+        <p class="commune-phrase">Le pays de la châtaigneraie, en bâti de pierre ancien et charpentes de châtaignier. C'est le terrain type des insectes à larves xylophages et des rongeurs installés dans des combles peu fréquentés.</p>
+        <p class="commune-liste">Bisinchi, Campana, Campile, Canavaggia, Carcheto-Brustico, Carpineto, Casabianca, Casalta, Castello-di-Rostino, Croce, Crocicchia, Ficaja, Gavignano, Giocatojo, La Porta, Monacia-d'Orezza, Morosaglia, Nocario, Ortiporio, Parata, Penta-Acquatella, Piano, Piazzole, Pie-d'Orezza, Piedicroce, Piedipartino, Poggio-Marinaccio, Polveroso, Prunelli-di-Casacconi, Pruno, Quercitello, Rapaggio, Saliceto, San-Damiano, San-Gavino-d'Ampugnani, Scata, Stazzona, Valle-d'Orezza, Valle-di-Rostino, Verdèse, Volpajola</p>
+      </div>
+      <div class="commune-micro">
+        <h4 class="commune-micro__titre">Costa Verde<span class="commune-micro__compte">23 communes</span></h4>
+        <p class="commune-phrase">Notre secteur de base, de Moriani à Folelli. Littoral touristique à forte pression estivale, où les résidences et les locations saisonnières concentrent les demandes de juin à septembre.</p>
+        <p class="commune-liste">Cervione, Felce, Novale, Ortale, Perelli, Pero-Casevecchie, Piazzali, Pietricaggio, Piobetta, Poggio-Mezzana, San-Giovanni-di-Moriani, San-Giuliano, San-Nicolao, Sant'Andréa-di-Cotone, Santa-Lucia-di-Moriani, Santa-Maria-Poggio, Santa-Reparata-di-Moriani, Taglio-Isolaccio, Talasani, Tarrano, Valle-d'Alesani, Valle-di-Campoloro, Velone-Orneto</p>
+      </div>
+      <div class="commune-micro">
+        <h4 class="commune-micro__titre">Plaine Orientale<span class="commune-micro__compte">22 communes</span></h4>
+        <p class="commune-phrase">La plaine agricole d'Aléria et son arrière-pays. Des exploitations et des stockages qui attirent durablement les rongeurs, et des zones humides propices aux moustiques.</p>
+        <p class="commune-liste">Aghione, Aléria, Altiani, Ampriani, Antisanti, Campi, Canale-di-Verde, Casevecchie, Chiatra, Giuncaggio, Linguizzetta, Matra, Moïta, Pancheraccia, Pianello, Piedicorte-di-Gaggio, Pietra-di-Verde, Pietraserena, Tallone, Tox, Zalana, Zuani</p>
+      </div>
+      <div class="commune-micro">
+        <h4 class="commune-micro__titre">Fiumorbu<span class="commune-micro__compte">14 communes</span></h4>
+        <p class="commune-phrase">De Ghisonaccia à Solenzara, littoral et vallées. Secteur de campings et de résidences de vacances, avec la même saisonnalité marquée que la Costa Verde.</p>
+        <p class="commune-liste">Chisa, Ghisonaccia, Ghisoni, Isolaccio-di-Fiumorbo, Lugo-di-Nazza, Pietroso, Poggio-di-Nazza, Prunelli-di-Fiumorbo, San-Gavino-di-Fiumorbo, Sari-Solenzara, Serra-di-Fiumorbo, Solaro, Ventiseri, Vezzani</p>
+      </div>
+    </section>
+    <section class="communes-secteur" aria-labelledby="communes-centre">
+      <h3 class="communes-secteur__titre" id="communes-centre">Centre Corse &amp; Balagne<span class="commune-micro__compte">88 communes</span></h3>
+      <p class="communes-secteur__lien"><a class="internal-link" href="anti-nuisible-corte">Voir le secteur →</a></p>
+      <div class="commune-micro">
+        <h4 class="commune-micro__titre">Centre Corse / Corte<span class="commune-micro__compte">47 communes</span></h4>
+        <p class="commune-phrase">Corte, le Boziu, le Talcini et la vallée du Golo. Altitude et bâti ancien : les nuisibles y arrivent plus tard en saison, et les charpentes anciennes y sont le motif principal d'intervention.</p>
+        <p class="commune-liste">Aiti, Alando, Alzi, Asco, Bigorno, Bustanico, Cambia, Campitello, Carticasi, Casanova, Castellare-di-Mercurio, Castifao, Castiglione, Castineta, Castirla, Corte, Erbajolo, Érone, Favalello, Focicchia, Lano, Lento, Mazzola, Moltifao, Monte, Muracciole, Noceta, Olmo, Omessa, Piedigriggio, Poggio-di-Venaco, Popolasca, Prato-di-Giovellina, Riventosa, Rospigliani, Rusio, San-Lorenzo, Sant'Andréa-di-Bozio, Santa-Lucia-di-Mercurio, Santo-Pietro-di-Venaco, Scolca, Sermano, Soveria, Tralonca, Venaco, Vignale, Vivario</p>
+      </div>
+      <div class="commune-micro">
+        <h4 class="commune-micro__titre">Balagne<span class="commune-micro__compte">36 communes</span></h4>
+        <p class="commune-phrase">De Calvi à L'Île-Rousse, avec l'Ostriconi et le Ghjunsani. Forte densité touristique sur le littoral, villages perchés à l'intérieur, et une pression estivale comparable à celle de la côte orientale.</p>
+        <p class="commune-liste">Algajola, Aregno, Avapessa, Belgodère, Calenzana, Calvi, Cateri, Corbara, Costa, Feliceto, Galéria, L'Île-Rousse, Lama, Lavatoggio, Lumio, Manso, Mausoléo, Moncale, Montegrosso, Monticello, Muro, Nessa, Novella, Occhiatana, Olmi-Cappella, Palasca, Pietralba, Pigna, Pioggiola, Sant'Antonino, Santa-Reparata-di-Balagna, Speloncato, Urtaca, Vallica, Ville-di-Paraso, Zilia</p>
+      </div>
+      <div class="commune-micro">
+        <h4 class="commune-micro__titre">Niolu<span class="commune-micro__compte">5 communes</span></h4>
+        <p class="commune-phrase">Le bassin de Calacuccia, en haute altitude. Secteur isolé par le Scala di Santa Regina, où nous groupons les interventions faute de pouvoir y passer souvent.</p>
+        <p class="commune-liste">Albertacce, Calacuccia, Casamaccioli, Corscia, Lozzi</p>
+      </div>
+    </section>
+    <section class="communes-secteur" aria-labelledby="communes-sud">
+      <h3 class="communes-secteur__titre" id="communes-sud">Sud de la Corse<span class="commune-micro__compte">107 communes</span></h3>
+      <p class="communes-secteur__lien"><a class="internal-link" href="anti-nuisibles-grand-ajaccio-porto-vecchio">Voir le secteur →</a></p>
+      <div class="commune-micro">
+        <h4 class="commune-micro__titre">Grand Ajaccio<span class="commune-micro__compte">19 communes</span></h4>
+        <p class="commune-phrase">Ajaccio, sa première couronne et la rive sud jusqu'à Porticcio. Agglomération dense, copropriétés et restauration : les traitements y demandent une coordination entre logements voisins.</p>
+        <p class="commune-liste">Afa, Ajaccio, Alata, Albitreccia, Appietto, Bastelicaccia, Campo, Cardo-Torgia, Cauro, Coti-Chiavari, Cuttoli-Corticchiato, Grosseto-Prugna, Guargualé, Peri, Pietrosella, Sarrola-Carcopino, Tavaco, Valle-di-Mezzana, Villanova</p>
+      </div>
+      <div class="commune-micro">
+        <h4 class="commune-micro__titre">Gravona, Celavu, Prunelli &amp; Cruzzini<span class="commune-micro__compte">15 communes</span></h4>
+        <p class="commune-phrase">Les vallées qui remontent depuis Ajaccio vers Bocognano et Bastelica. Habitat de fond de vallée, souvent en lisière de forêt, où les frelons et les rongeurs de combles dominent.</p>
+        <p class="commune-liste">Azzana, Bastelica, Bocognano, Carbuccia, Eccica-Suarella, Lopigna, Ocana, Pastricciola, Rezza, Rosazia, Salice, Tavera, Tolla, Ucciani, Vero</p>
+      </div>
+      <div class="commune-micro">
+        <h4 class="commune-micro__titre">Deux-Sorru / Deux-Sevi<span class="commune-micro__compte">27 communes</span></h4>
+        <p class="commune-phrase">De Cargèse et Sagone jusqu'à Évisa, Ota et Piana. Secteur de montagne et de gorges, éloigné de nos deux bases, sur lequel nous regroupons les déplacements.</p>
+        <p class="commune-liste">Ambiegna, Arbori, Arro, Balogna, Calcatoggio, Cannelle, Cargèse, Casaglione, Coggia, Cristinacce, Évisa, Guagno, Letia, Marignana, Murzo, Orto, Osani, Ota, Partinello, Piana, Poggiolo, Renno, Sant'Andréa-d'Orcino, Sari-d'Orcino, Serriera, Soccia, Vico</p>
+      </div>
+      <div class="commune-micro">
+        <h4 class="commune-micro__titre">Taravo<span class="commune-micro__compte">22 communes</span></h4>
+        <p class="commune-phrase">La vallée, de Petreto-Bicchisano jusqu'à Zicavo. Villages d'altitude et bâti ancien, avec des charpentes qui relèvent souvent du diagnostic avant traitement.</p>
+        <p class="commune-liste">Argiusta-Moriccio, Azilone-Ampaza, Ciamannacce, Cognocoli-Monticchi, Corrano, Cozzano, Forciolo, Frasseto, Guitera-les-Bains, Moca-Croce, Olivese, Palneca, Petreto-Bicchisano, Pila-Canale, Quasquara, Sampolo, Santa-Maria-Siché, Tasso, Urbalacone, Zévaco, Zicavo, Zigliara</p>
+      </div>
+      <div class="commune-micro">
+        <h4 class="commune-micro__titre">Alta Rocca<span class="commune-micro__compte">16 communes</span></h4>
+        <p class="commune-phrase">Levie, Zonza, Sainte-Lucie-de-Tallano et les villages alentour. Altitude, forêts de pins laricio et habitat en pierre : les nids de frelons en toiture y sont fréquents.</p>
+        <p class="commune-liste">Altagène, Aullène, Carbini, Cargiaca, Levie, Loreto-di-Tallano, Mela, Olmiccia, Quenza, Sainte-Lucie-de-Tallano, San-Gavino-di-Carbini, Serra-di-Scopamène, Sorbollano, Zérubia, Zonza, Zoza</p>
+      </div>
+      <div class="commune-micro">
+        <h4 class="commune-micro__titre">Extrême-Sud<span class="commune-micro__compte">8 communes</span></h4>
+        <p class="commune-phrase">Porto-Vecchio, Bonifacio, Figari et Lecci. La plus forte saisonnalité de l'île, avec des résidences et des structures d'accueil qui demandent des passages répétés en été.</p>
+        <p class="commune-liste">Bonifacio, Conca, Figari, Lecci, Monacia-d'Aullène, Pianottoli-Caldarello, Porto-Vecchio, Sotta</p>
+      </div>
+    </section>
     </div>
   </details>
 </section>
+<!-- fin du bloc des communes -->
 
 </main>
 
@@ -845,7 +698,7 @@
   </div>
 </footer>
 
-  <script src="assets/js/main.js?v=a4ae130d" defer></script>
+  <script src="assets/js/main.js?v=c32c7a5d" defer></script>
 
 </body>
 </html>

@@ -1493,6 +1493,48 @@ technicien applicateur certifié Certibiocide ; Antoine Renucci,
 technico-commercial. **Pas de `founder`** : la qualité d'associé n'est pas
 celle de fondateur.
 
+## Page des zones d'intervention : structure du 8 octobre 2026
+
+**En haut** : H1, une phrase (« Nous intervenons en Haute-Corse et en Corse-du-Sud,
+sous 24 à 48 h. »), puis le champ **« Vérifier ma commune »**. **Ensuite** : trois
+cartes de secteur, puis le contenu éditorial, puis le bloc généré des communes.
+**Plus aucun bloc d'appel dans la page** — le pied de page porte l'appel et le devis.
+
+- **Les cartes** (`.secteurs` / `.secteur`, dans `global.css`) : fond blanc, ombre
+  légère, ni bordure ni barre latérale ni badge ni pastille ; padding 24 px,
+  20 px entre cartes, une colonne sous 900 px et trois au-dessus. Le département
+  est un petit texte gris (`Haute-Corse (2B)`), les villes un texte simple séparé
+  par des virgules, un seul lien « Voir le secteur → ». **Le même composant sert
+  la page zones et la section « zones » de l'accueil** — c'est pourquoi il est
+  dans `global.css`. Les trois titres (Nord-Est & Costa Verde, Centre Corse &
+  Balagne, Sud de la Corse) vivent à deux endroits, écrits à la main sur ces deux
+  pages **et** dans `SECTEURS` de `tools/build-communes.js` ; le contrôle
+  `communes-affichees` les compare.
+- **Le champ « Vérifier ma commune »** est le widget de recherche des
+  formulaires (`#commune-widget`, `main.js`, `communes.json`) en **mode
+  consultation** : l'attribut `data-consultation` supprime « Confirmer cette
+  commune » et les champs cachés, et la fiche renvoie vers la page du secteur
+  (table `pages` de `communes.json`, posée par le générateur). Il n'y a pas de
+  formulaire sur cette page : `form.css` y est chargé pour le style du widget.
+  Le lien « Vérifier ma commune » du menu, lui, pointe toujours vers le bloc des
+  communes (`#communes-titre`), pas vers le champ.
+- **Le bloc des communes** est **un seul `<details>` fermé**, « Toutes les
+  communes desservies (344) », qui groupe par secteur puis par microrégion. Il y
+  avait seize accordéons à ouvrir un par un. Le bloc est borné par le commentaire
+  `<!-- fin du bloc des communes -->` : il contient des `<section>` imbriquées,
+  la première `</section>` venue le coupait. Valinco et Sartenais n'y figurent pas.
+  **Le générateur est un point fixe** (le régénérer deux fois donne le même
+  fichier) ; ne jamais éditer ce bloc à la main.
+- **Piège de nom** : `.commune-nom` existe deux fois dans l'histoire du dépôt — la
+  fiche du widget (`form.css`) et l'ancien résumé de l'accordéon
+  (`zones-dintervention.css`). La seconde a été supprimée ; les classes du bloc
+  généré sont `commune-micro*` et `communes-tout*`.
+
+**La section « zones » de l'accueil** (`.zones-compact-wrapper`) porte les trois
+mêmes cartes. Y ont disparu : les trois boutons « Appeler pour ce secteur »,
+la barre « Interventions pour : Particuliers • Hôtels… » et son lien « Devis gratuit
+& rapide » (qui était en réalité un lien `tel:`).
+
 ## Avis Google : tenus à la main, écrits par un script
 
 Le site est statique : **rien ne lit les avis chez Google**. Le nombre est

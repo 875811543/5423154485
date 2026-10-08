@@ -156,10 +156,14 @@ const LIEUX_DITS = ['Folelli', 'Moriani-Plage', 'Ponte-Leccia', 'Porticcio', 'Qu
  *  Les microregions, dans l'ordre d'affichage
  * ------------------------------------------------------------------ */
 
-const PAGES_REGIONALES = {
-  nord: ['anti-nuisibles-costa-verde', 'Bastia &amp; Costa Verde'],
-  centre: ['anti-nuisible-corte', 'Corte, Calvi &amp; Balagne'],
-  sud: ['anti-nuisibles-grand-ajaccio-porto-vecchio', 'Ajaccio &amp; Porto-Vecchio']
+// Les trois secteurs, dans l'ordre d'affichage. Leurs titres sont CEUX des trois
+// cartes de zones-dintervention (et de l'accueil) : un visiteur qui passe de la
+// carte a la liste doit retrouver le meme mot. Le titre vit ici ET dans ces
+// pages ecrites a la main — le controle « communes-affichees » les compare.
+const SECTEURS = {
+  nord: { titre: 'Nord-Est &amp; Costa Verde', page: 'anti-nuisibles-costa-verde' },
+  centre: { titre: 'Centre Corse &amp; Balagne', page: 'anti-nuisible-corte' },
+  sud: { titre: 'Sud de la Corse', page: 'anti-nuisibles-grand-ajaccio-porto-vecchio' }
 };
 
 // Une phrase de contexte ouvre chaque accordeon. Elle evite qu'un titre soit
@@ -239,49 +243,68 @@ function repartir() {
   return { groupes, total: tous.length, exclus, source: src, erreurs };
 }
 
-/** Le HTML du bloc. */
+/**
+ * Le HTML du bloc : UN <details> ferme, « Toutes les communes desservies (N) »,
+ * qui contient les communes groupees par secteur, puis par microregion.
+ *
+ * Il y avait seize <details> a la suite, un par microregion, a ouvrir un par un.
+ * Une seule liste repliee, groupee par secteur, garde tout le contenu — chaque
+ * microregion garde sa phrase de contexte et sa liste de communes — et ne laisse
+ * visible qu'une ligne. La classe commune-liste est conservee : le controle
+ * « communes-affichees » y lit les noms.
+ *
+ * Le bloc est borne par un commentaire de fin, parce qu'il contient maintenant
+ * des <section> imbriquees : retrouver sa fin par « la premiere </section> »
+ * coupait au milieu.
+ */
+const FIN_BLOC = '<!-- fin du bloc des communes -->';
+
 function bloc(groupes) {
-  const svg = '<svg class="commune-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"'
-    + ' stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
+  const chevron = '<svg class="communes-tout__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"'
+    + ' stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
     + '<path d="m6 9 6 6 6-6"/></svg>';
 
-  let total = 0, corps = '';
+  let total = 0;
+  const micro = {}, nombre = {};
+  for (const r of Object.keys(SECTEURS)) { micro[r] = ''; nombre[r] = 0; }
   for (const [cle, titre, region, phrase] of MICRO) {
     const liste = groupes[cle];
     if (!liste) throw new Error('microregion vide : ' + cle);
     total += liste.length;
-    const [slug, nomPage] = PAGES_REGIONALES[region];
-    const sansBalise = titre.replace(/&amp;/g, 'et');
+    nombre[region] += liste.length;
+    micro[region] += `
+      <div class="commune-micro">
+        <h4 class="commune-micro__titre">${titre}<span class="commune-micro__compte">${liste.length} communes</span></h4>
+        <p class="commune-phrase">${insecable(phrase)}</p>
+        <p class="commune-liste">${liste.join(', ')}</p>
+      </div>`;
+  }
+
+  let corps = '';
+  for (const [region, s] of Object.entries(SECTEURS)) {
     corps += `
-  <details class="commune-groupe">
-    <summary class="commune-summary" aria-label="Communes desservies en ${sansBalise} — ${liste.length} communes">
-      <span class="commune-nom">${titre}</span>
-      <span class="commune-compte">${liste.length} communes</span>
-      ${svg}
-    </summary>
-    <div class="commune-corps">
-      <p class="commune-phrase">${insecable(phrase)}</p>
-      <p class="commune-liste">${liste.join(', ')}</p>
-      <p class="commune-lien"><a class="internal-link" href="${slug}">Voir la page ${nomPage}</a></p>
-    </div>
-  </details>
-`;
+    <section class="communes-secteur" aria-labelledby="communes-${region}">
+      <h3 class="communes-secteur__titre" id="communes-${region}">${s.titre}<span class="commune-micro__compte">${nombre[region]} communes</span></h3>
+      <p class="communes-secteur__lien"><a class="internal-link" href="${s.page}">Voir le secteur →</a></p>${micro[region]}
+    </section>`;
   }
 
   // « toute la Corse » a ete retire : le Valinco et le Sartenais ne sont pas
-  // desservis. Les deux departements sont rendus insecables, ils cassent sinon
-  // sur leur propre trait d'union.
-  const DEPTS = '<span class="insecable">Haute-Corse</span> et en '
-    + '<span class="insecable">Corse-du-Sud</span>';
-  const intro = insecable('Nous intervenons en ' + DEPTS + ' sous 24 à 48 heures, y compris dans les '
-    + 'secteurs les plus éloignés de nos deux bases. Les nids de guêpes et de frelons sont traités '
-    + 'en urgence, sous 24 heures. Les ' + total + ' communes ci-dessous sont regroupées par microrégion : '
-    + "ouvrez la vôtre pour vérifier qu'elle y figure.");
+  // desservis. Le delai general (24 a 48 h) est dit en tete de page : il n'est
+  // pas repete ici. Reste ce qui n'est dit nulle part ailleurs sur cette page.
+  const intro = insecable('Les nids de guêpes et de frelons sont traités en urgence, sous 24 heures. '
+    + "Ouvrez la liste ci-dessous pour vérifier qu'une commune y figure : "
+    + 'elles sont regroupées par secteur, puis par microrégion.');
 
   return '\n<section class="communes-block" aria-labelledby="communes-titre">\n'
     + '  <h2 class="zone-heading-md" id="communes-titre">Communes desservies</h2>\n'
     + '  <p class="communes-intro">' + intro + '</p>\n'
-    + corps + '</section>\n';
+    + '  <details class="communes-tout">\n'
+    + '    <summary class="communes-tout__resume"><span>Toutes les communes desservies (' + total + ')</span>'
+    + chevron + '</summary>\n'
+    + '    <div class="communes-tout__corps">' + corps + '\n    </div>\n'
+    + '  </details>\n'
+    + '</section>\n' + FIN_BLOC + '\n';
 }
 
 /** Remplace le bloc dans la page, ou l'insere avant la fin du main. */
@@ -289,7 +312,11 @@ function poser(html) {
   let s = fs.readFileSync(PAGE, 'utf8');
   const debut = s.indexOf('\n<section class="communes-block"');
   if (debut >= 0) {
-    const fin = s.indexOf('</section>', s.lastIndexOf('commune-lien')) + '</section>'.length;
+    // La fin du bloc est son commentaire de fermeture : il contient des
+    // <section> imbriquees, la premiere </section> venue le couperait.
+    const marque = s.indexOf(FIN_BLOC, debut);
+    if (marque < 0) throw new Error('le bloc des communes n\'a pas son commentaire de fin : ' + FIN_BLOC);
+    const fin = marque + FIN_BLOC.length;
     // Les lignes vides qui encadraient le bloc partent avec lui : sans cela,
     // chaque regeneration en laisserait deux de plus que la precedente.
     s = (s.slice(0, debut).replace(/\n+$/, '') + '\n')
@@ -361,9 +388,18 @@ function donnees(groupes, source) {
     liste.push({ n: lieu, cp: cpPar[ALIAS[lieu]] || [], s: secteurPar[ALIAS[lieu]], d: 1, r: ALIAS[lieu] });
 
   liste.sort((a, b) => a.n.localeCompare(b.n, 'fr'));
+
+  // Secteur (le nom que porte chaque commune, cle « s ») -> page du secteur.
+  // Seize entrees : le champ « Verifier ma commune » de zones-dintervention y
+  // lit vers quelle page envoyer le visiteur. Une page par commune aurait ajoute
+  // pres de dix Ko a un fichier que le visiteur telecharge.
+  const pages = {};
+  for (const m of MICRO) pages[m[1].replace(/&amp;/g, '&')] = SECTEURS[m[2]].page;
+
   return JSON.stringify({
     commentaire: 'Genere par tools/build-communes.js — ne pas editer a la main.',
     releve: source.releve,
+    pages,
     communes: liste
   }) + '\n';
 }
@@ -381,7 +417,7 @@ function ecarts() {
   return pbs;
 }
 
-module.exports = { repartir, attendu, ecarts, EXCLU, LIEUX_DITS };
+module.exports = { repartir, attendu, ecarts, EXCLU, LIEUX_DITS, SECTEURS };
 
 if (require.main === module) {
   const a = attendu();
