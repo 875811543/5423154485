@@ -215,6 +215,7 @@ ErrorDocument 403 /404.html
   ExpiresByType image/png            "access plus 1 year"
   ExpiresByType image/webp           "access plus 1 year"
   ExpiresByType image/avif           "access plus 1 year"
+  ExpiresByType video/mp4            "access plus 1 year"
   ExpiresByType image/svg+xml        "access plus 1 year"
   ExpiresByType image/x-icon         "access plus 1 year"
   ExpiresByType text/css             "access plus 1 month"
@@ -270,7 +271,7 @@ ErrorDocument 403 /404.html
   # REGLE : pour remplacer une image ou une police, RENOMMER le fichier.
   # Changer l'URL est le seul moyen fiable de forcer le renouvellement.
   # Le controle « orphelins » signalera l'ancien fichier reste inutilise.
-  <FilesMatch "\.(jpg|jpeg|png|webp|avif|svg|ico|woff2)$">
+  <FilesMatch "\.(jpg|jpeg|png|webp|avif|svg|ico|woff2|mp4)$">
     Header set Cache-Control "public, max-age=31536000"
   </FilesMatch>
 
@@ -310,7 +311,7 @@ ErrorDocument 403 /404.html
   #   form-action  api.web3forms.com  — le formulaire en soumission classique
   #   img-src      data:              — les images encodees dans le CSS
   #
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.web3forms.com; frame-src https://www.google.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; frame-ancestors 'self'"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self' https://api.web3forms.com; frame-src https://www.google.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; frame-ancestors 'self'"
 </IfModule>
 
 # ------------------------------------------------------------
@@ -336,6 +337,11 @@ ErrorDocument 403 /404.html
   # justement de compter la-dessus — et elles tombaient aussi hors des deux
   # regles de cache, qui visent le type MIME et l'extension.
   AddType image/avif .avif
+  # La video de la station (videos/) : sans cette ligne un .mp4 partirait en
+  # type generique, hors des regles de cache qui visent le type MIME, et
+  # nosniff interdit au navigateur de deviner. Meme regle de renommage que
+  # pour les images : pour remplacer la video, changer son nom.
+  AddType video/mp4 .mp4
   AddType font/woff2 .woff2
   AddCharset UTF-8 .html .css .js .json .xml
 </IfModule>
