@@ -1641,3 +1641,34 @@ exactement ce que la demande écartait.
 Vérification : ces comportements ne se voient pas dans `tools/controle.js`. Les
 éprouver dans un navigateur, **en HTTP** — en `file://`, le `fetch` des données
 échoue et le champ part en mode dégradé.
+
+## Vidéo de la station murale (traitement-anti-termites) — 11 octobre 2026
+
+Une seule vidéo auto-hébergée : `videos/station-termites-murale.mp4` (540 × 960,
+27 s, 910 Ko), dans la section « Où sont posées les stations ». **Aucun service
+tiers** : pas de YouTube, aucune requête externe.
+
+- **Façade, pas de `<video>` au chargement.** Le HTML porte un lien
+  `.video-facade` (`href` = le fichier .mp4) contenant un `<picture>` du poster
+  (AVIF, WebP, JPG, 540 × 960, `loading="lazy"`). Au clic, `main.js` (bloc
+  « Vidéo chargée au clic », même principe que la carte) crée le `<video>` :
+  `controls`, `muted`, `playsinline`, `width`/`height`, `poster`, **jamais
+  `autoplay`**, puis `play()` — le clic est le geste qui l'autorise. Mesuré : zéro
+  requête vers le .mp4 ou le poster avant le clic, un seul .mp4 après.
+- **Sans JavaScript** le lien ouvre le fichier .mp4 dans le navigateur. Avec,
+  `role="button"` est posé et la barre d'espace marche (un lien ne la lit pas).
+- **Mise en page** : colonne de 320 px au plus (`.video-station`, dans
+  `pages-nuisibles.css`, une seule page), centrée sous 760 px, à côté du texte
+  au-dessus. Légende validée par le propriétaire — *ne décrit que ce qu'on voit,
+  ni marque de biocide ni promesse* ; la marque de l'outil (visseuse) peut rester.
+- **`.htaccess`** : `AddType video/mp4 .mp4`, `ExpiresByType video/mp4` et
+  `.mp4` dans le `FilesMatch` de cache d'un an, `media-src 'self'` dans la CSP.
+  **Pour remplacer la vidéo, la renommer** (même règle que les images).
+- **JSON-LD** : un `VideoObject` dans le `@graph` (`name`, `description`,
+  `thumbnailUrl`, `uploadDate` 2026-10-06, `contentUrl`, `duration` `PT27S`).
+- **Piège d'outillage** : le serveur de test doit répondre `video/mp4` et gérer
+  `Range`, sinon la lecture se comporte autrement qu'en ligne ; AVIF produit avec
+  `sharp`, installé hors du dépôt (`outils-audit-seo`), faute d'`avifenc`.
+- **Mesure** : Lighthouse mobile, médiane de 3, avant 79 / après 83 (la
+  variation vient du temps de blocage, pas de la vidéo) ; accessibilité,
+  bonnes pratiques et SEO à 100 avant et après, 17 requêtes dans les deux cas.

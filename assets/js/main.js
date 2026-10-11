@@ -122,6 +122,42 @@
     });
   });
 
+  // --- Video chargee au clic (traitement-anti-termites) ---
+  // Meme principe que la carte : tant que personne ne clique, seule l image
+  // d apercu (poster) est telechargee, pas un octet de video. Sans JavaScript,
+  // la facade reste un lien vers le fichier .mp4, que le navigateur lit.
+  // Le <video> n est cree qu au clic, ce qui est aussi le geste qui autorise
+  // la lecture : pas d autoplay au chargement, le son reste coupe au depart.
+  document.querySelectorAll("[data-video-load]").forEach(function (lien) {
+    lien.setAttribute("role", "button");
+    function lancer(event) {
+      event.preventDefault();
+      var v = document.createElement("video");
+      v.controls = true;
+      v.muted = true;
+      v.setAttribute("muted", "");
+      v.setAttribute("playsinline", "");
+      v.preload = "auto";
+      v.width = +lien.getAttribute("data-video-width");
+      v.height = +lien.getAttribute("data-video-height");
+      v.poster = lien.getAttribute("data-video-poster");
+      v.setAttribute("aria-label", lien.getAttribute("data-video-titre"));
+      var s = document.createElement("source");
+      s.src = lien.getAttribute("href");
+      s.type = "video/mp4";
+      v.appendChild(s);
+      lien.parentNode.replaceChild(v, lien);
+      var lecture = v.play();
+      if (lecture && lecture.catch) lecture.catch(function () {});
+      v.focus();
+    }
+    lien.addEventListener("click", lancer);
+    // Un lien ne reagit pas a la barre d espace, un bouton si.
+    lien.addEventListener("keydown", function (event) {
+      if (event.key === " " || event.key === "Spacebar") lancer(event);
+    });
+  });
+
   // --- Formulaire de devis (contact, index) ---
   // Envoi en arriere-plan vers Web3Forms, puis redirection vers la page de
   // remerciement. Le chemin est relatif : un chemin absolu casserait sous le
