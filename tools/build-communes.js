@@ -197,7 +197,7 @@ const MICRO = [
   ['deux-sorru-sevi', 'Deux-Sorru / Deux-Sevi', 'sud',
    `De Cargèse et Sagone jusqu'à Évisa, Ota et Piana. Secteur de montagne et de gorges, éloigné de nos deux bases, sur lequel nous regroupons les déplacements.`],
   ['taravo', 'Taravo', 'sud',
-   `La vallée, de Petreto-Bicchisano jusqu'à Zicavo. Villages d'altitude et bâti ancien, avec des charpentes qui relèvent souvent du diagnostic avant traitement.`],
+   `La vallée, de Petreto-Bicchisano jusqu'à Zicavo. Villages d'altitude et bâti ancien, avec des charpentes qui relèvent souvent d'une évaluation avant protection.`],
   ['alta-rocca', 'Alta Rocca', 'sud',
    `Levie, Zonza, Sainte-Lucie-de-Tallano et les villages alentour. Altitude, forêts de pins laricio et habitat en pierre : les nids de frelons en toiture y sont fréquents.`],
   ['extreme-sud', 'Extrême-Sud', 'sud',
