@@ -1831,6 +1831,13 @@ const CONTROLES = [
   // correction, zero.
   run() {
     return require(path.join(__dirname, 'gris-teinte.js')).verifier();
+  }},
+{ nom: 'curatif-bois', titre: 'Le curatif des bois attaques n est pas presente comme une prestation (seul le preventif charpente est propose)',
+  // Regle du proprietaire, 11 octobre 2026. Le detail, les motifs refuses et ce
+  // qu il laisse (les termites) sont dans l en-tete de tools/curatif-bois.js, qui
+  // a ete eprouve sur l etat d avant : 15 passages retrouves, zero apres.
+  run() {
+    return require(path.join(__dirname, 'curatif-bois.js')).verifier(pages, lire);
   }}
 ];
 

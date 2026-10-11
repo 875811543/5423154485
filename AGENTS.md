@@ -1446,6 +1446,7 @@ de liste de services, ni valeur d'option des formulaires.
 | **Traitement des odeurs** | **à venir, pas lancé** | rien tant que le propriétaire ne l'active pas |
 | **Mérule et champignons lignivores** | **information seulement** | reconnaître, comprendre la cause d'humidité, dire quoi faire — jamais « notre traitement » |
 | **Diagnostic réglementaire état parasitaire** | non réalisé | le traitement curatif qui suit, oui ; le diagnostic, non (voir §1) |
+| **Traitement curatif des bois attaqués** (charpente, capricorne, vrillette, lyctus : bûchage, injection, traitement de surface) | **non assuré** — seul le préventif charpente est proposé | « nous ne réalisons pas le traitement curatif des bois attaqués » ; évaluer, orienter vers un charpentier, protéger les bois sains. **Les termites restent traités** (voir ci-dessous) |
 
 Trois d'entre elles demandent une vigilance particulière :
 
@@ -1672,3 +1673,55 @@ tiers** : pas de YouTube, aucune requête externe.
 - **Mesure** : Lighthouse mobile, médiane de 3, avant 79 / après 83 (la
   variation vient du temps de blocage, pas de la vidéo) ; accessibilité,
   bonnes pratiques et SEO à 100 avant et après, 17 requêtes dans les deux cas.
+
+## Le curatif des bois attaqués n'est pas assuré — règle du 11 octobre 2026
+
+**Seul le préventif charpente est proposé** : pulvérisation d'un gel certifié CTB-P+
+sur du bois **sain** (`traitement-injection-bati-termites`, 15 à 30 €/m²). Le curatif
+d'un bois déjà attaqué par le capricorne, la vrillette ou le lyctus — bûchage,
+injection sous pression, traitement de surface — **n'est pas une prestation**.
+Ce que le site peut dire : reconnaître l'insecte, expliquer les dégâts, **évaluer** le
+bois, **orienter vers un charpentier** quand la section portante est perdue, et
+protéger ce qui est resté sain. Il écrit « nous ne réalisons pas le traitement
+curatif des bois attaqués », jamais « notre traitement curatif du bois ».
+
+**Les termites ne sont pas concernés** : stations de détection et curatives
+murales, barrières par injection dans les murs et le sol, noir de soubassement
+restent proposés, avec leur vocabulaire (« curatif », « injection »). La règle ne
+porte que sur le bois.
+
+Ce qui a été changé, pour savoir où regarder si un doute revient :
+
+- **Outil d'identification** : cinq fiches (capricorne, petite et grosse vrillette,
+  lyctus, hespérophane) passent de « Nous traitons ce nuisible » à **SUR APPEL**, avec
+  un bandeau propre — « Nous ne réalisons pas le traitement curatif des bois
+  attaqués. Appelez-nous : nous vous orientons et protégeons les bois sains par un
+  traitement préventif. » — et une fiche technique qui garde le préventif et
+  l'orientation, plus aucun « bûchage » ni « injection ». Leur encart d'action ne
+  promet plus de délai. La fourmi charpentière reste « TRAITE » : on traite le nid.
+- **`capricorne-des-maisons`** : même URL, page d'information (reconnaître,
+  dégâts, risques) **plus** préventif. H1 « …reconnaître, comprendre, protéger », le
+  nœud JSON-LD `Service` ne décrit que la protection préventive, la FAQ aussi.
+- **`traitement-bois-alta-rocca`** : titre, fil d'Ariane et `Service` passent de
+  « traitement du bois » à « protection des charpentes ». Le contenu était déjà
+  préventif.
+- **`traitement-anti-termites`** : la carte « Bois et charpentes » devient une
+  information (évaluer, remplacer par un professionnel, protéger les bois sains) avec
+  un lien vers le préventif charpente. Le menu « Termites & xylophages » devient
+  « Traitement anti-termites » **sur les 68 pages**.
+- **`traitement-injection-bati-termites`** : le lien « notre traitement curatif du
+  bois » est supprimé ; la fiche du gel ne porte plus que « Préventif » (la dose
+  curative est retirée).
+- Mentions isolées retouchées : `services-anti-nuisibles` (carte « Termites &
+  protection des charpentes »), `zones-dintervention`, `index`, les FAQ des trois
+  secteurs, la FAQ générale, `merule-champignons-bois`.
+
+**Le contrôle `curatif-bois`** (`tools/curatif-bois.js`) garde la règle, dans le
+texte visible et le JSON-LD : il refuse « curatif » ou « injection » associés à un
+bois dans une phrase qui ne dit pas qu'on ne le fait pas et ne parle pas de termites,
+« traitement curatif du bois » même à côté d'un termite, « bûchage », une fiche
+d'insecte du bois qui ne serait pas SUR APPEL, et un `Service` JSON-LD sur le bois
+sans « préventif ». Éprouvé sur l'état d'avant : **15 passages retrouvés**, zéro
+après. **Piège connu** : une phrase qui cite un termite est hors champ — si un jour
+une promesse de curatif du bois se glisse dans une phrase sur les termites, seule la
+formule exacte « traitement curatif du bois » est attrapée.
