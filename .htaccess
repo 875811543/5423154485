@@ -80,7 +80,12 @@ DirectoryIndex index.html
   RewriteRule ^frelons-casinca/?$ /destruction-nid-guepes-bastia [R=301,L]
   RewriteRule ^plaine-orientale-frelons-termites/?$ /anti-nuisibles-costa-verde [R=301,L]
   # Ecrit au singulier sur l'ancien site, la regle plurielle ne l'attrapait pas.
-  RewriteRule ^anti-nuisible-balagne(-et-nebbio)?/?$ /anti-nuisible-corte [R=301,L]
+  # La variante « -and- » (ancien builder, relevee en Search Console le 15 octobre
+  # 2026) tombait dans la regle generique plus bas et partait vers
+  # /zones-dintervention, alors que « -et- » arrivait sur /anti-nuisible-corte : deux
+  # destinations pour une meme page, d'ou le doublon. Les deux vont maintenant en UN
+  # saut sur la meme cible — surtout pas « and » vers « et », qui ferait une chaine.
+  RewriteRule ^anti-nuisible-balagne(-(et|and)-nebbio)?/?$ /anti-nuisible-corte [R=301,L]
 
   # Article fusionne dans sa page de reference le 11 septembre 2026 : meme
   # sujet traite en 250 mots contre 1376, les deux se genaient sur la meme
