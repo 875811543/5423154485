@@ -1866,6 +1866,9 @@ const CONTROLES = [
       const txt = h.replace(/<svg[\s\S]*?<\/svg>/g, ' ').replace(/<[^>]+>/g, ' ').replace(/&nbsp;|\u00a0/g, ' ').replace(/\s+/g, ' ');
       for (const [re, nom] of MOTIFS) { const m = txt.match(re); if (m) pbs.push(f + ' : ' + nom + ' — « ' + txt.slice(Math.max(0, m.index - 40), m.index + 60).trim() + ' »'); }
     }
+    // Les CHIFFRES : tout delai en heures ou en jours doit valoir 24 h ou 24 a 48 h
+    // (tools/delais-chiffres.js : ce qui est un delai, ce qui est exclu, la limite).
+    pbs.push(...require(path.join(__dirname, 'delais-chiffres.js')).verifier(pages, lire));
     return pbs;
   }}
 ];

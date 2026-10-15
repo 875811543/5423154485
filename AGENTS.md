@@ -1746,8 +1746,18 @@ Balagne, Centre Corse et Extrême-Sud compris : le site ne distingue plus de sec
   réponse à une demande, pas l'intervention), « 7 j/7 », « le jour même » au sens d'un
   résultat constaté (`tarifs`), les fiches de l'outil d'identification (« sous 24 à 48 h »,
   « en urgence sous 24 h »).
-- **Le contrôle `delais`** refuse les huit formules ci-dessus dans le texte visible et le
-  JSON-LD : il garde les **formules**, pas les chiffres, puisque c'est une formule qui
-  réintroduit un délai à deux vitesses. Éprouvé sur l'état d'avant : **24 pages en défaut,
-  41 formules**, zéro après. **Limite** : il n'attrape pas une promesse chiffrée
-  différente (« sous 72 h ») ; elle se verrait à la relecture.
+- **Le contrôle `delais`** a deux étages. **Les formules** : il refuse les huit formules
+  ci-dessus dans le texte visible et le JSON-LD. Éprouvé sur l'état d'avant : **24 pages en
+  défaut, 41 formules**, zéro après. **Les chiffres** (`tools/delais-chiffres.js`) : toute
+  promesse de délai en heures, jours ou semaines (« sous X h », « en X jours », « dans les
+  48 heures », « délai de… », « < 24h », chiffres ou lettres) doit valoir **24 h** ou
+  **24 à 48 h** ; tout autre chiffre échoue. Sont **exclues** les durées qui ne sont pas
+  des délais d'intervention — temps d'action d'un produit, cycle d'un insecte,
+  reconstitution d'une population, validité d'un document, contrôles de pièges — par les
+  mots de leur voisinage (liste `EXCLUS`, chaque mot ajouté doit se justifier par un cas
+  réel) ; les durées en **mois et en ans** ne sont jamais lues comme des délais. Éprouvé :
+  « sous 48 h », « sous 72 heures », « en 3 jours », « dans les 48 heures », « < 12h »
+  échouent ; « sous 24 h », « sous 24 à 48 heures », « contrôles à 3, 6, 9 et 12 mois » et
+  « baisse d'activité en une à deux semaines après traitement par gel » passent ; zéro
+  problème sur le site (202 délais valides, 14 durées exclues). **Limite** : une promesse
+  sans marque (« 3 jours maximum ») ou noyée dans un voisinage à mot d'exclusion passe.
