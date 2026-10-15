@@ -1725,3 +1725,29 @@ sans « préventif ». Éprouvé sur l'état d'avant : **15 passages retrouvés*
 après. **Piège connu** : une phrase qui cite un termite est hors champ — si un jour
 une promesse de curatif du bois se glisse dans une phrase sur les termites, seule la
 formule exacte « traitement curatif du bois » est attrapée.
+
+## Délais d'intervention : une règle unique — 15 octobre 2026
+
+**Guêpes et frelons : urgence sous 24 h, pour tout nid.** **Tous les autres nuisibles :
+intervention sous 24 à 48 h.** Dans les deux cas **en Haute-Corse comme en Corse-du-Sud**,
+Balagne, Centre Corse et Extrême-Sud compris : le site ne distingue plus de secteur
+« rapide » et de secteur « par tournées ». Décision du propriétaire.
+
+- **Ce qui a été retiré** (28 pages) : « par tournées », « délai annoncé à la prise de
+  contact », « délai réaliste », « adapté à la distance depuis notre siège »,
+  « généralement dans la semaine », « le jour même chaque fois que l'agenda le permet »
+  et la phrase « sous 24h sur la Costa Verde et la Plaine Orientale, et déploiement en
+  Haute-Corse… » (neuf pages). La section « Couvrir une île » de `zones-dintervention`
+  disait l'inverse (« promet quelque chose que la géographie ne permet pas ») : elle
+  énonce désormais les deux délais.
+- **Un temps de route n'est pas un délai** : on peut écrire que la Balagne ou le Sud
+  « demandent de la route », à condition d'ajouter que cela ne change pas le délai.
+- **Ce qui reste, et ne contredit pas la règle** : « nous vous répondons sous 24 h » (la
+  réponse à une demande, pas l'intervention), « 7 j/7 », « le jour même » au sens d'un
+  résultat constaté (`tarifs`), les fiches de l'outil d'identification (« sous 24 à 48 h »,
+  « en urgence sous 24 h »).
+- **Le contrôle `delais`** refuse les huit formules ci-dessus dans le texte visible et le
+  JSON-LD : il garde les **formules**, pas les chiffres, puisque c'est une formule qui
+  réintroduit un délai à deux vitesses. Éprouvé sur l'état d'avant : **24 pages en défaut,
+  41 formules**, zéro après. **Limite** : il n'attrape pas une promesse chiffrée
+  différente (« sous 72 h ») ; elle se verrait à la relecture.

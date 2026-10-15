@@ -1838,6 +1838,35 @@ const CONTROLES = [
   // a ete eprouve sur l etat d avant : 15 passages retrouves, zero apres.
   run() {
     return require(path.join(__dirname, 'curatif-bois.js')).verifier(pages, lire);
+  }},
+{ nom: 'delais', titre: 'Les delais d intervention suivent la regle unique : guepes et frelons sous 24 h, autres nuisibles sous 24 a 48 h',
+  // Regle du proprietaire, 15 octobre 2026, pour la Haute-Corse comme pour la
+  // Corse-du-Sud : URGENCE SOUS 24 H pour un nid de guepes ou de frelons, quelle que
+  // soit la commune ; INTERVENTION SOUS 24 A 48 H pour tous les autres nuisibles.
+  // Le site disait l inverse sur vingt-huit pages : « par tournees », « delai annonce
+  // a la prise de contact », « delai realiste », « adapte a la distance », « sous 24h
+  // sur la Costa Verde, et deploiement ailleurs ». Une seule de ces formules suffit a
+  // reintroduire un delai a deux vitesses, que la regle exclut — d ou un controle sur
+  // les formules elles-memes, pas sur les chiffres. Eprouve sur l etat d avant :
+  // 24 pages en defaut (41 formules), zero apres.
+  run() {
+    const MOTIFS = [
+      [/tourn[ée]es?\b/i, '« tournee »'],
+      [/prise de contact/i, '« prise de contact » (delai)'],
+      [/d[ée]lai r[ée]aliste/i, '« delai realiste »'],
+      [/adapt[ée]e? [àa] la distance/i, '« adapte a la distance »'],
+      [/d[ée]lai annonc[ée]/i, '« delai annonce »'],
+      [/intervenons g[ée]n[ée]ralement dans la semaine|souvent dans la semaine/i, '« dans la semaine »'],
+      [/le jour m[êe]me chaque fois que l.agenda/i, '« le jour meme chaque fois que l agenda le permet »'],
+      [/sous 24 ?h sur la Costa Verde et la Plaine Orientale/i, '« sous 24h sur la Costa Verde » reserve a un secteur']
+    ];
+    const pbs = [];
+    for (const f of pages) {
+      const h = lire(f).replace(/<header class="site-header"[\s\S]*?<\/header>/, '').replace(/<footer class="site-footer"[\s\S]*?<\/footer>/, '');
+      const txt = h.replace(/<svg[\s\S]*?<\/svg>/g, ' ').replace(/<[^>]+>/g, ' ').replace(/&nbsp;|\u00a0/g, ' ').replace(/\s+/g, ' ');
+      for (const [re, nom] of MOTIFS) { const m = txt.match(re); if (m) pbs.push(f + ' : ' + nom + ' — « ' + txt.slice(Math.max(0, m.index - 40), m.index + 60).trim() + ' »'); }
+    }
+    return pbs;
   }}
 ];
 
