@@ -144,6 +144,10 @@
   --border: #E2E8F0;
   --surface: #F8FAFC;
   --surface-blue: #EDF2FF;
+  /* Or des etoiles d'avis, seul usage (cartes d'avis et note, sur blanc). Le pied
+     garde son propre or, plus clair : sur le bleu du pied il vaut 2,93:1 contre
+     2,66:1 pour celui-ci. */
+  --star-gold: #F5B400;
   --font-heading: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --header-height: 72px;
@@ -1349,7 +1353,7 @@ li > .ico:first-child {
   line-height: 1;
   color: var(--ink);
 }
-.reviews__stars { display: flex; gap: 2px; color: #F5A623; }
+.reviews__stars { display: flex; gap: 2px; color: var(--star-gold); }
 .reviews__score-meta { font-size: 0.82rem; color: var(--muted); line-height: 1.4; }
 
 .reviews__grid {
@@ -1369,7 +1373,7 @@ li > .ico:first-child {
   flex-direction: column;
   box-shadow: 0 1px 3px rgba(15, 23, 42, .05);
 }
-.review-card__stars { display: flex; gap: 2px; color: #F5A623; margin-bottom: 12px; }
+.review-card__stars { display: flex; gap: 2px; color: var(--star-gold); margin-bottom: 12px; }
 .review-card blockquote {
   margin: 0 0 16px;
   font-size: 0.94rem;
@@ -1927,6 +1931,8 @@ li > .ico:first-child {
   color: #FFFFFF;
 }
 .footer-pastille svg { flex-shrink: 0; }
+/* Or plus clair que --star-gold, a dessein : sur le fond effectif de la pastille
+   (#3562fb) il vaut 2,93:1, contre 2,66:1 pour --star-gold. */
 .footer-pastille--avis svg { color: #FBBF24; }
 .footer-pastille--certif svg { color: var(--cta-green); }
 a.footer-pastille:hover { background: rgba(255, 255, 255, .16); text-decoration: none; }
