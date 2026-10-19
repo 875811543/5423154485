@@ -2388,6 +2388,19 @@ a.footer-pastille:hover { background: rgba(255, 255, 255, .16); text-decoration:
     radial-gradient(90% 80% at 0% 0%, var(--halo-blue) 0%, var(--halo-blue-fade) 60%);
 }
 
+/* Gouttiere mobile de .termites-section. Elle vivait dans pages-nuisibles.css
+   seulement : reconnaitre-termite-corse et ver-de-bois-ou-termite, qui ne
+   chargent que global.css, collaient leur texte aux bords de l'ecran.
+   Meme valeur que pages-nuisibles.css sous 768 px (16 px), donc sans effet
+   sur les douze pages qui la chargent ; bornee a 767 px pour ne pas ecraser
+   leurs 24 px au-dessus, global.css chargeant apres elle. */
+@media (max-width: 767px) {
+  .termites-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
 /* ==========================================================================
    AVIS CLIENTS : RANGEE A FAIRE GLISSER SUR MOBILE (septembre 2026)
    --------------------------------------------------------------------------
