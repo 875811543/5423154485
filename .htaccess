@@ -69,7 +69,11 @@ DirectoryIndex index.html
   RewriteRule ^anti-nuisibles-balagne/?$ /anti-nuisible-corte [R=301,L]
   RewriteRule ^anti-nuisibles-(centre-corse|corte)/?$ /anti-nuisible-corte [R=301,L]
   RewriteRule ^anti-nuisibles-(grand-)?ajaccio/?$ /anti-nuisibles-grand-ajaccio-porto-vecchio [R=301,L]
-  RewriteRule ^anti-nuisibles-(porto-vecchio|bonifacio|extreme-sud|sud-corse)/?$ /anti-nuisibles-grand-ajaccio-porto-vecchio [R=301,L]
+  # /anti-nuisibles-porto-vecchio n'est plus redirigee : la page « Porto-Vecchio
+  # & Extreme-Sud » y est publiee depuis le 20 octobre 2026, pour separer ce
+  # secteur du Grand Ajaccio. Les trois autres anciennes adresses du Sud la
+  # rejoignent en un seul saut.
+  RewriteRule ^anti-nuisibles-(bonifacio|extreme-sud|sud-corse)/?$ /anti-nuisibles-porto-vecchio [R=301,L]
 
   # Adresses relevees dans le sitemap du site actuellement en ligne, le
   # 1er septembre 2026. Elles n'existent plus dans cette version : sans ces

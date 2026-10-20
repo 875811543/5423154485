@@ -166,6 +166,12 @@ const SECTEURS = {
   sud: { titre: 'Sud de la Corse', page: 'anti-nuisibles-grand-ajaccio-porto-vecchio' }
 };
 
+// L'Extreme-Sud et l'Alta Rocca ont leur propre page depuis le 20 octobre 2026,
+// separee de celle du Grand Ajaccio. Le cinquieme element d'une microregion,
+// quand il existe, remplace la page de son secteur : dans le bloc des communes
+// (un lien sous la microregion) et dans la table « pages » de communes.json.
+const PORTO_VECCHIO = { page: 'anti-nuisibles-porto-vecchio', libelle: 'Voir Porto-Vecchio &amp; Extrême-Sud →' };
+
 // Une phrase de contexte ouvre chaque accordeon. Elle evite qu'un titre soit
 // suivi d'un simple mur de noms propres — c'est le defaut que Bing avait
 // signale ailleurs sur le site. Elle ne dit rien du delai d'intervention.
@@ -199,9 +205,9 @@ const MICRO = [
   ['taravo', 'Taravo', 'sud',
    `La vallée, de Petreto-Bicchisano jusqu'à Zicavo. Villages d'altitude et bâti ancien, avec des charpentes qui relèvent souvent d'une évaluation avant protection.`],
   ['alta-rocca', 'Alta Rocca', 'sud',
-   `Levie, Zonza, Sainte-Lucie-de-Tallano et les villages alentour. Altitude, forêts de pins laricio et habitat en pierre : les nids de frelons en toiture y sont fréquents.`],
+   `Levie, Zonza, Sainte-Lucie-de-Tallano et les villages alentour. Altitude, forêts de pins laricio et habitat en pierre : les nids de frelons en toiture y sont fréquents.`, PORTO_VECCHIO],
   ['extreme-sud', 'Extrême-Sud', 'sud',
-   `Porto-Vecchio, Bonifacio, Figari et Lecci. La plus forte saisonnalité de l'île, avec des résidences et des structures d'accueil qui demandent des passages répétés en été.`]
+   `Porto-Vecchio, Bonifacio, Figari et Lecci. La plus forte saisonnalité de l'île, avec des résidences et des structures d'accueil qui demandent des passages répétés en été.`, PORTO_VECCHIO]
 ];
 
 /* ------------------------------------------------------------------ *
@@ -267,7 +273,7 @@ function bloc(groupes) {
   let total = 0;
   const micro = {}, nombre = {};
   for (const r of Object.keys(SECTEURS)) { micro[r] = ''; nombre[r] = 0; }
-  for (const [cle, titre, region, phrase] of MICRO) {
+  for (const [cle, titre, region, phrase, propre] of MICRO) {
     const liste = groupes[cle];
     if (!liste) throw new Error('microregion vide : ' + cle);
     total += liste.length;
@@ -276,7 +282,8 @@ function bloc(groupes) {
       <div class="commune-micro">
         <h4 class="commune-micro__titre">${titre}<span class="commune-micro__compte">${liste.length} communes</span></h4>
         <p class="commune-phrase">${insecable(phrase)}</p>
-        <p class="commune-liste">${liste.join(', ')}</p>
+        <p class="commune-liste">${liste.join(', ')}</p>${propre ? `
+        <p class="communes-secteur__lien"><a class="internal-link" href="${propre.page}">${propre.libelle}</a></p>` : ''}
       </div>`;
   }
 
@@ -394,7 +401,7 @@ function donnees(groupes, source) {
   // lit vers quelle page envoyer le visiteur. Une page par commune aurait ajoute
   // pres de dix Ko a un fichier que le visiteur telecharge.
   const pages = {};
-  for (const m of MICRO) pages[m[1].replace(/&amp;/g, '&')] = SECTEURS[m[2]].page;
+  for (const m of MICRO) pages[m[1].replace(/&amp;/g, '&')] = m[4] ? m[4].page : SECTEURS[m[2]].page;
 
   return JSON.stringify({
     commentaire: 'Genere par tools/build-communes.js — ne pas editer a la main.',
