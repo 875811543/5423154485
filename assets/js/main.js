@@ -551,7 +551,10 @@
      tourne son telephone, on ne la lui referme pas au nez.
      ------------------------------------------------------------ */
   var colonnesPied = document.querySelectorAll(".footer-col__bloc");
-  if (colonnesPied.length && window.innerWidth < 768) {
+  // matchMedia plutot que window.innerWidth : lire innerWidth au chargement
+  // forcait Chrome a recalculer la mise en page (31 ms, releve par Lighthouse
+  // le 21 octobre 2026). La requete est le complement exact du seuil CSS.
+  if (colonnesPied.length && !window.matchMedia("(min-width: 768px)").matches) {
     for (var cp = 0; cp < colonnesPied.length; cp++) {
       colonnesPied[cp].open = false;
     }
