@@ -166,11 +166,13 @@ const SECTEURS = {
   sud: { titre: 'Sud de la Corse', page: 'anti-nuisibles-grand-ajaccio-porto-vecchio' }
 };
 
-// L'Extreme-Sud et l'Alta Rocca ont leur propre page depuis le 20 octobre 2026,
+// L'Extreme-Sud et l'Alta Rocca (20 octobre 2026), puis la Balagne, ont leur propre page,
 // separee de celle du Grand Ajaccio. Le cinquieme element d'une microregion,
 // quand il existe, remplace la page de son secteur : dans le bloc des communes
 // (un lien sous la microregion) et dans la table « pages » de communes.json.
 const PORTO_VECCHIO = { page: 'anti-nuisibles-porto-vecchio', libelle: 'Voir Porto-Vecchio &amp; Extrême-Sud →' };
+// La Balagne a la sienne depuis le 21 octobre 2026, separee de Corte.
+const BALAGNE = { page: 'anti-nuisibles-balagne', libelle: 'Voir Calvi &amp; Balagne →' };
 
 // Une phrase de contexte ouvre chaque accordeon. Elle evite qu'un titre soit
 // suivi d'un simple mur de noms propres — c'est le defaut que Bing avait
@@ -193,7 +195,7 @@ const MICRO = [
   ['centre-corse', 'Centre Corse / Corte', 'centre',
    `Corte, le Boziu, le Talcini et la vallée du Golo. Altitude et bâti ancien : les nuisibles y arrivent plus tard en saison, et les charpentes anciennes y sont le motif principal d'intervention.`],
   ['balagne', 'Balagne', 'centre',
-   `De Calvi à L'Île-Rousse, avec l'Ostriconi et le Ghjunsani. Forte densité touristique sur le littoral, villages perchés à l'intérieur, et une pression estivale comparable à celle de la côte orientale.`],
+   `De Calvi à L'Île-Rousse, avec l'Ostriconi et le Ghjunsani. Forte densité touristique sur le littoral, villages perchés à l'intérieur, et une pression estivale comparable à celle de la côte orientale.`, BALAGNE],
   ['niolu', 'Niolu', 'centre',
    `Le bassin de Calacuccia, en haute altitude. Secteur isolé par le Scala di Santa Regina, où nous groupons les interventions faute de pouvoir y passer souvent.`],
   ['grand-ajaccio', 'Grand Ajaccio', 'sud',

@@ -66,7 +66,8 @@ DirectoryIndex index.html
   # Anciennes pages de zones, fusionnées en 3 pages régionales
   RewriteRule ^anti-nuisibles-costa-verde-plaine-orientale/?$ /anti-nuisibles-costa-verde [R=301,L]
   RewriteRule ^anti-nuisibles-bastia(-grand-bastia)?/?$ /anti-nuisibles-costa-verde [R=301,L]
-  RewriteRule ^anti-nuisibles-balagne/?$ /anti-nuisible-corte [R=301,L]
+  # /anti-nuisibles-balagne n'est plus redirigee : la page « Calvi & Balagne »
+  # y est publiee depuis le 21 octobre 2026, separee de Corte et du Centre Corse.
   RewriteRule ^anti-nuisibles-(centre-corse|corte)/?$ /anti-nuisible-corte [R=301,L]
   RewriteRule ^anti-nuisibles-(grand-)?ajaccio/?$ /anti-nuisibles-grand-ajaccio-porto-vecchio [R=301,L]
   # /anti-nuisibles-porto-vecchio n'est plus redirigee : la page « Porto-Vecchio
@@ -89,7 +90,7 @@ DirectoryIndex index.html
   # /zones-dintervention, alors que « -et- » arrivait sur /anti-nuisible-corte : deux
   # destinations pour une meme page, d'ou le doublon. Les deux vont maintenant en UN
   # saut sur la meme cible — surtout pas « and » vers « et », qui ferait une chaine.
-  RewriteRule ^anti-nuisible-balagne(-(et|and)-nebbio)?/?$ /anti-nuisible-corte [R=301,L]
+  RewriteRule ^anti-nuisible-balagne(-(et|and)-nebbio)?/?$ /anti-nuisibles-balagne [R=301,L]
 
   # Article fusionne dans sa page de reference le 11 septembre 2026 : meme
   # sujet traite en 250 mots contre 1376, les deux se genaient sur la meme
