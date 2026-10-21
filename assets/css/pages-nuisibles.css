@@ -679,26 +679,3 @@
   color: var(--body-text);
   line-height: 1.7;
 }
-.chantier__photos {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 300px));
-  justify-content: center;
-  gap: 16px;
-  margin: 22px 0 0;
-  padding: 0;
-  list-style: none;
-}
-.chantier__photo { margin: 0; }
-.chantier__photo img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-}
-.chantier__photo figcaption {
-  margin-top: 8px;
-  font-size: 0.85rem;
-  line-height: 1.45;
-  color: var(--muted-teinte);
-}
