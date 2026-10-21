@@ -284,6 +284,22 @@ ErrorDocument 403 /404.html
     Header set Cache-Control "public, max-age=31536000"
   </FilesMatch>
 
+  # CSS et JS : un an aussi, et cette fois sans risque, parce que chaque page
+  # les appelle avec une empreinte ?v= (controle « hashes ») : un fichier
+  # modifie change d'URL, l'ancien cache n'est plus jamais demande. Lighthouse
+  # relevait 7 jours sur main.js (21 octobre 2026). Le service worker
+  # sw-identifier.js est exclu : il n'a pas d'empreinte, et le navigateur doit
+  # pouvoir en voir la nouvelle version.
+  # Deux directives simples plutot qu'une expression a « lookahead », que
+  # l'on ne peut pas eprouver hors du serveur : la seconde, plus bas, ecrase
+  # la premiere pour le seul service worker.
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000"
+  </FilesMatch>
+  <Files "sw-identifier.js">
+    Header set Cache-Control "no-cache"
+  </Files>
+
   # ----------------------------------------------------------
   #  5. En-têtes de sécurité
   # ----------------------------------------------------------
