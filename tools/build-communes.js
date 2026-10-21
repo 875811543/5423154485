@@ -156,60 +156,57 @@ const LIEUX_DITS = ['Folelli', 'Moriani-Plage', 'Ponte-Leccia', 'Porticcio', 'Qu
  *  Les microregions, dans l'ordre d'affichage
  * ------------------------------------------------------------------ */
 
-// Les trois secteurs, dans l'ordre d'affichage. Leurs titres sont CEUX des trois
+// Les six secteurs, dans l'ordre d'affichage. Leurs titres sont CEUX des six
 // cartes de zones-dintervention (et de l'accueil) : un visiteur qui passe de la
 // carte a la liste doit retrouver le meme mot. Le titre vit ici ET dans ces
 // pages ecrites a la main — le controle « communes-affichees » les compare.
+// Trois secteurs jusqu'au 20 octobre 2026 ; Porto-Vecchio, la Balagne puis
+// Bastia ont recu leur propre page les 20 et 21 octobre.
 const SECTEURS = {
-  nord: { titre: 'Nord-Est &amp; Costa Verde', page: 'anti-nuisibles-costa-verde' },
-  centre: { titre: 'Centre Corse &amp; Balagne', page: 'anti-nuisible-corte' },
-  sud: { titre: 'Sud de la Corse', page: 'anti-nuisibles-grand-ajaccio-porto-vecchio' }
+  bastia: { titre: 'Bastia &amp; Grand Bastia', page: 'anti-nuisibles-bastia' },
+  costa: { titre: 'Costa Verde &amp; Plaine Orientale', page: 'anti-nuisibles-costa-verde' },
+  centre: { titre: 'Corte &amp; Centre Corse', page: 'anti-nuisible-corte' },
+  balagne: { titre: 'Calvi &amp; Balagne', page: 'anti-nuisibles-balagne' },
+  ajaccio: { titre: 'Grand Ajaccio', page: 'anti-nuisibles-grand-ajaccio-porto-vecchio' },
+  sud: { titre: 'Porto-Vecchio &amp; Extrême-Sud', page: 'anti-nuisibles-porto-vecchio' }
 };
-
-// L'Extreme-Sud et l'Alta Rocca (20 octobre 2026), puis la Balagne, ont leur propre page,
-// separee de celle du Grand Ajaccio. Le cinquieme element d'une microregion,
-// quand il existe, remplace la page de son secteur : dans le bloc des communes
-// (un lien sous la microregion) et dans la table « pages » de communes.json.
-const PORTO_VECCHIO = { page: 'anti-nuisibles-porto-vecchio', libelle: 'Voir Porto-Vecchio &amp; Extrême-Sud →' };
-// La Balagne a la sienne depuis le 21 octobre 2026, separee de Corte.
-const BALAGNE = { page: 'anti-nuisibles-balagne', libelle: 'Voir Calvi &amp; Balagne →' };
 
 // Une phrase de contexte ouvre chaque accordeon. Elle evite qu'un titre soit
 // suivi d'un simple mur de noms propres — c'est le defaut que Bing avait
 // signale ailleurs sur le site. Elle ne dit rien du delai d'intervention.
 const MICRO = [
-  ['bastia-cap', 'Bastia &amp; Cap Corse', 'nord',
+  ['bastia-cap', 'Bastia &amp; Cap Corse', 'bastia',
    `La ville, sa périphérie de la Marana et les villages du Cap. Deux terrains opposés : un tissu urbain dense où les réseaux d'immeubles font circuler rongeurs et blattes, et des villages de bord de mer où l'accès se fait par des routes étroites.`],
-  ['nebbio', 'Nebbio', 'nord',
+  ['nebbio', 'Nebbio', 'bastia',
    `Le bassin de Saint-Florent et la Conca d'Oro. Zone de vignobles et de maquis, avec un habitat dispersé où les nids de guêpes et de frelons en dépendance sont fréquents.`],
-  ['casinca', 'Casinca', 'nord',
+  ['casinca', 'Casinca', 'costa',
    `La plaine et les villages de balcon au-dessus de Vescovato. Proximité immédiate de notre secteur de base, entre cultures maraîchères et habitat de village ancien.`],
-  ['castagniccia', 'Castagniccia', 'nord',
+  ['castagniccia', 'Castagniccia', 'costa',
    `Le pays de la châtaigneraie, en bâti de pierre ancien et charpentes de châtaignier. C'est le terrain type des insectes à larves xylophages et des rongeurs installés dans des combles peu fréquentés.`],
-  ['costa-verde', 'Costa Verde', 'nord',
+  ['costa-verde', 'Costa Verde', 'costa',
    `Notre secteur de base, de Moriani à Folelli. Littoral touristique à forte pression estivale, où les résidences et les locations saisonnières concentrent les demandes de juin à septembre.`],
-  ['plaine-orientale', 'Plaine Orientale', 'nord',
+  ['plaine-orientale', 'Plaine Orientale', 'costa',
    `La plaine agricole d'Aléria et son arrière-pays. Des exploitations et des stockages qui attirent durablement les rongeurs, et des zones humides propices aux moustiques.`],
-  ['fiumorbu', 'Fiumorbu', 'nord',
+  ['fiumorbu', 'Fiumorbu', 'costa',
    `De Ghisonaccia à Solenzara, littoral et vallées. Secteur de campings et de résidences de vacances, avec la même saisonnalité marquée que la Costa Verde.`],
   ['centre-corse', 'Centre Corse / Corte', 'centre',
    `Corte, le Boziu, le Talcini et la vallée du Golo. Altitude et bâti ancien : les nuisibles y arrivent plus tard en saison, et les charpentes anciennes y sont le motif principal d'intervention.`],
-  ['balagne', 'Balagne', 'centre',
-   `De Calvi à L'Île-Rousse, avec l'Ostriconi et le Ghjunsani. Forte densité touristique sur le littoral, villages perchés à l'intérieur, et une pression estivale comparable à celle de la côte orientale.`, BALAGNE],
+  ['balagne', 'Balagne', 'balagne',
+   `De Calvi à L'Île-Rousse, avec l'Ostriconi et le Ghjunsani. Forte densité touristique sur le littoral, villages perchés à l'intérieur, et une pression estivale comparable à celle de la côte orientale.`],
   ['niolu', 'Niolu', 'centre',
    `Le bassin de Calacuccia, en haute altitude. Secteur isolé par le Scala di Santa Regina, où nous groupons les interventions faute de pouvoir y passer souvent.`],
-  ['grand-ajaccio', 'Grand Ajaccio', 'sud',
+  ['grand-ajaccio', 'Grand Ajaccio', 'ajaccio',
    `Ajaccio, sa première couronne et la rive sud jusqu'à Porticcio. Agglomération dense, copropriétés et restauration : les traitements y demandent une coordination entre logements voisins.`],
-  ['gravona', 'Gravona, Celavu, Prunelli &amp; Cruzzini', 'sud',
+  ['gravona', 'Gravona, Celavu, Prunelli &amp; Cruzzini', 'ajaccio',
    `Les vallées qui remontent depuis Ajaccio vers Bocognano et Bastelica. Habitat de fond de vallée, souvent en lisière de forêt, où les frelons et les rongeurs de combles dominent.`],
-  ['deux-sorru-sevi', 'Deux-Sorru / Deux-Sevi', 'sud',
+  ['deux-sorru-sevi', 'Deux-Sorru / Deux-Sevi', 'ajaccio',
    `De Cargèse et Sagone jusqu'à Évisa, Ota et Piana. Secteur de montagne et de gorges, éloigné de nos deux bases, sur lequel nous regroupons les déplacements.`],
-  ['taravo', 'Taravo', 'sud',
+  ['taravo', 'Taravo', 'ajaccio',
    `La vallée, de Petreto-Bicchisano jusqu'à Zicavo. Villages d'altitude et bâti ancien, avec des charpentes qui relèvent souvent d'une évaluation avant protection.`],
   ['alta-rocca', 'Alta Rocca', 'sud',
-   `Levie, Zonza, Sainte-Lucie-de-Tallano et les villages alentour. Altitude, forêts de pins laricio et habitat en pierre : les nids de frelons en toiture y sont fréquents.`, PORTO_VECCHIO],
+   `Levie, Zonza, Sainte-Lucie-de-Tallano et les villages alentour. Altitude, forêts de pins laricio et habitat en pierre : les nids de frelons en toiture y sont fréquents.`],
   ['extreme-sud', 'Extrême-Sud', 'sud',
-   `Porto-Vecchio, Bonifacio, Figari et Lecci. La plus forte saisonnalité de l'île, avec des résidences et des structures d'accueil qui demandent des passages répétés en été.`, PORTO_VECCHIO]
+   `Porto-Vecchio, Bonifacio, Figari et Lecci. La plus forte saisonnalité de l'île, avec des résidences et des structures d'accueil qui demandent des passages répétés en été.`]
 ];
 
 /* ------------------------------------------------------------------ *
@@ -275,7 +272,7 @@ function bloc(groupes) {
   let total = 0;
   const micro = {}, nombre = {};
   for (const r of Object.keys(SECTEURS)) { micro[r] = ''; nombre[r] = 0; }
-  for (const [cle, titre, region, phrase, propre] of MICRO) {
+  for (const [cle, titre, region, phrase] of MICRO) {
     const liste = groupes[cle];
     if (!liste) throw new Error('microregion vide : ' + cle);
     total += liste.length;
@@ -284,8 +281,7 @@ function bloc(groupes) {
       <div class="commune-micro">
         <h4 class="commune-micro__titre">${titre}<span class="commune-micro__compte">${liste.length} communes</span></h4>
         <p class="commune-phrase">${insecable(phrase)}</p>
-        <p class="commune-liste">${liste.join(', ')}</p>${propre ? `
-        <p class="communes-secteur__lien"><a class="internal-link" href="${propre.page}">${propre.libelle}</a></p>` : ''}
+        <p class="commune-liste">${liste.join(', ')}</p>
       </div>`;
   }
 
@@ -403,7 +399,7 @@ function donnees(groupes, source) {
   // lit vers quelle page envoyer le visiteur. Une page par commune aurait ajoute
   // pres de dix Ko a un fichier que le visiteur telecharge.
   const pages = {};
-  for (const m of MICRO) pages[m[1].replace(/&amp;/g, '&')] = m[4] ? m[4].page : SECTEURS[m[2]].page;
+  for (const m of MICRO) pages[m[1].replace(/&amp;/g, '&')] = SECTEURS[m[2]].page;
 
   return JSON.stringify({
     commentaire: 'Genere par tools/build-communes.js — ne pas editer a la main.',

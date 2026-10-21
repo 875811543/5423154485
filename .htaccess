@@ -65,7 +65,9 @@ DirectoryIndex index.html
 
   # Anciennes pages de zones, fusionnées en 3 pages régionales
   RewriteRule ^anti-nuisibles-costa-verde-plaine-orientale/?$ /anti-nuisibles-costa-verde [R=301,L]
-  RewriteRule ^anti-nuisibles-bastia(-grand-bastia)?/?$ /anti-nuisibles-costa-verde [R=301,L]
+  # /anti-nuisibles-bastia n'est plus redirigee : la page « Bastia & Grand
+  # Bastia » y est publiee depuis le 21 octobre 2026, separee de la Costa Verde.
+  RewriteRule ^anti-nuisibles-bastia-grand-bastia/?$ /anti-nuisibles-bastia [R=301,L]
   # /anti-nuisibles-balagne n'est plus redirigee : la page « Calvi & Balagne »
   # y est publiee depuis le 21 octobre 2026, separee de Corte et du Centre Corse.
   RewriteRule ^anti-nuisibles-(centre-corse|corte)/?$ /anti-nuisible-corte [R=301,L]
