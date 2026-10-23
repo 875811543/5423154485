@@ -9,11 +9,15 @@ disable-model-invocation: true
 `git push` sur `main` met le site en ligne. Ne lancer cette procédure que sur
 demande explicite du propriétaire. Répondre en français.
 
-## 1. Préparer
+## 1. Préparer — APRÈS avoir commité le contenu
+
+Les `<lastmod>` sont lus dans `git log` : ils ne sont justes qu'une fois les
+commits de contenu faits. Régénérer avant de commiter, c'est se faire refuser
+le push (c'est arrivé deux fois).
 
 ```sh
 node tools/build-sitemap.js          # régénère sitemap.xml (jamais à la main)
-node tools/sitemap-dates.js --ecrire # aligne les <lastmod> sur git
+node tools/sitemap-dates.js          # doit dire « toutes les dates du sitemap sont a jour »
 git status --short
 ```
 
