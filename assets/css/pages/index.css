@@ -447,6 +447,13 @@
   .hero-urgence:hover { transform: none; }
 }
 
+/* Hors saison (novembre 2026) : la carte d'urgence guepes et frelons est
+   masquee sur mobile, a la demande du proprietaire. A REMETTRE EN MAI :
+   supprimer ce bloc, le HTML de la carte n'a pas ete touche. */
+@media (max-width: 767px) {
+  .hero-urgence { display: none; }
+}
+
 /* --------------------------------------------------------------------------
    HERO SUR PETIT ECRAN — faire remonter le formulaire
    --------------------------------------------------------------------------
