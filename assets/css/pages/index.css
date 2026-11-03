@@ -776,3 +776,10 @@
 .qualifs { background: #fff; }
 .dezinsect-form-container { background: #fff; }
 .why-card.featured { background: #fff; }
+
+/* Le formulaire de devis descend, pour aerer le haut de la page — 3 novembre
+   2026, a la demande du proprietaire (« trop d'info arrive de suite »).
+   L'ecart entre le dernier bouton du hero et le titre du devis passe de 40 a
+   80 px a 375 px de large. Ce choix defait volontairement une partie du
+   resserrement « faire remonter le formulaire » plus haut dans cette feuille. */
+.devis-section { padding-top: clamp(56px, 8vw, 96px); }
