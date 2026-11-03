@@ -59,6 +59,9 @@ function contenuPropre(sha, fichier) {
     .replace(/<footer class="site-footer"[\s\S]*?<\/footer>/, '')
     .replace(/<div class="sticky-mobile-bar">[\s\S]*?<\/div>/, '')
     .replace(/\?v=[0-9a-f]{8}/g, '')
+    // La couleur de la barre du navigateur est partagee par toutes les pages,
+    // comme l'en-tete : la changer ne date aucune page.
+    .replace(/<meta name="theme-color"[^>]*>/, '')
     // La date de mise a jour elle-meme n'est pas du contenu : c'est ce qu'on
     // DIT du contenu. Sans cette ligne, poser la date sur une page la daterait
     // du jour ou on l'a posee, et non du jour ou son texte a change — le
