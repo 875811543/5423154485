@@ -325,10 +325,13 @@ a { color: inherit; }
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 1.15rem;
-  color: var(--ink);
+  color: var(--primary-blue);
   letter-spacing: -0.01em;
 }
-.site-header__brand-accent { color: var(--accent-green); }
+/* Le nom reprend les deux couleurs de la page : le bleu des titres pour
+   "Dezinsect", le vert des boutons d appel pour "Corse". Ce vert est sous
+   3:1 sur blanc, ce que WCAG 1.4.3 admet pour un nom de marque (logotype). */
+.site-header__brand-accent { color: var(--cta-green); }
 
 .site-nav { display: none; }
 
