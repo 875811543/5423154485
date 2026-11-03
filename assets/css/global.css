@@ -287,7 +287,10 @@ a { color: inherit; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--primary-blue);
+  /* Fond blanc depuis le 3 novembre 2026 (il etait bleu), a la demande du
+     proprietaire. Le trait gris le detache du contenu au defilement. */
+  background: #fff;
+  border-bottom: 1px solid var(--border);
   /* line-height explicite : sans elle, la hauteur des liens de nav et du
      bouton CTA suivait le line-height que chaque page pose sur body,
      ce qui donnait un bandeau de 36, 40 ou 44 px selon la page. */
@@ -322,10 +325,10 @@ a { color: inherit; }
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 1.15rem;
-  color: #fff;
+  color: var(--ink);
   letter-spacing: -0.01em;
 }
-.site-header__brand-accent { color: #E9EEFF; }
+.site-header__brand-accent { color: var(--accent-green); }
 
 .site-nav { display: none; }
 
@@ -349,7 +352,7 @@ a { color: inherit; }
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.92rem;
-  color: #fff;
+  color: var(--ink);
   text-decoration: none;
   background: none;
   border: none;
@@ -367,7 +370,7 @@ a { color: inherit; }
   bottom: 4px;
   height: 2px;
   border-radius: 2px;
-  background: #fff;
+  background: var(--ink);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform .22s ease;
@@ -376,7 +379,7 @@ a { color: inherit; }
 .site-nav__toplink:hover::after { transform: scaleX(1); }
 
 .site-nav__list > li > a:hover,
-.site-nav__toplink:hover { color: #fff; background: rgba(255,255,255,0.16); }
+.site-nav__toplink:hover { color: var(--ink); background: var(--surface); }
 
 .site-nav__chevron { transition: transform .15s ease; }
 
@@ -455,8 +458,10 @@ a { color: inherit; }
   display: none;
   align-items: center;
   gap: 6px;
-  background: #fff;
-  color: var(--primary-blue);
+  /* Sur fond blanc, une pastille blanche ne se voyait plus : les deux lignes
+     prennent le vert des boutons d'appel, toujours a egalite. */
+  background: var(--cta-green);
+  color: var(--on-cta);
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 0.86rem;
@@ -468,7 +473,7 @@ a { color: inherit; }
   transition: background .15s ease, color .15s ease;
 }
 .site-header__cta:hover,
-.site-header__cta2:hover { background: #E9EEFF; text-decoration: none; }
+.site-header__cta2:hover { background: var(--cta-green-dark); text-decoration: none; }
 
 
 /* ==========================================================================
@@ -504,7 +509,7 @@ a { color: inherit; }
   display: block;
   width: 22px;
   height: 2px;
-  background: #fff;
+  background: var(--ink);
   margin: 0 auto;
   transition: transform .2s ease, opacity .2s ease;
 }
@@ -836,7 +841,7 @@ body:has(.mobile-menu.is-open) .back-to-top { display: none; }
 
 /* --- Header : ombre portée douce pour le détacher du contenu --- */
 .site-header {
-  box-shadow: 0 2px 12px rgba(46, 99, 204, 0.15);
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
 }
 
 /* --- Touches de vert (issu du logo), en accent ciblé sur les éléments de
@@ -1779,24 +1784,19 @@ li > .ico:first-child {
 .site-footer ul { padding-left: 0; list-style: none; }
 .site-footer address { font-style: normal; }
 
-/* Fond bleu nuit : --ink, la couleur la plus sombre du :root, deja celle des
-   titres. Les trois tons de texte sont choisis pour rester au niveau AA sur ce
-   fond — mesure faite sur le rendu, pas sur le papier :
-     #FFFFFF  17,4:1   titres et libelles forts
-     #E2E8F0  14,1:1   liens et texte courant
-     #94A3B8   6,6:1   mentions secondaires (AA exige 4,5:1) */
-/* Fond : le bleu de l'en-tete. Le bleu nuit (--ink) essaye d'abord jurait avec
-   le vert des boutons de conversion. Blanc sur ce bleu donne 8,0:1, bien
-   au-dela du seuil AA, ce qui laisse de la marge aux textes secondaires. */
+/* Fond : gris tres clair (--surface) depuis le 3 novembre 2026 — il etait du
+   bleu de l'en-tete, retire a la demande du proprietaire. Contrastes sur
+   #F8FAFC : --ink 17,1:1, --body-text 9,9:1, --muted-teinte 5,65:1 (pas
+   --muted, a 4,55:1 : voir le controle gris-teinte). */
 .site-footer {
   line-height: 1.6;
   font-family: var(--font-body);
-  background: var(--primary-blue);
-  color: #FFFFFF;
+  background: var(--surface);
+  color: var(--body-text);
   border-top: 3px solid var(--cta-green);
 }
 
-.site-footer a { color: #FFFFFF; text-decoration: none; }
+.site-footer a { color: var(--ink); text-decoration: none; }
 /* Le soulignement au survol n'a de sens qu'avec un pointeur qui survole.
    Sur ecran tactile, :hover reste COLLE au dernier element touche : un lien du
    pied restait souligne apres un tap, « contrairement aux autres ». Reproduit en
@@ -1806,7 +1806,7 @@ li > .ico:first-child {
   .site-footer a:hover { text-decoration: underline; }
 }
 .site-footer a:focus-visible {
-  outline: 2px solid var(--cta-green);
+  outline: 2px solid var(--accent-green);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -1819,16 +1819,16 @@ li > .ico:first-child {
   gap: 16px;
   text-align: center;
   padding: 26px 20px;
-  background: rgba(255, 255, 255, .10);
-  border-bottom: 1px solid rgba(255, 255, 255, .22);
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--border);
 }
 .footer-cta__t {
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 1.18rem;
-  color: #FFFFFF;
+  color: var(--ink);
 }
-.footer-cta__d { color: #FFFFFF; font-size: 0.95rem; }
+.footer-cta__d { color: var(--body-text); font-size: 0.95rem; }
 
 /* Le bouton ne porte pas .btn-devis : le bloc des boutons verts de ce fichier
    impose fond et couleur en !important a cette classe, mais aucune mise en
@@ -1878,10 +1878,10 @@ li > .ico:first-child {
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 1.12rem;
-  color: #FFFFFF;
+  color: var(--ink);
 }
 .footer-brand__phrase {
-  color: #E8EEFF;
+  color: var(--body-text);
   font-size: 0.93rem;
   margin-bottom: 16px;
   max-width: 46ch;
@@ -1920,28 +1920,21 @@ li > .ico:first-child {
   border-radius: 999px;
   font-size: 0.85rem;
   font-weight: 700;
-  /* .12 et pas davantage : le texte est blanc, en gras de 13,6 px, donc pas du
-     « grand texte » au sens WCAG — il lui faut 4,5:1. Le blanc translucide
-     eclaircit le bleu du pied et fait CHUTER le contraste : a .22 le fond
-     effectif valait #4c74fc, soit 4,02:1, en echec sur les 67 pages. Le seuil
-     de bascule est .16 (4,52:1) ; .12 donne 4,87:1 et garde de la marge.
-     Mesure : axe via Lighthouse, et calcul WCAG independant — memes valeurs. */
-  background: rgba(255, 255, 255, .12);
-  border: 1px solid rgba(255, 255, 255, .40);
-  color: #FFFFFF;
+  /* Pastille blanche bordee de gris sur le fond --surface du pied. */
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  color: var(--ink);
 }
 .footer-pastille svg { flex-shrink: 0; }
-/* Or plus clair que --star-gold, a dessein : sur le fond effectif de la pastille
-   (#3562fb) il vaut 2,93:1, contre 2,66:1 pour --star-gold. */
-.footer-pastille--avis svg { color: #FBBF24; }
-.footer-pastille--certif svg { color: var(--cta-green); }
-a.footer-pastille:hover { background: rgba(255, 255, 255, .16); text-decoration: none; }
+.footer-pastille--avis svg { color: var(--star-gold); }
+.footer-pastille--certif svg { color: var(--accent-green); }
+a.footer-pastille:hover { background: var(--surface); text-decoration: none; }
 
 /* --- Colonnes de liens ---
    En <details> pour que le mobile puisse les replier. Le resume porte un h3,
    qui existe ainsi dans le plan du document : la navigation par titres d'un
    lecteur d'ecran ne voit pas un <summary> seul. */
-.footer-col__bloc { border-bottom: 1px solid rgba(255, 255, 255, .22); }
+.footer-col__bloc { border-bottom: 1px solid var(--border); }
 .footer-col__resume {
   display: flex;
   align-items: center;
@@ -1957,9 +1950,9 @@ a.footer-pastille:hover { background: rgba(255, 255, 255, .16); text-decoration:
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1rem;
-  color: #FFFFFF;
+  color: var(--ink);
 }
-.footer-col__chevron { transition: transform .2s ease; flex-shrink: 0; color: #D7E0FF; }
+.footer-col__chevron { transition: transform .2s ease; flex-shrink: 0; color: var(--muted-teinte); }
 .footer-col__bloc[open] .footer-col__chevron { transform: rotate(180deg); }
 /* Le <ul> n'est mis en page que lorsque le bloc est ouvert. Il l'est par
    defaut dans le HTML : c'est main.js qui replie les colonnes sous 768 px.
@@ -1986,10 +1979,10 @@ a.footer-pastille:hover { background: rgba(255, 255, 255, .16); text-decoration:
   max-width: 1280px;
   margin: 0 auto;
   padding: 18px 20px 24px;
-  border-top: 1px solid rgba(255, 255, 255, .22);
+  border-top: 1px solid var(--border);
 }
-.footer-copy { font-size: 0.85rem; color: #D7E0FF; }
-.footer-copy a { color: #E8EEFF; }
+.footer-copy { font-size: 0.85rem; color: var(--muted-teinte); }
+.footer-copy a { color: var(--body-text); }
 
 .footer-social { display: flex; gap: 10px; }
 .footer-social__link {
@@ -1999,11 +1992,11 @@ a.footer-pastille:hover { background: rgba(255, 255, 255, .16); text-decoration:
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, .22);
-  border: 1px solid rgba(255, 255, 255, .28);
-  color: #FFFFFF;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  color: var(--ink);
 }
-.footer-social__link:hover { background: rgba(255, 255, 255, .26); }
+.footer-social__link:hover { background: var(--border); }
 
 /* Trois elements flottent au-dessus du bas de page : la barre d'appel mobile,
    le bouton « retour en haut » et la bulle WhatsApp. Sans ces reserves ils
