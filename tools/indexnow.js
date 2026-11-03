@@ -80,7 +80,8 @@ function empreinte(html) {
   const corps = html
     .replace(/\?v=[0-9a-zA-Z]+/g, '')
     .replace(/<header class="site-header"[\s\S]*?<\/header>/g, '')
-    .replace(/<footer class="site-footer"[\s\S]*?<\/footer>/g, '');
+    .replace(/<footer class="site-footer"[\s\S]*?<\/footer>/g, '')
+    .replace(/<meta name="theme-color"[^>]*>/, '');
   return crypto.createHash('sha256').update(corps, 'utf8').digest('hex').slice(0, 16);
 }
 
