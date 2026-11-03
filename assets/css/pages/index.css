@@ -759,3 +759,20 @@
   margin: 14px 0 0;
   text-align: center;
 }
+
+/* ==========================================================================
+   FONDS BLANCS SUR L'ACCUEIL — 3 novembre 2026, a la demande du proprietaire
+   --------------------------------------------------------------------------
+   Les fonds gris clair et bleu clair des sections sont retires ; les traits
+   de separation restent. Pose ici, et non dans les feuilles partagees :
+   .reviews et .dezinsect-form-container servent aussi sur contact et
+   identifier-nuisible, qui gardent leur fond. Cette feuille charge en
+   dernier, donc gagne a specificite egale.
+   ========================================================================== */
+.hero { background: #fff; }
+.hero::before { display: none; }
+.devis-section,
+.reviews,
+.qualifs { background: #fff; }
+.dezinsect-form-container { background: #fff; }
+.why-card.featured { background: #fff; }
