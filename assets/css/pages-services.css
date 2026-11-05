@@ -58,8 +58,15 @@
     .hero-header { text-align: center; margin-bottom: 28px; }
 
 
+    /* Taille du H1 : .hero-title (guepes-et-frelons) et .derat-title
+       (deratisation, desinsectisation). Les feuilles de ces pages posaient
+       2,4 a 2,8 rem en bureau, mais elles chargent AVANT cette feuille :
+       la taille de base d'ici les ecrasait a toutes les largeurs, et le H1
+       restait a 25 px en 1440. Le clamp est donc pose ici, aligne sur les
+       pages de zone et service + ville (2,5 rem = 40 px en bureau) ; le
+       plancher garde la taille mobile d'avant. */
     .hero-title {
-      font-size: 1.6rem;
+      font-size: clamp(1.6rem, 3.4vw, 2.5rem);
       font-weight: 800;
       color: var(--primary);
       line-height: 1.3;
@@ -433,7 +440,7 @@
 
 
     .derat-title {
-      font-size: 1.55rem;
+      font-size: clamp(1.55rem, 3.4vw, 2.5rem); /* voir .hero-title */
       font-weight: 800;
       color: var(--primary);
       line-height: 1.3;
