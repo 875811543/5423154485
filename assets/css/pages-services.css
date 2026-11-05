@@ -179,6 +179,27 @@
     }
 
 
+    /* Fiches especes (guepes-et-frelons, seule page qui les porte) : en
+       bureau la fiche occupe toute la largeur et le texte courait sur 150 a
+       175 caracteres par ligne, en 14 px. Plafond de lecture et 16 px a
+       partir de 768 px ; en dessous rien ne change, la ligne y fait deja
+       moins de 60 caracteres et la hauteur de lecture mobile est conservee.
+       La largeur de la carte n'est pas touchee : seul le texte est borne.
+       48ch et non 75ch : 1ch est la largeur du « 0 », bien plus large qu'un
+       caractere moyen en Inter. Mesure : 66ch donnait 90 a 100 caracteres
+       par ligne, 48ch en donne 57 a 66. */
+    @media (min-width: 768px) {
+      .species-desc,
+      .species-list {
+        max-width: 48ch;
+      }
+      .species-desc,
+      .species-list li {
+        font-size: 1rem;
+      }
+    }
+
+
     .species-list li::before {
       content: "•";
       color: var(--accent-blue);
