@@ -71,7 +71,7 @@
   font-size: 1.15rem;
   color: var(--text-dark);
   font-weight: 800;
-  line-height: 1.25;
+  line-height: 1.35;
 }
 
 .highlight-badge {
@@ -117,7 +117,7 @@
 
 .why-card .icon-box svg { width: 22px; height: 22px; }
 
-.why-card .card-title { font-size: 1.05rem; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
+.why-card .card-title { font-size: 1.05rem; font-weight: 700; color: var(--text-dark); line-height: 1.35; }
 
 .certi-badge {
   position: relative;
@@ -428,7 +428,7 @@
   font-weight: 700;
   font-size: 0.95rem;
   color: var(--ink);
-  line-height: 1.3;
+  line-height: 1.4;
 }
 
 .hero-urgence__detail {
@@ -790,3 +790,11 @@
    80 px a 375 px de large. Ce choix defait volontairement une partie du
    resserrement « faire remonter le formulaire » plus haut dans cette feuille. */
 .devis-section { padding-top: clamp(56px, 8vw, 96px); }
+
+/* Mobile : le bouton « Identifier un nuisible » se rapproche du titre
+   « Demandez votre devis gratuit ». Seul le bas du hero bouge : le haut de la
+   page reste exactement où il était. L'ecart passe de 80 a 44 px a 375 px
+   (24 px de padding bas du hero + 20 px ci-dessous). */
+@media (max-width: 767px) {
+  .devis-section { padding-top: 20px; }
+}
