@@ -573,18 +573,25 @@
   .hero-confiance__note { transition: none; }
 }
 
-/* Deux paliers de plus pour le H1, mesures et non supposes.
-   « Dératisation, désinsectisation & anti-termites en Corse » compte un mot
-   de seize lettres : a 1,75 rem il tient en trois lignes des 390 px, mais en
-   demande quatre a 360 et a 320. Releve a quatre largeurs et six tailles.
-   Ces paliers ne s'appliquent donc qu'en dessous de 390 px ; a 390 et au-dela
-   la taille demandee de 1,75 rem reste en vigueur. */
-@media (max-width: 380px) {
-  .hero h1 { font-size: 1.6rem; }
+/* Taille du H1 sous 560 px : indexee sur la largeur du segment insecable.
+   « Traitement anti-termites, » est en nowrap (voir plus haut) : il ne peut
+   pas passer a la ligne, donc il doit tenir dans la largeur utile, soit
+   100vw moins les deux gouttieres de 20 px. Mesure en HTTP, polices
+   chargees : ce segment fait 13,13 fois la taille de police. Le diviseur
+   13,3 laisse un peu de marge. 1,75 rem reste le plafond.
+   Remplace deux paliers fixes (1,6 rem sous 380 px, 1,5 rem sous 340 px),
+   poses pour un ancien titre : avec le titre actuel, le segment depassait
+   de 15 px a 320 px et ne laissait que 2 px de marge droite a 390 px. */
+@media (max-width: 559px) {
+  .hero h1 { font-size: min(1.75rem, calc((100vw - 40px) / 13.3)); }
 }
 
-@media (max-width: 340px) {
-  .hero h1 { font-size: 1.5rem; }
+/* Le bouton d'identification est en nowrap (global.css) et mesure 318 px :
+   il depassait de la page a 320 px. Il peut desormais passer sur deux
+   lignes plutot que de sortir de l'ecran. */
+.hero-ident .btn-secondaire {
+  max-width: 100%;
+  white-space: normal;
 }
 
 .hero__btn-primary:focus-visible,
