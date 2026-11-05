@@ -51,11 +51,19 @@
     padding: 12px 14px;
     border: 1px solid #cbd5e1;
     border-radius: 8px;
+    /* Un champ n'herite pas la police de son conteneur : sans cette ligne,
+       Chrome rendait les input et select en Arial et le textarea en
+       monospace, sur l'accueil et sur contact. */
+    font-family: var(--font-body);
     font-size: 0.95rem;
     color: #0f172a;
     background-color: #ffffff;
     box-sizing: border-box;
     transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+  }
+  .dezinsect-form-container input::placeholder,
+  .dezinsect-form-container textarea::placeholder {
+    font-family: var(--font-body);
   }
   .dezinsect-form-container input:focus,
   .dezinsect-form-container select:focus,
